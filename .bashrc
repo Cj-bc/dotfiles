@@ -7,13 +7,19 @@ cat << _EOT_
                                                                                _|  
                                                                            _|_|   
 
-                                        ____  _  ___  ____     ____ ___  
-                                        |     |  |__] |        [__  |  \ 
-                                        |___ _| .|__] |___ ___ ___] |__/ 
+                           /\____/\ \   ____  _  ___  ____     ____ ___    /
+                          | ^<>^  |  \  |     |  |__] |        [__  |  \  /
+                          |=======|   \ |___ _| .|__] |___ ___ ___] |__/ /
 
 _EOT_
 
-export PS1="<X_X>:\W \$"  # setting the prompt
+git_branch() {
+  echo $(git branch 2>/dev/null | sed -ne "s/^\* \(.*\)$/\1/p")
+}
+function torf() {
+  return $stat
+}
+export PS1="\`stat=\"\$?\";echo -n '\$?is'\$stat;if [ -e ./.git ];then echo [$(git_branch)];fi;[ \${stat} = 0 ] && echo \[\e[33m\]\<X_X\>\[\e[0m\] || echo \[\e[31m\]\<@_@\>\[\e[0m\];torf\`:\W\\$ " # \ before $value is really important!
 export PS4='+(${BASH_SOURCE}:${LINENO}): ${FUNCNAME:+$FUNCNAME(): }' # setting debug prompt
 
 # ================================= Alias ====================================
@@ -44,5 +50,10 @@ shopt -s xpg_echo
 # ==                                                                           == 
 # ==  https://qiita.com/kawaz/items/65cdbeaa739c4e6b7776                       ==
 # ==      -> setting of PS4                                                    ==
-# ==
+# == http://note.kurodigi.com/bashprompt-customize/                            ==
+# ==      -> color of PS1(echo command)                                        ==
+# == https://news.mynavi.jp/article/20090909-bash/                             ==
+# ==      -> change PS1 when $? -ne 0                                          ==
+# == https://qiita.com/iwazer/items/5f57a80b8aac0f4e9839                       ==
+# ==      -> add git-branch in PS1                                             ==
 # ===============================================================================
