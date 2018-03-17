@@ -19,7 +19,7 @@ git_branch() {
 function torf() {
   return $stat
 }
-export PS1="\`stat=\"\$?\";echo -n '\$?is'\$stat;if [ -e ./.git ];then echo [$(git_branch)];fi;[ \${stat} = 0 ] && echo \[\e[33m\]\<X_X\>\[\e[0m\] || echo \[\e[31m\]\<@_@\>\[\e[0m\];torf\`:\W\\$ " # \ before $value is really important!
+export PS1="\`stat=\"\$?\";echo -n '\$?is'\$stat;[ -e ./.git ] && echo [\$(git_branch)];[ \${stat} = 0 ] && echo \[\e[33m\]\<X_X\>\[\e[0m\] || echo \[\e[31m\]\<@_@\>\[\e[0m\];torf\`:\W\\$ " # \ before $value is really important!
 export PS4='+(${BASH_SOURCE}:${LINENO}): ${FUNCNAME:+$FUNCNAME(): }' # setting debug prompt
 
 # ================================= Alias ====================================
@@ -34,12 +34,13 @@ alias back='cd $OLDPWD'
 alias siri='open /Applications/Siri.app'
 alias drp='cd ~/Dropbox && ls'
 alias stopwatch='utimer --stopwatch'
+alias dia='vim ~/.diary/$(date "+%Y/%m/%d").md'
 
 # ------------ networks
 alias airport='/System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport'
 alias wport='networksetup -setairportpower' # usage: wport <device> <on/off>
 alias wifi='networksetup -setairportnetwork' # usage: wifi <device> <SSID> <password>
-alias google='[ $# -ne 0 ] && w3m thhps://www.google.com/search?q=${@// /+}  || w3m google.com' #usage: google [word]
+alias google='[ $# -ne 0 ] && w3m https://www.google.com/search?q=${@// /+}  || w3m google.com' #usage: google [word]
 
 
 shopt -s xpg_echo
