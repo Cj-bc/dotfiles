@@ -32,6 +32,8 @@ set shiftwidth=2 " width auto-indent
 highlight ZenkakuSpace cterm=underline ctermfg=lightblue guibg=#666666
 au BufNewFile,BufRead * match ZenkakuSpace /　/
 
+au BufNewFile *.dia 0r $HOME/.vim/template/diary.txt
+
 " ================== Key binds ==============================
 	" jj to exit insert-mode
 inoremap <silent> jj <ESC> 

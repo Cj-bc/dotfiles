@@ -5,5 +5,7 @@
 	augroup filetypedetect
 	  au! BufRead,BufNewFile *.applescript,*.scpt	setfiletype apples
 	  au! BufRead,BufNewFile *.note	setfiletype note
+	  au! BufRead,BufNewFile *.dia setfiletype diary
+    
 	augroup END
 
