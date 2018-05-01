@@ -15,6 +15,8 @@ Plugin 'tyru/open-browser.vim' " dependency of TweetVim
 Plugin 'basyura/twiBill.vim'  " dependency of TweetVim
 Plugin 'mattn/webapi-vim'  " dependency of TweetVim (optional)
 Plugin 'basyura/TweetVim'
+Plugin 'junkblocker/patchreview-vim' " dependency of vim-codereview
+Plugin 'codegram/vim-codereview'
 
 call vundle#end()
 filetype plugin indent on
