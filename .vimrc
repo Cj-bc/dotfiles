@@ -16,7 +16,7 @@ Plugin 'basyura/twiBill.vim'  " dependency of TweetVim
 Plugin 'mattn/webapi-vim'  " dependency of TweetVim (optional)
 Plugin 'basyura/TweetVim'
 Plugin 'junkblocker/patchreview-vim' " dependency of vim-codereview
-Plugin 'codegram/vim-codereview'
+Plugin 'codegram/vim-codereview'  " code reviewer for Github's Pull-Request
 Plugin 'Shougo/unite.vim' " unite.vim -- a breaking User Interface
 Plugin 'kmnk/vim-unite-giti' " add Git source for unite.vim
 call vundle#end()
