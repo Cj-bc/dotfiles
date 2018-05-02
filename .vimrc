@@ -69,6 +69,11 @@ nnoremap ,cr <ESC>:CodeReviewReloadComments <LF>
 let twitvim_browser_cmd = 'open'
 let twitvim_force_ssl = 1
 let twitvimount = 40
+augroup config-github-complete
+  autocmd!
+  autocmd FileType gitcommit setl omnifunc=github_complete#complete
+  autocmd FileType markdown setl omnifunc=github_complete#complete
+augroup END
 
 " =================== Reference URLs ===================================
 " ==                                                                  ==
