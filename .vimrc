@@ -19,7 +19,10 @@ Plugin 'junkblocker/patchreview-vim' " dependency of vim-codereview
 Plugin 'codegram/vim-codereview'  " code reviewer for Github's Pull-Request
 Plugin 'Shougo/unite.vim' " unite.vim -- a breaking User Interface
 Plugin 'kmnk/vim-unite-giti' " add Git source for unite.vim
-call vundle#end()
+Plugin 'mattn/emoji-vim' " type Emoji in Vim!!
+Plugin 'Shougo/vimproc.vim' " optionally dependency of github-complete.vim
+Plugin 'rhysd/github-complete.vim' " complete github's username, repository name, etc
+ call vundle#end()
 filetype plugin indent on
 
 " ================ Generals =================================
