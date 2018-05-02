@@ -56,6 +56,11 @@ inoremap ( ()<left>
 inoremap { {}<left>
 inoremap " ""<left>
 
+" key bind for vim-codereview
+nnoremap ,cc <ESC>:CodeReviewCommentChange <LF>
+nnoremap ,ch <ESC>:CodeReviewComment <LF>
+nnoremap ,cr <ESC>:CodeReviewReloadComments <LF>
+
 
 
 " ================== Plugin configs ========================
