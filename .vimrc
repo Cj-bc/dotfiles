@@ -33,6 +33,7 @@ highlight ZenkakuSpace cterm=underline ctermfg=lightblue guibg=#666666
 au BufNewFile,BufRead * match ZenkakuSpace /　/
 
 au BufNewFile *.dia 0r $HOME/.vim/template/diary.txt
+au BufNewFile pack.mcmeta 0r $HOME/.vim/template/pack.mcmeta
 
 " ================== Key binds ==============================
 	" jj to exit insert-mode
