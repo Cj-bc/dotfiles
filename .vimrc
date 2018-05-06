@@ -15,8 +15,14 @@ Plugin 'tyru/open-browser.vim' " dependency of TweetVim
 Plugin 'basyura/twiBill.vim'  " dependency of TweetVim
 Plugin 'mattn/webapi-vim'  " dependency of TweetVim (optional)
 Plugin 'basyura/TweetVim'
-
-call vundle#end()
+Plugin 'junkblocker/patchreview-vim' " dependency of vim-codereview
+Plugin 'codegram/vim-codereview'  " code reviewer for Github's Pull-Request
+Plugin 'Shougo/unite.vim' " unite.vim -- a breaking User Interface
+Plugin 'kmnk/vim-unite-giti' " add Git source for unite.vim
+Plugin 'mattn/emoji-vim' " type Emoji in Vim!!
+Plugin 'Shougo/vimproc.vim' " optionally dependency of github-complete.vim
+Plugin 'rhysd/github-complete.vim' " complete github's username, repository name, etc
+ call vundle#end()
 filetype plugin indent on
 
 " ================ Generals =================================
@@ -51,6 +57,11 @@ inoremap ( ()<left>
 inoremap { {}<left>
 inoremap " ""<left>
 
+" key bind for vim-codereview
+nnoremap ,cc <ESC>:CodeReviewCommentChange <LF>
+nnoremap ,ch <ESC>:CodeReviewComment <LF>
+nnoremap ,cr <ESC>:CodeReviewReloadComments <LF>
+
 
 
 " ================== Plugin configs ========================
@@ -59,6 +70,11 @@ inoremap " ""<left>
 let twitvim_browser_cmd = 'open'
 let twitvim_force_ssl = 1
 let twitvimount = 40
+augroup config-github-complete
+  autocmd!
+  autocmd FileType gitcommit setl omnifunc=github_complete#complete
+  autocmd FileType markdown setl omnifunc=github_complete#complete
+augroup END
 
 " =================== Reference URLs ===================================
 " ==                                                                  ==
