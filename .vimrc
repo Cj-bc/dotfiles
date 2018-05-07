@@ -4,17 +4,17 @@ set modelines=5
 set nocompatible
 filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-" ------- Write plugins here
-" Plugin '[Github Author]/[Github repo]'
-"
-"
+ call vundle#begin()
+ " ------- Write plugins here
+ " Plugin '[Github Author]/[Github repo]'
+ "
+ "
 Plugin 'VundleVim/Vundle.vim'
-Plugin 'Twitvim/twitvim'
-Plugin 'tyru/open-browser.vim' " dependency of TweetVim
-Plugin 'basyura/twiBill.vim'  " dependency of TweetVim
-Plugin 'mattn/webapi-vim'  " dependency of TweetVim (optional)
-Plugin 'basyura/TweetVim'
+" Plugin 'Twitvim/twitvim'
+" Plugin 'tyru/open-browser.vim' " dependency of TweetVim
+" Plugin 'basyura/twiBill.vim'  " dependency of TweetVim
+Plugin 'mattn/webapi-vim'  " send http request from vim
+" Plugin 'basyura/TweetVim'
 Plugin 'junkblocker/patchreview-vim' " dependency of vim-codereview
 Plugin 'codegram/vim-codereview'  " code reviewer for Github's Pull-Request
 Plugin 'Shougo/unite.vim' " unite.vim -- a breaking User Interface
@@ -22,7 +22,8 @@ Plugin 'kmnk/vim-unite-giti' " add Git source for unite.vim
 Plugin 'mattn/emoji-vim' " type Emoji in Vim!!
 Plugin 'Shougo/vimproc.vim' " optionally dependency of github-complete.vim
 Plugin 'rhysd/github-complete.vim' " complete github's username, repository name, etc
- call vundle#end()
+Plugin 'jaxbot/github-issues.vim' " deal with github issues
+call vundle#end()
 filetype plugin indent on
 
 " ================ Generals =================================
@@ -66,15 +67,25 @@ nnoremap ,cr <ESC>:CodeReviewReloadComments <LF>
 
 " ================== Plugin configs ========================
 
-" -------- TwitVim
-let twitvim_browser_cmd = 'open'
-let twitvim_force_ssl = 1
-let twitvimount = 40
+" " -------- TwitVim
+" let twitvim_browser_cmd = 'open'
+" let twitvim_force_ssl = 1
+" let twitvimount = 40
+
+" -------- github-completion
 augroup config-github-complete
   autocmd!
   autocmd FileType gitcommit setl omnifunc=github_complete#complete
   autocmd FileType markdown setl omnifunc=github_complete#complete
+  autocmd FileType conf  setl omnifunc=github_complete#complete
+  autocmd FileType gfimarkdown setl omnifunc=github_complete#complete
 augroup END
+
+" ------- github-issues.vim
+let g:github_issues_no_omni = 1 " set anything to disable omnifunc 
+if filereadable(expand('~/.vimrc.private')) " source access token
+  source ~/.vimrc.private
+endif
 
 " =================== Reference URLs ===================================
 " ==                                                                  ==
