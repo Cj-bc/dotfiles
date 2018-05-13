@@ -87,6 +87,16 @@ if filereadable(expand('~/.vimrc.private')) " source access token
   source ~/.vimrc.private
 endif
 
+" ------- netrw
+" usage:
+"   i --- change view mode
+"   v --- open file on the side
+"   o --- open file up to the newtw
+let g:netrw_liststyle = 3 " force tree view (can be toggled by 'i' button)
+let g:netrw_altv = 1 " open files on the right side when 'v' is pushed
+
+
+
 " =================== Reference URLs ===================================
 " ==                                                                  ==
 " == http://vimblog.hatenablog.com/entry/vimrc_key_mapping            ==
@@ -99,6 +109,8 @@ endif
 " ==     -> Automatically insert the pair                             ==
 " == http://vimblog.hatenablog.com/entry/vimrc_set_tab_indent_options ==
 " == 	 -> settings related with <tab>				                          ==
+" == http://blog.tojiru.net/article/234400966.html                    ==
+" ==  -> settings of netrw config                                     ==
 " ==                                            								      ==
 " ==     		http://vim-jp.org                                         ==
 " ==               VIM Japanese community site                        ==
