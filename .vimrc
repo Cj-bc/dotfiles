@@ -38,6 +38,10 @@ set shiftwidth=2 " width auto-indent
 	" highlight ZENKAKU-SPACE not to miss them
 highlight ZenkakuSpace cterm=underline ctermfg=lightblue guibg=#666666
 au BufNewFile,BufRead * match ZenkakuSpace /　/
+  " display unvisible letter
+  "   tab: >>-
+set list
+set listchars=tab:>-,trail:-,extends:>,precedes:<,nbsp:%
 
 au BufNewFile *.dia 0r $HOME/.vim/template/diary.txt
 au BufNewFile pack.mcmeta 0r $HOME/.vim/template/pack.mcmeta
@@ -97,24 +101,26 @@ let g:netrw_altv = 1 " open files on the right side when 'v' is pushed
 
 
 
-" =================== Reference URLs ===================================
-" ==                                                                  ==
-" == http://vimblog.hatenablog.com/entry/vimrc_key_mapping            ==
-" ==     -> difference between key-bind commands                      ==
-" == http://d.hatena.ne.jp/hyuki/20130714/vim                         ==
-" ==     -> time-insert key-bind                                      ==
-" == https://qiita.com/annyamonnya/items/97c5cb0cfa414b3592d7         ==
-" ==     -> Cheat sheet of strftime() function                        ==
-" == https://qiita.com/_snow_narcissus/items/f1633ecc40814acca4cf     ==
-" ==     -> Automatically insert the pair                             ==
-" == http://vimblog.hatenablog.com/entry/vimrc_set_tab_indent_options ==
-" == 	 -> settings related with <tab>				                          ==
-" == http://blog.tojiru.net/article/234400966.html                    ==
-" ==  -> settings of netrw config                                     ==
-" ==                                            								      ==
-" ==     		http://vim-jp.org                                         ==
-" ==               VIM Japanese community site                        ==
-" ==                                                                  ==
-" ==          https://gitter.im/vim-jp/reading-vimrc                  ==
-" ==               .vimrc Reading Community chat                      ==
-" ======================================================================
+" =================== Reference URLs =========================================
+" ==                                                                        ==
+" == http://vimblog.hatenablog.com/entry/vimrc_key_mapping                  ==
+" ==     -> difference between key-bind commands                            ==
+" == http://d.hatena.ne.jp/hyuki/20130714/vim                               ==
+" ==     -> time-insert key-bind                                            ==
+" == https://qiita.com/annyamonnya/items/97c5cb0cfa414b3592d7               ==
+" ==     -> Cheat sheet of strftime() function                              ==
+" == https://qiita.com/_snow_narcissus/items/f1633ecc40814acca4cf           ==
+" ==     -> Automatically insert the pair                                   ==
+" == http://vimblog.hatenablog.com/entry/vimrc_set_tab_indent_options       ==
+" == 	 -> settings related with <tab>				                                ==
+" == http://blog.tojiru.net/article/234400966.html                          ==
+" ==  -> settings of netrw config                                           ==
+" == http://blog.remora.cx/2011/08/display-invisible-characters-on-vim.html ==
+" ==  -> visible unvisible letters (set list)                               ==
+" ==                                                                        ==
+" ==     		http://vim-jp.org                                               ==
+" ==               VIM Japanese community site                              ==
+" ==                                                                        ==
+" ==          https://gitter.im/vim-jp/reading-vimrc                        ==
+" ==               .vimrc Reading Community chat                            ==
+" ============================================================================
