@@ -45,6 +45,9 @@ au BufNewFile,BufRead * match ZenkakuSpace /　/
 set list
 set listchars=tab:>-,trail:-,extends:>,precedes:<,nbsp:%
 
+  " iskeyword define which letter is included as word
+au BufNewFile,BufRead *.sh set iskeyword=.,@,48-57,_,192-255
+
 au BufNewFile *.dia 0r $HOME/.vim/template/diary.txt
 au BufNewFile pack.mcmeta 0r $HOME/.vim/template/pack.mcmeta
 
