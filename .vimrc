@@ -23,6 +23,8 @@ Plugin 'mattn/emoji-vim' " type Emoji in Vim!!
 Plugin 'Shougo/vimproc.vim' " optionally dependency of github-complete.vim
 Plugin 'rhysd/github-complete.vim' " complete github's username, repository name, etc
 Plugin 'jaxbot/github-issues.vim' " deal with github issues
+Plugin 'freitass/todo.txt-vim' " vim plugin for todo.txt
+Plugin 'vim-scripts/bats.vim' " just a hilight for Bats
 call vundle#end()
 filetype plugin indent on
 
