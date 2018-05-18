@@ -36,6 +36,7 @@ alias drp='cd ~/Dropbox && ls'
 alias stopwatch='utimer --stopwatch'
 alias dia='[ -d ~/.diary/$(date "+%Y/%m") ] || mkdir ~/.diary/$(date "+%Y/%m");vim ~/.diary/$(date "+%Y/%m/%d").dia'
 alias qiita='~/Accounts/Cj/Projects/Tools/ShellScripts/qiita/qiita.sh'
+alias td='todo.sh'
 
 # ------------ networks
 alias airport='/System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport'
@@ -48,6 +49,9 @@ alias ymserver='~/Accounts/Cj/Projects/Tools/ShellScripts/ymserver/ymserver.sh'
 shopt -s xpg_echo
 
 
+# ================== setting for todo-txt
+source /usr/local/etc/bash_completion.d/todo_completion
+complete -F _todo td # set todo.sh completion for td alias
 
 # =========================== Reference =========================================
 # ==                                                                           == 
