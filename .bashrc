@@ -48,6 +48,7 @@ alias ymserver='~/Accounts/Cj/Projects/Tools/ShellScripts/ymserver/ymserver.sh'
 
 shopt -s xpg_echo
 
+export PATH=$PATH:~/.nodebrew/current/bin
 
 # ================== setting for todo-txt
 source /usr/local/etc/bash_completion.d/todo_completion
