@@ -27,6 +27,9 @@ Plugin 'freitass/todo.txt-vim' " vim plugin for todo.txt
 Plugin 'vim-scripts/bats.vim' " just a hilight for Bats
 Plugin 'itchyny/calendar.vim' " view calender from vim
 Plugin 'itchyny/screensaver.vim' " screen saver
+Plugin 'kana/vim-textobj-user' " base plugin for textobjects
+Plugin 'kana/vim-operator-user' " base plugin for vim operators
+Plugin 'rhysd/vim-operator-surround' " Vim operator mapping to enclose text objects with surrounds like paren, quote and so on.
 call vundle#end()
 filetype plugin indent on
 
@@ -74,6 +77,10 @@ nnoremap ,cc <ESC>:CodeReviewCommentChange <LF>
 nnoremap ,ch <ESC>:CodeReviewComment <LF>
 nnoremap ,cr <ESC>:CodeReviewReloadComments <LF>
 
+" key binds for operator mappings 
+nnoremap <silent>sa <Plug>(operator-surround-append)
+nnoremap <silent>sd <Plug>(operator-surround-delete)
+nnoremap <silent>sr <Plug>(operator-surround-replace)
 
 " show hint for <C-x> completion
   " dictionary of input key
@@ -167,6 +174,8 @@ let g:netrw_altv = 1 " open files on the right side when 'v' is pushed
 " ==  -> visible unvisible letters (set list)                               ==
 " == http://koturn.hatenablog.com/entry/2018/02/10/170000                   ==
 " ==  -> display hint of <C-x>                                              ==
+" == http://d.hatena.ne.jp/osyo-manga/20140307/1394204974                   ==
+" ==  -> documents for textobj and operators                                ==
 " ==                                                                        ==
 " ==     		http://vim-jp.org                                               ==
 " ==               VIM Japanese community site                              ==
