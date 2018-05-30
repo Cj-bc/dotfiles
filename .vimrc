@@ -25,6 +25,8 @@ Plugin 'rhysd/github-complete.vim' " complete github's username, repository name
 Plugin 'jaxbot/github-issues.vim' " deal with github issues
 Plugin 'freitass/todo.txt-vim' " vim plugin for todo.txt
 Plugin 'vim-scripts/bats.vim' " just a hilight for Bats
+Plugin 'itchyny/calendar.vim' " view calender from vim
+Plugin 'itchyny/screensaver.vim' " screen saver
 call vundle#end()
 filetype plugin indent on
 
