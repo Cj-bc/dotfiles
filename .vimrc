@@ -55,9 +55,12 @@ set listchars=tab:>-,trail:-,extends:>,precedes:<,nbsp:%
 
   " iskeyword define which letter is included as word
 au BufNewFile,BufRead *.sh set iskeyword=.,@,48-57,_,192-255
+au BufNewFile,BufRead *.bats set dictionary=$HOME/.vim/dictionary/bats.dict
 
 au BufNewFile *.dia 0r $HOME/.vim/template/diary.txt
 au BufNewFile pack.mcmeta 0r $HOME/.vim/template/pack.mcmeta
+au BufNewFile *.bats 0r $HOME/.vim/template/bats.bats
+
 
 " ================== Key binds ==============================
 	" jj to exit insert-mode
@@ -164,8 +167,6 @@ augroup END
 "   o --- open file up to the newtw
 let g:netrw_liststyle = 3 " force tree view (can be toggled by 'i' button)
 let g:netrw_altv = 1 " open files on the right side when 'v' is pushed
-
-
 
 " ------ UML view in chrome
 au FileType plantuml command! OpenUML :!open -a % 
