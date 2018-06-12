@@ -30,6 +30,9 @@ Plugin 'itchyny/screensaver.vim' " screen saver
 Plugin 'kana/vim-textobj-user' " base plugin for textobjects
 Plugin 'kana/vim-operator-user' " base plugin for vim operators
 Plugin 'rhysd/vim-operator-surround' " Vim operator mapping to enclose text objects with surrounds like paren, quote and so on.
+Plugin 'scrooloose/vim-slumlord' " Inline previews for Plantuml sequence diagrams
+Plugin 'aklt/plantuml-syntax' " syntax file for Plant UML
+Plugin 'kannokanno/previm' " previewer for markdown in browser
 call vundle#end()
 filetype plugin indent on
 
@@ -146,6 +149,14 @@ if filereadable(expand('~/.vimrc.private')) " source access token
   source ~/.vimrc.private
 endif
 
+
+" ------- previm
+let g:previm_open_cmd = 'open -a Chrome'
+augroup PrevimSettings
+  autocmd!
+  autocmd BufNewFile,BufRead *.{.md,mdwn,mkd,mkdn,mark*} set filetype=markdown
+augroup END
+
 " ------- netrw
 " usage:
 "   i --- change view mode
@@ -156,6 +167,9 @@ let g:netrw_altv = 1 " open files on the right side when 'v' is pushed
 
 
 
+" ------ UML view in chrome
+au FileType plantuml command! OpenUML :!open -a % 
+au BufRead *.uml command! OpenUML :!open -a % 
 " =================== Reference URLs =========================================
 " ==                                                                        ==
 " == http://vimblog.hatenablog.com/entry/vimrc_key_mapping                  ==
