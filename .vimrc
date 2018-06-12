@@ -33,6 +33,8 @@ Plugin 'rhysd/vim-operator-surround' " Vim operator mapping to enclose text obje
 Plugin 'scrooloose/vim-slumlord' " Inline previews for Plantuml sequence diagrams
 Plugin 'aklt/plantuml-syntax' " syntax file for Plant UML
 Plugin 'kannokanno/previm' " previewer for markdown in browser
+Plugin 'VincentCordobes/vim-translate' " Translater in Vim (require: translate-shell)
+Plugin 'vimwiki/vimwiki' " Personal Wiki for Vim
 call vundle#end()
 filetype plugin indent on
 
