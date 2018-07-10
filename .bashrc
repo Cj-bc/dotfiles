@@ -34,7 +34,9 @@ alias la='ls -a'
 alias ll='ls -l'
 alias tree='tree -C'
 alias bashrc='source ~/.bashrc'
+alias bash_profile='source ~/.bash_profile'
 alias back='cd $OLDPWD'
+alias prs='ghi | grep ↑'
 
 # ------------ apps
 alias siri='open /Applications/Siri.app'
