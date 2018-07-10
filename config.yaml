@@ -1,0 +1,29 @@
+actions:
+  pre:
+    Vundlevim-install: [ -e ~/.vim/bundle/Vundle.vim/autoload/vundle.vim ] || git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+    Vundle: vim +PluginInstall +qall
+config:
+  backup: true
+  create: true
+  dotpath: dotfiles
+dotfiles:
+  gen_vimrc:
+    dst: ~/.vimrc
+    src: vimrc
+    action:
+  gen_bashrc:
+    dst: ~/.bashrc
+    src: bashrc
+
+profiles:
+  crystal:
+    dotfiles:
+      - gen_vimrc
+      - gen_bashrc
+      - 
+  remote:
+    dotfiles:
+      - min_vimrc
+      - min_bashrc
+      - min_w3m
+
