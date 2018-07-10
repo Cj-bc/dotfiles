@@ -36,6 +36,7 @@ Plugin 'kannokanno/previm' " previewer for markdown in browser
 Plugin 'VincentCordobes/vim-translate' " Translater in Vim (require: translate-shell)
 Plugin 'vimwiki/vimwiki' " Personal Wiki for Vim
 Plugin 'mhinz/vim-startify' " The fancy start screen for Vim
+Plugin 'editorconfig/editorconfig-vim' " EditorConfig plugin for Vim
 call vundle#end()
 filetype plugin indent on
 
