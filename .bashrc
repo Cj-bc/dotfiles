@@ -19,9 +19,15 @@ git_branch() {
 function torf() {
   return $stat
 }
-export PS1="\`stat=\"\$?\";echo -n '\$?is'\$stat;[ -e ./.git ] && echo -n [\$(git_branch)];echo ;[ \${stat} = 0 ] && echo \[\e[33m\]\<X_X\>\[\e[0m\] || echo \[\e[31m\]\<@_@\>\[\e[0m\];torf\`:\W\\$ " # \ before $value is really important!
+
+function wtdd {
+  echo $(pwd) >~/.wtdd 2>/dev/null
+}
+export PS1="\`stat=\"\$?\";echo -n '\$?is'\$stat;[ -e ./.git ] && echo [\$(git_branch)];[ \${stat} = 0 ] && echo \[\e[33m\]\<X_X\>\[\e[0m\] || echo \[\e[31m\]\<@_@\>\[\e[0m\];torf;wtdd\`:\W\\$ " # \ before $value is really important!
 export PS4='+(${BASH_SOURCE}:${LINENO}): ${FUNCNAME:+$FUNCNAME(): }' # setting debug prompt
 
+# for watchtodo
+export PS1="${PS1}\$(echo \"$(tty) : $(pwd) \" >~/.watchtodo/pwd 2>/dev/null)"
 # ================================= Alias ====================================
 alias ls='ls -G'
 alias la='ls -a'
