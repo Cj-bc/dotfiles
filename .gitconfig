@@ -1,0 +1,16 @@
+[credential]
+	helper = osxkeychain
+[user]
+	name = Cj-bc
+	email = cj-bc@y-modify.org
+[url "github:"]
+  insteadOf = https://github.com/
+	insteadOf = git@github.com/
+[hub]
+	protocol = https
+[core]
+	editor = vim
+[github]
+	user = Cj-bc
+[ghi]
+	token = !security find-internet-password -a Cj-bc -s github.com -l 'ghi token' -w
