@@ -18,7 +18,13 @@ if [ -d ~/.watchtodo ];then
   export PS1="${PS1}\$(echo \"$(tty) : $(pwd) \" >~/.watchtodo/pwd 2>/dev/null)"
 fi
 # ================================= Alias ====================================
-alias ls='ls -G'
+if [ "$(uname)" = 'Darwin' ]; then
+    export LSCOLORS=xbfxcxdxbxegedabagacad
+    alias ls='ls -G'
+else
+    eval `dircolors ~/.colorrc`
+    alias ls='ls --color=auto'
+fi
 alias la='ls -a'
 alias ll='ls -l'
 alias tree='tree -C'
