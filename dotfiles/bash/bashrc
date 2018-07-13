@@ -75,6 +75,10 @@ export PATH=$PYENV_ROOT/bin:$PATH
 eval "$(pyenv init -)"
 
 
+# ------------ go
+export GOPATH=$HOME/.go
+export PATH="${PATH}:${GOPATH}/bin"
+
 # =========================== Reference =========================================
 # ==                                                                           == 
 # ==  https://qiita.com/kawaz/items/65cdbeaa739c4e6b7776                       ==
