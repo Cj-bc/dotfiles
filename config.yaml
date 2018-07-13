@@ -64,10 +64,6 @@ dotfiles:
     dst: ~/.hyper.js
     src: hyper/hyper.js
     link: true
-  hyper:
-    dst: ~/.hyper_plugins
-    src: hyper/hyper_plugins
-    link: true
 
 profiles:
   cores:
@@ -89,7 +85,6 @@ profiles:
       - vimrc_plug_full
       - banner_default
       - hyper_conf
-      - hyper
     include:
       - default
   remote:
