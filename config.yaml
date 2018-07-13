@@ -17,8 +17,11 @@ dotfiles:
   core_vim:
     dst: ~/.vim
     src: vim/.vim
+  vimrc:
+    dst: ~/.vimrc
+    src: vim/vimrc
   core_vimrc:
-    dst: ~/.vim/.vimrc.core
+    dst: ~/.vim/profiles/.vimrc.core
     src: vim/vimrc.core
     link: true
   vimrc_plug_min:
@@ -71,6 +74,7 @@ profiles:
       - gitconfig
       - bash_profile
       - core_vim
+      - vimrc
       - core_vimrc
       - core_bashrc
       - core_w3m
