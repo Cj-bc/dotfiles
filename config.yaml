@@ -18,49 +18,49 @@ dotfiles:
 
   core_vim_syntax:
     dst: ~/.vim/syntax
-    src: vim/.vim/syntax
+    src: vim/syntax
     link: true
   core_vim_template:
     dst: ~/.vim/template
-    src: vim/.vim/template
+    src: vim/template
     link: true
   core_vim_filetype:
     dst: ~/.vim/filetype.vim
-    src: vim/.vim/filetype.vim
+    src: vim/filetype.vim
     link: true
   core_vim_ftdetect:
     dst: ~/.vim/ftdetect
-    src: vim/.vim/ftdetect
+    src: vim/ftdetect
     link: true
   vimrc:
     dst: ~/.vimrc
-    src: vim/vimrc
+    src: vim/vimrcs/vimrc
   core_vimrc:
     dst: ~/.vim/profiles/vimrc.core
-    src: vim/vimrc.core
+    src: vim/vimrcs/vimrc.core
     link: true
 
   vimrc_plug_installer: # vim plugin installer. plugins in vim_plug_min and vim_plug_full will be installed.
-    dst; ~/.vim/plugin/vimrc.plug.installer
-    src: vim/vimrc.plug.installer
+    dst: ~/.vim/plugin/vimrc.plug.installer
+    src: vim/vimrcs/vimrc.plug.installer
     actions:
       - Vundle_install
       - Vundle
   vim_plug_min:         # minimum vim plugin list
     dst: ~/.vim/profiles/plug.min
-    src: vim/plug.min
+    src: vim/vimrcs/plug.min
     link: true
   vim_plug_full:        # full vim plugin list
     dst: ~/.vim/profiles/plug.full
-    src: vim/plug.full
+    src: vim/vimrcs/plug.full
     link: true
   vimrc_plug_min:       # configs for vim_plug_min
     dst: ~/.vim/profiles/vimrc.plug.min
-    src: vim/vimrc.plug.min
+    src: vim/vimrcs/vimrc.plug.min
     link: true
   vimrc_plug_full:      # configs for vim_plug_full
     dst: ~/.vim/profiles/vimrc.plug.full
-    src: vim/vimrc.plug.full
+    src: vim/vimrcs/vimrc.plug.full
     link: true
 
   core_bashrc:
