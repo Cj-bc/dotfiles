@@ -7,13 +7,65 @@ config:
   create: true
   dotpath: dotfiles
 dotfiles:
-  gen_vimrc:
-    dst: ~/.vimrc
-    src: vimrc
-    action:
-  gen_bashrc:
+  bash_profile:
+    dst: ~/.bash_profile
+    src: bash/bash_profile
+    action: source_bashrc
+    link: true
+  core_vim:
+    dst: ~/.vim
+    src: vim/.vim
+  core_vimrc:
+    dst: ~/.vim/.vimrc.core
+    src: vim/vimrc.core
+    link: true
+  vimrc_plug_min:
+    dst: ~/.vim/profiles/vimrc.plug.min
+    src: vim/vimrc.plug.min
+    link: true
+  vimrc_plug_full:
+    dst: ~/.vim/profiles/vimrc.plug.full
+    src: vim/vimrc.plug.full
+    link: true
+  core_bashrc:
     dst: ~/.bashrc
-    src: bashrc
+    src: bash/bashrc
+    link: true
+  core_w3m:
+    dst: ~/.w3m
+    src: w3m
+  core_tmux:
+    dst: ~/.tmux.conf
+    src: tmux/tmux.conf
+    link: true
+
+  core_ssh:
+    dst: ~/.ssh
+    src: ssh/ssh
+
+  banner_default:
+    dst: ~/.bashrc.banner
+    src: bash/bashrc.banner.default
+  banner_remote:
+    dst: ~/.bashrc.banner
+    src: bash/bashrc.banner.remote
+
+  core_brew:
+    dst: ~/.Brewfile
+    src: Brewfile/Brewfile.core
+  gitconfig:
+    dst: ~/.gitconfig
+    src: gitconfig
+  
+
+  hyper_conf:
+    dst: ~/.hyper.js
+    src: hyper/hyper.js
+    link: true
+  hyper:
+    dst: ~/.hyper_plugins
+    src: hyper/hyper_plugins
+    link: true
 
 profiles:
   cores:
