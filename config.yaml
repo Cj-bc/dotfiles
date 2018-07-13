@@ -2,6 +2,8 @@ actions:
   pre:
     Vundle: vim +PluginInstall +qall
     Vundle_install: test -e ~/.vim/bundle/Vundle.vim/autoload/vundle.vim || git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+  source_bashrc: source $HOME/.bashrc
+
 config:
   backup: true
   create: true
