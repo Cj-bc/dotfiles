@@ -1,17 +1,4 @@
-cat << _EOT_
- _|      _|                                            _|  _|      _|_|            
-   _|  _|              _|_|_|  _|_|      _|_|      _|_|_|        _|      _|    _|  
-     _|    _|_|_|_|_|  _|    _|    _|  _|    _|  _|    _|  _|  _|_|_|_|  _|    _|  
-     _|                _|    _|    _|  _|    _|  _|    _|  _|    _|      _|    _|  
-     _|                _|    _|    _|    _|_|      _|_|_|  _|    _|        _|_|_|  
-                                                                               _|  
-                                                                           _|_|   
-
-                           /\____/\ \   ____  _  ___  ____     ____ ___    /
-                          | ^<>^  |  \  |     |  |__] |        [__  |  \  /
-                          |=======|   \ |___ _| .|__] |___ ___ ___] |__/ /
-
-_EOT_
+cat ~/.bashrc.banner
 
 git_branch() {
   echo $(git branch 2>/dev/null | sed -ne "s/^\* \(.*\)$/\1/p")
@@ -61,6 +48,21 @@ export PATH=$PATH:~/.nodebrew/current/bin
 # ================== setting for todo-txt
 source /usr/local/etc/bash_completion.d/todo_completion
 complete -F _todo td # set todo.sh completion for td alias
+
+
+# ================== setting for linuxbrew
+
+if [ -d ~/.linuxbrew ];then
+  PATH="$HOME/.linuxbrew/bin:$PATH"
+  export MANPATH="$(brew --prefix)/share/man:$MANPATH"
+  export INFOPATH="$(brew --prefix)/share/info:$INFOPATH"
+fi
+
+
+export PYENV_ROOT=$HOME/.pyenv
+export PATH=$PYENV_ROOT/bin:$PATH
+eval "$(pyenv init -)"
+
 
 # =========================== Reference =========================================
 # ==                                                                           == 
