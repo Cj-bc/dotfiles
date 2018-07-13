@@ -16,14 +16,30 @@ dotfiles:
     src: bashrc
 
 profiles:
+  cores:
+    dotfiles:
+      - gitconfig
+      - bash_profile
+      - core_vim
+      - core_vimrc
+      - core_bashrc
+      - core_w3m
+      - core_tmux
+  default:
+    dotfiles:
+      - vimrc_plug_min
+    include:
+      - cores
   crystal:
     dotfiles:
-      - gen_vimrc
-      - gen_bashrc
-      - 
+      - vimrc_plug_full
+      - banner_default
+      - hyper_conf
+      - hyper
+    include:
+      - default
   remote:
     dotfiles:
-      - min_vimrc
-      - min_bashrc
-      - min_w3m
-
+      - banner_remote
+    include:
+      - default
