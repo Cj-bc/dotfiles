@@ -10,3 +10,7 @@ if filereadable($HOME . "/.vim/profiles/vimrc.plug.full")
   source $HOME/.vim/profiles/vimrc.plug.full
 endif
 
+if filereadable($HOME . "/.vim/plugin/vimrc.plug.installer")
+  source $HOME/.vim/plugin/vimrc.plug.installer
+endif
+
