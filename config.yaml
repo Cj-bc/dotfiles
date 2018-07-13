@@ -37,9 +37,11 @@ dotfiles:
   vim_plug_min:         # minimum vim plugin list
     dst: ~/.vim/profiles/plug.min
     src: vim/plug.min
+    link: true
   vim_plug_full:        # full vim plugin list
     dst: ~/.vim/profiles/plug.full
     src: vim/plug.full
+    link: true
   vimrc_plug_min:       # configs for vim_plug_min
     dst: ~/.vim/profiles/vimrc.plug.min
     src: vim/vimrc.plug.min
