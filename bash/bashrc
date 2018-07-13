@@ -34,7 +34,7 @@ alias stopwatch='utimer --stopwatch'
 alias dia='[ -d ~/.diary/$(date "+%Y/%m") ] || mkdir ~/.diary/$(date "+%Y/%m");vim ~/.diary/$(date "+%Y/%m/%d").dia'
 alias qiita='~/Accounts/Cj/Projects/Tools/ShellScripts/qiita/qiita.sh'
 alias td='todo.sh'
-alias dotdrop='/home/cj/dotfiles/dotdrop/dotdrop.sh'
+alias dotdrop='$HOME/dotfiles/dotdrop.sh'
 
 # ------------ networks
 alias airport='/System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport'
