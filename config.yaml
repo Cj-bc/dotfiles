@@ -16,9 +16,21 @@ dotfiles:
       - source_bashrc
     link: true
 
-  core_vim:
-    dst: ~/.vim
-    src: vim/.vim
+  core_vim_syntax:
+    dst: ~/.vim/syntax
+    src: vim/.vim/syntax
+    link: true
+  core_vim_template:
+    dst: ~/.vim/template
+    src: vim/.vim/template
+    link: true
+  core_vim_filetype:
+    dst: ~/.vim/filetype.vim
+    src: vim/.vim/filetype.vim
+    link: true
+  core_vim_ftdetect:
+    dst: ~/.vim/ftdetect
+    src: vim/.vim/ftdetect
     link: true
   vimrc:
     dst: ~/.vimrc
@@ -92,7 +104,10 @@ profiles:
     dotfiles:
       - gitconfig
       - bash_profile
-      - core_vim
+      - core_vim_syntax
+      - core_vim_template
+      - core_vim_filetype
+      - core_vim_ftdetect
       - vimrc
       - core_vimrc
       - core_bashrc
