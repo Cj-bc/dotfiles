@@ -92,13 +92,14 @@ dotfiles:
   gitconfig:
     dst: ~/.gitconfig
     src: gitconfig
-  
-
   hyper_conf:
     dst: ~/.hyper.js
     src: hyper/hyper.js
     link: true
-
+  wtf_conf:
+    dst: ~/.config/wtf/config.yml
+    src: wtf.config.yml
+    link: true
 profiles:
   cores:
     dotfiles:
@@ -126,6 +127,7 @@ profiles:
       - vimrc_plug_full
       - banner_default
       - hyper_conf
+      - wtf_conf
     include:
       - default
   remote:
