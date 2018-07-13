@@ -4,8 +4,10 @@
 	name = Cj-bc
 	email = cj-bc@y-modify.org
 [url "github:"]
-  insteadOf = https://github.com/
-	insteadOf = git@github.com/
+	pushInsteadOf = https://github.com/
+	pushInsteadOf = git@github.com/
+[url "https://"]
+	InsteadOf = github:
 [hub]
 	protocol = https
 [core]
