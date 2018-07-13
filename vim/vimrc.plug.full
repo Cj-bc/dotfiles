@@ -1,0 +1,65 @@
+filetype off
+set rtp+=~/.vim/bundle/Vundle.vim
+ call vundle#begin()
+ " ------- Write plugins here
+ " Plugin '[Github Author]/[Github repo]'
+ "
+ "
+Plugin 'VundleVim/Vundle.vim'
+" Plugin 'Twitvim/twitvim'
+" Plugin 'tyru/open-browser.vim' " dependency of TweetVim
+" Plugin 'basyura/twiBill.vim'  " dependency of TweetVim
+Plugin 'mattn/webapi-vim'  " send http request from vim
+" Plugin 'basyura/TweetVim'
+Plugin 'mattn/emoji-vim' " type Emoji in Vim!!
+Plugin 'Shougo/vimproc.vim' " optionally dependency of github-complete.vim
+Plugin 'rhysd/github-complete.vim' " complete github's username, repository name, etc
+Plugin 'jaxbot/github-issues.vim' " deal with github issues
+Plugin 'itchyny/calendar.vim' " view calender from vim
+Plugin 'itchyny/screensaver.vim' " screen saver
+Plugin 'scrooloose/vim-slumlord' " Inline previews for Plantuml sequence diagrams
+Plugin 'kannokanno/previm' " previewer for markdown in browser
+Plugin 'VincentCordobes/vim-translate' " Translater in Vim (require: translate-shell)
+Plugin 'vimwiki/vimwiki' " Personal Wiki for Vim
+call vundle#end()
+filetype plugin indent on
+
+" ================== Plugin configs ========================
+
+" " -------- TwitVim
+" let twitvim_browser_cmd = 'open'
+" let twitvim_force_ssl = 1
+" let twitvimount = 40
+
+" -------- github-completion
+augroup config-github-complete
+  autocmd!
+  autocmd FileType gitcommit setl omnifunc=github_complete#complete
+  autocmd FileType markdown setl omnifunc=github_complete#complete
+  autocmd FileType conf  setl omnifunc=github_complete#complete
+  autocmd FileType gfimarkdown setl omnifunc=github_complete#complete
+augroup END
+
+" ------- github-issues.vim
+let g:github_issues_no_omni = 1 " set anything to disable omnifunc 
+if filereadable(expand('~/.vimrc.private')) " source access token
+  source ~/.vimrc.private
+endif
+
+
+" ------- previm
+let g:previm_open_cmd = 'open -a Chrome'
+augroup PrevimSettings
+  autocmd!
+  autocmd BufNewFile,BufRead *.{.md,mdwn,mkd,mkdn,mark*} set filetype=markdown
+augroup END
+
+
+" =================== Reference URLs =========================================
+" ==                                                                        ==
+" ==     		http://vim-jp.org                                   ==
+" ==               VIM Japanese community site                              ==
+" ==                                                                        ==
+" ==          https://gitter.im/vim-jp/reading-vimrc                        ==
+" ==               .vimrc Reading Community chat                            ==
+" ============================================================================
