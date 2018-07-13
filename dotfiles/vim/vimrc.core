@@ -1,7 +1,5 @@
 set nocompatible
 
-source $HOME/.vim/profile/*
-
 " ================ Generals =================================
 set modeline
 set modelines=5

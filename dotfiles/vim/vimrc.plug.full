@@ -1,29 +1,3 @@
-filetype off
-set rtp+=~/.vim/bundle/Vundle.vim
- call vundle#begin()
- " ------- Write plugins here
- " Plugin '[Github Author]/[Github repo]'
- "
- "
-Plugin 'VundleVim/Vundle.vim'
-" Plugin 'Twitvim/twitvim'
-" Plugin 'tyru/open-browser.vim' " dependency of TweetVim
-" Plugin 'basyura/twiBill.vim'  " dependency of TweetVim
-Plugin 'mattn/webapi-vim'  " send http request from vim
-" Plugin 'basyura/TweetVim'
-Plugin 'mattn/emoji-vim' " type Emoji in Vim!!
-Plugin 'Shougo/vimproc.vim' " optionally dependency of github-complete.vim
-Plugin 'rhysd/github-complete.vim' " complete github's username, repository name, etc
-Plugin 'jaxbot/github-issues.vim' " deal with github issues
-Plugin 'itchyny/calendar.vim' " view calender from vim
-Plugin 'itchyny/screensaver.vim' " screen saver
-Plugin 'scrooloose/vim-slumlord' " Inline previews for Plantuml sequence diagrams
-Plugin 'kannokanno/previm' " previewer for markdown in browser
-Plugin 'VincentCordobes/vim-translate' " Translater in Vim (require: translate-shell)
-Plugin 'vimwiki/vimwiki' " Personal Wiki for Vim
-call vundle#end()
-filetype plugin indent on
-
 " ================== Plugin configs ========================
 
 " " -------- TwitVim

@@ -1,1 +1,12 @@
-source ~/.vim/profiles
+if filereadable($HOME . "/.vim/profiles/vimrc.core")
+  source $HOME/.vim/profiles/vimrc.core
+endif
+
+if filereadable($HOME . "/.vim/profiles/vimrc.plug.min")
+  source $HOME/.vim/profiles/vimrc.plug.min
+endif
+
+if filereadable($HOME . "/.vim/profiles/vimrc.plug.full")
+  source $HOME/.vim/profiles/vimrc.plug.full
+endif
+

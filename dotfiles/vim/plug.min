@@ -1,0 +1,18 @@
+ " ------- Write plugins here
+ " Plugin '[Github Author]/[Github repo]'
+ "
+ "
+Plugin 'VundleVim/Vundle.vim'
+Plugin 'kana/vim-textobj-user' " base plugin for textobjects
+Plugin 'kana/vim-operator-user' " base plugin for vim operators
+Plugin 'rhysd/vim-operator-surround' " Vim operator mapping to enclose text objects with surrounds like paren, quote and so on.
+Plugin 'junkblocker/patchreview-vim' " dependency of vim-codereview
+Plugin 'codegram/vim-codereview'  " code reviewer for Github's Pull-Request
+Plugin 'editorconfig/editorconfig-vim' " EditorConfig plugin for Vim
+Plugin 'mhinz/vim-startify' " The fancy start screen for Vim
+Plugin 'Shougo/unite.vim' " unite.vim -- a breaking User Interface
+Plugin 'kmnk/vim-unite-giti' " add Git source for unite.vim
+Plugin 'freitass/todo.txt-vim' " vim plugin for todo.txt
+Plugin 'vim-scripts/bats.vim' " just a hilight for Bats
+Plugin 'aklt/plantuml-syntax' " syntax file for Plant UML
+

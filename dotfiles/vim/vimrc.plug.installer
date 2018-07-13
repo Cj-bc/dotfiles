@@ -1,0 +1,13 @@
+" installs all plugins listed in plug.min and plug.full
+filetype off
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+  if filereadable("$HOME/.vim/profiles/plug.min")
+    source $HOME/.vim/profiles/plug.min
+  endif
+
+  if filereadable("$HOME/.vim/profiles/plug.full")
+    source $HOME/.vim/profiles/plug.full
+  endif
+call vundle#end()
+filetype plugin indent on
