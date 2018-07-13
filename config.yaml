@@ -1,7 +1,7 @@
 actions:
   pre:
-    Vundlevim-install: [ -e ~/.vim/bundle/Vundle.vim/autoload/vundle.vim ] || git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
     Vundle: vim +PluginInstall +qall
+    Vundle_install: test -e ~/.vim/bundle/Vundle.vim/autoload/vundle.vim || git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 config:
   backup: true
   create: true
