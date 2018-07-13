@@ -2,7 +2,6 @@
  " Plugin '[Github Author]/[Github repo]'
  "
  "
-Plugin 'VundleVim/Vundle.vim'
 " Plugin 'Twitvim/twitvim'
 " Plugin 'tyru/open-browser.vim' " dependency of TweetVim
 " Plugin 'basyura/twiBill.vim'  " dependency of TweetVim

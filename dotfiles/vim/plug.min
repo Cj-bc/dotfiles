@@ -2,7 +2,6 @@
  " Plugin '[Github Author]/[Github repo]'
  "
  "
-Plugin 'VundleVim/Vundle.vim'
 Plugin 'kana/vim-textobj-user' " base plugin for textobjects
 Plugin 'kana/vim-operator-user' " base plugin for vim operators
 Plugin 'rhysd/vim-operator-surround' " Vim operator mapping to enclose text objects with surrounds like paren, quote and so on.
