@@ -10,7 +10,7 @@ Plugin 'codegram/vim-codereview'  " code reviewer for Github's Pull-Request
 Plugin 'editorconfig/editorconfig-vim' " EditorConfig plugin for Vim
 Plugin 'mhinz/vim-startify' " The fancy start screen for Vim
 Plugin 'Shougo/unite.vim' " unite.vim -- a breaking User Interface
-Plugin 'kmnk/vim-unite-giti' " add Git source for unite.vim
+Plugin 'tpope/vim-fugitive' " A Git wrapper so awesome, it should be illegal
 Plugin 'freitass/todo.txt-vim' " vim plugin for todo.txt
 Plugin 'vim-scripts/bats.vim' " just a hilight for Bats
 Plugin 'aklt/plantuml-syntax' " syntax file for Plant UML
