@@ -33,6 +33,9 @@ dotfiles:
     dst: ~/.vim/ftdetect
     src: vim/ftdetect
     link: true
+  core_vim_dictionary:
+    dst: ~/.vim/dictionary
+    src: vim/dictionary
   vimrc:
     dst: ~/.vimrc
     src: vim/vimrcs/vimrc
@@ -112,6 +115,7 @@ profiles:
       - core_vim_template
       - core_vim_filetype
       - core_vim_ftdetect
+      - core_vim_dictionary
       - vimrc
       - core_vimrc
       - core_bashrc
