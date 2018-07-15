@@ -3,6 +3,7 @@ actions:
     Vundle_install: test -e ~/.vim/bundle/Vundle.vim/autoload/vundle.vim || git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
   Vundle: vim +'source $HOME/.vim/plugin/vimrc.plug.installer' +PluginInstall +qall
   source_bashrc: source $HOME/.bashrc
+  brew: type brew && brew bundle install --global
 
 config:
   backup: true
@@ -89,6 +90,8 @@ dotfiles:
   core_brew:
     dst: ~/.Brewfile
     src: Brewfile/Brewfile.core
+    actions:
+      - brew
   gitconfig:
     dst: ~/.gitconfig
     src: gitconfig
@@ -133,5 +136,6 @@ profiles:
   remote:
     dotfiles:
       - banner_remote
+      - core_brew
     include:
       - default
