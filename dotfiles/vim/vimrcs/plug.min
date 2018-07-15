@@ -14,4 +14,4 @@ Plugin 'tpope/vim-fugitive' " A Git wrapper so awesome, it should be illegal
 Plugin 'freitass/todo.txt-vim' " vim plugin for todo.txt
 Plugin 'vim-scripts/bats.vim' " just a hilight for Bats
 Plugin 'aklt/plantuml-syntax' " syntax file for Plant UML
-
+Plugin 'fuenor/qfixhowm' " vim client for Howm
