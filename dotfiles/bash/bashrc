@@ -1,16 +1,20 @@
 cat ~/.bashrc.banner
 
+# check current git branch
 git_branch() {
   echo $(git branch 2>/dev/null | sed -ne "s/^\* \(.*\)$/\1/p")
 }
+
+# reset exit status code to previous command
 function torf() {
   return $stat
 }
 
+# let watch todo daemon know where you are now
 function wtdd {
   [ -f ~/.wtdd ] && echo $(pwd) >~/.wtdd 2>/dev/null
 }
-export PS1="\`stat=\"\$?\";echo -n '\$?is'\$stat;[ -e ./.git ] && echo [\$(git_branch)];[ \${stat} = 0 ] && echo \[\e[33m\]\<X_X\>\[\e[0m\] || echo \[\e[31m\]\<@_@\>\[\e[0m\];torf;wtdd\`:\W\\$ " # \ before $value is really important!
+export PS1="\`stat=\"\$?\";echo -n '\$?is'\$stat;[ -e ./.git ] && echo -n [\$(git_branch)];[ $VIM ] && echo -n '(vim)';echo '\r';[ \${stat} = 0 ] && echo \[\e[33m\]\<X_X\>\[\e[0m\] || echo \[\e[31m\]\<@_@\>\[\e[0m\];torf;wtdd\`:\W\\$ " # \ before $value is really important!
 export PS4='+(${BASH_SOURCE}:${LINENO}): ${FUNCNAME:+$FUNCNAME(): }' # setting debug prompt
 
 # for watchtodo
