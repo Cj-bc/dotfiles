@@ -4,7 +4,11 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
   Plugin 'VundleVim/Vundle.vim'
   " get plugin list from plug.min and plug.full
-  source $HOME/.vim/profiles/plug.min
-  source $HOME/.vim/profiles/plug.full
+  if filereadable($HOME + '/.vim/profiles/plug.min')
+    source $HOME/.vim/profiles/plug.min
+  endif
+  if filereadable($HOME + '/.vim/profiles/plug.full')
+    source $HOME/.vim/profiles/plug.full
+  endif
 call vundle#end()
 filetype plugin indent on
