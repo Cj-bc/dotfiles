@@ -47,6 +47,7 @@ dotfiles:
   vimrc_plug_installer: # vim plugin installer. plugins in vim_plug_min and vim_plug_full will be installed.
     dst: ~/.vim/plugin/vimrc.plug.installer
     src: vim/vimrcs/vimrc.plug.installer
+    link: true
     actions:
       - Vundle_install
       - Vundle
