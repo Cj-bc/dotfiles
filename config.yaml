@@ -92,7 +92,7 @@ dotfiles:
 
   core_brew:
     dst: ~/.Brewfile
-    src: Brewfile/Brewfile.core
+    src: brew/Brewfile.core
     actions:
       - brew
   gitconfig:
