@@ -17,4 +17,3 @@ Plugin 'scrooloose/vim-slumlord' " Inline previews for Plantuml sequence diagram
 Plugin 'kannokanno/previm' " previewer for markdown in browser
 Plugin 'VincentCordobes/vim-translate' " Translater in Vim (require: translate-shell)
 Plugin 'vimwiki/vimwiki' " Personal Wiki for Vim
-Plugin 'w0rp/ale' " Asynchronous Lint Engine
