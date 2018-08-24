@@ -1,0 +1,7 @@
+function FormatSwift()
+  let l:lines="all"
+  pyf expand('~/.vim/swift-format.py')
+endfunction
+
+map <C-I> :FormatSwift<cr>
+imap <C-I> <c-o>:FormatSwift<cr>
