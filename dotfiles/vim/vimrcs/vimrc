@@ -1,16 +1,16 @@
-if filereadable(expand('/.vim/profiles/vimrc.core'))
+if filereadable(expand('~/.vim/profiles/vimrc.core'))
   source $HOME/.vim/profiles/vimrc.core
 endif
 
-if filereadable(expand('/.vim/profiles/vimrc.plug.min'))
+if filereadable(expand('~/.vim/profiles/vimrc.plug.min'))
   source $HOME/.vim/profiles/vimrc.plug.min
 endif
 
-if filereadable(expand('/.vim/profiles/vimrc.plug.full'))
+if filereadable(expand('~/.vim/profiles/vimrc.plug.full'))
   source $HOME/.vim/profiles/vimrc.plug.full
 endif
 
-if filereadable(expand('/.vim/profiles/vimrc.plug.swift-format'))
+if filereadable(expand('~/.vim/profiles/vimrc.plug.swift-format'))
   source $HOME/.vim/profiles/vimrc.plug.swift-format
 endif
 
