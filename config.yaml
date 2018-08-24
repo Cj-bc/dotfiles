@@ -36,6 +36,11 @@ dotfiles:
   core_vim_dictionary:
     dst: ~/.vim/dictionary
     src: vim/dictionary
+    link: true
+  core_vim_ftplugin:
+    dst: ~/.vim/ftplugin
+    src: vim/ftdetect
+    link: true
   vimrc:
     dst: ~/.vimrc
     src: vim/vimrcs/vimrc
@@ -68,6 +73,14 @@ dotfiles:
     src: vim/vimrcs/vimrc.plug.full
     link: true
 
+  vim_util_swift-format: # shape up swift code
+    dst: ~/.vim/swift-format.py
+    src: vim/swift-format.py
+    link: true
+  vimrc_plug_swift-format: # configs for vim_util_swift-format
+    dst: ~/.vim/profiles/vimrc.plug.swift-format
+    src: vim/vimrcs/vimrc.plug.swift-format
+    link: true
   core_bashrc:
     dst: ~/.bashrc
     src: bash/bashrc
@@ -116,6 +129,7 @@ profiles:
       - core_vim_template
       - core_vim_filetype
       - core_vim_ftdetect
+      - core_vim_ftplugin
       - core_vim_dictionary
       - vimrc
       - core_vimrc
@@ -127,6 +141,8 @@ profiles:
       - vimrc_plug_installer
       - vim_plug_min
       - vimrc_plug_min
+      - vim_util_swift-format
+      - vimrc_plug_swift-format
     include:
       - cores
   crystal:
