@@ -2,11 +2,11 @@
  " Plugin '[Github Author]/[Github repo]'
  "
  "
-" Plugin 'Twitvim/twitvim'
-" Plugin 'tyru/open-browser.vim' " dependency of TweetVim
-" Plugin 'basyura/twiBill.vim'  " dependency of TweetVim
+Plugin 'Twitvim/twitvim'
+Plugin 'tyru/open-browser.vim' " dependency of TweetVim
+Plugin 'basyura/twiBill.vim'  " dependency of TweetVim
 Plugin 'mattn/webapi-vim'  " send http request from vim
-" Plugin 'basyura/TweetVim'
+Plugin 'basyura/TweetVim'
 Plugin 'mattn/emoji-vim' " type Emoji in Vim!!
 Plugin 'Shougo/vimproc.vim' " optionally dependency of github-complete.vim
 Plugin 'rhysd/github-complete.vim' " complete github's username, repository name, etc
