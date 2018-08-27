@@ -77,10 +77,6 @@ dotfiles:
     dst: ~/.vim/swift-format.py
     src: vim/swift-format.py
     link: true
-  vimrc_plug_swift-format: # configs for vim_util_swift-format
-    dst: ~/.vim/profiles/vimrc.plug.swift-format
-    src: vim/vimrcs/vimrc.plug.swift-format
-    link: true
   core_bashrc:
     dst: ~/.bashrc
     src: bash/bashrc
@@ -142,7 +138,6 @@ profiles:
       - vim_plug_min
       - vimrc_plug_min
       - vim_util_swift-format
-      - vimrc_plug_swift-format
     include:
       - cores
   crystal:
