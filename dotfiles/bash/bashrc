@@ -58,6 +58,21 @@ shopt -s xpg_echo
 
 export PATH=$PATH:~/.nodebrew/current/bin
 
+
+#=================== setting for ssh-agent
+# this will prevent us from losing ssh-agent on tmux when we re-connect ssh
+agent="$HOME/.ssh/agent"
+if [ -S "$SSH_AUTH_SOCK" ]; then
+      case $SSH_AUTH_SOCK in
+        /tmp/*/agent.[0-9]*)
+              ln -snf "$SSH_AUTH_SOCK" $agent && export SSH_AUTH_SOCK=$agent
+      esac
+elif [ -S $agent ]; then
+  export SSH_AUTH_SOCK=$agent
+else
+  echo "no ssh-agent"
+fi
+
 # ================== setting for todo-txt
 if [ -f /usr/local/etc/bash_completion.d/todo_completion ];then
   source /usr/local/etc/bash_completion.d/todo_completion
@@ -93,4 +108,6 @@ export PATH="${PATH}:${GOPATH}/bin"
 # ==      -> change PS1 when $? -ne 0                                          ==
 # == https://qiita.com/iwazer/items/5f57a80b8aac0f4e9839                       ==
 # ==      -> add git-branch in PS1                                             ==
+# == https://qiita.com/sonots/items/2d7950a68da0a02ba7e4                       ==
+# ==      -> setting of ssh-agent                                              ==
 # ===============================================================================
