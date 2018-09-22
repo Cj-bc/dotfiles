@@ -37,6 +37,10 @@ alias bash_profile='source ~/.bash_profile'
 alias back='cd $OLDPWD'
 alias prs='ghi | grep ↑'
 
+# ------------ crons
+alias mkcron='crontab -e'
+alias lscron='crontab -l'
+
 # ------------ gits
 alias mkpr='hub pull-request'
 alias gs='git status'
