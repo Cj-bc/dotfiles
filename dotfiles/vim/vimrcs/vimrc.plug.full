@@ -5,6 +5,12 @@
 " let twitvim_force_ssl = 1
 " let twitvimount = 40
 
+" -------- tweetvim
+
+let g:tweetvim_silent_say = 1
+nnoremap tww <esc>:TweetVimCommandSay<CR>
+nnoremap twl <esc>:split TweetVimHomeTimeline<CR>
+
 " -------- github-completion
 augroup config-github-complete
   autocmd!
@@ -27,6 +33,16 @@ augroup PrevimSettings
   autocmd!
   autocmd BufNewFile,BufRead *.{.md,mdwn,mkd,mkdn,mark*} set filetype=markdown
 augroup END
+
+
+" ------- vimwiki
+au FileType vimwiki set noreadonly
+let vimwiki_default = {'path': '~/vimwiki/wiki_default/', 'path_html': '~/vimwiki/html/wiki_default'}
+let vimwiki_note = {'path': '~/vimwiki/notes', 'path_html': '~/vimwiki/html/notes'}
+let vimwiki_projects = {'path': '~/vimwiki/wiki_projects', 'path_html': '~/vimwiki/html/wiki_projects'}
+let vimwiki_tfc = { 'path': '~/Desktop/tfc/wiki/', 'path_html': '~/Desktop/tfc/wiki_html/'}
+
+let g:vimwiki_list = [vimwiki_default, vimwiki_note, vimwiki_projects, vimwiki_tfc]
 
 
 " =================== Reference URLs =========================================
