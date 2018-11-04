@@ -13,7 +13,31 @@ function torf() {
 # let watch todo daemon know where you are now
 function wtdd {
   [ -f ~/.wtdd ] && echo $(pwd) >~/.wtdd 2>/dev/null
+
+# output all colors for foreground
+function forecolor {
+  for i in {0..255};do
+    if [ $(( i % 10)) -eq 0 ];then
+      echo "| $i"
+    fi
+    tput setaf $i
+    echo -n '#'
+    tput sgr0
+  done
 }
+
+# output all colors for background
+function backcolor {
+  for i in {0..255};do
+    if [ $(( i % 10)) -eq 0 ];then
+      echo "| $i"
+    fi
+    tput setab $i
+    echo -n '#'
+    tput sgr0
+  done
+}
+
 export PS1="\`stat=\"\$?\";echo -n '\$?is'\$stat;[ -e ./.git ] && echo -n [\$(git_branch)];[ $VIM ] && echo -n '(vim)';echo '\r';[ \${stat} = 0 ] && echo \[\e[33m\]\<X_X\>\[\e[0m\] || echo \[\e[31m\]\<@_@\>\[\e[0m\];torf;wtdd\`:\W\\$ " # \ before $value is really important!
 export PS4='+(${BASH_SOURCE}:${LINENO}): ${FUNCNAME:+$FUNCNAME(): }' # setting debug prompt
 
