@@ -125,6 +125,13 @@ let g:netrw_altv = 1 " open files on the right side when 'v' is pushed
 " ------ UML view in chrome
 au FileType plantuml command! OpenUML :!open -a % 
 au BufRead *.uml command! OpenUML :!open -a % 
+
+" ------ fzf in vim (if exists)
+if isdirectory('/usr/local/opt/fzf')
+  set rtp+=/usr/local/opt/fzf
+endif
+
+
 " =================== Reference URLs =========================================
 " ==                                                                        ==
 " == http://vimblog.hatenablog.com/entry/vimrc_key_mapping                  ==
