@@ -57,6 +57,7 @@ alias dia='[ -d ~/.diary/$(date "+%Y/%m") ] || mkdir ~/.diary/$(date "+%Y/%m");v
 alias qiita='~/Accounts/Cj/Projects/Tools/ShellScripts/qiita/qiita.sh'
 alias td='todo.sh'
 alias dotdrop='$HOME/dotfiles/dotdrop.sh'
+alias jnethack='cocot -t UTF-8 -p cp932 -- ~/nethackdir/jnethack'
 
 # ------------ networks
 alias airport='/System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport'
