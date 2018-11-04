@@ -6,10 +6,12 @@
 " let twitvimount = 40
 
 " -------- tweetvim
-
 let g:tweetvim_silent_say = 1
+let g:tweetvim_display_source = 1
 nnoremap tww <esc>:TweetVimCommandSay<CR>
-nnoremap twl <esc>:split TweetVimHomeTimeline<CR>
+nnoremap twl <esc>:split +TweetVimHomeTimeline<CR>
+nnoremap twt <esc>:split +Unite\ tweetvim/account<CR>
+
 " -------- qiita.vim
 let g:qiita_vim_twitter = v:true
 let g:qiita_vim_gist = v:false
