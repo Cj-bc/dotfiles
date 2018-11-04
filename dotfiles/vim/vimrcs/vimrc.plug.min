@@ -1,4 +1,10 @@
-
+" -------------- for vim-operator-surround
+xnoremap sa <Plug>(operator-surround-append)
+nnoremap sa <Plug>(operator-surround-append)
+xnoremap sd <Plug>(operator-surround-delete)
+nnoremap sd <Plug>(operator-surround-delete)
+xnoremap sr <Plug>(operator-surround-replace)
+nnoremap sr <Plug>(operator-surround-replace)
 " =================== Reference URLs =========================================
 " ==                                                                        ==
 " == http://d.hatena.ne.jp/osyo-manga/20140307/1394204974                   ==
