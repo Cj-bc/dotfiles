@@ -38,6 +38,11 @@ au BufNewFile *.sh 0r $HOME/.vim/template/shell.sh
 " tell vim that .sh is bash script by default
 let g:is_bash = 1
 
+  " folding options
+
+"au BufWinLeave * mkview " automatically save folding
+"au BufWinEnter * silent loadview " automatically load folding
+
 
 " ================== Key binds ==============================
 	" jj to exit insert-mode
