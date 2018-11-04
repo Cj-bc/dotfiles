@@ -37,12 +37,14 @@ augroup END
 
 " ------- vimwiki
 au FileType vimwiki set noreadonly
-let vimwiki_default = {'path': '~/vimwiki/wiki_default/', 'path_html': '~/vimwiki/html/wiki_default'}
-let vimwiki_note = {'path': '~/vimwiki/notes', 'path_html': '~/vimwiki/html/notes'}
-let vimwiki_projects = {'path': '~/vimwiki/wiki_projects', 'path_html': '~/vimwiki/html/wiki_projects'}
-let vimwiki_tfc = { 'path': '~/Desktop/tfc/wiki/', 'path_html': '~/Desktop/tfc/wiki_html/'}
+let wiki_default = {'path': '~/vimwiki/wiki_default', 'path_html': '~/vimwiki/html/wiki_default'}
+let wiki_note = {'path': '~/vimwiki/notes', 'path_html': '~/vimwiki/html/notes'}
+let wiki_projects = {'path': '~/vimwiki/wiki_projects', 'path_html': '~/vimwiki/html/wiki_projects'}
+let wiki_tfc = { 'path': '~/Desktop/tfc/wiki', 'path_html': '~/Desktop/tfc/wiki_html/'}
+let wiki_codereading = { 'path': '~/vimwiki/wiki_codereading', 'path_html': '~/vimwiki/html/wiki_codereading'}
 
-let g:vimwiki_list = [vimwiki_default, vimwiki_note, vimwiki_projects, vimwiki_tfc]
+let g:vimwiki_list = [wiki_default, wiki_note, wiki_projects, wiki_tfc, wiki_codereading]
+let g:vimwiki_folding = 'expr'
 
 
 " =================== Reference URLs =========================================
