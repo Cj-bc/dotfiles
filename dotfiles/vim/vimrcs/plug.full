@@ -17,3 +17,10 @@ Plugin 'scrooloose/vim-slumlord' " Inline previews for Plantuml sequence diagram
 Plugin 'kannokanno/previm' " previewer for markdown in browser
 Plugin 'VincentCordobes/vim-translate' " Translater in Vim (require: translate-shell)
 Plugin 'vimwiki/vimwiki' " Personal Wiki for Vim
+Plugin 'majutsushi/tagbar' " show tag list on the side
+Plugin 'mattn/qiita-vim' " vim qiita client
+Plugin 'mattn/emmet-vim' " HTML/CSS coding
+Plugin 'tell-k/vim-browsereload-mac' " vim plugin to reflesh your browser. for MacOSX
+Plugin 'kien/ctrlp.vim'
+Plugin 'vim-scripts/DrawIt' " Ascii drawing plugin: lines, ellipses, arrows, fills, and more!
+Plugin 'gyim/vim-boxdraw' " An ASCII box drawing plugin for Vim

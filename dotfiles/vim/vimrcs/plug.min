@@ -16,3 +16,5 @@ Plugin 'vim-scripts/bats.vim' " just a hilight for Bats
 Plugin 'aklt/plantuml-syntax' " syntax file for Plant UML
 Plugin 'fuenor/qfixhowm' " vim client for Howm
 Plugin 'w0rp/ale' " Asynchronous Lint Engine
+Plugin 'othree/yajs.vim' " YAJS.vim: Yet Another JavaScript Syntax for Vim
+Plugin 'othree/es.next.syntax.vim' " ES.Next syntax for Vim
