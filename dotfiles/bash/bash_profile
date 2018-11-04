@@ -14,4 +14,6 @@ then
 fi
 
 export PATH=$PATH:~/.nodebrew/current/bin
+export EDITOR=vim
 
+eval "$(rbenv init -)"
