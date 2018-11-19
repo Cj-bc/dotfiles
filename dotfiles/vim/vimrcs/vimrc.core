@@ -26,6 +26,7 @@ set listchars=tab:>-,trail:-,extends:>,precedes:<,nbsp:%
 au BufNewFile,BufRead *.sh set iskeyword=.,@,48-57,_,192-255
 au BufNewFile,BufRead *.bats set dictionary=$HOME/.vim/dictionary/bats.dict
 au BufNewFile,BufRead .editorconfig set dictionary=$HOME/.vim/dictionary/editorconfig.dict
+au BufNewFile,BufRead CHANGELOG.md set dictionary=$HOME/.vim/dictionary/CHANGELOG.dict
 
 " --- templates
 au BufNewFile *.dia 0r $HOME/.vim/template/diary.txt
@@ -33,6 +34,7 @@ au BufNewFile pack.mcmeta 0r $HOME/.vim/template/pack.mcmeta
 au BufNewFile *.bats 0r $HOME/.vim/template/bats.bats
 au BufNewFile *.oo.sh 0r $HOME/.vim/template/bash-oo-framework.sh
 au BufNewFile *.sh 0r $HOME/.vim/template/shell.sh
+au BufNewFile CHANGELOG.md 0r $HOME/.vim/template/CHANGELOG
 
 
 " tell vim that .sh is bash script by default
