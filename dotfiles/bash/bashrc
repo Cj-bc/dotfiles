@@ -142,6 +142,9 @@ eval "$(pyenv init -)"
 export GOPATH=$HOME/.go
 export PATH="${PATH}:${GOPATH}/bin"
 
+# ------------ fzf
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
 # =========================== Reference =========================================
 # ==                                                                           == 
 # ==  https://qiita.com/kawaz/items/65cdbeaa739c4e6b7776                       ==
