@@ -26,7 +26,7 @@ set listchars=tab:>-,trail:-,extends:>,precedes:<,nbsp:%
 au BufNewFile,BufRead *.sh set iskeyword=.,@,48-57,_,192-255
 au BufNewFile,BufRead *.bats set dictionary=$HOME/.vim/dictionary/bats.dict
 au BufNewFile,BufRead .editorconfig set dictionary=$HOME/.vim/dictionary/editorconfig.dict
-au BufNewFile,BufRead CHANGELOG.md set dictionary=$HOME/.vim/dictionary/CHANGELOG.dict
+au BufNewFile,BufRead CHANGELOG* set dictionary=$HOME/.vim/dictionary/CHANGELOG.dict
 
 " --- templates
 au BufNewFile *.dia 0r $HOME/.vim/template/diary.txt
