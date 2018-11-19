@@ -89,6 +89,10 @@ alias qiita='~/Accounts/Cj/Projects/Tools/ShellScripts/qiita/qiita.sh'
 alias td='todo.sh'
 alias dotdrop='$HOME/dotfiles/dotdrop.sh'
 alias jnethack='cocot -t UTF-8 -p cp932 -- ~/nethackdir/jnethack'
+if [ -d '/Applications/Koto-Qt.app' ]; then
+  alias koto-cli='/Applications/Koto-Qt.app/Contents/MacOS/koto-cli'
+  alias kotod='/Applications/Koto-Qt.app/Contents/MacOS/kotod'
+fi
 
 # ------------ networks
 alias airport='/System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport'
