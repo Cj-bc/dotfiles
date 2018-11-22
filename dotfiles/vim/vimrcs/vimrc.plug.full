@@ -68,6 +68,19 @@ let wiki_yozakura_project = { 'path': '~/Desktop/dev/projects/yozakura-project/w
 let g:vimwiki_list = [wiki_default, wiki_note, wiki_projects, wiki_tfc, wiki_codereading, wiki_howm, wiki_yozakura_project]
 let g:vimwiki_folding = 'expr'
 
+"" toggle syntax.
+"" source: http://tk2000ex.blogspot.com/2013/12/markdownvimwiki.html
+function! Vimwiki_syntax_toggle()
+  if ( &filetype == 'markdown')
+    set filetype=vimwiki
+  elseif ( &filetype == 'vimwiki' )
+    set filetype=markdown
+  endif
+endfunction
+augroup Vimwiki_CustomCommands
+  autocmd!
+  autocmd BufNewFile,BufRead *.wiki nmap ,s :call Vimwiki_syntax_toggle()<CR>
+augroup END
 " }}}
 
 " =================== Reference URLs =========================================
@@ -77,4 +90,6 @@ let g:vimwiki_folding = 'expr'
 " ==                                                                        ==
 " ==          https://gitter.im/vim-jp/reading-vimrc                        ==
 " ==               .vimrc Reading Community chat                            ==
+" ==    http://tk2000ex.blogspot.com/2013/12/markdownvimwiki.html           ==
+" ==        Vimwiki_syntax_toggle                                           ==
 " ============================================================================
