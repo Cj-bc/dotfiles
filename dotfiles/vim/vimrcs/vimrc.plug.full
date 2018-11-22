@@ -1,23 +1,26 @@
 " ================== Plugin configs ========================
 
-" " -------- TwitVim
+" " -------- TwitVim {{{
 " let twitvim_browser_cmd = 'open'
 " let twitvim_force_ssl = 1
 " let twitvimount = 40
+" }}}
 
-" -------- tweetvim
+" -------- tweetvim {{{
 let g:tweetvim_silent_say = 1
 let g:tweetvim_display_source = 1
 nnoremap tww <esc>:TweetVimCommandSay<CR>
 nnoremap twl <esc>:split +TweetVimHomeTimeline<CR>
 nnoremap twt <esc>:split +Unite\ tweetvim/account<CR>
+" }}}
 
-" -------- qiita.vim
+" -------- qiita.vim {{{
 let g:qiita_vim_twitter = v:true
 let g:qiita_vim_gist = v:false
 let g:qiita_vim_private = v:false
+" }}}
 
-" -------- github-completion
+" -------- github-completion {{{
 augroup config-github-complete
   autocmd!
   autocmd FileType gitcommit setl omnifunc=github_complete#complete
@@ -25,23 +28,26 @@ augroup config-github-complete
   autocmd FileType conf  setl omnifunc=github_complete#complete
   autocmd FileType gfimarkdown setl omnifunc=github_complete#complete
 augroup END
+" }}}
 
-" ------- github-issues.vim
+" ------- github-issues.vim {{{
 let g:github_issues_no_omni = 1 " set anything to disable omnifunc 
 if filereadable(expand('~/.vimrc.private')) " source access token
   source ~/.vimrc.private
 endif
+" }}}
 
-
-" ------- previm
+" ------- previm {{{
 let g:previm_open_cmd = 'open -a Chrome'
 augroup PrevimSettings
   autocmd!
   autocmd BufNewFile,BufRead *.{.md,mdwn,mkd,mkdn,mark*} set filetype=markdown
 augroup END
+" }}}
 
 
-" ------- vimwiki
+
+" ------- vimwiki {{{
 au FileType vimwiki set noreadonly
 let wiki_default = {'path': '~/vimwiki/wiki_default', 'path_html': '~/vimwiki/html/wiki_default'}
 let wiki_note = {'path': '~/vimwiki/notes', 'path_html': '~/vimwiki/html/notes'}
@@ -52,6 +58,7 @@ let wiki_codereading = { 'path': '~/vimwiki/wiki_codereading', 'path_html': '~/v
 let g:vimwiki_list = [wiki_default, wiki_note, wiki_projects, wiki_tfc, wiki_codereading]
 let g:vimwiki_folding = 'expr'
 
+" }}}
 
 " =================== Reference URLs =========================================
 " ==                                                                        ==
