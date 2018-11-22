@@ -85,7 +85,7 @@ augroup END
 
 " =================== Reference URLs =========================================
 " ==                                                                        ==
-" ==     		http://vim-jp.org                                   ==
+" ==     		http://vim-jp.org                                               ==
 " ==               VIM Japanese community site                              ==
 " ==                                                                        ==
 " ==          https://gitter.im/vim-jp/reading-vimrc                        ==
