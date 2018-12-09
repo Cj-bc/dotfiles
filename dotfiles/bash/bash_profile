@@ -17,3 +17,6 @@ export PATH=$PATH:~/.nodebrew/current/bin
 export EDITOR=vim
 
 eval "$(rbenv init -)"
+
+# for Cj-bc/activate
+[ -f '/usr/local/opt/activate/bin/activate' ] && . /usr/local/opt/activate/bin/activate
