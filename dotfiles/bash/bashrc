@@ -55,6 +55,11 @@ function notes {
   fi
 }
 
+# google() {{{2
+# google the word with w3m
+function google() {
+  [ $# -ne 0 ] && w3m https://www.google.com/search?q=${@// /+}  || w3m google.com #usage: google [word]
+}
 
 export PS1="\`stat=\"\$?\";echo -n '\$?is'\$stat;[ -e ./.git ] && echo -n [\$(git_branch)];[ $VIM ] && echo -n '(vim)';echo '\r';[ \${stat} = 0 ] && echo \[\e[33m\]\<X_X\>\[\e[0m\] || echo \[\e[31m\]\<@_@\>\[\e[0m\];torf;wtdd\`:\W\\$ " # \ before $value is really important!
 # ================================= Pronpts ================================== {{{1
@@ -113,7 +118,6 @@ fi
 alias airport='/System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport'
 alias wport='networksetup -setairportpower' # usage: wport <device> <on/off>
 alias wifi='networksetup -setairportnetwork' # usage: wifi <device> <SSID> <password>
-alias google='[ $# -ne 0 ] && w3m https://www.google.com/search?q=${@// /+}  || w3m google.com' #usage: google [word]
 alias ymserver='~/Accounts/Cj/Projects/Tools/ShellScripts/ymserver/ymserver.sh'
 
 
