@@ -67,6 +67,7 @@ alias bashrc='source ~/.bashrc'
 alias bash_profile='source ~/.bash_profile'
 alias back='cd $OLDPWD'
 alias prs='ghi | grep ↑'
+alias init='[ ! -d ".git" ] && { git init; git flow init; hub create; } || echo "aleady initialized"'
 
 # ------------ crons
 alias mkcron='crontab -e'
