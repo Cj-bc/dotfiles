@@ -1,21 +1,25 @@
 cat ~/.bashrc.banner
 
-# ================================= Functions ================================
+# ================================= Functions ================================ {{{1
 
+# git_branch() {{{2
 # check current git branch
 git_branch() {
   echo $(git branch 2>/dev/null | sed -ne "s/^\* \(.*\)$/\1/p")
 }
 
+# torf() {{{2
 # reset exit status code to previous command
 function torf() {
   return $stat
 }
 
+# wtdd() {{{2
 # let watch todo daemon know where you are now
 function wtdd {
   [ -f ~/.wtdd ] && echo $(pwd) >~/.wtdd 2>/dev/null
 
+# forecolor() {{{2
 # output all colors for foreground
 function forecolor {
   for i in {0..255};do
@@ -28,6 +32,7 @@ function forecolor {
   done
 }
 
+# backcolor() {{{2
 # output all colors for background
 function backcolor {
   for i in {0..255};do
@@ -41,18 +46,18 @@ function backcolor {
 }
 
 
-# ================================= Pronpts ==================================
 
 export PS1="\`stat=\"\$?\";echo -n '\$?is'\$stat;[ -e ./.git ] && echo -n [\$(git_branch)];[ $VIM ] && echo -n '(vim)';echo '\r';[ \${stat} = 0 ] && echo \[\e[33m\]\<X_X\>\[\e[0m\] || echo \[\e[31m\]\<@_@\>\[\e[0m\];torf;wtdd\`:\W\\$ " # \ before $value is really important!
+# ================================= Pronpts ================================== {{{1
 export PS4='+(${BASH_SOURCE}:${LINENO}): ${FUNCNAME:+$FUNCNAME(): }' # setting debug prompt
 
-# ================================= Daemons ==================================
+# ================================= Daemons ================================== {{{1
 
 # for watchtodo
 if [ -d ~/.watchtodo ];then
   export PS1="${PS1}\$(echo \"$(tty) : $(pwd) \" >~/.watchtodo/pwd 2>/dev/null)"
 fi
-# ================================= Alias ====================================
+# ================================= Alias ==================================== {{{1
 if [ "$(uname)" = 'Darwin' ]; then
     export LSCOLORS=xbfxcxdxbxegedabagacad
     alias ls='ls -G'
@@ -69,11 +74,11 @@ alias back='cd $OLDPWD'
 alias prs='ghi | grep ↑'
 alias init='[ ! -d ".git" ] && { git init; git flow init; hub create; } || echo "aleady initialized"'
 
-# ------------ crons
+# ------------ crons {{{2
 alias mkcron='crontab -e'
 alias lscron='crontab -l'
 
-# ------------ gits
+# ------------ gits {{{2
 alias mkpr='hub pull-request'
 alias gs='git status'
 alias gd='git diff'
@@ -81,7 +86,7 @@ alias gc='git commit'
 alias gca='git commit --amend'
 alias glo='git log --oneline'
 
-# ------------ apps
+# ------------ apps {{{2
 alias siri='open /Applications/Siri.app'
 alias drp='cd ~/Dropbox && ls'
 alias stopwatch='utimer --stopwatch'
@@ -95,7 +100,7 @@ if [ -d '/Applications/Koto-Qt.app' ]; then
   alias kotod='/Applications/Koto-Qt.app/Contents/MacOS/kotod'
 fi
 
-# ------------ networks
+# ------------ networks {{{2
 alias airport='/System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport'
 alias wport='networksetup -setairportpower' # usage: wport <device> <on/off>
 alias wifi='networksetup -setairportnetwork' # usage: wifi <device> <SSID> <password>
@@ -108,7 +113,7 @@ shopt -s xpg_echo
 export PATH=$PATH:~/.nodebrew/current/bin
 
 
-#=================== setting for ssh-agent
+#=================== setting for ssh-agent {{{1
 # this will prevent us from losing ssh-agent on tmux when we re-connect ssh
 agent="$HOME/.ssh/agent"
 if [ -S "$SSH_AUTH_SOCK" ]; then
@@ -122,14 +127,14 @@ else
   echo "no ssh-agent"
 fi
 
-# ================== setting for todo-txt
+# ================== setting for todo-txt {{{1
 if [ -f /usr/local/etc/bash_completion.d/todo_completion ];then
   source /usr/local/etc/bash_completion.d/todo_completion
   complete -F _todo td # set todo.sh completion for td alias
 fi
 
 
-# ================== setting for linuxbrew
+# ================== setting for linuxbrew {{{1
 
 if [ -d ~/.linuxbrew ];then
   PATH="$HOME/.linuxbrew/bin:$PATH"
@@ -143,14 +148,14 @@ export PATH=$PYENV_ROOT/bin:$PATH
 eval "$(pyenv init -)"
 
 
-# ------------ go
+# ------------ go {{{2
 export GOPATH=$HOME/.go
 export PATH="${PATH}:${GOPATH}/bin"
 
-# ------------ fzf
+# ------------ fzf {{{2
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
-# =========================== Reference =========================================
+# =========================== Reference ========================================= {{{1
 # ==                                                                           == 
 # ==  https://qiita.com/kawaz/items/65cdbeaa739c4e6b7776                       ==
 # ==      -> setting of PS4                                                    ==
