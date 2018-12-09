@@ -18,6 +18,7 @@ au BufNewFile,BufRead * match ZenkakuSpace /　/
   "   tab: >>-
 set list
 set listchars=tab:>-,trail:-,extends:>,precedes:<,nbsp:%
+set foldmethod=marker
 
 " ================ file types =================================
 
