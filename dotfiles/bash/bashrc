@@ -45,6 +45,15 @@ function backcolor {
   done
 }
 
+# notes() {{{2
+# shell utility for Notes vim command
+function notes {
+  if [[ $# -eq 0 ]];then
+    vim +Notes
+  else
+    vim +"Notes $1"
+  fi
+}
 
 
 export PS1="\`stat=\"\$?\";echo -n '\$?is'\$stat;[ -e ./.git ] && echo -n [\$(git_branch)];[ $VIM ] && echo -n '(vim)';echo '\r';[ \${stat} = 0 ] && echo \[\e[33m\]\<X_X\>\[\e[0m\] || echo \[\e[31m\]\<@_@\>\[\e[0m\];torf;wtdd\`:\W\\$ " # \ before $value is really important!
