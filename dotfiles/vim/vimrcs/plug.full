@@ -7,10 +7,11 @@ Plugin 'tyru/open-browser.vim' " dependency of TweetVim
 Plugin 'basyura/twiBill.vim'  " dependency of TweetVim
 Plugin 'mattn/webapi-vim'  " send http request from vim
 Plugin 'basyura/TweetVim'
+Plugin 'yomi322/unite-tweetvim' " More unite source for Tweetvim
 Plugin 'mattn/emoji-vim' " type Emoji in Vim!!
 Plugin 'Shougo/vimproc.vim' " optionally dependency of github-complete.vim
 Plugin 'rhysd/github-complete.vim' " complete github's username, repository name, etc
-Plugin 'jaxbot/github-issues.vim' " deal with github issues
+"Plugin 'jaxbot/github-issues.vim' " deal with github issues
 Plugin 'itchyny/calendar.vim' " view calender from vim
 Plugin 'itchyny/screensaver.vim' " screen saver
 Plugin 'scrooloose/vim-slumlord' " Inline previews for Plantuml sequence diagrams
@@ -24,3 +25,6 @@ Plugin 'tell-k/vim-browsereload-mac' " vim plugin to reflesh your browser. for M
 Plugin 'kien/ctrlp.vim'
 Plugin 'vim-scripts/DrawIt' " Ascii drawing plugin: lines, ellipses, arrows, fills, and more!
 Plugin 'gyim/vim-boxdraw' " An ASCII box drawing plugin for Vim
+" Plugin 'rishihahs/vim-youtube' " Plays youtube in (neo)vim
+Plugin 'Cj-bc/blib.vim' " blib integration
+Plugin 'Cj-bc/Damian-Conway-s-Vim-Setup' " Damian's vim plugins
