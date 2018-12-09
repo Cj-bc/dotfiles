@@ -17,7 +17,8 @@ function torf() {
 # wtdd() {{{2
 # let watch todo daemon know where you are now
 function wtdd {
-  [ -f ~/.wtdd ] && echo $(pwd) >~/.wtdd 2>/dev/null
+  [ -f ~/.wtdd ] && echo "$(pwd)" >~/.wtdd 2>/dev/null
+}
 
 # forecolor() {{{2
 # output all colors for foreground
