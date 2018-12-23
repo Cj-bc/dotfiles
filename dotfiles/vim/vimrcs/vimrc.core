@@ -63,6 +63,12 @@ inoremap ( ()<left>
 inoremap { {}<left>
 inoremap " ""<left>
 
+" moving around buffers
+" bn : go to next buffer
+" bp : go to previous buffer
+nnoremap <silent> bn <ESC>:bnext<LF>
+nnoremap <silent> bp <ESC>:bprevious<LF>
+
 " key bind for vim-codereview
 nnoremap ,cc <ESC>:CodeReviewCommentChange <LF>
 nnoremap ,ch <ESC>:CodeReviewComment <LF>
