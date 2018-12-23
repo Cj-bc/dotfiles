@@ -28,3 +28,5 @@ Plugin 'gyim/vim-boxdraw' " An ASCII box drawing plugin for Vim
 " Plugin 'rishihahs/vim-youtube' " Plays youtube in (neo)vim
 Plugin 'Cj-bc/blib.vim' " blib integration
 Plugin 'Cj-bc/Damian-Conway-s-Vim-Setup' " Damian's vim plugins
+Plugin 'vim-jp/vimdoc-ja' " japanese doc
+Plugin 'kana/vim-vspec' " Vim plugin: Testing framework for Vim script
