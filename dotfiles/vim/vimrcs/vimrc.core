@@ -144,23 +144,23 @@ endif
 " =================== Reference URLs =========================================
 " ==                                                                        ==
 " == http://vimblog.hatenablog.com/entry/vimrc_key_mapping                  ==
-" ==     -> difference between key-bind commands                            ==
+" ==      -> difference between key-bind commands                           ==
 " == http://d.hatena.ne.jp/hyuki/20130714/vim                               ==
-" ==     -> time-insert key-bind                                            ==
+" ==      -> time-insert key-bind                                           ==
 " == https://qiita.com/annyamonnya/items/97c5cb0cfa414b3592d7               ==
-" ==     -> Cheat sheet of strftime() function                              ==
+" ==      -> Cheat sheet of strftime() function                             ==
 " == https://qiita.com/_snow_narcissus/items/f1633ecc40814acca4cf           ==
-" ==     -> Automatically insert the pair                                   ==
+" ==      -> Automatically insert the pair                                  ==
 " == http://vimblog.hatenablog.com/entry/vimrc_set_tab_indent_options       ==
-" == 	 -> settings related with <tab>				                                ==
+" == 	    -> settings related with <tab>				                            ==
 " == http://blog.tojiru.net/article/234400966.html                          ==
-" ==  -> settings of netrw config                                           ==
+" ==      -> settings of netrw config                                       ==
 " == http://blog.remora.cx/2011/08/display-invisible-characters-on-vim.html ==
-" ==  -> visible unvisible letters (set list)                               ==
+" ==      -> visible unvisible letters (set list)                           ==
 " == http://koturn.hatenablog.com/entry/2018/02/10/170000                   ==
-" ==  -> display hint of <C-x>                                              ==
+" ==      -> display hint of <C-x>                                          ==
 " == http://d.hatena.ne.jp/osyo-manga/20140307/1394204974                   ==
-" ==  -> documents for textobj and operators                                ==
+" ==      -> documents for textobj and operators                            ==
 " ==                                                                        ==
 " ==     		http://vim-jp.org                                               ==
 " ==               VIM Japanese community site                              ==
