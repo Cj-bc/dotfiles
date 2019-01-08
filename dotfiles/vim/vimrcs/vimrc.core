@@ -161,6 +161,8 @@ endif
 " ==      -> display hint of <C-x>                                          ==
 " == http://d.hatena.ne.jp/osyo-manga/20140307/1394204974                   ==
 " ==      -> documents for textobj and operators                            ==
+" == http://ivxi.hatenablog.com/entry/2013/05/23/163825                     ==
+" ==      -> keymapping for buffers                                         ==
 " ==                                                                        ==
 " ==     		http://vim-jp.org                                               ==
 " ==               VIM Japanese community site                              ==
