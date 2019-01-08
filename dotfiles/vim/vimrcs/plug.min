@@ -19,7 +19,6 @@ Plugin 'w0rp/ale' " Asynchronous Lint Engine
 Plugin 'othree/yajs.vim' " YAJS.vim: Yet Another JavaScript Syntax for Vim
 Plugin 'othree/es.next.syntax.vim' " ES.Next syntax for Vim
 Plugin 'dbeniamine/cheat.sh-vim' " A vim plugin to access cheat.sh sheets
-Plugin 'Shougo/vimshell'
 Plugin 'vim-scripts/VOoM'
 Plugin 'SirVer/ultisnips' " UltiSnips - The ultimate snippet solution for Vim. Send pull requests to SirVer/ultisnips!
 Plugin 'Cj-bc/bashinfinity.vim'
