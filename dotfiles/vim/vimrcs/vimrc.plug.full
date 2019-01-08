@@ -152,6 +152,11 @@ vmap  <expr>  D        DVB_Duplicate()
 " }}}
 " }}}
 
+" sonic-pi {{{2
+let g:sonicpi_command = 'sonic-pi-tool'
+let g:sonicpi_send = 'eval-stdin'
+" }}}
+
 " =================== Reference URLs =========================================
 " ==                                                                        ==
 " ==     		http://vim-jp.org                                               ==
