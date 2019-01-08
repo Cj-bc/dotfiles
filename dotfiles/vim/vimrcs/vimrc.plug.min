@@ -5,6 +5,12 @@ xnoremap sd <Plug>(operator-surround-delete)
 nnoremap sd <Plug>(operator-surround-delete)
 xnoremap sr <Plug>(operator-surround-replace)
 nnoremap sr <Plug>(operator-surround-replace)
+
+" -------------- for ale
+let g:ale_cpp_gcc_executable = 'g++'
+let g:ale_cpp_gcc_options = '-std=c++17 -Wall'
+let g:ale_cpp_clang_options = '-std=c++17 -Wall'
+
 " =================== Reference URLs =========================================
 " ==                                                                        ==
 " == http://d.hatena.ne.jp/osyo-manga/20140307/1394204974                   ==
