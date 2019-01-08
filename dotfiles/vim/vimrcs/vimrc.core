@@ -8,6 +8,10 @@ set number
 set autowriteall
 syntax on
 
+" Searching options
+set ignorecase
+set smartcase
+
 set expandtab " replace <tab> with <space>
 set tabstop=2 " width <tab> hold
 set shiftwidth=2 " width auto-indent
@@ -163,6 +167,8 @@ endif
 " ==      -> documents for textobj and operators                            ==
 " == http://ivxi.hatenablog.com/entry/2013/05/23/163825                     ==
 " ==      -> keymapping for buffers                                         ==
+" == https://qiita.com/kojionilk/items/67379e68cf54d811081a                 ==
+" ==      -> Searching options                                              ==
 " ==                                                                        ==
 " ==     		http://vim-jp.org                                               ==
 " ==               VIM Japanese community site                              ==
