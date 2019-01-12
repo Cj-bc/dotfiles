@@ -5,6 +5,7 @@ set modeline
 set modelines=5
 set cursorline
 set number
+set relativenumber
 set autowriteall
 syntax on
 
@@ -23,6 +24,15 @@ au BufNewFile,BufRead * match ZenkakuSpace /　/
 set list
 set listchars=tab:>-,trail:-,extends:>,precedes:<,nbsp:%
 set foldmethod=marker
+
+" Wildmenu setup
+set wildmenu
+set wildchar=<TAB>
+set wildmode=list:longest
+set wildignore+=*.DS_STORE,*.jpg,*.png,*.gif
+
+" Draw the statusline
+set laststatus=2
 
 " ================ file types =================================
 
@@ -52,6 +62,12 @@ let g:is_bash = 1
 
 
 " ================== Key binds ==============================
+" set SPACEKEY to <leader> {{{2
+nnoremap <space> <nop>
+xnoremap <space> <nop>
+let mapleader = " "
+" }}}
+
 	" jj to exit insert-mode
 inoremap <silent> jj <ESC> 
 	" <C-o><C-o> to print time in normal-mode
@@ -125,6 +141,28 @@ nnoremap <silent>sr <Plug>(operator-surround-replace)
   endfunction
 
   inoremap <expr> <C-x> <SID>hint_i_ctrl_x()
+" move phisical line even when cursor is on in long line {{{2
+" If there's long and wrapped lines, then j and k behave unnaturally. This
+" mapping makes movements operate on 1 screen line in wrap mode.
+function! ScreenMovement(movement)
+   if &wrap
+      return "g" . a:movement
+   else
+      return a:movement
+   endif
+endfunction
+onoremap <silent> <expr> j ScreenMovement("j")
+onoremap <silent> <expr> k ScreenMovement("k")
+onoremap <silent> <expr> 0 ScreenMovement("0")
+onoremap <silent> <expr> ^ ScreenMovement("^")
+onoremap <silent> <expr> $ ScreenMovement("$")
+nnoremap <silent> <expr> j ScreenMovement("j")
+nnoremap <silent> <expr> k ScreenMovement("k")
+nnoremap <silent> <expr> 0 ScreenMovement("0")
+nnoremap <silent> <expr> ^ ScreenMovement("^")
+nnoremap <silent> <expr> $ ScreenMovement("$")
+" }}}
+
 
 
 " ------- netrw
@@ -169,6 +207,8 @@ endif
 " ==      -> keymapping for buffers                                         ==
 " == https://qiita.com/kojionilk/items/67379e68cf54d811081a                 ==
 " ==      -> Searching options                                              ==
+" == https://github.com/rouxbuciu/dotfiles .vimrc                           ==
+" ==      -> wildmenu, relativenumber, laststatus
 " ==                                                                        ==
 " ==     		http://vim-jp.org                                               ==
 " ==               VIM Japanese community site                              ==
