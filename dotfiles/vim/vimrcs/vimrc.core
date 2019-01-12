@@ -61,7 +61,7 @@ let g:is_bash = 1
 "au BufWinEnter * silent loadview " automatically load folding
 
 
-" ================== Key binds ==============================
+" ================== Key binds ============================== {{{
 " set SPACEKEY to <leader> {{{2
 nnoremap <space> <nop>
 xnoremap <space> <nop>
@@ -89,17 +89,9 @@ inoremap " ""<left>
 nnoremap <silent> bn <ESC>:bnext<LF>
 nnoremap <silent> bp <ESC>:bprevious<LF>
 
-" key bind for vim-codereview
-nnoremap ,cc <ESC>:CodeReviewCommentChange <LF>
-nnoremap ,ch <ESC>:CodeReviewComment <LF>
-nnoremap ,cr <ESC>:CodeReviewReloadComments <LF>
 
-" key binds for operator mappings 
-nnoremap <silent>sa <Plug>(operator-surround-append)
-nnoremap <silent>sd <Plug>(operator-surround-delete)
-nnoremap <silent>sr <Plug>(operator-surround-replace)
 
-" show hint for <C-x> completion
+" show hint for <C-x> completion {{{2
   " dictionary of input key
   let s:compl_key_dict = {
     \ char2nr("\<C-l>"): "\<C-x>\<C-l>",
@@ -141,6 +133,8 @@ nnoremap <silent>sr <Plug>(operator-surround-replace)
   endfunction
 
   inoremap <expr> <C-x> <SID>hint_i_ctrl_x()
+" }}}
+
 " move phisical line even when cursor is on in long line {{{2
 " If there's long and wrapped lines, then j and k behave unnaturally. This
 " mapping makes movements operate on 1 screen line in wrap mode.
@@ -163,7 +157,37 @@ nnoremap <silent> <expr> ^ ScreenMovement("^")
 nnoremap <silent> <expr> $ ScreenMovement("$")
 " }}}
 
+"  DOESN'T WORK AT THIS TIME {{{2
+"  " toggle logging mode. In this mode, date will be inserted for each line
+"function! s:toggle_logging_mode()
+"  if b:Cj_bc_logging_mode == v:false
+"    echo "--Logging mode--"
+"    inoremap <CR> <CR><C-r>=strftime('(%T %p)') <LF> 
+"    nnoremap o $a<CR><C-r>=strftime('(%T %p)') <LF> 
+"    let b:Cj_bc_logging_mode = v:true
+"  else
+"    echo "--Quite Logging mode--"
+"    iunmap <CR>
+"    nunmap o
+"    let b:Cj_bc_logging_mode = v:false
+"  endif
+"endfunction
+"
+"nmap <silent>Lg <SID>toggle_logging_mode()
+" }}}
 
+" key bind for vim-codereview
+nnoremap ,cc <ESC>:CodeReviewCommentChange <LF>
+nnoremap ,ch <ESC>:CodeReviewComment <LF>
+nnoremap ,cr <ESC>:CodeReviewReloadComments <LF>
+
+" key binds for operator mappings 
+nnoremap <silent>sa <Plug>(operator-surround-append)
+nnoremap <silent>sd <Plug>(operator-surround-delete)
+nnoremap <silent>sr <Plug>(operator-surround-replace)
+" }}}
+
+" ================== for default plugins ==============================
 
 " ------- netrw
 " usage:
