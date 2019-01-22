@@ -1,6 +1,6 @@
 set nocompatible
 
-" ================ Generals =================================
+" ================ Generals ================================= {{{
 set modeline
 set modelines=5
 set cursorline
@@ -34,7 +34,10 @@ set wildignore+=*.DS_STORE,*.jpg,*.png,*.gif
 " Draw the statusline
 set laststatus=2
 
-" ================ file types =================================
+
+" }}}
+
+" ================ file types ================================= {{{
 
 
   " iskeyword define which letter is included as word
@@ -60,6 +63,7 @@ let g:is_bash = 1
 "au BufWinLeave * mkview " automatically save folding
 "au BufWinEnter * silent loadview " automatically load folding
 
+" }}}
 
 " ================== Key binds ============================== {{{
 " set SPACEKEY to <leader> {{{2
@@ -187,7 +191,7 @@ nnoremap <silent>sd <Plug>(operator-surround-delete)
 nnoremap <silent>sr <Plug>(operator-surround-replace)
 " }}}
 
-" ================== for default plugins ==============================
+" ================== for default plugins ============================== {{{
 
 " ------- netrw
 " usage:
@@ -205,6 +209,8 @@ au BufRead *.uml command! OpenUML :!open -a %
 if isdirectory('/usr/local/opt/fzf')
   set rtp+=/usr/local/opt/fzf
 endif
+
+" }}}
 
 
 " =================== Reference URLs =========================================
