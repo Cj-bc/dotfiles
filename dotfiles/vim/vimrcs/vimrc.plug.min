@@ -10,6 +10,11 @@ nnoremap sr <Plug>(operator-surround-replace)
 let g:ale_cpp_gcc_executable = 'g++'
 let g:ale_cpp_gcc_options = '-std=c++17 -Wall'
 let g:ale_cpp_clang_options = '-std=c++17 -Wall'
+" -------------- UltiSnippets
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<tab>"
+let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
+let g:UltiSnipsSnippetDirectories=[$HOME . '/.vim/customSnippets', 'customSnippets', 'UltiSnips']
 
 " =================== Reference URLs =========================================
 " ==                                                                        ==
