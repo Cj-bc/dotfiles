@@ -33,3 +33,4 @@ Plugin 'kana/vim-vspec' " Vim plugin: Testing framework for Vim script
 Plugin 'dermusikman/sonicpi.vim' " Sonic Pi plugin for Vim
 " Plugin 'prabirshrestha/async.vim' " dependency of vim-lsp
 " Plugin 'prabirshrestha/vim-lsp' " async language server protocol plugin for vim and neovim
+Plugin 'yuratomo/w3m.vim' " w3m plugin for vim http://yuratomo.seesaa.net/
