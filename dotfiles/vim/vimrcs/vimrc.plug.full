@@ -158,6 +158,14 @@ let g:sonicpi_command = 'sonic-pi-tool'
 let g:sonicpi_send = 'eval-stdin'
 " }}}
 
+" openbrowser {{{2
+let g:openbrowser_browser_commands = [
+                                     \ {"name": "w3m",
+                                     \  "args": "tmux split-window 'w3m {uri}'"},
+                                     \ {"name": "open",
+                                     \  "args": ["open -a /Applications/Google Chrome.app", "{uri}"]}
+                                     \]
+" }}}
 " =================== Reference URLs =========================================
 " ==                                                                        ==
 " ==     		http://vim-jp.org                                               ==
