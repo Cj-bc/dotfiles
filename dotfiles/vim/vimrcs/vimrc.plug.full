@@ -12,6 +12,7 @@ let g:tweetvim_display_source = 1
 nnoremap tww <esc>:TweetVimCommandSay<CR>
 nnoremap twl <esc>:split +TweetVimHomeTimeline<CR>
 nnoremap twt <esc>:split +Unite\ tweetvim/account<CR>
+nnoremap twm <esc>:split +TweetVimMentions<CR>
 " }}}
 
 " -------- qiita.vim {{{
