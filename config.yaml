@@ -116,6 +116,10 @@ dotfiles:
     dst: ~/.config/wtf/config.yml
     src: wtf.config.yml
     link: true
+  mlterm_conf:
+    dst: ~/.mlterm
+    src: mlterm
+    link: true
 profiles:
   cores:
     dotfiles:
@@ -147,6 +151,7 @@ profiles:
       - banner_default
       - hyper_conf
       - wtf_conf
+      - mlterm_conf
     include:
       - default
   remote:
