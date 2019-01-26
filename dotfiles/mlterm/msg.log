@@ -1,19 +1,138 @@
-Jan 22 09:05:50[4487] locale settings failed.
-Jan 22 10:46:49[6303] locale settings failed.
-Jan 22 11:24:32[87321] locale settings failed.
-Jan 22 11:28:13[2137] locale settings failed.
-Jan 22 11:45:43[43030] locale settings failed.
-Jan 22 11:51:02[60499] locale settings failed.
-Jan 22 14:13:54[47959] locale settings failed.
-Jan 22 14:27:58[75457] locale settings failed.
-Jan 22 15:52:17[40202] locale settings failed.
-Jan 22 16:20:30[55681] locale settings failed.
-Jan 22 17:11:25[64953] locale settings failed.
-Jan 22 17:26:33[22132] locale settings failed.
-Jan 22 17:43:12[54666] locale settings failed.
-Jan 22 17:53:22[73861] locale settings failed.
-Jan 22 18:18:47[27703] locale settings failed.
-Jan 22 18:36:31[61648] locale settings failed.
-Jan 22 19:15:49[90719] locale settings failed.
-Jan 22 21:17:03[27520] locale settings failed.
-Jan 22 23:57:41[29962] locale settings failed.
+Jan 23 12:55:50[50401] locale settings failed.
+Jan 23 13:02:05[62028] locale settings failed.
+Jan 23 13:05:04[68070] locale settings failed.
+Jan 23 17:27:40[12844] locale settings failed.
+Jan 23 17:29:41[16303] locale settings failed.
+Jan 23 17:30:46[18225] locale settings failed.
+Jan 23 17:32:05[20945] locale settings failed.
+Jan 23 18:06:09[86865] locale settings failed.
+Jan 23 18:09:28[93400] locale settings failed.
+Jan 23 18:12:28[99248] locale settings failed.
+Jan 23 18:15:37[5918] locale settings failed.
+Jan 23 18:19:10[12836] locale settings failed.
+Jan 23 18:19:10[12836] WARN: ChalkboardSE font is not found.
+Jan 23 18:19:25[12836] WARN: ChalkboardSE font is not found.
+Jan 23 18:28:27[30939] locale settings failed.
+Jan 23 18:30:57[35499] locale settings failed.
+Jan 23 18:31:26[36518] locale settings failed.
+Jan 23 18:31:53[37580] locale settings failed.
+Jan 23 18:33:15[40417] locale settings failed.
+Jan 23 18:33:15[40417] Wall picture file /Users/coju/Desktop/magurona is not found.
+Jan 23 18:33:45[41537] locale settings failed.
+Jan 23 18:33:45[41537] Wall picture file /Users/coju/Desktop/magurona is not found.
+Jan 23 18:34:17[42724] locale settings failed.
+Jan 23 18:34:33[43382] locale settings failed.
+Jan 23 18:34:33[43382] font size 32 is too large. 30 is used.
+Jan 23 18:34:45[43915] locale settings failed.
+Jan 23 18:35:03[44601] locale settings failed.
+Jan 23 18:35:24[45457] locale settings failed.
+Jan 23 18:36:45[48230] locale settings failed.
+Jan 23 18:36:57[48801] locale settings failed.
+Jan 23 18:37:11[49358] locale settings failed.
+Jan 23 18:37:24[49947] locale settings failed.
+Jan 23 18:37:36[50475] locale settings failed.
+Jan 23 18:37:56[51267] locale settings failed.
+Jan 23 18:38:26[52448] locale settings failed.
+Jan 23 18:39:00[53676] locale settings failed.
+Jan 23 18:39:30[54786] locale settings failed.
+Jan 23 18:39:50[55556] locale settings failed.
+Jan 23 19:59:07[30872] locale settings failed.
+Jan 23 20:05:06[42625] locale settings failed.
+Jan 23 20:08:11[48752] locale settings failed.
+Jan 23 20:08:38[49709] locale settings failed.
+Jan 23 20:08:38[49709] WARN: ChalkboardSE font is not found.
+Jan 23 20:08:44[49709] WARN: ChalkboardSE font is not found.
+Jan 23 20:09:28[51203] locale settings failed.
+Jan 23 20:10:03[52282] locale settings failed.
+Jan 23 20:10:55[53900] locale settings failed.
+Jan 23 20:10:55[53900] WARN: ChalkboardSE font is not found.
+Jan 23 20:11:52[55855] locale settings failed.
+Jan 23 20:11:52[55855] WARN: ChalkboardSE font is not found.
+Jan 23 20:12:03[55855] WARN: ChalkboardSE font is not found.
+Jan 23 23:59:51[17529] locale settings failed.
+Jan 23 23:59:51[17529] WARN: ChalkboardSE font is not found.
+Jan 24 01:23:15[71806] WARN: ChalkboardSE font is not found.
+Jan 25 15:09:08[55855] WARN: ChalkboardSE font is not found.
+Jan 25 15:09:08[55855] WARN: ChalkboardSE font is not found.
+Jan 25 15:09:08[55855] WARN: ChalkboardSE font is not found.
+Jan 25 15:09:08[55855] WARN: ChalkboardSE font is not found.
+Jan 25 15:09:08[55855] WARN: ChalkboardSE font is not found.
+Jan 25 15:09:08[55855] WARN: ChalkboardSE font is not found.
+Jan 25 15:09:08[55855] WARN: ChalkboardSE font is not found.
+Jan 25 15:09:08[55855] WARN: ChalkboardSE font is not found.
+Jan 25 15:09:08[55855] WARN: ChalkboardSE font is not found.
+Jan 25 15:09:08[55855] WARN: ChalkboardSE font is not found.
+Jan 25 15:09:08[55855] WARN: ChalkboardSE font is not found.
+Jan 25 15:09:08[55855] WARN: ChalkboardSE font is not found.
+Jan 25 15:09:08[55855] WARN: ChalkboardSE font is not found.
+Jan 25 15:09:08[55855] WARN: ChalkboardSE font is not found.
+Jan 25 15:09:08[55855] WARN: ChalkboardSE font is not found.
+Jan 25 15:09:08[55855] WARN: ChalkboardSE font is not found.
+Jan 25 15:09:08[55855] WARN: ChalkboardSE font is not found.
+Jan 25 15:09:08[55855] WARN: ChalkboardSE font is not found.
+Jan 25 15:09:08[55855] WARN: ChalkboardSE font is not found.
+Jan 25 15:09:08[55855] WARN: ChalkboardSE font is not found.
+Jan 25 15:09:08[55855] WARN: ChalkboardSE font is not found.
+Jan 25 15:11:34[55855] WARN: ChalkboardSE font is not found.
+Jan 25 15:11:34[55855] WARN: ChalkboardSE font is not found.
+Jan 25 15:18:56[34011] locale settings failed.
+Jan 25 15:18:57[34011] WARN: ChalkboardSE font is not found.
+Jan 25 15:19:35[35388] locale settings failed.
+Jan 25 15:19:35[35388] WARN: ChalkboardSE font is not found.
+Jan 25 15:26:26[35388] WARN: ChalkboardSE font is not found.
+Jan 25 15:34:34[35388] WARN: ChalkboardSE font is not found.
+Jan 25 15:34:34[35388] WARN: ChalkboardSE font is not found.
+Jan 25 15:34:34[35388] WARN: ChalkboardSE font is not found.
+Jan 25 15:34:34[35388] WARN: ChalkboardSE font is not found.
+Jan 25 15:34:34[35388] WARN: ChalkboardSE font is not found.
+Jan 25 15:34:34[35388] WARN: ChalkboardSE font is not found.
+Jan 25 15:34:34[35388] WARN: ChalkboardSE font is not found.
+Jan 25 15:34:34[35388] WARN: ChalkboardSE font is not found.
+Jan 25 15:34:34[35388] WARN: ChalkboardSE font is not found.
+Jan 25 15:34:34[35388] WARN: ChalkboardSE font is not found.
+Jan 25 15:34:34[35388] WARN: ChalkboardSE font is not found.
+Jan 25 15:34:34[35388] WARN: ChalkboardSE font is not found.
+Jan 25 15:34:34[35388] WARN: ChalkboardSE font is not found.
+Jan 25 15:34:34[35388] WARN: ChalkboardSE font is not found.
+Jan 25 15:34:34[35388] WARN: ChalkboardSE font is not found.
+Jan 25 15:34:34[35388] WARN: ChalkboardSE font is not found.
+Jan 25 15:34:34[35388] WARN: ChalkboardSE font is not found.
+Jan 25 15:34:34[35388] WARN: ChalkboardSE font is not found.
+Jan 25 15:34:34[35388] WARN: ChalkboardSE font is not found.
+Jan 25 15:34:35[35388] WARN: ChalkboardSE font is not found.
+Jan 25 15:34:35[35388] WARN: ChalkboardSE font is not found.
+Jan 25 15:48:35[91445] locale settings failed.
+Jan 25 15:48:35[91445] WARN: ChalkboardSE font is not found.
+Jan 25 15:48:53[91445] WARN: ChalkboardSE font is not found.
+Jan 25 15:55:19[91445] WARN: ChalkboardSE font is not found.
+Jan 25 15:55:19[91445] WARN: ChalkboardSE font is not found.
+Jan 25 15:55:19[91445] WARN: ChalkboardSE font is not found.
+Jan 25 15:55:19[91445] WARN: ChalkboardSE font is not found.
+Jan 25 15:55:19[91445] WARN: ChalkboardSE font is not found.
+Jan 25 15:55:19[91445] WARN: ChalkboardSE font is not found.
+Jan 25 15:55:19[91445] WARN: ChalkboardSE font is not found.
+Jan 25 15:55:19[91445] WARN: ChalkboardSE font is not found.
+Jan 25 15:55:19[91445] WARN: ChalkboardSE font is not found.
+Jan 25 15:55:19[91445] WARN: ChalkboardSE font is not found.
+Jan 25 15:55:19[91445] WARN: ChalkboardSE font is not found.
+Jan 25 15:55:19[91445] WARN: ChalkboardSE font is not found.
+Jan 25 15:55:19[91445] WARN: ChalkboardSE font is not found.
+Jan 25 15:55:19[91445] WARN: ChalkboardSE font is not found.
+Jan 25 15:55:19[91445] WARN: ChalkboardSE font is not found.
+Jan 25 15:55:19[91445] WARN: ChalkboardSE font is not found.
+Jan 25 15:55:19[91445] WARN: ChalkboardSE font is not found.
+Jan 25 15:55:19[91445] WARN: ChalkboardSE font is not found.
+Jan 25 15:55:19[91445] WARN: ChalkboardSE font is not found.
+Jan 25 15:55:19[91445] WARN: ChalkboardSE font is not found.
+Jan 25 15:55:19[91445] WARN: ChalkboardSE font is not found.
+Jan 25 15:55:19[91445] WARN: ChalkboardSE font is not found.
+Jan 25 15:55:19[91445] WARN: ChalkboardSE font is not found.
+Jan 25 15:55:19[91445] WARN: ChalkboardSE font is not found.
+Jan 25 15:55:19[91445] WARN: ChalkboardSE font is not found.
+Jan 25 15:55:19[91445] WARN: ChalkboardSE font is not found.
+Jan 25 15:55:19[91445] WARN: ChalkboardSE font is not found.
+Jan 25 15:55:19[91445] WARN: ChalkboardSE font is not found.
+Jan 25 15:55:19[91445] WARN: ChalkboardSE font is not found.
+Jan 25 15:55:19[91445] WARN: ChalkboardSE font is not found.
+Jan 25 15:55:19[91445] WARN: ChalkboardSE font is not found.
+Jan 25 15:55:19[91445] WARN: ChalkboardSE font is not found.

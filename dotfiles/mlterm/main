@@ -26,7 +26,7 @@
 # use_login_shell = false
 
 # (xterm,mlterm,kterm)
-# termtype = xterm
+termtype = mlterm
 
 # max_ptys = 32
 
@@ -44,7 +44,7 @@
 #  EUC-JP, EUC-JISX0213, Shift_JIS, Shift_JISX0213, ISO-2022-JP[1-3],
 #  EUC-KR, UHC, JOHAB, ISO-2022-KR, GB2312 (EUC-CN), GBK, GB18030,
 #  ISO-2022-CN, HZ, EUC-TW, BIG5, BIG5HKSCS, UTF-8, AUTO)
-# ENCODING = auto
+ENCODING = UTF-8
 
 # use_ctl = true
 
@@ -81,7 +81,7 @@
 # console_encoding = auto
 
 # -- Font --
-# fontsize = 16
+fontsize = 16
 
 # font_size_range = 6-30
 
@@ -91,9 +91,9 @@
 
 # use_variable_column_width = false 
 
-# type_engine = cairo
+type_engine = cairo
 
-# use_anti_alias = false
+use_anti_alias = true
 
 # use_cp932_ucs_for_xft = true
 
@@ -109,9 +109,9 @@
 
 # compose_dec_special_font = false
 
-# use_bold_font = true
+use_bold_font = true
 
-# use_italic_font = true
+use_italic_font = true
 
 # leftward_double_drawing = false
 
@@ -125,10 +125,10 @@
 
 # ot_features = liga,clig,dlig,hlig,rlig
 
-# emoji_path =
+emoji_path = /System/Library/Fonts/Apple Color Emoji.ttc
 
 # (Available for mlterm-fb or mlterm-wl)
-# use_aafont = false
+# use_aafont = true
 
 # -- Appearance --
 # use_transbg = false
@@ -138,16 +138,16 @@
 # (8,16,24,32)
 # depth = 0
 
-# use_scrollbar = true
+use_scrollbar = false
 
 # scrollbar_mode = left
 
 # (simple,sample,sample2,sample3,next,motif,athena,mozmodern)
 # scrollbar_view_name = simple
 
-# fg_color = black
+fg_color = black
 
-# bg_color = white
+bg_color = gray
 
 # sb_fg_color =
 
@@ -238,7 +238,7 @@
 # (raw,ttyrec)
 # vt_seq_format = raw
 
-# use_clipboard = true
+use_clipboard = true
 
 # logging_msg = true
 

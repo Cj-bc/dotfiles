@@ -1,4 +1,4 @@
-#DEFAULT = /usr/share/fonts/X11/misc/unifont.pcf.gz:100
+DEFAULT = /usr/share/fonts/X11/misc/unifont.pcf.gz:100
 
 #ISO8859_1 = /usr/share/fonts/X11/misc/mplus_f12r.pcf.gz
 #JISX0208_1983 = /usr/share/fonts/X11/misc/mplus_j12r.pcf.gz

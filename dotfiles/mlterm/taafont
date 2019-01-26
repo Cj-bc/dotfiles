@@ -25,7 +25,7 @@
 #ISO10646_UCS4_1=Thryomanes
 
 # Japanese speakers may want to enable the following setting.
-#ISO10646_UCS4_1_FULLWIDTH=Kochi Gothic
+ISO10646_UCS4_1_FULLWIDTH=Kochi Gothic
 
 # Korean speakers may want to enable the following setting.
 #ISO10646_UCS4_1_FULLWIDTH=dotum
