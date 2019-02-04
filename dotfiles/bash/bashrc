@@ -89,6 +89,9 @@ alias bash_profile='source ~/.bash_profile'
 alias back='cd $OLDPWD'
 alias prs='ghi | grep ↑'
 alias init='[ ! -d ".git" ] && { git init; git flow init; hub create; } || echo "aleady initialized"'
+alias vim7='/usr/bin/vim'
+alias repo='__IN_GHQ__REPO=1 ghq look $(ghq list |fzf); __IN_GHQ__REPO=0'
+alias qiita="vim $(ghq root)/$(ghq list | grep Cj-bc/qiita-post)/"
 
 # ------------ crons {{{2
 alias mkcron='crontab -e'
