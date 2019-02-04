@@ -89,6 +89,23 @@ function init() {
   [ "${_hub:-1}" -eq 1 ] && hub create
 }
 # }}}
+# mkrepo: make repository under ghq dir {{{
+type ghq >/dev/null &&
+  function mkrepo()
+  {
+    local repo_name="$1"; [ -z "$repo_name" ] && return
+    local repo_path="$(ghq root)/github.com/Cj-bc/$repo_name"
+
+    echo "making repository [$repo_name]"
+    mkdir "$repo_path"
+
+    cd "$repo_path"
+    init -i flow
+    cd - >/dev/null
+    __IN_GHQ__REPO=1 ghq look "Cj-bc/$repo_name"
+  }
+# }}}
+
 # ================================= Pronpts ================================== {{{1
 
 export PS1="\`stat=\"\$?\";[ \${__IN_GHQ__REPO:-0} -eq 1 ] && echo -n '(GHQ) ';echo -n '\$?is'\$stat;[ -e ./.git ] && echo -n [\$(git_branch)];[ $VIM ] && echo -n '(vim)';echo -n \"<\$(tty | tail -c +6)>\";echo '\r';[ \${stat} = 0 ] && echo \[\e[33m\]\<X_X\>\[\e[0m\] || echo \[\e[31m\]\<@_@\>\[\e[0m\];torf;wtdd\`:\W\\$ " # \ before $value is really important!
