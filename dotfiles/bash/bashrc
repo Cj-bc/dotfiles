@@ -62,6 +62,33 @@ function google() {
   [ $# -ne 0 ] && w3m https://www.google.com/search?q=${@// /+}  || w3m google.com #usage: google [word]
 }
 
+# init() {{{2
+# initialize git repository & create reamote
+function init() {
+  if [ -d .git ]; then
+    echo "aleady initialized"
+    return
+  fi
+
+  case "$1" in
+    "-i" ) shift
+      local target
+      for target in $@
+      do
+        if [ "$target" = 'git' ] || [ "$target" = 'flow' ] || [ "$target" = 'hub' ]; then
+          eval "local _${target}=1"
+        fi
+      done
+        ;;
+    "-h"|"--help" ) echo 'usage: init [-i git|flow|hub]' ;;
+  esac
+
+
+  [ "${_git:-1}" -eq 1 ] && git init
+  [ "${_flow:-1}" -eq 1 ] && git flow init
+  [ "${_hub:-1}" -eq 1 ] && hub create
+}
+# }}}
 # ================================= Pronpts ================================== {{{1
 
 export PS1="\`stat=\"\$?\";echo -n '\$?is'\$stat;[ -e ./.git ] && echo -n [\$(git_branch)];[ $VIM ] && echo -n '(vim)';echo -n \"<\$(tty | tail -c +6)>\";echo '\r';[ \${stat} = 0 ] && echo \[\e[33m\]\<X_X\>\[\e[0m\] || echo \[\e[31m\]\<@_@\>\[\e[0m\];torf;wtdd\`:\W\\$ " # \ before $value is really important!
@@ -88,7 +115,6 @@ alias bashrc='source ~/.bashrc'
 alias bash_profile='source ~/.bash_profile'
 alias back='cd $OLDPWD'
 alias prs='ghi | grep ↑'
-alias init='[ ! -d ".git" ] && { git init; git flow init; hub create; } || echo "aleady initialized"'
 alias vim7='/usr/bin/vim'
 alias repo='__IN_GHQ__REPO=1 ghq look $(ghq list |fzf); __IN_GHQ__REPO=0'
 alias qiita="vim $(ghq root)/$(ghq list | grep Cj-bc/qiita-post)/"
