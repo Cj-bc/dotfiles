@@ -34,6 +34,7 @@ set wildignore+=*.DS_STORE,*.jpg,*.png,*.gif
 " Draw the statusline
 set laststatus=2
 
+set statusline=[*_*]\ \ \|F:\ %f,\ \|ft:\ %y,\ \|buf:\%n%=%{FugitiveStatusline()}%P
 
 " }}}
 
