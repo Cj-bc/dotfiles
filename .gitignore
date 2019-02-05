@@ -2,3 +2,4 @@
 .w3m/history
 .w3m/mailcap
 .vim/bundle/
+dotfiles/fish/generated_completions/*
