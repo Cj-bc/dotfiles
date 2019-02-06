@@ -26,7 +26,7 @@
 # use_login_shell = false
 
 # (xterm,mlterm,kterm)
-termtype = mlterm
+termtype = xterm-256color
 
 # max_ptys = 32
 
