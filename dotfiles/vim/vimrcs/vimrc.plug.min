@@ -4,12 +4,12 @@ nnoremap <leader>gs :Gstatus<CR>
 nnoremap <leader>gc :Gcommit<CR>
 
 " -------------- for vim-operator-surround
-xnoremap sa <Plug>(operator-surround-append)
-nnoremap sa <Plug>(operator-surround-append)
-xnoremap sd <Plug>(operator-surround-delete)
-nnoremap sd <Plug>(operator-surround-delete)
-xnoremap sr <Plug>(operator-surround-replace)
-nnoremap sr <Plug>(operator-surround-replace)
+xmap <silent>sa <Plug>(operator-surround-append)
+nmap <silent>sa <Plug>(operator-surround-append)
+xmap <silent>sd <Plug>(operator-surround-delete)
+nmap <silent>sd <Plug>(operator-surround-delete)
+xmap <silent>sr <Plug>(operator-surround-replace)
+nmap <silent>sr <Plug>(operator-surround-replace)
 
 " -------------- for ale
 let g:ale_cpp_gcc_executable = 'g++'
