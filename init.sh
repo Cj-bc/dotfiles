@@ -7,10 +7,10 @@
 #
 # @(#) version -
 
-DOTFILE_PATH=$(realpath "${BASH_SOURCE[0]%%/*}")
+DOTFILE_PATH=$(realpath "${BASH_SOURCE[0]%%/*}/dotfiles")
 
 while IFS=',' read -r target dst;do
-  [[ ! -f "$target" ]] && continue
+  [[ ! -f "${DOTFILE_PATH}/${target}" ]] && continue
   [[ -f "$dst" ]] && echo "aborting ${target}: ${dst} already exist" && continue
 
   echo -n "linking: ${target} -> ${dst}..."
