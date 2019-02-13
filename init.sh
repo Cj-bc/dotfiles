@@ -14,7 +14,7 @@ while IFS=',' read -r target dst;do
   [[ -f "$dst" ]] && echo "aborting ${target}: ${dst} already exist" && continue
 
   echo -n "linking: ${target} -> ${dst}..."
-  eval "ln -s "${DOTFILE_PATH}/${target}" "${dst}"" &&
+  eval "ln -s "${DOTFILE_PATH}/${target}" "${dst}" 2>/dev/null" &&
     echo 'ok' ||
     echo 'failed'
 done < ./config.txt
