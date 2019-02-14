@@ -61,6 +61,7 @@ function notes {
 
 # google() {{{2
 # google the word with w3m
+type w3m >&2 2>/dev/null &&
 function google() {
   [ $# -ne 0 ] && w3m https://www.google.com/search?q=${@// /+}  || w3m google.com #usage: google [word]
 }
@@ -93,7 +94,7 @@ function init() {
 }
 # }}}
 # mkrepo: make repository under ghq dir {{{
-type ghq >/dev/null &&
+type ghq >&2 2>/dev/null &&
   function mkrepo()
   {
     local repo_name="$1"; [ -z "$repo_name" ] && return
@@ -172,7 +173,8 @@ alias wifi='networksetup -setairportnetwork' # usage: wifi <device> <SSID> <pass
 
 shopt -s xpg_echo
 
-export PATH=$PATH:~/.nodebrew/current/bin
+[ -a "~/.nodebrew" ] &&
+  export PATH=$PATH:~/.nodebrew/current/bin
 
 
 #=================== setting for ssh-agent {{{1
