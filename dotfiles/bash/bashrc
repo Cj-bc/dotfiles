@@ -61,7 +61,7 @@ function notes {
 
 # google() {{{2
 # google the word with w3m
-type w3m >&2 2>/dev/null &&
+type w3m >/dev/null 2>&1 &&
 function google() {
   [ $# -ne 0 ] && w3m https://www.google.com/search?q=${@// /+}  || w3m google.com #usage: google [word]
 }
@@ -94,7 +94,7 @@ function init() {
 }
 # }}}
 # mkrepo: make repository under ghq dir {{{
-type ghq >&2 2>/dev/null &&
+type ghq >/dev/null 2>&1 &&
   function mkrepo()
   {
     local repo_name="$1"; [ -z "$repo_name" ] && return
