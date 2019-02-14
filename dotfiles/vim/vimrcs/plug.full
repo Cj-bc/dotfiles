@@ -31,6 +31,8 @@ Plugin 'Cj-bc/Damian-Conway-s-Vim-Setup' " Damian's vim plugins
 Plugin 'vim-jp/vimdoc-ja' " japanese doc
 Plugin 'kana/vim-vspec' " Vim plugin: Testing framework for Vim script
 Plugin 'dermusikman/sonicpi.vim' " Sonic Pi plugin for Vim
-" Plugin 'prabirshrestha/async.vim' " dependency of vim-lsp
-" Plugin 'prabirshrestha/vim-lsp' " async language server protocol plugin for vim and neovim
+Plugin 'prabirshrestha/async.vim' " dependency of vim-lsp
+Plugin 'prabirshrestha/vim-lsp' " async language server protocol plugin for vim and neovim
 Plugin 'yuratomo/w3m.vim' " w3m plugin for vim http://yuratomo.seesaa.net/
+Plugin 'Cj-bc/drcs.vim'
+Plugin 'mattn/vim-reading-vimrc' " vimrc reading client

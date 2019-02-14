@@ -12,9 +12,16 @@ xmap <silent>sr <Plug>(operator-surround-replace)
 nmap <silent>sr <Plug>(operator-surround-replace)
 
 " -------------- for ale
-let g:ale_cpp_gcc_executable = 'g++'
-let g:ale_cpp_gcc_options = '-std=c++17 -Wall'
+"  I'll use vim-lsp for LSP client, so I disable this.
+" let g:ale_cpp_gcc_executable = 'g++'
+" let g:ale_cpp_gcc_options = '-std=c++17 -Wall'
 let g:ale_cpp_clang_options = '-std=c++17 -Wall'
+let g:ale_cpp_ccls_eecutable = ''
+" let g:ale_linters = {
+"     \ 'sh': ['language_server'],
+"     \ 'cpp': ['ccls'],
+"     \ }
+
 " -------------- UltiSnippets
 let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<tab>"

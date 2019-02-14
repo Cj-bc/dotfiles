@@ -54,6 +54,8 @@ let howm_fileencoding        = 'utf-8'
 
 let HowmAlarmFile = howm_dir . '/howmalarm'
 let HowmAlarmUseQFixHowm = 2
+
+let SubWindow_Title1 = "__submenu1__"
 " }}}
 
 " ------- vimwiki {{{
@@ -153,12 +155,12 @@ vmap  <expr>  D        DVB_Duplicate()
 " }}}
 " }}}
 
-" sonic-pi {{{2
+" sonic-pi {{{
 let g:sonicpi_command = 'sonic-pi-tool'
 let g:sonicpi_send = 'eval-stdin'
 " }}}
 
-" openbrowser {{{2
+" openbrowser {{{
 let g:openbrowser_browser_commands = [
                                      \ {"name": "w3m",
                                      \  "args": "tmux split-window 'w3m {uri}'"},
@@ -167,7 +169,7 @@ let g:openbrowser_browser_commands = [
                                      \]
 " }}}
 
-" translate.vim {{{2
+" translate.vim {{{
 " functions below are not used for now
 " let s:translate_lang_shortennames = { "e": "en",
 "                                    \  "j": "ja"
@@ -184,6 +186,40 @@ vnoremap <leader>tlje :TranslateVisual ja:en<CR>
 nnoremap <leader>tlej :Translate en:ja<CR>
 nnoremap <leader>tlje :Translate ja:en<CR>
 nnoremap <leader>tlc :TranslateClear<CR>
+" }}}
+
+" vim-lsp {{{
+augroup MyLsp
+  autocmd FileType python,cpp,c,objc,ojbcpp,cc setlocal omnifunc=lsp#complete
+  "  for debug {{{2
+  "    let g:lsp_log_verbose = 0
+  "    "  let g:lsp_log_file = "vim-lsp.log"
+  "    }}}
+
+  if executable('ccls')
+     au User lsp_setup call lsp#register_server({
+        \ 'name': 'ccls',
+        \ 'cmd': {server_info->['ccls']},
+        \ 'root_uri': {server_info->lsp#utils#path_to_uri(lsp#utils#find_nearest_parent_file_directory(lsp#utils#get_buffer_path(), '.ccls'))},
+        \ 'initialization_options': { 'cacheDirectory': '/tmp/ccls_cache' },
+        \ 'whitelist': ['c', 'cpp', 'objc', 'objcpp', 'cc'],
+        \ })
+  endif
+  if executable('pyls')
+      au User lsp_setup call lsp#register_server({
+          \ 'name': 'pyls',
+          \ 'cmd': {server_info->['pyls']},
+          \ 'whitelist': ['python'],
+          \ })
+  endif
+
+
+  au FileType python,cpp,c,objc,ojbcpp,cc nmap <leader>R <plug>(lsp-rename)
+  au FileType python,cpp,c,objc,ojbcpp,cc nmap <leader>D <plug>(lsp-definition)
+  au FileType python,cpp,c,objc,ojbcpp,cc nmap <leader>r <plug>(lsp-references)
+  au FileType python,cpp,c,objc,ojbcpp,cc nmap <leader>d <plug>(lsp-document-symbol)
+  au FileType python,cpp,c,objc,ojbcpp,cc nmap <leader>w <plug>(lsp-workspace-symbol)
+augroup end
 " }}}
 
 " =================== Reference URLs =========================================

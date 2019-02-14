@@ -22,3 +22,8 @@ Plugin 'dbeniamine/cheat.sh-vim' " A vim plugin to access cheat.sh sheets
 Plugin 'vim-scripts/VOoM'
 Plugin 'SirVer/ultisnips' " UltiSnips - The ultimate snippet solution for Vim. Send pull requests to SirVer/ultisnips!
 Plugin 'Cj-bc/bashinfinity.vim'
+Plugin 'oka-h/yozakura.vim' " Yozakura.vim is a colorscheme for vim.
+Plugin 'thinca/vim-quickrun' " Run commands quickly.
+Plugin 'Cj-bc/applescript.vim'
+Plugin 'Cj-bc/gfm.vim' " syntax file for Github flavor markdown
+Plugin 'wellle/targets.vim' " vim plugin that provides additional tect objects

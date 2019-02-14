@@ -6,7 +6,7 @@ set modelines=5
 set cursorline
 set number
 set relativenumber
-set autowriteall
+" set autowriteall  " This is useful when we use QfixHowm, but it's so awful that will save Netrw windows...
 syntax on
 
 " Searching options
@@ -35,6 +35,9 @@ set wildignore+=*.DS_STORE,*.jpg,*.png,*.gif
 set laststatus=2
 
 set statusline=[*_*]\ \ \|F:\ %f,\ \|ft:\ %y,\ \|buf:\%n%=%{FugitiveStatusline()}%P
+
+" Vimであいまいな幅の文字の論理幅を1にします。https://qiita.com/kefir_/items/78e64c545a70a0ebea8a
+set ambiwidth=single
 
 " }}}
 
@@ -91,8 +94,10 @@ inoremap " ""<left>
 " moving around buffers
 " bn : go to next buffer
 " bp : go to previous buffer
+" bb : go to previously edited buffer
 nnoremap <silent> bn <ESC>:bnext<LF>
 nnoremap <silent> bp <ESC>:bprevious<LF>
+"nnoremap <silent> bb <ESC>:b #<LF>
 
 
 
@@ -150,16 +155,16 @@ function! ScreenMovement(movement)
       return a:movement
    endif
 endfunction
-onoremap <silent> <expr> j ScreenMovement("j")
-onoremap <silent> <expr> k ScreenMovement("k")
-onoremap <silent> <expr> 0 ScreenMovement("0")
-onoremap <silent> <expr> ^ ScreenMovement("^")
-onoremap <silent> <expr> $ ScreenMovement("$")
-nnoremap <silent> <expr> j ScreenMovement("j")
-nnoremap <silent> <expr> k ScreenMovement("k")
-nnoremap <silent> <expr> 0 ScreenMovement("0")
-nnoremap <silent> <expr> ^ ScreenMovement("^")
-nnoremap <silent> <expr> $ ScreenMovement("$")
+onoremap <silent> <expr> j ScreenMovement('j')
+onoremap <silent> <expr> k ScreenMovement('k')
+onoremap <silent> <expr> 0 ScreenMovement('0')
+onoremap <silent> <expr> ^ ScreenMovement('^')
+onoremap <silent> <expr> $ ScreenMovement('$')
+nnoremap <silent> <expr> j ScreenMovement('j')
+nnoremap <silent> <expr> k ScreenMovement('k')
+nnoremap <silent> <expr> 0 ScreenMovement('0')
+nnoremap <silent> <expr> ^ ScreenMovement('^')
+nnoremap <silent> <expr> $ ScreenMovement('$')
 " }}}
 
 "  DOESN'T WORK AT THIS TIME {{{2
@@ -239,8 +244,9 @@ endif
 " == https://qiita.com/kojionilk/items/67379e68cf54d811081a                 ==
 " ==      -> Searching options                                              ==
 " == https://github.com/rouxbuciu/dotfiles .vimrc                           ==
-" ==      -> wildmenu, relativenumber, laststatus
-" ==                                                                        ==
+" ==      -> wildmenu, relativenumber, laststatus                           ==
+" == https://qiita.com/kefir_/items/78e64c545a70a0ebea8a                    ==
+" ==      -> DRCS settings                                                  ==
 " ==     		http://vim-jp.org                                               ==
 " ==               VIM Japanese community site                              ==
 " ==                                                                        ==
