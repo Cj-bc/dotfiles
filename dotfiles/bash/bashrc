@@ -122,7 +122,6 @@ if [ -d ~/.watchtodo ];then
 fi
 # ================================= Alias ==================================== {{{1
 if [ "$(uname)" = 'Darwin' ]; then
-    export LSCOLORS=xbfxcxdxbxegedabagacad
     alias ls='ls -G'
 else
     eval `dircolors ~/.colorrc`
@@ -155,8 +154,7 @@ alias glo='git log --oneline'
 alias siri='open /Applications/Siri.app'
 alias drp='cd ~/Dropbox && ls'
 alias stopwatch='utimer --stopwatch'
-alias dia='[ -d ~/.diary/$(date "+%Y/%m") ] || mkdir ~/.diary/$(date "+%Y/%m");vim ~/.diary/$(date "+%Y/%m/%d").dia'
-alias qiita='~/Accounts/Cj/Projects/Tools/ShellScripts/qiita/qiita.sh'
+alias dia='vim ~/.diary/$(date "+%Y/%m/%d").md' # not used as I have QfixHwm right now...
 alias td='todo.sh'
 alias dotdrop='$HOME/dotfiles/dotdrop.sh'
 alias jnethack='cocot -t UTF-8 -p cp932 -- ~/nethackdir/jnethack'
@@ -169,7 +167,7 @@ fi
 alias airport='/System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport'
 alias wport='networksetup -setairportpower' # usage: wport <device> <on/off>
 alias wifi='networksetup -setairportnetwork' # usage: wifi <device> <SSID> <password>
-alias ymserver='~/Accounts/Cj/Projects/Tools/ShellScripts/ymserver/ymserver.sh'
+
 
 
 shopt -s xpg_echo
