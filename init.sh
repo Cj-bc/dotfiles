@@ -8,13 +8,19 @@
 # @(#) version -
 
 DOTFILE_PATH=$(realpath "${BASH_SOURCE[0]%%/*}/dotfiles")
+color_red="$(tput setaf 1)"
+color_green="$(tput setaf 2)"
+color_yellow="$(tput setaf 3)"
+color_default="$(tput sgr0)"
 
 while IFS=',' read -r target dst;do
-  [[ ! -a "${DOTFILE_PATH}/${target}" ]] && continue
-  [[ -f "$dst" ]] && echo "aborting ${target}: ${dst} already exist" && continue
-
   echo -n "linking: ${target} -> ${dst}..."
+  [[ ! -a "${DOTFILE_PATH}/${target}" ]] &&
+    echo "${color_yellow}skip${color_default}(target not found)" && continue
+  [[ -a "$(echo $dst)" ]] &&
+    echo "${color_yellow}skip${color_default}(dst already exist)" && continue
+
   eval "ln -s "${DOTFILE_PATH}/${target}" "${dst}" 2>/dev/null" &&
-    echo 'ok' ||
-    echo 'failed'
+    echo "${color_green}ok${color_default}" ||
+    echo "${color_red}failed${color_default}"
 done < ./config.txt
