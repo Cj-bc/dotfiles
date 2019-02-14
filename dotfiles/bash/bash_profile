@@ -1,34 +1,32 @@
-if [ -f ~/.bashrc ]
-then
-  source ~/.bashrc
-fi
-export PATH=/Users/coju/.nodebrew/current/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
-
-# for bash-completion 
-if [ -f /usr/local/etc/bash_completion ]
-then
-  . /usr/local/etc/bash_completion
-elif [ -f /usr/local/share/bash-completion/bash_completion ]
-then
-# for bash-completion@2
-  . /usr/local/share/bash-completion/bash_completion
-fi
-
-export PATH=$PATH:~/.nodebrew/current/bin
+#export PATH=/Users/coju/.nodebrew/current/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
+export PATH="$PATH:~/.nodebrew/current/bin"
 export EDITOR=vim
 
-eval "$(rbenv init -)"
+# for bash-completion & bash-completion@2
+export BASH_COMPLETION_COMPAT_DIR="/usr/local/etc/bash_completion.d"
+[[ -r "/usr/local/etc/profile.d/bash_completion.sh" ]] && . "/usr/local/etc/profile.d/bash_completion.sh"
+
+
+type rbenv >/dev/null 2>&1 &&
+  eval "$(rbenv init -)"
+
 # for asdf (extendable package manager)
-. $HOME/.asdf/asdf.sh
-. $HOME/.asdf/completions/asdf.bash
+[[ -d ~/.asdf ]] &&
+  {
+    . $HOME/.asdf/asdf.sh
+    . $HOME/.asdf/completions/asdf.bash
+  }
+
+# for Cj-bc/activate
+[ -f '/usr/local/opt/activate/bin/activate' ] &&
+  source /usr/local/opt/activate/bin/activate
+
+
+[ -f ~/.bashrc ] && source ~/.bashrc
+
 # =======================================================================================
 # == https://github.com/bobthecow/git-flow-completion/wiki/install bash-git-completion ==
 # ==    -> installation of bash_completion                                             ==
 # == https://github.com/asdf-vm/asdf                                                   ==
 # ==    -> homepage of asdf                                                            ==
 # =======================================================================================
-
-# for Cj-bc/activate
-[ -f '/usr/local/opt/activate/bin/activate' ] && . /usr/local/opt/activate/bin/activate
-. $HOME/.asdf/asdf.sh
-. $HOME/.asdf/completions/asdf.bash
