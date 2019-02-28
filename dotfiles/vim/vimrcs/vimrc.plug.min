@@ -17,10 +17,11 @@ nmap <silent>sr <Plug>(operator-surround-replace)
 " let g:ale_cpp_gcc_options = '-std=c++17 -Wall'
 let g:ale_cpp_clang_options = '-std=c++17 -Wall'
 let g:ale_cpp_ccls_eecutable = ''
-" let g:ale_linters = {
-"     \ 'sh': ['language_server'],
-"     \ 'cpp': ['ccls'],
-"     \ }
+let g:ale_linters = {
+    \ 'sh': ['language_server'],
+    \ 'cpp': ['ccls'],
+    \ 'python': ['pyls', 'mypy'],
+    \ }
 
 " -------------- UltiSnippets
 let g:UltiSnipsExpandTrigger="<tab>"
