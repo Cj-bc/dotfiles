@@ -109,6 +109,24 @@ type ghq >/dev/null 2>&1 &&
     __IN_GHQ__REPO=1 ghq look "Cj-bc/$repo_name"
   }
 # }}}
+# :tabe : open given file in vim/ or search file with fzf and open in vim {{{2
+function :tabe() {
+if [[ $# -ne 0 ]]; then
+  vim "$*"
+else
+  vim $(fzf)
+fi
+}
+# }}}
+# :e : almost same as :tabe {{{2
+function :e() {
+if [[ $# -ne 0 ]]; then
+  vim "$*"
+else
+  vim $(fzf)
+fi
+}
+# }}}
 
 # ================================= Pronpts ================================== {{{1
 
