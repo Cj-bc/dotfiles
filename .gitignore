@@ -3,3 +3,6 @@
 .w3m/mailcap
 .vim/bundle/
 dotfiles/fish/generated_completions/*
+dotfiles/vim/bundle/*
+*.swp
+*.swo
