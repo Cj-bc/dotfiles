@@ -17,7 +17,7 @@ while IFS=',' read -r target dst;do
   echo -n "linking: ${target} -> ${dst}..."
   [[ ! -a "${DOTFILE_PATH}/${target}" ]] &&
     echo "${color_yellow}skip${color_default}(target not found)" && continue
-  [[ -a "$(echo $dst)" ]] &&
+  [[ -a "$(eval echo $dst)" ]] &&
     echo "${color_yellow}skip${color_default}(dst already exist)" && continue
 
   eval "ln -s "${DOTFILE_PATH}/${target}" "${dst}" 2>/dev/null" &&
