@@ -206,7 +206,7 @@ if [ -d ~/.linuxbrew ];then
   export INFOPATH="$(brew --prefix)/share/info:$INFOPATH"
 fi
 
-
+# ================== setting for pyenv {{{
 [[ -a "~/pyenv" && $(type pyenv >/dev/null 2>&1) ]] &&
 {
   export PYENV_ROOT=$HOME/.pyenv
@@ -215,11 +215,11 @@ fi
 }
 
 
-# ------------ go {{{2
+# ------------ go {{{
 export GOPATH=$HOME/.go
 export PATH="${PATH}:${GOPATH}/bin"
 
-# ------------ fzf {{{2
+# ------------ fzf {{{
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
 # ------------ poetry {{{
