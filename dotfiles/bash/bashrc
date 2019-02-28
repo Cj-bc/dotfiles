@@ -222,6 +222,9 @@ export PATH="${PATH}:${GOPATH}/bin"
 # ------------ fzf {{{2
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
+# ------------ poetry {{{
+export PATH="$HOME/.poetry/bin:$PATH"
+
 # =========================== Reference ========================================= {{{1
 # ==                                                                           == 
 # ==  https://qiita.com/kawaz/items/65cdbeaa739c4e6b7776                       ==
