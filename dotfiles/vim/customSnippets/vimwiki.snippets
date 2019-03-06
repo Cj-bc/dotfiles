@@ -1,0 +1,14 @@
+extends markdown
+
+snippet {{$
+{{$
+  ${0}
+}}$
+endsnippet
+
+snippet note
+%title ${1}
+%date `date +%Y-%m-%d`
+
+${0}
+endsnippet
