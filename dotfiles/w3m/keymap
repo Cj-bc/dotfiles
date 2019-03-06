@@ -1,0 +1,8 @@
+keymap h MOVE_LEFT1
+keymap j MOVE_DOWN1
+keymap k MOVE_UP1
+keymap l MOVE_RIGHT1
+keymap / ISEARCH
+keymap ? ISEARCH_BACK
+keymap g BEGIN
+keymap G END
