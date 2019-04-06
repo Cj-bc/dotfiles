@@ -84,6 +84,7 @@ let mapleader = " "
 
 	" jj to exit insert-mode
 inoremap <silent> jj <ESC> 
+inoremap <silent> jk <ESC> 
 	" <C-o><C-o> to print time in normal-mode
 inoremap <C-o><C-o> <C-r>=strftime('(%T %p)') <LF>
 	" <C-o>d to print data in normal-mode
