@@ -19,7 +19,7 @@ set shiftwidth=2 " width auto-indent
 	" highlight ZENKAKU-SPACE not to miss them
 highlight ZenkakuSpace cterm=underline ctermfg=lightblue guibg=#666666
 au BufNewFile,BufRead * match ZenkakuSpace /　/
-  " display unvisible letter
+  " display invisible letter
   "   tab: >>-
 set list
 set listchars=tab:>-,trail:-,extends:>,precedes:<,nbsp:%
@@ -246,7 +246,7 @@ endif
 " == http://d.hatena.ne.jp/osyo-manga/20140307/1394204974                   ==
 " ==      -> documents for textobj and operators                            ==
 " == http://ivxi.hatenablog.com/entry/2013/05/23/163825                     ==
-" ==      -> keymapping for buffers                                         ==
+" ==      -> key mapping for buffers                                         ==
 " == https://qiita.com/kojionilk/items/67379e68cf54d811081a                 ==
 " ==      -> Searching options                                              ==
 " == https://github.com/rouxbuciu/dotfiles .vimrc                           ==
