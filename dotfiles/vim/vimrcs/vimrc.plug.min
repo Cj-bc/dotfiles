@@ -20,7 +20,7 @@ let g:ale_cpp_ccls_eecutable = ''
 let g:ale_linters = {
     \ 'sh': ['language_server'],
     \ 'cpp': ['ccls'],
-    \ 'python': ['pyls', 'mypy'],
+    \ 'python': ['pyls', 'mypy', 'flake8'],
     \ }
 
 " -------------- UltiSnippets
