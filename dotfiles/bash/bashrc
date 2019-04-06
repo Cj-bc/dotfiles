@@ -226,12 +226,9 @@ if [ -d ~/.linuxbrew ];then
 fi
 
 # ================== setting for pyenv {{{
-[[ -a "~/pyenv" && $(type pyenv >/dev/null 2>&1) ]] &&
-{
-  export PYENV_ROOT=$HOME/.pyenv
-  export PATH=$PYENV_ROOT/bin:$PATH
-  eval "$(pyenv init -)"
-}
+export PYENV_ROOT=$HOME/.pyenv
+export PATH=$PYENV_ROOT/shims:$PATH
+eval "$(pyenv init -)"
 
 
 # ------------ go {{{
