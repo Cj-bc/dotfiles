@@ -27,3 +27,4 @@ Plugin 'thinca/vim-quickrun' " Run commands quickly.
 Plugin 'Cj-bc/applescript.vim'
 Plugin 'Cj-bc/gfm.vim' " syntax file for Github flavor markdown
 Plugin 'wellle/targets.vim' " vim plugin that provides additional tect objects
+Plugin 'ballerina-attic/plugin-vim' " ballerina syntax file
