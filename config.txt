@@ -17,3 +17,4 @@ tmux/tmux.conf, $HOME/.tmux.conf
 vim, $HOME/.vim
 vim/vimrcs/vimrc, $HOME/.vimrc
 w3m, $HOME/.w3m
+stack, $HOME/.stack
