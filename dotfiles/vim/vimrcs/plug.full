@@ -36,3 +36,4 @@ Plugin 'prabirshrestha/vim-lsp' " async language server protocol plugin for vim 
 Plugin 'yuratomo/w3m.vim' " w3m plugin for vim http://yuratomo.seesaa.net/
 Plugin 'Cj-bc/drcs.vim'
 Plugin 'mattn/vim-reading-vimrc' " vimrc reading client
+Plugin 'rhysd/vim-grammarous' " A powerful grammar checker for vim using LanguageTool.
