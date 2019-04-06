@@ -30,3 +30,5 @@ type rbenv >/dev/null 2>&1 &&
 # == https://github.com/asdf-vm/asdf                                                   ==
 # ==    -> homepage of asdf                                                            ==
 # =======================================================================================
+
+export PATH="$HOME/.poetry/bin:$PATH"
