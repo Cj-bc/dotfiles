@@ -2,6 +2,7 @@ cat ~/.bashrc.banner
 
 # ========== variables ========== {{{1
 LANG=ja_JP.UTF-8
+export PATH="${PATH}:${HOME}/.local/bin"
 # }}}
 # ================================= Functions ================================ {{{1
 
