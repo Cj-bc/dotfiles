@@ -46,6 +46,9 @@ set spell
 au FileType tweetvim,w3m set nospell
 " }}}
 
+" For local syntax files etc
+set runtimepath+=./vim_mod
+
 " ================ file types ================================= {{{
 
 
