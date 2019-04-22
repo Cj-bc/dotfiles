@@ -71,7 +71,10 @@ au FileType haskell set tabstop=8
 " tell vim that .sh is bash script by default
 let g:is_bash = 1
 
-  " folding options
+" folding options
+" Enable some foldings
+let g:sh_fold_enabled=7
+let g:vimsyn_folding ='af'
 
 "au BufWinLeave * mkview " automatically save folding
 "au BufWinEnter * silent loadview " automatically load folding
