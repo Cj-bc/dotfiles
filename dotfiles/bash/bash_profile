@@ -1,5 +1,5 @@
 #export PATH=/Users/coju/.nodebrew/current/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
-export PATH="$PATH:~/.nodebrew/current/bin"
+export PATH="$PATH:$HOME/.nodebrew/current/bin"
 export EDITOR=vim
 
 # for bash-completion & bash-completion@2
