@@ -214,6 +214,14 @@ augroup MyLsp
       au FileType python call s:configure_lsp()
   endif
 
+  if executable('hie')
+      au User lsp_setup call lsp#register_server({
+        \ 'name': 'hie',
+        \ 'cmd': {server_info->[&shell, &shellcmdflag, 'hie --lsp']},
+        \ 'whitelist': ['haskell'],
+        \ })
+      au FileType haskell call s:configure_lsp()
+  endif
 
   func! s:configure_lsp()
       setlocal omnifunc=lsp#complete
