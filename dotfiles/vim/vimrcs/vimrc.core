@@ -14,7 +14,7 @@ set ignorecase
 set smartcase
 
 set expandtab " replace <tab> with <space>
-set tabstop=2 " width <tab> hold
+set tabstop=2 " width <tab> hold (changed in some ft)
 set shiftwidth=2 " width auto-indent
 	" highlight ZENKAKU-SPACE not to miss them
 highlight ZenkakuSpace cterm=underline ctermfg=lightblue guibg=#666666
@@ -63,6 +63,9 @@ au BufNewFile *.bats 0r $HOME/.vim/template/bats.bats
 au BufNewFile *.oo.sh 0r $HOME/.vim/template/bash-oo-framework.sh
 au BufNewFile *.sh 0r $HOME/.vim/template/shell.sh
 au BufNewFile CHANGELOG.md 0r $HOME/.vim/template/CHANGELOG
+
+" --- Lang specific settings
+au FileType haskell set tabstop=8
 
 
 " tell vim that .sh is bash script by default
