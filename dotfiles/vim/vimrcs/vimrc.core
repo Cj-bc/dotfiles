@@ -41,8 +41,7 @@ set ambiwidth=single
 
 " spell
 set spelllang=en,cjk
-let spellfile_root = $HOME . "/.vim/spell"
-set spellfile=$HOME/.vim/spell/en.utf-8.add,$HOME/.vim/spell/domain.utf-8.add,$HOME/.vim/spell/vim.utf-8.add
+set spellfile=$HOME/.vim/spell/en.utf-8.add,$HOME/.vim/spell/domain.utf-8.add,$HOME/.vim/spell/vim.utf-8.add,$HOME/.vim/spell/haskell.utf-8.add
 set spell
 au FileType tweetvim,w3m set nospell
 " }}}
