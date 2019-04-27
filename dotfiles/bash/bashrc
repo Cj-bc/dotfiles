@@ -128,6 +128,23 @@ else
 fi
 }
 # }}}
+# trello: Wrapper of taskell for Trello {{{
+function trello()
+(
+  cd ~/.local/share/taskell/trello;
+  case "$1" in
+    "Update"|"update"|"-u")
+      while IFS=", " read id task_name; do
+        yes | taskell -t "$id" "$task_name"
+      done < <(cat trello.csv)
+      ;;
+    "" )
+      f="$(ls | grep -v "trello.csv" | fzf)";
+      test -z "$f" || taskell "$f";
+      ;;
+  esac
+)
+# }}}
 
 # ================================= Pronpts ================================== {{{1
 
@@ -182,6 +199,7 @@ if [ -d '/Applications/Koto-Qt.app' ]; then
   alias koto-cli='/Applications/Koto-Qt.app/Contents/MacOS/koto-cli'
   alias kotod='/Applications/Koto-Qt.app/Contents/MacOS/kotod'
 fi
+
 
 # ------------ networks {{{2
 alias airport='/System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport'
