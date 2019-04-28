@@ -133,6 +133,8 @@ function trello()
 (
   cd ~/.local/share/taskell/trello;
   case "$1" in
+    "csv" )
+      vim trello.csv;;
     "Update"|"update"|"-u")
       while IFS=", " read id task_name; do
         yes | taskell -t "$id" "$task_name"
