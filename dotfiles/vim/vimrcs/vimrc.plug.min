@@ -31,6 +31,13 @@ let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 let g:UltiSnipsSnippetDirectories=[$HOME . '/.vim/customSnippets', 'customSnippets', 'UltiSnips']
 let g:UltiSnipsEditSplit = "context"
 
+
+" -------------- QuickRun
+let g:quickrun_config = {}
+let g:quickrun_config.haskell = {'command': 'stack',
+                                \'cmdopt': 'runhaskell',
+                                \}
+
 " =================== Reference URLs =========================================
 " ==                                                                        ==
 " == http://d.hatena.ne.jp/osyo-manga/20140307/1394204974                   ==
