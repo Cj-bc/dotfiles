@@ -194,6 +194,7 @@ augroup MyLsp
   "    let g:lsp_log_verbose = 0
   "    "  let g:lsp_log_file = "vim-lsp.log"
   "    }}}
+  let g:lsp_diagnostics_enabled = 0 " use ALE for diagnostics
 
   if executable('ccls')
      au User lsp_setup call lsp#register_server({
