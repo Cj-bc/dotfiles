@@ -21,7 +21,7 @@ let g:ale_linters = {
     \ 'sh': ['language_server'],
     \ 'cpp': ['ccls'],
     \ 'python': ['pyls', 'mypy', 'flake8'],
-    \ 'haskell': ['hie'],
+    \ 'haskell': ['stack-ghc'],
     \ }
 
 " -------------- UltiSnippets
