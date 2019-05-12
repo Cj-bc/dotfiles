@@ -147,6 +147,37 @@ function trello()
   esac
 )
 # }}}
+# pushall: Push all commits of all repositories under ghq {{{
+function pushall()
+(
+  function s:is_my_repo() {
+    [ -d .git ] || return 1
+    grep -e 'url = https://github.com/Cj-bc/.*' .git/config >/dev/null
+  }
+
+  function s:unlines() {
+    [ -p /dev/stdin ] && cat - && return
+    return "$1"
+  }
+
+  local dst="${1:-$(ghq root)/*}"
+  local debug_shift="${2:->}" # debug
+
+  for d in $dst; do (
+      echo "${debug_shift}: $d" # debug
+      cd $d
+      if s:is_my_repo; then
+        echo "This is mine: $d"
+      else
+        echo "VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV" # debug
+        pushall "$(ls -p | grep '.*/' | sed 's/\///' | s:unlines )" "${debug_shift}>" # second arg is for debug
+        echo "^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^" # debug
+      fi
+    )
+  done
+)
+# }}}
+
 
 # ================================= Pronpts ================================== {{{1
 
