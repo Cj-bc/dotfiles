@@ -171,7 +171,9 @@ function pushall()
       else
         test -d .git && return
         echo "VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV" # debug
-        pushall "$(ls -p | grep '.*/' | sed 's/\///' | s:unlines )" "${debug_shift}>" # second arg is for debug
+        recursive="$(ls -p | grep '.*/' | sed 's/\///' | s:unlines )"
+        [ -z "$recursive" ] && return
+        pushall "$recursive" "${debug_shift}>" # second arg is for debug
         echo "^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^" # debug
       fi
     )
