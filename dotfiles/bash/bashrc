@@ -170,11 +170,9 @@ function pushall()
         echo "This is mine: $d"
       else
         test -d .git && return
-        echo "VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV" # debug
         recursive="$(ls -p | grep '.*/' | sed 's/\///' | s:unlines )"
         [ -z "$recursive" ] && return
-        pushall "$recursive" "${debug_shift}>" # second arg is for debug
-        echo "^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^" # debug
+        pushall "$recursive"
       fi
     )
   done
