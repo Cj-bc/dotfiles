@@ -169,6 +169,7 @@ function pushall()
       if s:is_my_repo; then
         echo "This is mine: $d"
       else
+        test -d .git && return
         echo "VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV" # debug
         pushall "$(ls -p | grep '.*/' | sed 's/\///' | s:unlines )" "${debug_shift}>" # second arg is for debug
         echo "^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^" # debug
