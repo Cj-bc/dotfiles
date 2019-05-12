@@ -160,6 +160,10 @@ function pushall()
     return "$1"
   }
 
+  function s:my_remote() {
+    echo $(git remote -v | grep 'Cj-bc.*(push)' | awk '{print $1}')
+  }
+
   local dst="${1:-$(ghq root)/*}"
   local debug_shift="${2:->}" # debug
 
@@ -167,7 +171,11 @@ function pushall()
       echo "${debug_shift}: $d" # debug
       cd $d
       if s:is_my_repo; then
-        echo "This is mine: $d"
+        for remote in $(s:my_remote);do
+          git push "$remote" --all >/dev/null 2>&1 \
+            && echo "$d: ${remote}: $(tput setaf 2)pushed$(tput sgr0)" \
+            || echo "$d: ${remote}: $(tput setaf 1)failed$(tput sgr0)"
+        done
       else
         test -d .git && return
         recursive="$(ls -p | grep '.*/' | sed 's/\///' | s:unlines )"
