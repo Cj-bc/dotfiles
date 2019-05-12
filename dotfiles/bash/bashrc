@@ -201,7 +201,9 @@ if [ -d '/Applications/Koto-Qt.app' ]; then
   alias koto-cli='/Applications/Koto-Qt.app/Contents/MacOS/koto-cli'
   alias kotod='/Applications/Koto-Qt.app/Contents/MacOS/kotod'
 fi
-
+if [ -e '/usr/local/Cellar/sclack/alpha/bin/app.py' ]; then
+  alias sclack='(cd /usr/local/Cellar/sclack/alpha/bin;./app.py)'
+fi
 
 # ------------ networks {{{2
 alias airport='/System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport'
