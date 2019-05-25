@@ -13,6 +13,8 @@ nnoremap tww <esc>:TweetVimCommandSay<CR>
 nnoremap twl <esc>:split +TweetVimHomeTimeline<CR>
 nnoremap twt <esc>:split +Unite\ tweetvim/account<CR>
 nnoremap twm <esc>:split +TweetVimMentions<CR>
+nnoremap tws <esc>:TweetVimSay<CR>
+nnoremap twme <esc>:split +TweetVimUserTimeline\ cj_bc_sd<CR>
 " }}}
 
 " -------- qiita.vim {{{
@@ -51,6 +53,7 @@ let QFixHowm_FileType = 'markdown.vimwiki.qfix_memo'
 let howm_dir = '~/howm'
 let howm_filename            = '%Y/%m/%Y-%m-%d-%H%M%S.md'
 let howm_fileencoding        = 'utf-8'
+let QFixHowm_SplitMode = 1 " Open files with split window
 
 let HowmAlarmFile = howm_dir . '/howmalarm'
 let HowmAlarmUseQFixHowm = 2
@@ -136,10 +139,6 @@ augroup Vimwiki_CustomCommands
   autocmd QuitPre *.wiki call Vimwiki_commit_automatic()
 augroup END
 " }}}
-" }}}
-
-" ------- CtrlP {{{
-let g:ctrlp_cmd = 'CtrlPMRU'
 " }}}
 
 " ------- DCSVS_mamanger {{{
@@ -231,6 +230,10 @@ augroup MyLsp
       nmap <buffer> <leader>r <plug>(lsp-references)
       nmap <buffer> <leader>d <plug>(lsp-document-symbol)
       nmap <buffer> <leader>w <plug>(lsp-workspace-symbol)
+      inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+      inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+      inoremap <expr> <cr> pumvisible() ? "\<C-y>\<cr>" : "\<cr>"
+      autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
   endfunc
 augroup end
 " }}}

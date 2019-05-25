@@ -8,23 +8,19 @@ Plugin 'rhysd/vim-operator-surround' " Vim operator mapping to enclose text obje
 Plugin 'junkblocker/patchreview-vim' " dependency of vim-codereview
 Plugin 'codegram/vim-codereview'  " code reviewer for Github's Pull-Request
 Plugin 'editorconfig/editorconfig-vim' " EditorConfig plugin for Vim
-Plugin 'mhinz/vim-startify' " The fancy start screen for Vim
 Plugin 'Shougo/unite.vim' " unite.vim -- a breaking User Interface
 Plugin 'tpope/vim-fugitive' " A Git wrapper so awesome, it should be illegal
-Plugin 'freitass/todo.txt-vim' " vim plugin for todo.txt
-Plugin 'vim-scripts/bats.vim' " just a hilight for Bats
-Plugin 'aklt/plantuml-syntax' " syntax file for Plant UML
-Plugin 'fuenor/qfixhowm' " vim client for Howm
 Plugin 'w0rp/ale' " Asynchronous Lint Engine
 Plugin 'othree/yajs.vim' " YAJS.vim: Yet Another JavaScript Syntax for Vim
 Plugin 'othree/es.next.syntax.vim' " ES.Next syntax for Vim
 Plugin 'dbeniamine/cheat.sh-vim' " A vim plugin to access cheat.sh sheets
 Plugin 'vim-scripts/VOoM'
 Plugin 'SirVer/ultisnips' " UltiSnips - The ultimate snippet solution for Vim. Send pull requests to SirVer/ultisnips!
-Plugin 'Cj-bc/bashinfinity.vim'
-Plugin 'oka-h/yozakura.vim' " Yozakura.vim is a colorscheme for vim.
 Plugin 'thinca/vim-quickrun' " Run commands quickly.
-Plugin 'Cj-bc/applescript.vim'
 Plugin 'Cj-bc/gfm.vim' " syntax file for Github flavor markdown
 Plugin 'wellle/targets.vim' " vim plugin that provides additional tect objects
-Plugin 'ballerina-attic/plugin-vim' " ballerina syntax file
+Plugin 'kien/ctrlp.vim'
+Plugin 'vim-jp/vimdoc-ja' " japanese doc
+
+" vim: ft=vim
+

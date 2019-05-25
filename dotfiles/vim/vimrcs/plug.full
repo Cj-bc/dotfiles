@@ -22,13 +22,11 @@ Plugin 'majutsushi/tagbar' " show tag list on the side
 Plugin 'mattn/qiita-vim' " vim qiita client
 Plugin 'mattn/emmet-vim' " HTML/CSS coding
 Plugin 'tell-k/vim-browsereload-mac' " vim plugin to reflesh your browser. for MacOSX
-Plugin 'kien/ctrlp.vim'
 Plugin 'vim-scripts/DrawIt' " Ascii drawing plugin: lines, ellipses, arrows, fills, and more!
 Plugin 'gyim/vim-boxdraw' " An ASCII box drawing plugin for Vim
 " Plugin 'rishihahs/vim-youtube' " Plays youtube in (neo)vim
 Plugin 'Cj-bc/blib.vim' " blib integration
 Plugin 'Cj-bc/Damian-Conway-s-Vim-Setup' " Damian's vim plugins
-Plugin 'vim-jp/vimdoc-ja' " japanese doc
 Plugin 'kana/vim-vspec' " Vim plugin: Testing framework for Vim script
 Plugin 'dermusikman/sonicpi.vim' " Sonic Pi plugin for Vim
 Plugin 'prabirshrestha/async.vim' " dependency of vim-lsp
@@ -37,3 +35,17 @@ Plugin 'yuratomo/w3m.vim' " w3m plugin for vim http://yuratomo.seesaa.net/
 Plugin 'Cj-bc/drcs.vim'
 Plugin 'mattn/vim-reading-vimrc' " vimrc reading client
 Plugin 'rhysd/vim-grammarous' " A powerful grammar checker for vim using LanguageTool.
+Plugin 'pandysong/ghost-text.vim' " support for ghost-text in regular vim
+Plugin 'ElmCast/elm-vim' " Elm plugin for Vim
+Plugin 'Cj-bc/cmus.vim' " Control cmus from vim
+Plugin 'mhinz/vim-startify' " The fancy start screen for Vim
+Plugin 'freitass/todo.txt-vim' " vim plugin for todo.txt
+Plugin 'vim-scripts/bats.vim' " just a hilight for Bats
+Plugin 'aklt/plantuml-syntax' " syntax file for Plant UML
+Plugin 'fuenor/qfixhowm' " vim client for Howm
+Plugin 'Cj-bc/bashinfinity.vim'
+Plugin 'oka-h/yozakura.vim' " Yozakura.vim is a colorscheme for vim.
+Plugin 'Cj-bc/applescript.vim'
+Plugin 'ballerina-attic/plugin-vim' " ballerina syntax file
+
+" vim: ft=vim
