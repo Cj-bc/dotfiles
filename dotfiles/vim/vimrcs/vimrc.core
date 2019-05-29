@@ -39,6 +39,9 @@ set statusline=[*_*]\ \ \|F:\ %f,\ \|ft:\ %y,\ \|buf:\%n%=%{FugitiveStatusline()
 " Vimであいまいな幅の文字の論理幅を1にします。https://qiita.com/kefir_/items/78e64c545a70a0ebea8a
 set ambiwidth=single
 
+" :h keymap
+set keymap=blocks
+
 " spell
 set spelllang=en,cjk
 set spellfile=$HOME/.vim/spell/en.utf-8.add,$HOME/.vim/spell/domain.utf-8.add,$HOME/.vim/spell/vim.utf-8.add,$HOME/.vim/spell/haskell.utf-8.add
