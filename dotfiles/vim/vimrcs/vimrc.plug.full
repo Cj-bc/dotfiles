@@ -223,6 +223,32 @@ augroup MyLsp
       au FileType haskell call s:configure_lsp()
   endif
 
+  if executable('elm-language-server')
+    au User lsp_setup call lsp#register_server(
+      \ { 'name': 'elm-language-server'
+      \ , 'cmd': {server_info->[&shell, &shellcmdflag, 'elm-language-server --stdio']}
+      \ , 'initialization_options':
+      \     { 'runtime': 'node'
+      \     , 'elmPath': 'elm'
+      \     , 'elmFormatPath': 'elm-format'
+      \     , 'elmTestPath': 'elm-test'
+      \     , 'rootPetterns': 'elm.json'
+      \     }
+      \ , 'whitelist': ['elm']
+      \ })
+    au FileType elm call s:configure_lsp()
+  endif
+
+  if executable('css-languageserver')
+    au User lsp_setup call lsp#register_server(
+      \ { 'name': 'css-languageserver'
+      \ , 'cmd': {server_info->[&shell, &shellcmdflag, 'css-languageserver --stdio']}
+      \ , 'whitelist': ['css','less','sass']
+      \ })
+    au FileType css,less,sass call s:configure_lsp()
+  endif
+
+
   func! s:configure_lsp()
       setlocal omnifunc=lsp#complete
       nmap <buffer> <leader>R <plug>(lsp-rename)
