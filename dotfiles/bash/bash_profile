@@ -6,6 +6,9 @@ export EDITOR=vim
 export BASH_COMPLETION_COMPAT_DIR="/usr/local/etc/bash_completion.d"
 [[ -r "/usr/local/etc/profile.d/bash_completion.sh" ]] && . "/usr/local/etc/profile.d/bash_completion.sh"
 
+which stack >/dev/null &&
+  eval "$(stack --bash-completion-script stack)"
+
 
 type rbenv >/dev/null 2>&1 &&
   eval "$(rbenv init -)"
