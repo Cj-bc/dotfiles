@@ -19,10 +19,12 @@ Plugin 'SirVer/ultisnips' " UltiSnips - The ultimate snippet solution for Vim. S
 Plugin 'thinca/vim-quickrun' " Run commands quickly.
 Plugin 'Cj-bc/gfm.vim' " syntax file for Github flavor markdown
 Plugin 'wellle/targets.vim' " vim plugin that provides additional tect objects
-Plugin 'kien/ctrlp.vim'
 Plugin 'vim-jp/vimdoc-ja' " japanese doc
 Plugin 'sgur/vim-textobj-parameter' " provide textobject for '.*,'
 Plugin 'cespare/vim-toml' " Vim syntax for TOML
+Plugin 'junegunn/fzf.vim' " fzf :love: vim
+Plugin 'junegunn/goyo.vim' " :Tulip: Distraction-free writing in Vim
+Plugin 'airblade/vim-gitgutter' " A Vim plugin which shows a git diff in the gutter (sign column) and stages/undoes hunks.
 
 " vim: ft=vim
 
