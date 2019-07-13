@@ -4,5 +4,8 @@
 .vim/bundle/
 dotfiles/fish/generated_completions/*
 dotfiles/vim/bundle/*
+dotfiles/vim/view
+dotfiles/vim/virtualenvs
+dotfiles/stack
 *.swp
 *.swo
