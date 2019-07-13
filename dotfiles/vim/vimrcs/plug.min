@@ -21,6 +21,8 @@ Plugin 'Cj-bc/gfm.vim' " syntax file for Github flavor markdown
 Plugin 'wellle/targets.vim' " vim plugin that provides additional tect objects
 Plugin 'kien/ctrlp.vim'
 Plugin 'vim-jp/vimdoc-ja' " japanese doc
+Plugin 'sgur/vim-textobj-parameter' " provide textobject for '.*,'
+Plugin 'cespare/vim-toml' " Vim syntax for TOML
 
 " vim: ft=vim
 
