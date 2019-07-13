@@ -9,13 +9,13 @@ loadkeymap
 w   █     Whole black
 rs  ▐     Right Side
 ls  ▌     Left Side
-lb  ▖     Left Bottom
-rb  ▗     Right Bottom
-lu  ▘     Left Upper
 ru  ▝     Right Upper
-Llb ▜     Lacked Left Bottom
-"           Lacked Left Upper
+rb  ▗     Right Bottom
+lb  ▖     Left Bottom
+lu  ▘     Left Upper
+Lru ▙     Lacked Right Upper
 Lrb ▛     Lacked Right Bottom
-Llu ▙     Lacked Right Upper
+Llb ▜     Lacked Left Bottom
+Llu ▟     Lacked Left Upper
 xr  ▞     Cross Right Up
 xl  ▚     Cross Left Up
