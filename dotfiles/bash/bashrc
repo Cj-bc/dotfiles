@@ -165,10 +165,8 @@ function pushall()
   }
 
   local dst="${1:-$(ghq root)/*}"
-  local debug_shift="${2:->}" # debug
 
   for d in $dst; do (
-      echo "${debug_shift}: $d" # debug
       cd $d
       if s:is_my_repo; then
         for remote in $(s:my_remote);do
@@ -186,7 +184,6 @@ function pushall()
   done
 )
 # }}}
-
 
 # ================================= Pronpts ================================== {{{1
 
