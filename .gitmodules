@@ -4,3 +4,6 @@
 [submodule "dotfiles/emacs/emacs.d"]
 	path = dotfiles/emacs/emacs.d
 	url = https://github.com/syl20bnr/spacemacs
+[submodule "dotfiles/mlterm/colorschemes"]
+	path = dotfiles/mlterm/colorschames
+	url = https://github.com/Cj-bc/Mlterm-Color-Schames
