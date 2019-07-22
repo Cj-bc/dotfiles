@@ -51,6 +51,10 @@ let g:ale_linters = {
     \ 'python': ['pyls', 'mypy', 'flake8'],
     \ 'haskell': ['stack-ghc', 'hie'],
     \ }
+"    \ 'elm': ['elm-language-server'],
+"
+let g:ale_linters_ignore = { 'elm': ['make'] } " Avoid conflicts with elm-ls
+let g:ale_elm_ls_use_global = 1 " Use globally installed elm-ls
 
 " -------------- UltiSnippets
 let g:UltiSnipsExpandTrigger="<tab>"
