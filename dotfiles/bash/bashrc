@@ -133,11 +133,21 @@ function trello()
 (
   cd ~/.local/share/taskell/trello;
   case "$1" in
+    "-h"|"help"|"--help")
+      cat <<EOF
+          trello [-h | csv | update]
+          options:
+            -h/--help/help : show this help
+            csv : edit csv file which define trello board ids
+            update/Update/-u : update boards
+EOF
+      ;;
     "csv" )
       vim trello.csv;;
     "Update"|"update"|"-u")
       while IFS=", " read id task_name; do
-        taskell -t "$id" "$task_name"
+        rm $task_name
+        yes | taskell -t "$id" "$task_name"
       done < <(cat trello.csv)
       ;;
     "" )
