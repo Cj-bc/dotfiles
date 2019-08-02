@@ -3,6 +3,18 @@ nnoremap <leader>gd :Gvdiff<CR>
 nnoremap <leader>gs :Gstatus<CR>
 nnoremap <leader>gc :Gcommit<CR>
 
+
+" ------------- gitgutter
+let g:gitgutter_sign_added              = '·'
+let g:gitgutter_sign_modified           = '·'
+let g:gitgutter_sign_removed            = '·'
+let g:gitgutter_sign_removed_first_line = '·'
+let g:gitgutter_sign_modified_removed   = '·'
+hi GitGutterAdd ctermfg=Green
+hi GitGutterChange ctermfg=Magenta
+hi GitGutterDelete ctermfg=Red
+
+
 ""  I wanted to make a function that push git commits
 "" to remote automatically if HEAD is forward
 "" when vim is about to finished.
@@ -76,6 +88,14 @@ let g:ctrlp_cmd = 'CtrlPMRU'
 "  " }}}
 "
 
+" ------------- Fzf.vim
+" Mapping selecting mappings
+nmap <C-p> :Files<CR>
+nmap <leader><tab> <plug>(fzf-maps-n)
+xmap <leader><tab> <plug>(fzf-maps-x)
+omap <leader><tab> <plug>(fzf-maps-o)
+"
+
 " ------- Goyo.vim
 function! ProseMode()
   call goyo#execute(0, [])
@@ -93,6 +113,8 @@ nmap <leader>p :ProseMode
 " }}}
 
 
+" ------------ Ack
+let g:ackprg = "ag --vimgrep"
 
 " =================== Reference URLs =========================================
 " ==                                                                        ==
