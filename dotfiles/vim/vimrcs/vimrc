@@ -2,6 +2,10 @@ if filereadable(expand('~/.vim/vimrcs/vimrc.core'))
   source $HOME/.vim/vimrcs/vimrc.core
 endif
 
+if filereadable(expand('~/.vim/plugin/vimrc.plug.installer'))
+  source $HOME/.vim/plugin/vimrc.plug.installer
+endif
+
 if filereadable(expand('~/.vim/vimrcs/vimrc.plug.min'))
   source $HOME/.vim/vimrcs/vimrc.plug.min
 endif
@@ -13,8 +17,3 @@ endif
 if filereadable(expand('~/.vim/vimrcs/vimrc.plug.swift-format'))
   source $HOME/.vim/vimrcs/vimrc.plug.swift-format
 endif
-
-if filereadable(expand('~/.vim/plugin/vimrc.plug.installer'))
-  source $HOME/.vim/plugin/vimrc.plug.installer
-endif
-
