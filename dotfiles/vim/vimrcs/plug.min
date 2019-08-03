@@ -25,6 +25,9 @@ Plugin 'cespare/vim-toml' " Vim syntax for TOML
 Plugin 'junegunn/fzf.vim' " fzf :love: vim
 Plugin 'junegunn/goyo.vim' " :Tulip: Distraction-free writing in Vim
 Plugin 'airblade/vim-gitgutter' " A Vim plugin which shows a git diff in the gutter (sign column) and stages/undoes hunks.
+Plugin 'mileszs/ack.vim' " Vim plugin for the Perl module / CLI script 'ack'  -- but I'll use this with 'ag'
+Plugin 'altercation/vim-colors-solarized' " precision colorscheme for the vim text editor
+Plugin 'hspec/hspec.vim' " Vim plugin providing support for the Hspec BDD-style testing framework for Haskell.
 
 " vim: ft=vim
 
