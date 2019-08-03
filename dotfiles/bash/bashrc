@@ -267,6 +267,10 @@ shopt -s xpg_echo
 
 
 #=================== setting for ssh-agent {{{1
+
+gpgconf --launch gpg-agent
+export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
+
 # this will prevent us from losing ssh-agent on tmux when we re-connect ssh
 agent="$HOME/.ssh/agent"
 if [ -S "$SSH_AUTH_SOCK" ]; then

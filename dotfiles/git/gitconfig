@@ -3,6 +3,7 @@
 [user]
 	name = Cj-bc
 	email = cj-bc@y-modify.org
+	signingkey = Cj.BC_SD
 [url "github:"]
 	pushInsteadOf = https://github.com/
 	pushInsteadOf = git@github.com/
@@ -36,3 +37,5 @@
 #
 # Referenced URLS:
 # [gitのdiff, status, logを極限までコンパクト化＋便利化する](https://qiita.com/yuya_presto/items/ef199e08021dea777715)
+[gpg]
+	program = gpg
