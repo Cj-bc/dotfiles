@@ -2,7 +2,7 @@
 	helper = osxkeychain
 [user]
 	name = Cj-bc
-	email = cj-bc@y-modify.org
+	email = cj.bc-sd@outlook.jp
 	signingkey = Cj.BC_SD
 [url "github:"]
 	pushInsteadOf = https://github.com/
