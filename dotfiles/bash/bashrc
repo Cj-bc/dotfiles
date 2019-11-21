@@ -193,6 +193,70 @@ function pushall()
     )
   done
 )
+
+
+# balance: show financial datas {{{
+BALANCE_BOOK_PATH="$HOME/Dropbox/howm/2019/08/2019-08-12-170214.md"
+function balance() {
+  local csv="$(cat "$BALANCE_BOOK_PATH" | grep '^| *' | sed 's/| //g')"
+
+  function s:deposit() {
+    awk -v FS=', ' '/Deposit/ {i += $3 }
+                    END {print "total deposit:\t",i,"yen"}' <(echo "$1")
+  }
+
+  function s:withdraw() {
+    awk -v FS=', ' '/Withdraw/ {i += $3 }
+                    END {print "total withdraw:\t",i,"yen"}' <(echo "$1")
+  }
+
+  function s:balance() {
+    awk -v FS=', ' '/Withdraw/ {i -= $3}
+                    /Deposit/ {i += $3 }
+                    END {print "balance:\t",i,"yen"}' <(echo "$1")
+  }
+
+  function s:query() {
+    local query="$1"
+    local csv="$2"
+
+    awk -v FS=', ' -v query="$query" 'BEGIN {isFirst = true}
+                                      {if (match($4, query))
+                                        { if (isFirst == "false") print "-----------";
+                                          isFirst = "false";
+                                          print "date:\t", $1;
+                                          print "type:\t", $2;
+                                          print "price:\t", $3;
+                                          print "details:";
+                                          print "\t", $4;
+                                        }
+                                     }' <(echo "$csv")
+  }
+
+  case $1 in
+    "--help"|"-h"|"help") cat <<EOF
+balance:
+      balance deposit        --- show total deposit
+      balance withdraw       --- show total withdraw
+      balance balance        --- show current balance
+      balance all            --- show all of {deposit,withdraw,balance}
+      balance help/-h/--help --- show this help
+
+ENVIRONMENT VARIABLE:
+      BALANCE_BOOK_PATH: path to file that stores data
+EOF
+      ;;
+    "deposit")  s:deposit "$csv";;
+    "withdraw") s:withdraw "$csv";;
+    "balance")  s:balance "$csv";;
+    "query")    s:query "$2" "$csv";;
+    "all")      s:deposit "$csv"
+                s:withdraw "$csv"
+                s:balance "$csv";;
+  esac
+}
+# 2}}}
+
 # }}}
 
 # ================================= Pronpts ================================== {{{1
