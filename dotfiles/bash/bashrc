@@ -156,6 +156,11 @@ EOF
       ;;
   esac
 )
+
+
+function tweet() {
+  vim -c "TweetVimCommandSay ${*}" -c q!
+}
 # }}}
 # pushall: Push all commits of all repositories under ghq {{{
 function pushall()
