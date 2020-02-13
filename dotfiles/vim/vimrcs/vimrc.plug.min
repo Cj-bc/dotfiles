@@ -116,6 +116,12 @@ nmap <leader>p :ProseMode
 " ------------ Ack
 let g:ackprg = "ag --vimgrep"
 
+" ------------ Deoplete
+let g:deoplete#enable_at_startup = 1
+
+" ------------ OmniSharp
+let g:OmniSharp_server_stdio = 1
+
 " =================== Reference URLs =========================================
 " ==                                                                        ==
 " == http://d.hatena.ne.jp/osyo-manga/20140307/1394204974                   ==
