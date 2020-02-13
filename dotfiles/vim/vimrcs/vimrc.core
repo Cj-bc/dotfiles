@@ -235,6 +235,10 @@ if isdirectory('/usr/local/opt/fzf')
   set rtp+=/usr/local/opt/fzf
 endif
 
+if executable('misskey-cli')
+  nnoremap mss :MisskeyCommandSay<CR>
+  nnoremap msc :MisskeySay<CR>
+endif
 " }}}
 
 
