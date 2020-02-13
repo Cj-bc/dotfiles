@@ -324,7 +324,9 @@ fi
 if [ -e '/usr/local/Cellar/sclack/alpha/bin/app.py' ]; then
   alias sclack='(cd /usr/local/Cellar/sclack/alpha/bin;./app.py)'
 fi
-
+if $(which misskey-cli >/dev/null); then
+  alias ms='misskey-cli --quiet notes/create --text '
+fi
 # ------------ networks {{{2
 alias airport='/System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport'
 alias wport='networksetup -setairportpower' # usage: wport <device> <on/off>
