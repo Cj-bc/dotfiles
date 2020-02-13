@@ -71,6 +71,7 @@ au BufNewFile CHANGELOG.md 0r $HOME/.vim/template/CHANGELOG
 
 " --- Lang specific settings
 au FileType haskell set tabstop=4
+au FileType cs      set tabstop=4
 
 
 " tell vim that .sh is bash script by default
