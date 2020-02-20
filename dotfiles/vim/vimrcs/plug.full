@@ -48,5 +48,6 @@ Plugin 'oka-h/yozakura.vim' " Yozakura.vim is a colorscheme for vim.
 Plugin 'Cj-bc/applescript.vim'
 Plugin 'ballerina-attic/plugin-vim' " ballerina syntax file
 Plugin 'antew/vim-elm-language-server'
+Plugin 'Cj-bc/faclig.vim'
 
 " vim: ft=vim
