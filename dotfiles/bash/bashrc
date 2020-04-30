@@ -306,7 +306,7 @@ alias gca='git commit --amend'
 alias glo='git log --oneline'
 alias gp='git push origin'
 alias gpa='git push origin --all && git push origin --tags'
-alias pullAll='for d in $(ghq list); do (cd $(ghq root)/$d; git pull >/dev/null 2>&1 && echo "$d: PULLED" || echo "$d: FAILED");done'
+alias pullAll='for d in $(ghq list | grep Cj-bc); do (cd $(ghq root)/$d; git pull >/dev/null 2>&1 && echo "$d: PULLED" || echo "$d: FAILED");done'
 alias pushAll='for d in $(ghq list); do (cd $(ghq root)/$d; git push origin --all >/dev/null 2>&1 && echo "$d: PULLED" || echo "$d: FAILED");done'
 
 # ------------ apps {{{2
