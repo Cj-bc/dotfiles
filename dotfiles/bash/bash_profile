@@ -27,6 +27,18 @@ type rbenv >/dev/null 2>&1 &&
 
 [ -f ~/.bashrc ] && source ~/.bashrc
 
+# Settings for Archlinux on WSL1 {{{
+declare -p WSLENV >/dev/null 2>&1 && [[ $WSL_DISTRO_NAME == "Arch" ]] &&
+  {
+    # This file holds additional settings to use on ArchWSL
+
+    # setting to use VcXsrv as X server
+    # Set '0' to the server
+    export DISPLAY=":0.0"
+    export LIBGL_ALWAYS_INDIRECT=1
+}
+# }}}
+
 # =======================================================================================
 # == https://github.com/bobthecow/git-flow-completion/wiki/install bash-git-completion ==
 # ==    -> installation of bash_completion                                             ==
