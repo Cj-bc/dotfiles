@@ -19,3 +19,4 @@ vim/vimrcs/vimrc, $HOME/.vimrc
 w3m, $HOME/.w3m
 stack, $HOME/.stack
 weechat, $HOME/.weechat
+ssh, $HOME/.ssh

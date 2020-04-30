@@ -1,0 +1,10 @@
+Host github github.com
+HostName github.com
+User git
+ForwardAgent yes
+
+Host gitlab.com
+HostName gitlab.com
+User git
+
+# vim: ft=sshconfig
