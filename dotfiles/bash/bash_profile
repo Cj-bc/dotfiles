@@ -9,9 +9,8 @@ export BASH_COMPLETION_COMPAT_DIR="/usr/local/etc/bash_completion.d"
 which stack >/dev/null &&
   eval "$(stack --bash-completion-script stack)"
 
-
-type rbenv >/dev/null 2>&1 &&
-  eval "$(rbenv init -)"
+type anyenv >/dev/null 2>&1 &&
+  eval "$(anyenv init -)"
 
 # for asdf (extendable package manager)
 [[ -d ~/.asdf ]] &&
