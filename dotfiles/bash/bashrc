@@ -1,3 +1,6 @@
+# If not running interactively, do nothing.
+[[ $- != *i* ]] && return
+
 cat ~/.bashrc.banner
 
 # ========== variables ========== {{{1
