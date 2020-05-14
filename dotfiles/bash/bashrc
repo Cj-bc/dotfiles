@@ -325,7 +325,7 @@ fi
 if [ -e '/usr/local/Cellar/sclack/alpha/bin/app.py' ]; then
   alias sclack='(cd /usr/local/Cellar/sclack/alpha/bin;./app.py)'
 fi
-if $(which misskey-cli >/dev/null); then
+if $(which misskey-cli >/dev/null 2>&1); then
   alias ms='misskey-cli --quiet notes/create --text '
 fi
 # ------------ networks {{{2
