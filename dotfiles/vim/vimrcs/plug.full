@@ -2,7 +2,6 @@
  " Plugin '[Github Author]/[Github repo]'
  "
  "
-Plugin 'Twitvim/twitvim'
 Plugin 'tyru/open-browser.vim' " dependency of TweetVim
 Plugin 'basyura/twiBill.vim'  " dependency of TweetVim
 Plugin 'mattn/webapi-vim'  " send http request from vim
@@ -31,7 +30,6 @@ Plugin 'kana/vim-vspec' " Vim plugin: Testing framework for Vim script
 Plugin 'dermusikman/sonicpi.vim' " Sonic Pi plugin for Vim
 Plugin 'prabirshrestha/async.vim' " dependency of vim-lsp
 Plugin 'prabirshrestha/vim-lsp' " async language server protocol plugin for vim and neovim
-Plugin 'yuratomo/w3m.vim' " w3m plugin for vim http://yuratomo.seesaa.net/
 Plugin 'Cj-bc/drcs.vim'
 Plugin 'mattn/vim-reading-vimrc' " vimrc reading client
 Plugin 'rhysd/vim-grammarous' " A powerful grammar checker for vim using LanguageTool.
@@ -44,7 +42,6 @@ Plugin 'vim-scripts/bats.vim' " just a hilight for Bats
 Plugin 'aklt/plantuml-syntax' " syntax file for Plant UML
 Plugin 'fuenor/qfixhowm' " vim client for Howm
 Plugin 'Cj-bc/bashinfinity.vim'
-Plugin 'oka-h/yozakura.vim' " Yozakura.vim is a colorscheme for vim.
 Plugin 'Cj-bc/applescript.vim'
 Plugin 'ballerina-attic/plugin-vim' " ballerina syntax file
 Plugin 'antew/vim-elm-language-server'
