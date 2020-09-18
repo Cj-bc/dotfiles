@@ -6,6 +6,9 @@ export EDITOR=vim
 export BASH_COMPLETION_COMPAT_DIR="/usr/local/etc/bash_completion.d"
 [[ -r "/usr/local/etc/profile.d/bash_completion.sh" ]] && . "/usr/local/etc/profile.d/bash_completion.sh"
 
+which aws >/dev/null 2>&1 &&
+  complete -C "$(which aws)" aws
+
 which stack >/dev/null &&
   eval "$(stack --bash-completion-script stack)"
 
@@ -37,6 +40,19 @@ declare -p WSLENV >/dev/null 2>&1 && [[ $WSL_DISTRO_NAME == "Arch" ]] &&
     export LIBGL_ALWAYS_INDIRECT=1
 }
 # }}}
+
+# bash parameter completion for the dotnet CLI
+# https://docs.microsoft.com/ja-jp/dotnet/core/tools/enable-tab-autocomplete
+_dotnet_bash_complete()
+{
+  local word=${COMP_WORDS[COMP_CWORD]}
+  local completions
+  completions="$(dotnet complete --position "${COMP_POINT}" "${COMP_LINE}" 2>/dev/null)"
+  [ $? -ne 0 ] && completions=""
+  COMPREPLY=( $(compgen -W "$completions" -- "$word") )
+}
+
+complete -f -F _dotnet_bash_complete dotnet
 
 # =======================================================================================
 # == https://github.com/bobthecow/git-flow-completion/wiki/install bash-git-completion ==
