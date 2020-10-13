@@ -6,6 +6,9 @@
 " Maintainer: Cj-bc a.k.a Cj.BC_SD <cj.bc-sd@outlook.jp>
 " Last Change: 2020 Jan 8
 
+if !executable("misskey-cli")
+  finish
+endif
 
 " post the note. Internal use
 " misskeyPost :: [String] -> IO ()
