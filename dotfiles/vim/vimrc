@@ -54,6 +54,7 @@ set runtimepath+=./vim_mod
 
 " ================ file types ================================= {{{
 
+au BufNewFile,BufRead *.md    setf pandoc
 
   " iskeyword define which letter is included as word
 au BufNewFile,BufRead *.sh          set iskeyword=.,@,48-57,_,192-255
@@ -82,8 +83,6 @@ let g:is_bash = 1
 let g:sh_fold_enabled=7
 let g:vimsyn_folding ='af'
 
-"au BufWinLeave * mkview " automatically save folding
-"au BufWinEnter * silent loadview " automatically load folding
 
 " }}}
 
@@ -110,13 +109,13 @@ inoremap ( ()<left>
 inoremap { {}<left>
 inoremap " ""<left>
 
-" moving around buffers
-" bn : go to next buffer
-" bp : go to previous buffer
-" bb : go to previously edited buffer
-nnoremap <silent> bn <ESC>:bnext<LF>
-nnoremap <silent> bp <ESC>:bprevious<LF>
-"nnoremap <silent> bb <ESC>:b #<LF>
+" " moving around buffers
+" " bn : go to next buffer
+" " bp : go to previous buffer
+" " bb : go to previously edited buffer
+" nnoremap <silent> bn <ESC>:bnext<LF>
+" nnoremap <silent> bp <ESC>:bprevious<LF>
+" nnoremap <silent> bb <ESC>:b #<LF>
 
 
 
@@ -225,6 +224,7 @@ nnoremap <silent>sr <Plug>(operator-surround-replace)
 "   o --- open file up to the newtw
 let g:netrw_liststyle = 3 " force tree view (can be toggled by 'i' button)
 let g:netrw_altv = 1 " open files on the right side when 'v' is pushed
+let g:netrw_banner = 0 " Turn off netrw banner to hide full path
 
 " ------ UML view in chrome
 au FileType plantuml command! OpenUML :!open -a % 
@@ -241,6 +241,96 @@ if executable('misskey-cli')
 endif
 " }}}
 
+" ========== Installing plugins ========== {{{
+" installs all plugins listed in plug.min and plug.full
+filetype off
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+  Plugin 'VundleVim/Vundle.vim'
+  " get plugin list from plug.min and plug.full
+  Plugin 'kana/vim-textobj-user' " base plugin for textobjects
+  Plugin 'kana/vim-operator-user' " base plugin for vim operators
+  Plugin 'rhysd/vim-operator-surround' " Vim operator mapping to enclose text objects with surrounds like paren, quote and so on.
+  Plugin 'junkblocker/patchreview-vim' " dependency of vim-codereview
+  Plugin 'codegram/vim-codereview'  " code reviewer for Github's Pull-Request
+  Plugin 'editorconfig/editorconfig-vim' " EditorConfig plugin for Vim
+  Plugin 'Shougo/unite.vim' " unite.vim -- a breaking User Interface
+  Plugin 'tpope/vim-fugitive' " A Git wrapper so awesome, it should be illegal
+  Plugin 'w0rp/ale' " Asynchronous Lint Engine
+  Plugin 'othree/yajs.vim' " YAJS.vim: Yet Another JavaScript Syntax for Vim
+  Plugin 'othree/es.next.syntax.vim' " ES.Next syntax for Vim
+  Plugin 'dbeniamine/cheat.sh-vim' " A vim plugin to access cheat.sh sheets
+  Plugin 'vim-scripts/VOoM'
+  Plugin 'SirVer/ultisnips' " UltiSnips - The ultimate snippet solution for Vim. Send pull requests to SirVer/ultisnips!
+  Plugin 'thinca/vim-quickrun' " Run commands quickly.
+  Plugin 'Cj-bc/gfm.vim' " syntax file for Github flavor markdown
+  Plugin 'wellle/targets.vim' " vim plugin that provides additional tect objects
+  Plugin 'vim-jp/vimdoc-ja' " japanese doc
+  Plugin 'sgur/vim-textobj-parameter' " provide textobject for '.*,'
+  Plugin 'cespare/vim-toml' " Vim syntax for TOML
+  Plugin 'junegunn/fzf.vim' " fzf :love: vim
+  Plugin 'junegunn/goyo.vim' " :Tulip: Distraction-free writing in Vim
+  Plugin 'airblade/vim-gitgutter' " A Vim plugin which shows a git diff in the gutter (sign column) and stages/undoes hunks.
+  Plugin 'mileszs/ack.vim' " Vim plugin for the Perl module / CLI script 'ack'  -- but I'll use this with 'ag'
+  Plugin 'altercation/vim-colors-solarized' " precision colorscheme for the vim text editor
+  Plugin 'hspec/hspec.vim' " Vim plugin providing support for the Hspec BDD-style testing framework for Haskell.
+  Plugin 'tyru/skkdict.vim' " Syntax file for SKK directory
+  Plugin 'OmniSharp/omnisharp-vim' " Vim omnicompletion (intellisense) and more for c#
+  Plugin 'vim-pandoc/vim-pandoc-syntax'
+  Plugin 'pbrisbin/vim-syntax-shakespeare' " A set of vim syntax files for highlighting the various Html templating languages in Haskell
+  Plugin 'skanehira/code2img.vim' " generate image of source code
+  Plugin 'tyru/open-browser.vim' " dependency of TweetVim
+  Plugin 'basyura/twiBill.vim'  " dependency of TweetVim
+  Plugin 'mattn/webapi-vim'  " send http request from vim
+  Plugin 'basyura/TweetVim'
+  Plugin 'yomi322/unite-tweetvim' " More unite source for Tweetvim
+  Plugin 'mattn/emoji-vim' " type Emoji in Vim!!
+  Plugin 'Shougo/vimproc.vim' " optionally dependency of github-complete.vim
+  Plugin 'rhysd/github-complete.vim' " complete github's username, repository name, etc
+  Plugin 'jaxbot/github-issues.vim' " deal with github issues
+  Plugin 'itchyny/calendar.vim' " view calender from vim
+  Plugin 'itchyny/screensaver.vim' " screen saver
+  Plugin 'scrooloose/vim-slumlord' " Inline previews for Plantuml sequence diagrams
+  Plugin 'kannokanno/previm' " previewer for markdown in browser
+  Plugin 'VincentCordobes/vim-translate' " Translater in Vim (require: translate-shell)
+  Plugin 'vimwiki/vimwiki' " Personal Wiki for Vim
+  Plugin 'majutsushi/tagbar' " show tag list on the side
+  Plugin 'mattn/qiita-vim' " vim qiita client
+  Plugin 'mattn/emmet-vim' " HTML/CSS coding
+  Plugin 'tell-k/vim-browsereload-mac' " vim plugin to reflesh your browser. for MacOSX
+  Plugin 'vim-scripts/DrawIt' " Ascii drawing plugin: lines, ellipses, arrows, fills, and more!
+  Plugin 'gyim/vim-boxdraw' " An ASCII box drawing plugin for Vim
+  " Plugin 'rishihahs/vim-youtube' " Plays youtube in (neo)vim
+  Plugin 'Cj-bc/blib.vim' " blib integration
+  Plugin 'Cj-bc/Damian-Conway-s-Vim-Setup' " Damian's vim plugins
+  Plugin 'kana/vim-vspec' " Vim plugin: Testing framework for Vim script
+  Plugin 'dermusikman/sonicpi.vim' " Sonic Pi plugin for Vim
+  Plugin 'prabirshrestha/async.vim' " dependency of vim-lsp
+  Plugin 'prabirshrestha/vim-lsp' " async language server protocol plugin for vim and neovim
+  Plugin 'Cj-bc/drcs.vim'
+  Plugin 'mattn/vim-reading-vimrc' " vimrc reading client
+  Plugin 'rhysd/vim-grammarous' " A powerful grammar checker for vim using LanguageTool.
+  Plugin 'ElmCast/elm-vim' " Elm plugin for Vim
+  Plugin 'Cj-bc/cmus.vim' " Control cmus from vim
+  Plugin 'mhinz/vim-startify' " The fancy start screen for Vim
+  Plugin 'freitass/todo.txt-vim' " vim plugin for todo.txt
+  Plugin 'vim-scripts/bats.vim' " just a hilight for Bats
+  Plugin 'aklt/plantuml-syntax' " syntax file for Plant UML
+  Plugin 'fuenor/qfixhowm' " vim client for Howm
+  Plugin 'Cj-bc/bashinfinity.vim'
+  Plugin 'Cj-bc/applescript.vim'
+  Plugin 'ballerina-attic/plugin-vim' " ballerina syntax file
+  Plugin 'antew/vim-elm-language-server'
+  Plugin 'Cj-bc/faclig.vim'
+
+call vundle#end()
+filetype plugin indent on
+" }}}
+
+" Source from mattn
+call map(sort(split(globpath(&runtimepath, 'vimrcs/*.vim'))), {-> [execute('exec "so" v:val')]})
+
+let g:blog_dir="$HOME/ghq/github.com/Cj-bc/blog/posts"
 
 " =================== Reference URLs =========================================
 " ==                                                                        ==
