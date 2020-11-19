@@ -19,3 +19,4 @@ w3m, $HOME/.w3m
 stack, $HOME/.stack
 weechat, $HOME/.weechat
 ssh, $HOME/.ssh
+bin/lauchXMonadWithFcitx, $HOME/.local/bin/lauchXMonadWithFcitx
