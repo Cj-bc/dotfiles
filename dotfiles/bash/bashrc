@@ -263,6 +263,11 @@ EOF
 }
 # 2}}}
 
+# repo {{{
+function repo() {
+  local p="$(ghq root)/$(ghq list |fzf)"
+  [[ $p == $((ghq root)) ]] &&  cd "$p" || true
+}
 # }}}
 
 # ================================= Pronpts ================================== {{{1
@@ -291,7 +296,6 @@ alias bash_profile='source ~/.bash_profile'
 alias back='cd $OLDPWD'
 alias prs='ghi | grep ↑'
 alias vim7='/usr/bin/vim'
-alias repo='cd "$(ghq root)/$(ghq list |fzf)"'
 alias qiita="vim $(ghq root)/$(ghq list | grep Cj-bc/qiita-post)/"
 
 # ------------ crons {{{2
