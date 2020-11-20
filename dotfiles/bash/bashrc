@@ -263,6 +263,9 @@ EOF
 }
 # 2}}}
 
+# }}}
+# makeQuote: Create markdown style quote
+function makeQuote() { cat - | awk '{print ">", $0}'; }
 # repo {{{
 function repo() {
   local p="$(ghq root)/$(ghq list |fzf)"
