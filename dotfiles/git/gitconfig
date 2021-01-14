@@ -39,3 +39,5 @@
 # [gitのdiff, status, logを極限までコンパクト化＋便利化する](https://qiita.com/yuya_presto/items/ef199e08021dea777715)
 [gpg]
 	program = gpg
+
+# vim: ft=gitconfig
