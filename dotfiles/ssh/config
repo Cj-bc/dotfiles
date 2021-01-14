@@ -2,3 +2,5 @@ AddKeysToAgent yes
 
 Include ~/.ssh/config.d/*
 Include ~/.ssh/config.d/private/*
+
+# vim: ft=sshconfig

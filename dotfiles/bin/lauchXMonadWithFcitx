@@ -1,0 +1,43 @@
+#!/usr/bin/env bash
+#
+# lauchXMonadWithFcitx
+#
+# Launch xMonad with fcitx support.
+#
+# Copyright 2020 (c) Cj-bc
+# This software is released under MIT License
+#
+# @(#) version -
+
+checkExecutable() {
+  which "$1" >/dev/null 2>&1 || {
+    echo "$1 isn't found. Aborting without any executuion." >&2
+    exit -1
+  }
+}
+
+# find all requred commands
+checkExecutable "xmonad"
+checkExecutable "fcitx"
+checkExecutable "dbus-launch"
+
+if [[ -z $(dbus-launch) ]]; then
+  echo "DBUS seems not working(dbus-launch didn't work)"
+  exit -1
+fi
+
+
+export XMODIFIERS=@im=fcitx \
+       QT_IM_MODULE=fcitx \
+       GTK_IM_MODULE=fcitx
+for l in $(dbus-launch); do
+  eval "export $l"
+done
+
+for prev_pid in $(ps aux | grep 'fcitx$' | awk '{print $2}'); do
+  kill $prev_pid
+done
+
+fcitx &
+
+xmonad

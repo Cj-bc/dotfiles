@@ -4,11 +4,11 @@
 	name = Cj-bc
 	email = cj.bc-sd@outlook.jp
 	signingkey = Cj.BC_SD
-[url "github:"]
-	pushInsteadOf = https://github.com/
-	pushInsteadOf = git@github.com/
+
 [url "https://"]
 	InsteadOf = github:
+  InsteadOf = git@github.com/
+
 [hub]
 	protocol = https
 [core]
