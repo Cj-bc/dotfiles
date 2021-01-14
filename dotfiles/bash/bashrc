@@ -15,12 +15,6 @@ git_branch() {
   echo $(git branch 2>/dev/null | sed -ne "s/^\* \(.*\)$/\1/p")
 }
 
-# torf() {{{2
-# reset exit status code to previous command
-function torf() {
-  return $stat
-}
-
 # wtdd() {{{2
 # let watch todo daemon know where you are now
 function wtdd {
@@ -274,8 +268,19 @@ function repo() {
 # }}}
 
 # ================================= Pronpts ================================== {{{1
+function PS1_() {
+  stat="$?"
+  test "$VIRTUAL_ENV" && echo -n '(VIRTUALENV) '
+  echo -n '\$?is'$stat
+  [ -e ./.git ] && echo -n "[$(git_branch)]"
+  [ $VIM ] && echo -n '(vim)'
+  echo -n "<$(tty | tail -c +6)>"
+  echo '\r'
+  [ ${stat} = 0 ] && echo -n '\e[33m<X_X>\e[0m' || echo -n '\e[31m<@_@>\e[0m'
+  return $stat
+}
 
-export PS1="\`stat=\"\$?\";test "$VIRTUAL_ENV" && echo -n '(VIRTUALENV) ';echo -n '\$?is'\$stat;[ -e ./.git ] && echo -n [\$(git_branch)];[ $VIM ] && echo -n '(vim)';echo -n \"<\$(tty | tail -c +6)>\";echo '\r';[ \${stat} = 0 ] && echo \[\e[33m\]\<X_X\>\[\e[0m\] || echo \[\e[31m\]\<@_@\>\[\e[0m\];torf;wtdd\`:\W\\$ " # \ before $value is really important!
+export PS1="`PS1_`:\W\\$ "
 export PS4='+(${BASH_SOURCE}:${LINENO}): ${FUNCNAME:+$FUNCNAME(): }' # setting debug prompt
 
 # ================================= Daemons ================================== {{{1
