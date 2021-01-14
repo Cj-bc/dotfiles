@@ -59,7 +59,7 @@ function notes {
 
 # google() {{{2
 # google the word with w3m
-type w3m >/dev/null 2>&1 &&
+isCmdAvailable w3m &&
 function google() {
   [ $# -ne 0 ] && w3m https://www.google.com/search?q=${@// /+}  || w3m google.com #usage: google [word]
 }
@@ -92,7 +92,7 @@ function init() {
 }
 # }}}
 # mkrepo: make repository under ghq dir {{{
-type ghq >/dev/null 2>&1 &&
+isCmdAvailable ghq &&
   function mkrepo()
   {
     local repo_name="$1"; [ -z "$repo_name" ] && return
@@ -339,9 +339,7 @@ fi
 if [ -e '/usr/local/Cellar/sclack/alpha/bin/app.py' ]; then
   alias sclack='(cd /usr/local/Cellar/sclack/alpha/bin;./app.py)'
 fi
-if $(which misskey-cli >/dev/null 2>&1); then
-  alias ms='misskey-cli --quiet notes/create --text '
-fi
+isCmdAvailable misskey-cli && alias ms='misskey-cli --quiet notes/create --text '
 alias jupyter='jupyter notebook --ip=* --no-browser'
 # ------------ networks {{{2
 alias airport='/System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport'
