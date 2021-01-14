@@ -30,7 +30,7 @@
   renames = true
 [alias]
   commit = 'commit --verbose' # this will append diffs to commit message(ignored by default)
-  diff = 'diff --color-words'
+  diff = 'diff --color-words --word-diff-regex='\\w+|[^[:space:]]'
   status = 'status --short --branch'
 
 
