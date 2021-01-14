@@ -1,6 +1,40 @@
 #export PATH=/Users/coju/.nodebrew/current/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
 export PATH="$HOME/.nodebrew/current/bin:$PATH"
 export EDITOR=vim
+# util {{{
+concatPath() {
+  local -n pathList=$1
+  local path="";
+
+  for p in ${pathList[@]}; do
+    path+="${p}:"
+  done
+  echo ${path#:0: -1}
+}
+
+isCmdAvailable() {
+  type $1 >/dev/null 2>&1
+}
+
+sourceIfAvailable() {
+  local file=$1
+  [ -f "$1" ] && source $1
+
+}
+# }}}
+
+export GOPATH=$HOME/.go
+#export PATH=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
+_path=(
+      "$PYENV_ROOT/shims"
+      "$HOME/.local/bin"
+      "$HOME/.nodebrew/current/bin"
+      "$HOME/.poetry/bin"
+      "$GOPATH/bin"
+      "$PATH"
+     )
+export PATH=$(concatPath _path)
+unset _path
 
 # for bash-completion & bash-completion@2
 export BASH_COMPLETION_COMPAT_DIR="/usr/local/etc/bash_completion.d"
