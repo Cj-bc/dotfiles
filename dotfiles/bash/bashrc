@@ -293,6 +293,8 @@ alias prs='ghi | grep ↑'
 alias vim7='/usr/bin/vim'
 alias repo='cd "$(ghq root)/$(ghq list |fzf)"'
 alias qiita="vim $(ghq root)/$(ghq list | grep Cj-bc/qiita-post)/"
+# ------------ Homebrew {{{2
+alias generate_cask_token="$(brew --repository)/Library/Taps/homebrew/homebrew-cask/developer/bin/generate_cask_token"
 
 # ------------ crons {{{2
 alias mkcron='crontab -e'
