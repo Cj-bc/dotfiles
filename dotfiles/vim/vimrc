@@ -43,9 +43,20 @@ set ambiwidth=single
 set keymap=blocks
 
 " spell
-set spelllang=en,cjk
-set spellfile=$HOME/.vim/spell/en.utf-8.add,$HOME/.vim/spell/domain.utf-8.add,$HOME/.vim/spell/vim.utf-8.add,$HOME/.vim/spell/haskell.utf-8.add
+
+execute 'set spellfile=' . join(globpath($HOME . "/.vim/spell", "*.utf-8.add", v:false, v:true), ",")
 set spell
+set spelllang=en,cjk,vr,haskell
+set spelloptions=camel
+
+" Update spell files by regenerate binaries
+function UpdateSpell()
+  for s:item in globpath($HOME . "/.vim/spell/", "*.add", v:false, v:true)
+    execute "mkspell! " . s:item
+  endfor
+endfunction
+
+
 au FileType tweetvim,w3m set nospell
 " }}}
 
