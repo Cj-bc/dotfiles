@@ -5,7 +5,6 @@ cat ~/.bashrc.banner
 
 # ========== variables ========== {{{1
 LANG=ja_JP.UTF-8
-export PATH="${PATH}:${HOME}/.local/bin"
 # }}}
 # ================================= Functions ================================ {{{1
 
@@ -350,10 +349,6 @@ alias wifi='networksetup -setairportnetwork' # usage: wifi <device> <SSID> <pass
 
 shopt -s xpg_echo
 
-[ -a "~/.nodebrew" ] &&
-  export PATH=$PATH:~/.nodebrew/current/bin
-
-
 #=================== setting for ssh-agent {{{1
 
 export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
@@ -415,19 +410,14 @@ fi
 
 # ================== setting for pyenv {{{
 export PYENV_ROOT=$HOME/.pyenv
-export PATH=$PYENV_ROOT/shims:$PATH
 eval "$(pyenv init -)"
 
 
 # ------------ go {{{
 export GOPATH=$HOME/.go
-export PATH="${PATH}:${GOPATH}/bin"
 
 # ------------ fzf {{{
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
-
-# ------------ poetry {{{
-export PATH="$HOME/.poetry/bin:$PATH"
 
 # =========================== Reference ========================================= {{{1
 # ==                                                                           == 
