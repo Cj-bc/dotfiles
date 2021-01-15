@@ -372,13 +372,39 @@ else
   echo "no ssh-agent"
 fi
 
-# ================== setting for todo-txt {{{1
+# ================== bash completion {{{
+#  bash-completion & bash-completion@2 {{{
+export BASH_COMPLETION_COMPAT_DIR="/usr/local/etc/bash_completion.d"
+[[ -r "/usr/local/etc/profile.d/bash_completion.sh" ]] && . "/usr/local/etc/profile.d/bash_completion.sh"
+# }}}
+
+#  todo-txt {{{2
 if [ -f /usr/local/etc/bash_completion.d/todo_completion ];then
   source /usr/local/etc/bash_completion.d/todo_completion
   complete -F _todo td # set todo.sh completion for td alias
 fi
+# 2}}}
 
+# bash parameter completion for the dotnet CLI
+# https://docs.microsoft.com/ja-jp/dotnet/core/tools/enable-tab-autocomplete
+_dotnet_bash_complete()
+{
+  local word=${COMP_WORDS[COMP_CWORD]}
+  local completions
+  completions="$(dotnet complete --position "${COMP_POINT}" "${COMP_LINE}" 2>/dev/null)"
+  [ $? -ne 0 ] && completions=""
+  COMPREPLY=( $(compgen -W "$completions" -- "$word") )
+}
 
+complete -f -F _dotnet_bash_complete dotnet
+
+isCmdAvailable aws   && complete -C "$(which aws)" aws
+isCmdAvailable stack && eval "$(stack --bash-completion-script stack)"
+# The next line enables shell command completion for gcloud.
+sourceIfAvailable '/Users/cj-bc/workspace/gcloudSDK/google-cloud-sdk/completion.bash.inc'
+sourceIfAvailable $HOME/.asdf/completions/asdf.bash
+
+# }}}
 # ================== setting for linuxbrew {{{1
 
 if [ -d ~/.linuxbrew ];then
