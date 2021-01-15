@@ -15,9 +15,7 @@ isCmdAvailable() {
 }
 
 sourceIfAvailable() {
-  local file=$1
   [ -f "$1" ] && source $1
-
 }
 # }}}
 
@@ -52,12 +50,11 @@ declare -p WSLENV >/dev/null 2>&1 && [[ $WSL_DISTRO_NAME == "Arch" ]] &&
     export LIBGL_ALWAYS_INDIRECT=1
 }
 # }}}
-# =======================================================================================
-# == https://github.com/bobthecow/git-flow-completion/wiki/install bash-git-completion ==
-# ==    -> installation of bash_completion                                             ==
-# == https://github.com/asdf-vm/asdf                                                   ==
-# ==    -> homepage of asdf                                                            ==
-# =======================================================================================
+
+# =====================================
+# == https://github.com/asdf-vm/asdf ==
+# ==    -> homepage of asdf          ==
+# =====================================
 
 export PKG_CONFIG_PATH="${PKG_CONFIG_PATH}:/usr/local/opt/libffi/lib/pkgconfig"
 

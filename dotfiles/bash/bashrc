@@ -413,16 +413,18 @@ fi
 # ------------ fzf {{{
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
-# =========================== Reference ========================================= {{{1
-# ==                                                                           == 
-# ==  https://qiita.com/kawaz/items/65cdbeaa739c4e6b7776                       ==
-# ==      -> setting of PS4                                                    ==
-# == http://note.kurodigi.com/bashprompt-customize/                            ==
-# ==      -> color of PS1(echo command)                                        ==
-# == https://news.mynavi.jp/article/20090909-bash/                             ==
-# ==      -> change PS1 when $? -ne 0                                          ==
-# == https://qiita.com/iwazer/items/5f57a80b8aac0f4e9839                       ==
-# ==      -> add git-branch in PS1                                             ==
-# == https://qiita.com/sonots/items/2d7950a68da0a02ba7e4                       ==
-# ==      -> setting of ssh-agent                                              ==
-# ===============================================================================
+# =========================== Reference ================================================= {{{1
+# ==                                                                                   == 
+# ==  https://qiita.com/kawaz/items/65cdbeaa739c4e6b7776                               ==
+# ==      -> setting of PS4                                                            ==
+# == http://note.kurodigi.com/bashprompt-customize/                                    ==
+# ==      -> color of PS1(echo command)                                                ==
+# == https://news.mynavi.jp/article/20090909-bash/                                     ==
+# ==      -> change PS1 when $? -ne 0                                                  ==
+# == https://qiita.com/iwazer/items/5f57a80b8aac0f4e9839                               ==
+# ==      -> add git-branch in PS1                                                     ==
+# == https://qiita.com/sonots/items/2d7950a68da0a02ba7e4                               ==
+# ==      -> setting of ssh-agent                                                      ==
+# == https://github.com/bobthecow/git-flow-completion/wiki/install bash-git-completion ==
+# ==    -> installation of bash_completion                                             ==
+# =======================================================================================
