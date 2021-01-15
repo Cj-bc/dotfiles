@@ -409,12 +409,6 @@ if [ -d ~/.linuxbrew ];then
 fi
 
 # ================== setting for pyenv {{{
-export PYENV_ROOT=$HOME/.pyenv
-eval "$(pyenv init -)"
-
-
-# ------------ go {{{
-export GOPATH=$HOME/.go
 
 # ------------ fzf {{{
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash

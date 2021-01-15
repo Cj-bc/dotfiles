@@ -21,6 +21,7 @@ sourceIfAvailable() {
 }
 # }}}
 
+export PYENV_ROOT=$HOME/.pyenv
 export GOPATH=$HOME/.go
 #export PATH=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
 _path=(
@@ -34,6 +35,8 @@ _path=(
 export PATH=$(concatPath _path)
 unset _path
 
+
+isCmdAvailable pyenv  && eval "$(pyenv init -)"
 isCmdAvailable anyenv && eval "$(anyenv init -)"
 sourceIfAvailable $HOME/.asdf/asdf.sh
 sourceIfAvailable '/usr/local/opt/activate/bin/activate'
