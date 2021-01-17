@@ -265,6 +265,15 @@ function repo() {
   [[ $p == $((ghq root)) ]] &&  cd "$p" || true
 }
 # }}}
+# emacs : invoke emacsclient if emacs is running {{{2
+function emacs() {
+  local emacsProcess="$(ps | awk '{print $4}' | grep '^emacs$')"
+  [ -z "$emacsProcess" ] \
+    && { command emacs&
+         emacs "$@" ; } \
+    || emacsclient "$@"
+}
+# }}}
 
 # ================================= Pronpts ================================== {{{1
 function PS1_() {
