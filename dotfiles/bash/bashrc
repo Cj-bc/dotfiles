@@ -309,6 +309,8 @@ alias back='cd $OLDPWD'
 alias prs='ghi | grep ↑'
 alias vim7='/usr/bin/vim'
 alias qiita="vim $(ghq root)/$(ghq list | grep Cj-bc/qiita-post)/"
+# ------------ Homebrew {{{2
+alias generate_cask_token="$(brew --repository)/Library/Taps/homebrew/homebrew-cask/developer/bin/generate_cask_token"
 
 # ------------ crons {{{2
 alias mkcron='crontab -e'
@@ -344,6 +346,7 @@ fi
 if $(which misskey-cli >/dev/null 2>&1); then
   alias ms='misskey-cli --quiet notes/create --text '
 fi
+alias jupyter='jupyter notebook --ip=* --no-browser'
 # ------------ networks {{{2
 alias airport='/System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport'
 alias wport='networksetup -setairportpower' # usage: wport <device> <on/off>

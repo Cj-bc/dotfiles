@@ -30,7 +30,7 @@
   renames = true
 [alias]
   commit = 'commit --verbose' # this will append diffs to commit message(ignored by default)
-  diff = 'diff --color-words'
+  diff = 'diff --color-words --word-diff-regex='\\w+|[^[:space:]]'
   status = 'status --short --branch'
 
 
@@ -39,3 +39,5 @@
 # [gitのdiff, status, logを極限までコンパクト化＋便利化する](https://qiita.com/yuya_presto/items/ef199e08021dea777715)
 [gpg]
 	program = gpg
+
+# vim: ft=gitconfig
