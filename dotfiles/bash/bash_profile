@@ -1,33 +1,43 @@
-#export PATH=/Users/coju/.nodebrew/current/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
-export PATH="$HOME/.nodebrew/current/bin:$PATH"
 export EDITOR=vim
+# util {{{
+concatPath() {
+  local -n pathList=$1
+  local path="";
 
-# for bash-completion & bash-completion@2
-export BASH_COMPLETION_COMPAT_DIR="/usr/local/etc/bash_completion.d"
-[[ -r "/usr/local/etc/profile.d/bash_completion.sh" ]] && . "/usr/local/etc/profile.d/bash_completion.sh"
+  for p in ${pathList[@]}; do
+    path+="${p}:"
+  done
+  echo ${path#:0: -1}
+}
 
-which aws >/dev/null 2>&1 &&
-  complete -C "$(which aws)" aws
+isCmdAvailable() {
+  type $1 >/dev/null 2>&1
+}
 
-which stack >/dev/null &&
-  eval "$(stack --bash-completion-script stack)"
+sourceIfAvailable() {
+  [ -f "$1" ] && source $1
+}
+# }}}
 
-type anyenv >/dev/null 2>&1 &&
-  eval "$(anyenv init -)"
+export PYENV_ROOT=$HOME/.pyenv
+export GOPATH=$HOME/.go
+#export PATH=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
+_path=(
+      "$PYENV_ROOT/shims"
+      "$HOME/.local/bin"
+      "$HOME/.nodebrew/current/bin"
+      "$HOME/.poetry/bin"
+      "$GOPATH/bin"
+      "$PATH"
+     )
+export PATH=$(concatPath _path)
+unset _path
 
-# for asdf (extendable package manager)
-[[ -d ~/.asdf ]] &&
-  {
-    . $HOME/.asdf/asdf.sh
-    . $HOME/.asdf/completions/asdf.bash
-  }
 
-# for Cj-bc/activate
-[ -f '/usr/local/opt/activate/bin/activate' ] &&
-  source /usr/local/opt/activate/bin/activate
-
-
-[ -f ~/.bashrc ] && source ~/.bashrc
+isCmdAvailable pyenv  && eval "$(pyenv init -)"
+isCmdAvailable anyenv && eval "$(anyenv init -)"
+sourceIfAvailable $HOME/.asdf/asdf.sh
+sourceIfAvailable '/usr/local/opt/activate/bin/activate'
 
 # Settings for Archlinux on WSL1 {{{
 declare -p WSLENV >/dev/null 2>&1 && [[ $WSL_DISTRO_NAME == "Arch" ]] &&
@@ -41,33 +51,16 @@ declare -p WSLENV >/dev/null 2>&1 && [[ $WSL_DISTRO_NAME == "Arch" ]] &&
 }
 # }}}
 
-# bash parameter completion for the dotnet CLI
-# https://docs.microsoft.com/ja-jp/dotnet/core/tools/enable-tab-autocomplete
-_dotnet_bash_complete()
-{
-  local word=${COMP_WORDS[COMP_CWORD]}
-  local completions
-  completions="$(dotnet complete --position "${COMP_POINT}" "${COMP_LINE}" 2>/dev/null)"
-  [ $? -ne 0 ] && completions=""
-  COMPREPLY=( $(compgen -W "$completions" -- "$word") )
-}
+# =====================================
+# == https://github.com/asdf-vm/asdf ==
+# ==    -> homepage of asdf          ==
+# =====================================
 
-complete -f -F _dotnet_bash_complete dotnet
-
-# =======================================================================================
-# == https://github.com/bobthecow/git-flow-completion/wiki/install bash-git-completion ==
-# ==    -> installation of bash_completion                                             ==
-# == https://github.com/asdf-vm/asdf                                                   ==
-# ==    -> homepage of asdf                                                            ==
-# =======================================================================================
-
-export PATH="$HOME/.poetry/bin:$PATH"
 export PKG_CONFIG_PATH="${PKG_CONFIG_PATH}:/usr/local/opt/libffi/lib/pkgconfig"
 
 # The next line updates PATH for the Google Cloud SDK.
-if [ -f '/Users/cj-bc/workspace/gcloudSDK/google-cloud-sdk/path.bash.inc' ]; then . '/Users/cj-bc/workspace/gcloudSDK/google-cloud-sdk/path.bash.inc'; fi
+sourceIfAvailable '$HOME/workspace/gcloudSDK/google-cloud-sdk/path.bash.inc'
 
-# The next line enables shell command completion for gcloud.
-if [ -f '/Users/cj-bc/workspace/gcloudSDK/google-cloud-sdk/completion.bash.inc' ]; then . '/Users/cj-bc/workspace/gcloudSDK/google-cloud-sdk/completion.bash.inc'; fi
 
+sourceIfAvailable $HOME/.bashrc
 # vim: ft=bash

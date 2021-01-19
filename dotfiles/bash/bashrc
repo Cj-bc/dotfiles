@@ -5,7 +5,6 @@ cat ~/.bashrc.banner
 
 # ========== variables ========== {{{1
 LANG=ja_JP.UTF-8
-export PATH="${PATH}:${HOME}/.local/bin"
 # }}}
 # ================================= Functions ================================ {{{1
 
@@ -13,12 +12,6 @@ export PATH="${PATH}:${HOME}/.local/bin"
 # check current git branch
 git_branch() {
   echo $(git branch 2>/dev/null | sed -ne "s/^\* \(.*\)$/\1/p")
-}
-
-# torf() {{{2
-# reset exit status code to previous command
-function torf() {
-  return $stat
 }
 
 # wtdd() {{{2
@@ -65,7 +58,7 @@ function notes {
 
 # google() {{{2
 # google the word with w3m
-type w3m >/dev/null 2>&1 &&
+isCmdAvailable w3m &&
 function google() {
   [ $# -ne 0 ] && w3m https://www.google.com/search?q=${@// /+}  || w3m google.com #usage: google [word]
 }
@@ -98,7 +91,7 @@ function init() {
 }
 # }}}
 # mkrepo: make repository under ghq dir {{{
-type ghq >/dev/null 2>&1 &&
+isCmdAvailable ghq &&
   function mkrepo()
   {
     local repo_name="$1"; [ -z "$repo_name" ] && return
@@ -301,8 +294,19 @@ function emacs() {
 # }}}
 
 # ================================= Pronpts ================================== {{{1
+function PS1_() {
+  stat="$?"
+  test "$VIRTUAL_ENV" && echo -n '(VIRTUALENV) '
+  echo -n '\$?is'$stat
+  [ -e ./.git ] && echo -n "[$(git_branch)]"
+  [ $VIM ] && echo -n '(vim)'
+  echo -n "<$(tty | tail -c +6)>"
+  echo '\r'
+  [ ${stat} = 0 ] && echo -n '\e[33m<X_X>\e[0m' || echo -n '\e[31m<@_@>\e[0m'
+  return $stat
+}
 
-export PS1="\`stat=\"\$?\";test "$VIRTUAL_ENV" && echo -n '(VIRTUALENV) ';echo -n '\$?is'\$stat;[ -e ./.git ] && echo -n [\$(git_branch)];[ $VIM ] && echo -n '(vim)';echo -n \"<\$(tty | tail -c +6)>\";echo '\r';[ \${stat} = 0 ] && echo \[\e[33m\]\<X_X\>\[\e[0m\] || echo \[\e[31m\]\<@_@\>\[\e[0m\];torf;wtdd\`:\W\\$ " # \ before $value is really important!
+export PS1="`PS1_`:\W\\$ "
 export PS4='+(${BASH_SOURCE}:${LINENO}): ${FUNCNAME:+$FUNCNAME(): }' # setting debug prompt
 
 # ================================= Daemons ================================== {{{1
@@ -361,9 +365,7 @@ fi
 if [ -e '/usr/local/Cellar/sclack/alpha/bin/app.py' ]; then
   alias sclack='(cd /usr/local/Cellar/sclack/alpha/bin;./app.py)'
 fi
-if $(which misskey-cli >/dev/null 2>&1); then
-  alias ms='misskey-cli --quiet notes/create --text '
-fi
+isCmdAvailable misskey-cli && alias ms='misskey-cli --quiet notes/create --text '
 alias jupyter='jupyter notebook --ip=* --no-browser'
 # ------------ networks {{{2
 alias airport='/System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport'
@@ -373,10 +375,6 @@ alias wifi='networksetup -setairportnetwork' # usage: wifi <device> <SSID> <pass
 
 
 shopt -s xpg_echo
-
-[ -a "~/.nodebrew" ] &&
-  export PATH=$PATH:~/.nodebrew/current/bin
-
 
 #=================== setting for ssh-agent {{{1
 
@@ -396,13 +394,39 @@ else
   echo "no ssh-agent"
 fi
 
-# ================== setting for todo-txt {{{1
+# ================== bash completion {{{
+#  bash-completion & bash-completion@2 {{{
+export BASH_COMPLETION_COMPAT_DIR="/usr/local/etc/bash_completion.d"
+[[ -r "/usr/local/etc/profile.d/bash_completion.sh" ]] && . "/usr/local/etc/profile.d/bash_completion.sh"
+# }}}
+
+#  todo-txt {{{2
 if [ -f /usr/local/etc/bash_completion.d/todo_completion ];then
   source /usr/local/etc/bash_completion.d/todo_completion
   complete -F _todo td # set todo.sh completion for td alias
 fi
+# 2}}}
 
+# bash parameter completion for the dotnet CLI
+# https://docs.microsoft.com/ja-jp/dotnet/core/tools/enable-tab-autocomplete
+_dotnet_bash_complete()
+{
+  local word=${COMP_WORDS[COMP_CWORD]}
+  local completions
+  completions="$(dotnet complete --position "${COMP_POINT}" "${COMP_LINE}" 2>/dev/null)"
+  [ $? -ne 0 ] && completions=""
+  COMPREPLY=( $(compgen -W "$completions" -- "$word") )
+}
 
+complete -f -F _dotnet_bash_complete dotnet
+
+isCmdAvailable aws   && complete -C "$(which aws)" aws
+isCmdAvailable stack && eval "$(stack --bash-completion-script stack)"
+# The next line enables shell command completion for gcloud.
+sourceIfAvailable '/Users/cj-bc/workspace/gcloudSDK/google-cloud-sdk/completion.bash.inc'
+sourceIfAvailable $HOME/.asdf/completions/asdf.bash
+
+# }}}
 # ================== setting for linuxbrew {{{1
 
 if [ -d ~/.linuxbrew ];then
@@ -412,31 +436,22 @@ if [ -d ~/.linuxbrew ];then
 fi
 
 # ================== setting for pyenv {{{
-export PYENV_ROOT=$HOME/.pyenv
-export PATH=$PYENV_ROOT/shims:$PATH
-eval "$(pyenv init -)"
-
-
-# ------------ go {{{
-export GOPATH=$HOME/.go
-export PATH="${PATH}:${GOPATH}/bin"
 
 # ------------ fzf {{{
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
-# ------------ poetry {{{
-export PATH="$HOME/.poetry/bin:$PATH"
-
-# =========================== Reference ========================================= {{{1
-# ==                                                                           == 
-# ==  https://qiita.com/kawaz/items/65cdbeaa739c4e6b7776                       ==
-# ==      -> setting of PS4                                                    ==
-# == http://note.kurodigi.com/bashprompt-customize/                            ==
-# ==      -> color of PS1(echo command)                                        ==
-# == https://news.mynavi.jp/article/20090909-bash/                             ==
-# ==      -> change PS1 when $? -ne 0                                          ==
-# == https://qiita.com/iwazer/items/5f57a80b8aac0f4e9839                       ==
-# ==      -> add git-branch in PS1                                             ==
-# == https://qiita.com/sonots/items/2d7950a68da0a02ba7e4                       ==
-# ==      -> setting of ssh-agent                                              ==
-# ===============================================================================
+# =========================== Reference ================================================= {{{1
+# ==                                                                                   == 
+# ==  https://qiita.com/kawaz/items/65cdbeaa739c4e6b7776                               ==
+# ==      -> setting of PS4                                                            ==
+# == http://note.kurodigi.com/bashprompt-customize/                                    ==
+# ==      -> color of PS1(echo command)                                                ==
+# == https://news.mynavi.jp/article/20090909-bash/                                     ==
+# ==      -> change PS1 when $? -ne 0                                                  ==
+# == https://qiita.com/iwazer/items/5f57a80b8aac0f4e9839                               ==
+# ==      -> add git-branch in PS1                                                     ==
+# == https://qiita.com/sonots/items/2d7950a68da0a02ba7e4                               ==
+# ==      -> setting of ssh-agent                                                      ==
+# == https://github.com/bobthecow/git-flow-completion/wiki/install bash-git-completion ==
+# ==    -> installation of bash_completion                                             ==
+# =======================================================================================
