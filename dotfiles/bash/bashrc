@@ -254,8 +254,22 @@ EOF
                 s:balance "$csv";;
   esac
 }
-# 2}}}
+# }}}
+# padding_: Internal function of withPad; draw padding line {{{
+function padding_ {
+    tput setab 41
+    for ((i=0; i < $(tput cols); i++)); do
+      echo -n "#"
+    done
+    tput sgr0
+    echo ""
+}
+# }}}
 
+# glf: git commit --fixup=<your_commit_id> {{{
+function gcf() {
+    git commit --fixup=${1}
+}
 # }}}
 # makeQuote: Create markdown style quote
 function makeQuote() { cat - | awk '{print ">", $0}'; }
@@ -313,6 +327,9 @@ alias back='cd $OLDPWD'
 alias prs='ghi | grep ↑'
 alias vim7='/usr/bin/vim'
 alias qiita="vim $(ghq root)/$(ghq list | grep Cj-bc/qiita-post)/"
+alias withPad="padding_; "
+alias zk="popd"
+
 # ------------ Homebrew {{{2
 alias generate_cask_token="$(brew --repository)/Library/Taps/homebrew/homebrew-cask/developer/bin/generate_cask_token"
 
