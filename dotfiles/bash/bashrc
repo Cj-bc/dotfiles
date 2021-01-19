@@ -281,11 +281,29 @@ function repo() {
 # }}}
 # emacs : invoke emacsclient if emacs is running {{{2
 function emacs() {
-  local emacsProcess="$(ps | awk '{print $4}' | grep '^emacs$')"
-  [ -z "$emacsProcess" ] \
-    && { command emacs&
-         emacs "$@" ; } \
-    || emacsclient "$@"
+  local emacsProcess="$(ps x -O comm | awk '{print $2}' | grep '^emacs$')"
+  case "$1" in
+    "--kill")
+      kill $(ps x -O comm | grep -E '\d+ emacs' | awk '{print $1}')
+      return
+      ;;
+    "--restart")
+      emacs --kill
+      emacs "$@"
+      return
+      ;;
+    "--recompile")
+      command emacs --batch -f batch-byte-compile ~/.emacs.d/init.el
+      return
+      ;;
+  esac
+
+  if [ -z "$emacsProcess" ]; then
+    command emacs --daemon
+    emacs "$@"
+  else
+    emacsclient "$@"
+  fi
 }
 # }}}
 
