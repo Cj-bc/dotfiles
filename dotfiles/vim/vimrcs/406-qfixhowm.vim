@@ -1,6 +1,6 @@
-let QFixHowm_FileType = 'markdown.vimwiki.qfix_memo'
+let QFixHowm_FileType = 'org'
 let howm_dir = '~/Dropbox/howm'
-let howm_filename            = '%Y/%m/%Y-%m-%d-%H%M%S.md'
+let howm_filename            = '%Y/%m/%Y-%m-%d-%H%M%S.org'
 let howm_fileencoding        = 'utf-8'
 let QFixHowm_SplitMode = 1 " Open files with split window
 
