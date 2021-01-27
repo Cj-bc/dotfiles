@@ -20,8 +20,8 @@ endfunction
 if executable('ghq')
   " :Ghq command allows you fzf git repositories, then launch ':GFiles'
   command! -bang -nargs=0 Ghq
-    \ call fzf#run({
+    \ call fzf#run(fzf#wrap({
     \   'source': 'ghq list',
-    \   'sink': function('<SID>CdFind')})
+    \   'sink': function('<SID>CdFind')}))
 endif
 " }}}
