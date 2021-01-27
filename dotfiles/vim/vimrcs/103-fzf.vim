@@ -25,3 +25,25 @@ if executable('ghq')
     \   'sink': function('<SID>CdFind')}))
 endif
 " }}}
+
+
+" :Branch -- switch branches {{{
+" This require Figitive installed
+function! <SID>GitSwitch(branch)
+  exec 'Git switch' a:branch
+endfunction
+
+" list branches
+function! <SID>GitBranch()
+  let s:git_dir = substitute(FugitiveGitDir(), '.git$','', '')
+  return map(systemlist('cd '.s:git_dir.';git branch -a')
+         \  , {_, val -> substitute(val, '^\*\= \+\| *-> .\+$', '', 'g')})
+endfunction
+
+command Branch
+      \ call fzf#run(fzf#wrap({
+                    \ 'source': <SID>GitBranch(),
+                    \ 'sink': function('<SID>GitSwitch'),
+                    \ 'dir': substitute(FugitiveGitDir(), '.git$','', ''),
+                    \ }))
+" }}}
