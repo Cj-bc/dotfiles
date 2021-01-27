@@ -276,7 +276,7 @@ function makeQuote() { cat - | awk '{print ">", $0}'; }
 # repo {{{
 function repo() {
   local p="$(ghq root)/$(ghq list |fzf)"
-  [[ $p == $((ghq root)) ]] &&  cd "$p" || true
+  [[ $p =~ "$(ghq root)" ]] &&  cd "$p"
 }
 # }}}
 # emacs : invoke emacsclient if emacs is running {{{2
