@@ -5,6 +5,7 @@ bash/bashrc.banner.default, $HOME/.bashrc.banner
 buku/bookmarks.db, $HOME/.local/share/buku/bookmarks.db
 emacs/emacs.d, $HOME/.emacs.d
 emacs/spacemacs, $HOME/.spacemacs
+emacs/skk.el, $HOME/.skk.el
 fish/fish_variables, $HOME/.config/fish/fish_variables
 git/gitattributes_global, $HOME/.gitattributes
 git/gitconfig, $HOME/.gitconfig
