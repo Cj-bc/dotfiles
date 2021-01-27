@@ -333,6 +333,9 @@ call vundle#begin()
   Plugin 'ballerina-attic/plugin-vim' " ballerina syntax file
   Plugin 'antew/vim-elm-language-server'
   Plugin 'Cj-bc/faclig.vim'
+  Plugin 'jceb/vim-orgmode'
+  Plugin 'tpope/speeddating' " In/De-crease dates
+  Plugin 'inkarkat/vim-SyntaxRange' " Define a different filetype syntax on regions of a buffer.
 
 call vundle#end()
 filetype plugin indent on
