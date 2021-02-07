@@ -44,6 +44,7 @@
   :config
   (add-to-list 'auto-mode-alist '(".*\\.dict$" . skk-jisyo-edit-mode))
   )
+(leaf howm :ensure t)
 (leaf org
   :config
   (setq org-agenda-files (directory-files-recursively "~/Documents/beorg/howm" "\\.org$"))
