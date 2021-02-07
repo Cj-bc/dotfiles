@@ -43,7 +43,23 @@
 
   :config
   (add-to-list 'auto-mode-alist '(".*\\.dict$" . skk-jisyo-edit-mode))
-)
+  )
+(leaf org
+  :config
+  (setq org-agenda-files (directory-files-recursively "~/Documents/beorg/howm" "\\.org$"))
+  (setq org-enforce-todo-dependencies t)
+  (setq org-todo-keywords
+	'((sequence "TODO" "SOMEDAY" "WAITING" "|" "DONE")))
+  (setq org-link-abbrev-alist
+	'(("github" . "https://github.com/%s")
+	  ("youtube" . "https://youtube.com/watch?v=%s")
+	  ("wikipedia" . "https://en.wikipedia.org/wiki/%s")
+		  ;; commit, ghFile, twitter, misskeyとかも欲しい
+		  ))
+  (org-babel-do-load-languages
+   'org-babel-load-languages
+   '((Awk . t)))
+  )
   
 (set-terminal-coding-system 'utf-8)
 (set-keyboard-coding-system 'utf-8)
