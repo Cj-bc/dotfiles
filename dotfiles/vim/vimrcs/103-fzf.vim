@@ -5,8 +5,12 @@ omap <leader><tab> <plug>(fzf-maps-o)
 
 let s:ghqRoot = system("ghq root") . "/github.com/Cj-bc/dotfiles/dotfiles"
 let g:blog_dir = substitute(system("ghq list -p Cj-bc/blog"), '[\n\r]', '', 'g')
-command Blog call fzf#vim#files(g:blog_dir)
+command Blog call <SID>OpenBlogEntry()
 
+function! <SID>OpenBlogEntry()
+  exec "Files ".g:blog_dir
+  exec "lcd ".expand(g:blog_dir)
+endfunction
 
 " Ghq command {{{
 " from https://techracho.bpsinc.jp/jhonda/2019_12_24/85173
