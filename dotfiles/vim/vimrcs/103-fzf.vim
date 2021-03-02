@@ -53,29 +53,11 @@ command Branch
                     \ }))
 " }}}
 
-" Xdg2path: Convert XDG variables to real path
-def Xdg2path(xdgName: string): list<string>
-  const xdgDefault = {
-          "XDG_DATA_HOME":   expand("$HOME/.local/share"),
-          "XDG_CONFIG_HOME": expand("$HOME/.config"),
-          "XDG_DATA_DIRS":   "/usr/local/share/:/usr/share/",
-          "XDG_CONFIG_DIRS": "/etc/xdg",
-          "XDG_CACHE_HOME": expand("$HOME/.cache"),
-          "XDG_RUNTIME_DIR": "",
-                     }
-  const envValue = getenv(xdgName)
-  if has_key(environ(), xdgName) && envValue != ""
-    return split(envValue, ":")
-  endif
-
-  # If that variable is either not defined or empty,
-  # use default value
-  return split(xdgDefault[xdgName], ":")
-enddef
+import {GetPaths, xdgDefault} from "Xdg.vim"
 
 " FzfXdgRun: fizzy find files under specified XDG specified directory
 def <SID>FzfXdgRun(xdgName: string): void
-  fzf#run(fzf#wrap({'source': "find -L " .. join(Xdg2path(xdgName), " ")
+  fzf#run(fzf#wrap({'source': "find -L " .. join(GetPaths(xdgName), " ")
                                          .. " -mindepth 1 "
                                          .. "\\( -path '*/\\.*' -o -fstype 'sysfs' "
                                          .. "-o -fstype 'devfs' -o -fstype 'devtmpfs' -o -fstype 'proc' \\) -prune "
