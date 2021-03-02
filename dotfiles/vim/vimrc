@@ -341,6 +341,7 @@ call vundle#begin()
   Plugin 'Cj-bc/applescript.vim'
   Plugin 'ballerina-attic/plugin-vim' " ballerina syntax file
   Plugin 'antew/vim-elm-language-server'
+  Plugin 'vim-scripts/utl.vim'
   Plugin 'tpope/vim-speeddating' " In/De-crease dates. **tpope/speeddating is renamed to this**
   Plugin 'inkarkat/vim-SyntaxRange' " Define a different filetype syntax on regions of a buffer.
   Plugin 'tyru/eskk.vim'
