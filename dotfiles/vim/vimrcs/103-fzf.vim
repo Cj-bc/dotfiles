@@ -3,6 +3,7 @@ nmap <leader><tab> <plug>(fzf-maps-n)
 xmap <leader><tab> <plug>(fzf-maps-x)
 omap <leader><tab> <plug>(fzf-maps-o)
 
+" {{{ :Blog Open Blog entries
 let s:ghqRoot = system("ghq root") . "/github.com/Cj-bc/dotfiles/dotfiles"
 let g:blog_dir = substitute(system("ghq list -p Cj-bc/blog"), '[\n\r]', '', 'g')
 command Blog call <SID>OpenBlogEntry()
@@ -11,7 +12,7 @@ function! <SID>OpenBlogEntry()
   exec "Files ".g:blog_dir
   exec "lcd ".expand(g:blog_dir)
 endfunction
-
+" }}}
 " Ghq command {{{
 " from https://techracho.bpsinc.jp/jhonda/2019_12_24/85173
 function! <SID>CdFind(dir)
@@ -30,8 +31,6 @@ if executable('ghq')
     \   'sink': function('<SID>CdFind')}))
 endif
 " }}}
-
-
 " :Branch -- switch branches {{{
 " This require Figitive installed
 function! <SID>GitSwitch(branch)
@@ -52,7 +51,7 @@ command Branch
                     \ 'dir': substitute(FugitiveGitDir(), '.git$','', ''),
                     \ }))
 " }}}
-
+" {{{ :Xdg -- Show files under XDG directories
 import {GetPaths, xdgDefault} from "Xdg.vim"
 
 " FzfXdgRun: fizzy find files under specified XDG specified directory
@@ -70,3 +69,4 @@ command Xdg
                     \ 'sink': function("<SID>FzfXdgRun"),
                     \ }))
 defcompile
+" }}}
