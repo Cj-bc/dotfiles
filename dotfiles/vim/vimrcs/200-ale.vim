@@ -7,7 +7,7 @@ let g:ale_linters = {
     \ 'sh': ['language_server'],
     \ 'cpp': ['ccls'],
     \ 'python': ['pyls', 'mypy', 'flake8'],
-    \ 'haskell': ['stack-ghc', 'hie'],
+    \ 'haskell': ['stack-ghc', 'haskell-language-server-wrapper-macOS'],
     \ 'json': ['jq']
     \ }
 "    \ 'elm': ['elm-language-server'],
