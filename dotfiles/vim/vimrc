@@ -275,7 +275,10 @@ call vundle#begin()
   Plugin 'othree/es.next.syntax.vim' " ES.Next syntax for Vim
   Plugin 'dbeniamine/cheat.sh-vim' " A vim plugin to access cheat.sh sheets
   Plugin 'vim-scripts/VOoM'
-  Plugin 'SirVer/ultisnips' " UltiSnips - The ultimate snippet solution for Vim. Send pull requests to SirVer/ultisnips!
+  if has("python3")
+    Plugin 'jceb/vim-orgmode'
+    Plugin 'SirVer/ultisnips' " UltiSnips - The ultimate snippet solution for Vim. Send pull requests to SirVer/ultisnips!
+  endif
   Plugin 'thinca/vim-quickrun' " Run commands quickly.
   Plugin 'Cj-bc/gfm.vim' " syntax file for Github flavor markdown
   Plugin 'wellle/targets.vim' " vim plugin that provides additional tect objects
@@ -338,7 +341,6 @@ call vundle#begin()
   Plugin 'Cj-bc/applescript.vim'
   Plugin 'ballerina-attic/plugin-vim' " ballerina syntax file
   Plugin 'antew/vim-elm-language-server'
-  Plugin 'jceb/vim-orgmode'
   Plugin 'tpope/vim-speeddating' " In/De-crease dates. **tpope/speeddating is renamed to this**
   Plugin 'inkarkat/vim-SyntaxRange' " Define a different filetype syntax on regions of a buffer.
   Plugin 'tyru/eskk.vim'
