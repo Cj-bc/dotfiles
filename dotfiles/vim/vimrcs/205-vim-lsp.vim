@@ -1,5 +1,5 @@
 
-setlocal omnifunc=lsp#complete
+set omnifunc=lsp#complete
 nmap <buffer> <leader>R <plug>(lsp-rename)
 nmap <buffer> <leader>D <plug>(lsp-definition)
 nmap <buffer> <leader>r <plug>(lsp-references)
