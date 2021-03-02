@@ -1,3 +1,5 @@
+export XDG_CONFIG_HOME="$HOME/.config"
+
 export EDITOR=vim
 # util {{{
 concatPath() {
@@ -32,6 +34,7 @@ _path=(
      )
 export PATH=$(concatPath _path)
 unset _path
+export STACK_ROOT="${XDG_CONFIG_HOME}/stack"
 
 
 isCmdAvailable pyenv  && eval "$(pyenv init -)"
