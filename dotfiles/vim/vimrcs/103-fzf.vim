@@ -52,3 +52,66 @@ command Branch
                     \ 'dir': substitute(FugitiveGitDir(), '.git$','', ''),
                     \ }))
 " }}}
+
+let xdgDefault = {
+      \ "XDG_DATA_HOME":   expand("$HOME/.local/share"),
+      \ "XDG_CONFIG_HOME": expand("$HOME/.config"),
+      \ "XDG_DATA_DIRS":   "/usr/local/share/:/usr/share/",
+      \ "XDG_CONFIG_DIRS": "/etc/xdg",
+      \ "XDG_CACHE_HOME": expand("$HOME/.cache"),
+      \ "XDG_RUNTIME_DIR": "",
+      \            }
+
+" Xdg2path: Convert XDG variables to path
+def Xdg2path(xdgName: string): string
+  const xdgDefault = {
+          "XDG_DATA_HOME":   expand("$HOME/.local/share"),
+          "XDG_CONFIG_HOME": expand("$HOME/.config"),
+          "XDG_DATA_DIRS":   "/usr/local/share/:/usr/share/",
+          "XDG_CONFIG_DIRS": "/etc/xdg",
+          "XDG_CACHE_HOME": expand("$HOME/.cache"),
+          "XDG_RUNTIME_DIR": "",
+                     }
+  const envValue = getenv(xdgName)
+  if has_key(environ(), xdgName) && envValue != ""
+    return envValue
+  endif
+
+  # If that variable is either not defined or empty,
+  # use default value
+  return xdgDefault[xdgName]
+enddef
+
+def! FlattenOne(l: list<list<any>>): list<any>
+  var _ret: list<any> = []
+  for inner_list in l
+    for item in inner_list
+      _ret = add(_ret, item)
+    endfor
+  endfor
+
+  return _ret
+enddef
+
+def ListFilesFor(paths: list<string>): list<string>
+  # options given to 'find' command is from fzf
+  return FlattenOne(mapnew(paths, (_: number, path: string) =>
+                                      systemlist("find -L "
+                                                 .. path
+                                                 .. " -mindepth 1 "
+                                                 .. "\\( -path '*/\\.*' -o -fstype 'sysfs' "
+                                                 .. "-o -fstype 'devfs' -o -fstype 'devtmpfs' -o -fstype 'proc' \\) -prune "
+                                                 .. "-type f -print -o -type l -print 2> /dev/null")))
+enddef
+
+def <SID>FzfXdgRun(xdgName: string): void
+  const pathes = split(Xdg2path(xdgName), ":")
+  fzf#run(fzf#wrap({'source': ListFilesFor(pathes)}))
+enddef
+
+command Xdg
+      \ call fzf#run(fzf#wrap({
+                    \ 'source': keys(xdgDefault),
+                    \ 'sink': function("<SID>FzfXdgRun"),
+                    \ }))
+defcompile
