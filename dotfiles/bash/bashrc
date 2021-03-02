@@ -312,7 +312,7 @@ function PS1_() {
   return $stat
 }
 
-export PS1="`PS1_`:\W\\$ "
+export PS1="\`PS1_\`:\W\\$ "
 export PS4='+(${BASH_SOURCE}:${LINENO}): ${FUNCNAME:+$FUNCNAME(): }' # setting debug prompt
 
 # ================================= Daemons ================================== {{{1
