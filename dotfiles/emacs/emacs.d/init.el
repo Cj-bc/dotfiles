@@ -61,6 +61,7 @@
    'org-babel-load-languages
    '((Awk . t)))
   )
+(leaf twittering-mode :ensure t)
   
 (set-terminal-coding-system 'utf-8)
 (set-keyboard-coding-system 'utf-8)
