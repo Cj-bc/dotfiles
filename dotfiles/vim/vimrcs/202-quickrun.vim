@@ -7,7 +7,9 @@ let g:quickrun_config['haskell.hspec'] = {'exec': '%c %o'
                                         \,'cmdopt': 'test'
                                         \,'runner': 'terminal'
                                         \}
-
+let g:quickrun_config['python.interactive'] = deepcopy(g:quickrun_config['python'])
+let g:quickrun_config['python.interactive']['exec'] = 'python %s'
+let g:quickrun_config['python.interactive']['runner'] = 'terminal'
 
 " TODO: make module for this
 " I want to add 'nnoremap q <C-w>q' at the end of terminal,
