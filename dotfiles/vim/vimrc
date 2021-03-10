@@ -66,6 +66,7 @@ set runtimepath+=./vim_mod
 " ================ file types ================================= {{{
 
 au BufNewFile,BufRead *.md    setf pandoc
+au BufNewFile,BufRead *.json %!jq
 
   " iskeyword define which letter is included as word
 au BufNewFile,BufRead *.sh          set iskeyword=.,@,48-57,_,192-255

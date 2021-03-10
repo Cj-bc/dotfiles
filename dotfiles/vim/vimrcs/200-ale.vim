@@ -8,8 +8,11 @@ let g:ale_linters = {
     \ 'cpp': ['ccls'],
     \ 'python': ['pyls', 'mypy', 'flake8'],
     \ 'haskell': ['stack-ghc', 'hie'],
+    \ 'json': ['jq']
     \ }
 "    \ 'elm': ['elm-language-server'],
 "
 let g:ale_linters_ignore = { 'elm': ['make'] } " Avoid conflicts with elm-ls
 let g:ale_elm_ls_use_global = 1 " Use globally installed elm-ls
+
+let g:ale_json_jq_executable = '/usr/local/bin/jq'
