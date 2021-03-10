@@ -1,6 +1,7 @@
 let g:quickrun_config = deepcopy(g:quickrun#default_config)
 let g:quickrun_config['haskell'] = {'command': 'stack',
                                    \'cmdopt': 'runhaskell',
+                                   \'runner': 'terminal',
                                    \}
 let g:quickrun_config['haskell.hspec'] = {'exec': '%c %o'
                                         \,'command': 'stack'
