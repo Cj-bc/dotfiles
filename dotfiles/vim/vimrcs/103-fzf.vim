@@ -4,6 +4,7 @@ xmap <leader><tab> <plug>(fzf-maps-x)
 omap <leader><tab> <plug>(fzf-maps-o)
 
 let s:ghqRoot = system("ghq root") . "/github.com/Cj-bc/dotfiles/dotfiles"
+let g:blog_dir = substitute(system("ghq list -p Cj-bc/blog"), '[\n\r]', '', 'g')
 command Blog call fzf#vim#files(g:blog_dir)
 
 
