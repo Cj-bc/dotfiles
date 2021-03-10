@@ -12,3 +12,5 @@ templates:
      author-email: cj.bc-sd@outlook.jp
      copyright: MIT
      github-username: Cj-bc
+
+allow-newer: true
