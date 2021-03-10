@@ -1,0 +1,43 @@
+[credential]
+	helper = osxkeychain
+[user]
+	name = Cj-bc
+	email = cj.bc-sd@outlook.jp
+	signingkey = Cj.BC_SD
+[url "github:"]
+	pushInsteadOf = https://github.com/
+	pushInsteadOf = git@github.com/
+[url "https://"]
+	InsteadOf = github:
+[hub]
+	protocol = https
+[core]
+	editor = vim
+	gitattributesfile = ~/.config/git/gitattributes_global
+	excludesfile = ~/.config/git/gitignore_global
+[github]
+	user = Cj-bc
+[ghi]
+	token = !security find-internet-password -a Cj-bc -s github.com -l 'ghi token' -w
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+[ui]
+	color = auto
+[diff]
+  renames = true
+[alias]
+  commit = 'commit --verbose' # this will append diffs to commit message(ignored by default)
+  diff = 'diff --color-words --word-diff-regex='\\w+|[^[:space:]]'
+  status = 'status --short --branch'
+
+
+#
+# Referenced URLS:
+# [gitのdiff, status, logを極限までコンパクト化＋便利化する](https://qiita.com/yuya_presto/items/ef199e08021dea777715)
+[gpg]
+	program = gpg
+
+# vim: ft=gitconfig
