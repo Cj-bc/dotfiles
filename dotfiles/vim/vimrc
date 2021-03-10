@@ -338,6 +338,7 @@ call vundle#begin()
   Plugin 'jceb/vim-orgmode'
   Plugin 'tpope/speeddating' " In/De-crease dates
   Plugin 'inkarkat/vim-SyntaxRange' " Define a different filetype syntax on regions of a buffer.
+  Plugin 'junegunn/vim-easy-align'
 
 call vundle#end()
 filetype plugin indent on
