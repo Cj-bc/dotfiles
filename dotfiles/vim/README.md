@@ -1,17 +1,14 @@
 # vim configuration files
 
-here's all vim config files.
+My vim configuration files are based on [mattn's ぼくがかんがえたさいきょうの Vim のこうせい 2019年 年末版](https://mattn.kaoriya.net/software/vim/20191231001537.htm)
 
-| file                 | deploy to                           | description                                                    |
-|----------------------|-------------------------------------|----------------------------------------------------------------|
-| .vim                 | ~/.vim                              | .vim file, which is nomaly exist.                              |
-| vimrc                | ~/.vimrc                            | exist to set .vimrc. just source other conf files              |
-| vimrc.core           | ~/.vim/profiles/vimrc.core          | main config. settings etc are in here.                         |
-| plug.min             | ~/.vim/profiles/plug.min            | list of plugins for minimum version. contains only necessaries |
-| plug.full            | ~/.vim/profiles/plug.full           | list of plugins for full version. contains toys, etc           |
-| vimrc.plug.min       | ~/.vim/profiles/vimrc.plug.min      | settings for plug.min                                          |
-| vimrc.plug.full      | ~/.vim/profiles/vimrc.plug.full     | settings for plug.full                                         |
-| vimrc.plug.installer | ~/.vim/plugin/vimrc.plug.installer  | plugin installer script                                        |
+| file                 | deploy to                          | description                                                           |
+|----------------------|------------------------------------|-----------------------------------------------------------------------|
+| .vim                 | ~/.vim                             | .vim file, which is nomaly exist.                                     |
+| vimrc                | ~/.vimrc                           | previous 'vimrc.core'. Configure all global settings and load plugins |
+| vimrc.plug.installer | ~/.vim/plugin/vimrc.plug.installer | plugin installer script                                               |
+| UltiSnips            |                                    | Snippets for UltiSnips                                                |
+|                      |                                    |                                                                       |
 
 
 # relation between files
