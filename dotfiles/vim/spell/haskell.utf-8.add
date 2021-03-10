@@ -1,3 +1,5 @@
 foldr
 foldl
 putStrLn
+ghc
+FromJSON
