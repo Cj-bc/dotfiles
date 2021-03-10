@@ -10,11 +10,15 @@ if !executable("misskey-cli")
   finish
 endif
 
+" Define visibility of notes you post.
+let g:misskey#config#visibility = "Home"
+
+
 " post the note. Internal use
 " misskeyPost :: [String] -> IO ()
 function s:misskeyPost(text)
   let msg = join(a:text, "\n")
-  let _ = system("misskey-cli -q notes/create --text '" . msg . "'")
+  let _ = system("misskey-cli -q notes/create --visibility ".g:misskey#config#visibility." --text '" . msg . "'")
   redraw | echo ''
 endfunction
 
