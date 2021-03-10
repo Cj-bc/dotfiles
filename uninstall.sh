@@ -14,8 +14,8 @@ color_default="$(tput sgr0)"
 
 while IFS=',' read -r target dst;do
   echo -n "Unlinking: ${dst}..."
-  [[ ! -a "$(eval echo $dst)" ]] &&
-    echo "${color_yellow}skip${color_default}(dst does not exist)" && continue
+  [[ -a "$(eval echo $dst)" || -L "$(eval echo $dst)" ]] ||
+	  { echo "${color_yellow}skip${color_default}(dst does not exist)"; continue; }
 
   eval "unlink $dst" &&
     echo "${color_green}ok${color_default}" ||
