@@ -280,6 +280,7 @@ call vundle#begin()
   Plugin 'vim-jp/vimdoc-ja' " japanese doc
   Plugin 'sgur/vim-textobj-parameter' " provide textobject for '.*,'
   Plugin 'cespare/vim-toml' " Vim syntax for TOML
+  Plugin 'junegunn/fzf'
   Plugin 'junegunn/fzf.vim' " fzf :love: vim
   Plugin 'junegunn/goyo.vim' " :Tulip: Distraction-free writing in Vim
   Plugin 'airblade/vim-gitgutter' " A Vim plugin which shows a git diff in the gutter (sign column) and stages/undoes hunks.
@@ -320,6 +321,7 @@ call vundle#begin()
   Plugin 'dermusikman/sonicpi.vim' " Sonic Pi plugin for Vim
   Plugin 'prabirshrestha/async.vim' " dependency of vim-lsp
   Plugin 'prabirshrestha/vim-lsp' " async language server protocol plugin for vim and neovim
+  Plugin 'mattn/vim-lsp-settings'
   Plugin 'Cj-bc/drcs.vim'
   Plugin 'mattn/vim-reading-vimrc' " vimrc reading client
   Plugin 'rhysd/vim-grammarous' " A powerful grammar checker for vim using LanguageTool.
@@ -334,11 +336,12 @@ call vundle#begin()
   Plugin 'Cj-bc/applescript.vim'
   Plugin 'ballerina-attic/plugin-vim' " ballerina syntax file
   Plugin 'antew/vim-elm-language-server'
-  Plugin 'Cj-bc/faclig.vim'
   Plugin 'jceb/vim-orgmode'
-  Plugin 'tpope/speeddating' " In/De-crease dates
+  Plugin 'tpope/vim-speeddating' " In/De-crease dates. **tpope/speeddating is renamed to this**
   Plugin 'inkarkat/vim-SyntaxRange' " Define a different filetype syntax on regions of a buffer.
+  Plugin 'tyru/eskk.vim'
   Plugin 'junegunn/vim-easy-align'
+  "Plugin 'Cj-bc/faclig.vim'
 
 call vundle#end()
 filetype plugin indent on
