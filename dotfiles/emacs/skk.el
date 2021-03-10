@@ -1,3 +1,6 @@
 (setq skk-sticky-key ";")
-(setq skk-get-jisyo-directory "/usyr/local/share/skk")
-
+(setq skk-get-jisyo-directory "/usr/local/share/skk")
+(add-to-list 'auto-mode-alist '(".*\\.dict$" . skk-jisyo-edit-mode))
+(setq skk-jisyo-code 'utf-8)
+(setq skk-large-jisyo "/usr/local/share/skk/SKK-JISYO.L")
+(setq skk-jisyo "/usr/local/share/skk/personal.dict")
