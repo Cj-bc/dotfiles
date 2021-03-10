@@ -60,7 +60,14 @@ function! s:misskeyvimSayOpen()
 endfunction
 
 
+if exists("*tweetvim#say#command")
+  function! s:PostBothTwitterAndMisskey(content)
+    call tweetvim#say#command(content)
+    call s:misskeyCommandSay(content)
+  endfunction
 
+  command -nargs=? MisskeyPostAndTweet :call s:PostBothTwitterAndMisskey(<q-args>)
+endif
 
 command -nargs=? MisskeyCommandSay :call s:misskeyCommandSay(<q-args>)
 command -nargs=0 MisskeySay :call s:misskeySay()
