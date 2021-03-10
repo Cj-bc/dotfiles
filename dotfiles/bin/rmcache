@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+
+
+cacheDirs=("$(which stack >/dev/null 2>&1 && stack path --programs)" )
+
+for d in ${cacheDirs[@]}; do
+  echo -n "Clearing cache at: ${d}..."
+  rm -r $d >/dev/null 2>&1
+  echo " OK"
+done
+
+echo "all caches are cleaned"
+# vim: ft=sh
