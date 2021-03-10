@@ -36,6 +36,7 @@
 (leaf leaf-tree :ensure t
   :config
   (add-to-list 'auto-mode-alist '("init.el" . leaf-tree-mode))
+  (add-hook 'leaf-tree-mode-hook 'lisp-mode)
   )
 (leaf ddskk :ensure t
   :bind
