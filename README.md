@@ -1,5 +1,3 @@
-= # dotfiles for Cj-bc
-[2019-07-30 13:58]
 # dotfiles for Cj-bc
 
 This is while dotfiles repository for my use.
