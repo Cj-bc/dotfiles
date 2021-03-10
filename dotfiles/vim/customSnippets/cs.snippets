@@ -1,0 +1,28 @@
+snippet unity "Unity's default format"
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class ${1} : MonoBehaviour
+{
+    // Start is called before the first frame update
+    void Start()
+    {
+        ${2}
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        ${3}
+    }
+}
+endsnippet
+
+snippet dlog "Debug.Log()"
+Debug.Log("${1}");
+endsnippet
+
+snippet loads "SceneManager.LoadScene()"
+SceneManager.LoadScene("${1}");
+endsnippet
