@@ -9,3 +9,5 @@ let HowmAlarmFile = howm_dir . '/howmalarm'
 let HowmAlarmUseQFixHowm = 2
 
 let SubWindow_Title1 = "__submenu1__"
+
+let qfixmemo_submenu_title = 'index.org'
