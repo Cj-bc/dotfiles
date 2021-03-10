@@ -59,7 +59,7 @@ declare -p WSLENV >/dev/null 2>&1 && [[ $WSL_DISTRO_NAME == "Arch" ]] &&
 export PKG_CONFIG_PATH="${PKG_CONFIG_PATH}:/usr/local/opt/libffi/lib/pkgconfig"
 
 # The next line updates PATH for the Google Cloud SDK.
-sourceIfAvailable '$HOME/workspace/gcloudSDK/google-cloud-sdk/path.bash.inc'
+sourceIfAvailable "$HOME/workspace/gcloudSDK/google-cloud-sdk/path.bash.inc"
 
 
 sourceIfAvailable $HOME/.bashrc
