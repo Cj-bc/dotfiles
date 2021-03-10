@@ -6,6 +6,7 @@ set modelines=5
 set cursorline
 set number
 set relativenumber
+set concealcursor=n
 " set autowriteall  " This is useful when we use QfixHowm, but it's so awful that will save Netrw windows...
 syntax on
 
@@ -56,6 +57,7 @@ function UpdateSpell()
   endfor
 endfunction
 
+set showcmd
 
 au FileType tweetvim,w3m set nospell
 " }}}
