@@ -57,7 +57,9 @@
 	  ("youtube" . "https://youtube.com/watch?v=%s")
 	  ("wikipedia" . "https://en.wikipedia.org/wiki/%s")
 		  ;; commit, ghFile, twitter, misskeyとかも欲しい
-		  ))
+	  ))
+  (setq org-clocktable-defaults
+	(list :maxlevel 4 :scope agenda :block today :link t :fileskip0 t))
   (org-babel-do-load-languages
    'org-babel-load-languages
    '((Awk . t)))
