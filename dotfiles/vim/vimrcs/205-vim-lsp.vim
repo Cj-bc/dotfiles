@@ -1,3 +1,10 @@
+import GetPaths from "Xdg.vim"
+
+if has("mac")
+  let g:lsp_log_file = expand("~/Library/Logs/vim_lsp.log")
+elseif has("linux")
+  let g:lsp_log_file = expand(GetPaths("XDG_CONFIG_HOME")[0] . "/vim_lsp.log")
+endif
 
 set omnifunc=lsp#complete
 nmap <buffer> <leader>R <plug>(lsp-rename)
