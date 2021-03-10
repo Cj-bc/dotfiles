@@ -61,9 +61,7 @@ endfunction
 
 
 
-if executable("misskey-cli")
-  command -nargs=? MisskeyCommandSay :call s:misskeyCommandSay(<q-args>)
-  command -nargs=0 MisskeySay :call s:misskeySay()
-endif
 
+command -nargs=? MisskeyCommandSay :call s:misskeyCommandSay(<q-args>)
+command -nargs=0 MisskeySay :call s:misskeySay()
 
