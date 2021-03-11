@@ -6,7 +6,9 @@ dotfiles/fish/generated_completions/*
 dotfiles/vim/bundle/*
 dotfiles/vim/view
 dotfiles/vim/virtualenvs
+dotfiles/vim/essk/log
 dotfiles/stack
+**/*.add.spl
 
 **/emacs.d/elpa/
 **/w3m/cookie
