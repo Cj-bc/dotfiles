@@ -1,0 +1,21 @@
+package=$1
+
+usage=$(cat <<EOF
+usage: ${0##*/} PYPI_PACKAGE
+install PYPI_PACKAGE in the same venv as pyls inhstalled via vim-lsp-settings
+
+Exit code:
+  - 0 for success
+  - 2 for vim-lsp-settings data directory not found
+EOF
+)
+
+[[ -z "$1" || "$1" =~ -{1,2}h(elp){0,1} ]] && echo "$usage" && exit
+
+vimLspSettings_dataDir="${XDG_DATA_HOME:-$HOME/.local/share}/vim-lsp-settings"
+
+[[ -d $vimLspSettings_dataDir ]] || exit 2
+
+. "${vimLspSettings_dataDir}/servers/pyls-all/venv/bin/activate"
+pip install $package
+deactivate
