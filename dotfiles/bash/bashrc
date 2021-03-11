@@ -280,7 +280,7 @@ function repo() {
 }
 # }}}
 # emacs : invoke emacsclient if emacs is running {{{2
-function emacs() {
+function emacsctl() {
   local emacsProcess="$(ps x -O comm | awk '{print $2}' | grep '^emacs$')"
   case "$1" in
     "--kill")
@@ -288,8 +288,7 @@ function emacs() {
       return
       ;;
     "--restart")
-      emacs --kill
-      emacs "$@"
+      brew services restart emacs-plus
       return
       ;;
     "--recompile")
@@ -297,13 +296,6 @@ function emacs() {
       return
       ;;
   esac
-
-  if [ -z "$emacsProcess" ]; then
-    command emacs --daemon
-    emacs "$@"
-  else
-    emacsclient "$@"
-  fi
 }
 # }}}
 
