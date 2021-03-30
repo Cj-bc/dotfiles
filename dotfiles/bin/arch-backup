@@ -1,0 +1,58 @@
+#!/bin/bash
+
+# Back up script for my archlinux
+
+# ========== Configure part
+
+# Path to the directory you want to make backup (This directory is used as 'root' of the backup)
+backupDir=/mnt/backup/backups/VWP/$(date +%Y-%m-%d)
+
+# Path that won't be in backup
+excludeDirs=("/dev/*" "/proc/*" "/sys/*" "/tmp/*" "/run/*" "/mnt/*" "/media/*" "/lost+found"  # defaults from wiki
+             "${XDG_CACHE_HOME:-$HOME/.cache}/*" "${XDG_RUNTIME_DIR}/*" # XDG dirs
+             "$HOME/.cache/*" # common dirs
+             "$HOME/.config/Slack/Cache/*" "$HOME/.config/Slack/Code\ Cache/*" "$HOME/.config/Slack/GPUCache/*"
+             "$HOME/.config/discord/Cache/*"
+             "$HOME/.xmonad/xmonad-x86_64-linux" "$HOME/.xmonad/xmonad.hi" "$HOME/.xmonad/xmonad.o"
+             "$HOME/.vim/bundle/*"
+             "$HOME/.cargo/*"
+            )
+
+for tmpPath in $(find / -regex '.*/[Tt]e?mp' ! -regex '/sys/.*' 2>/dev/null); do
+  excludeDirs=("${excludeDirs[@]}" "$tmpPath")
+done
+
+# includeDirs : [Path]
+# Those paths will be ensured to be included in backup.
+# Without this, 
+includeDirs=()
+
+logDir=${XDG_CACHE_HOME:-~/.cache}/arch-backup/logs
+logFile=$logDir/$(date +%Y-%m-%d).log
+
+# Make backup of git repositories only if they have uncommited modifications
+for p in $(ghq list); do (
+  cd $(ghq root)/$p
+  [[ -z $(git status --short 2>/dev/null) ]] && excludeDirs=(${excludeDirs[@]} "$(ghq root)/$p") \
+                                             || includeDirs=(${includeDirs[@]} "$(ghq root)/$p")
+  )
+done
+
+
+
+# ========== Main
+[[ -d $backupDir ]] || mkdir $backupDir
+[[ -d $logDir ]] || mkdir -p $logDir
+
+filters=()
+for i in "${includeDirs[@]}"; do
+  filters=("${filters[@]}" "--include=\"$i\"")
+done
+
+for e in "${excludeDirs[@]}"; do
+  filters=("${filters[@]}" "--exclude=\"$e\"")
+done
+
+echo "exclude options: ${filters[@]}"
+# rsync -aAX --info=progress2 ${filters[@]} / $backupDir |& tee $logFile
+# dunstify --appname "arch-backup" "backup is finished!"

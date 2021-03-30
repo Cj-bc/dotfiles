@@ -20,3 +20,4 @@ stack, $HOME/.stack
 weechat, $HOME/.weechat
 ssh, $HOME/.ssh
 bin/lauchXMonadWithFcitx, $HOME/.local/bin/lauchXMonadWithFcitx
+bin/arch-backup, $HOME/.local/bin/arch-backup
