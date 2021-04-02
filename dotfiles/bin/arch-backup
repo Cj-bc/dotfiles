@@ -54,5 +54,5 @@ for e in "${excludeDirs[@]}"; do
 done
 
 echo "exclude options: ${filters[@]}"
-# rsync -aAX --info=progress2 ${filters[@]} / $backupDir |& tee $logFile
-# dunstify --appname "arch-backup" "backup is finished!"
+rsync -aAX --info=progress2 ${filters[@]} / $backupDir |& tee $logFile
+dunstify --appname "arch-backup" "backup is finished!"
