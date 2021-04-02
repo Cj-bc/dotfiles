@@ -18,9 +18,15 @@ excludeDirs=("/dev/*" "/proc/*" "/sys/*" "/tmp/*" "/run/*" "/mnt/*" "/media/*" "
              "$HOME/.cargo/*"
             )
 
-for tmpPath in $(find / -regex '.*/[Tt]e?mp' ! -regex '/sys/.*' 2>/dev/null); do
-  excludeDirs=("${excludeDirs[@]}" "$tmpPath")
-done
+echo "skipping to exclude tmp directories for now..."
+echo "TODO: I want to cache those tmpPath and refer them"
+#
+# echo -n "Finding tmp directories"
+# for tmpPath in $(find / -regex '.*/[Tt]e?mp' ! -regex '/sys/.*' 2>/dev/null); do
+#   excludeDirs=("${excludeDirs[@]}" "$tmpPath")
+#   echo -n "."
+# done
+# echo "Done"
 
 # includeDirs : [Path]
 # Those paths will be ensured to be included in backup.
