@@ -33,17 +33,20 @@
     )
 
 ;; Installing packages
-(leaf leaf-tree :ensure t
+(leaf *packages
   :config
-  (add-to-list 'auto-mode-alist '("init.el" . leaf-tree-mode))
-  (add-hook 'leaf-tree-mode-hook 'lisp-mode)
+  (leaf leaf-tree :ensure t
+    :config
+    (add-to-list 'auto-mode-alist '("init.el" . leaf-tree-mode))
+    (add-hook 'leaf-tree-mode-hook 'lisp-mode)
   )
-(leaf ddskk :ensure t
-  :bind
-  ("C-x C-j" . skk-mode)
+  (leaf ddskk :ensure t
+    :bind
+    ("C-x C-j" . skk-mode)
+    :config
+    (add-to-list 'auto-mode-alist '(".*\\.dict$" . skk-jisyo-edit-mode))
+  )
 
-  :config
-  (add-to-list 'auto-mode-alist '(".*\\.dict$" . skk-jisyo-edit-mode))
   )
 (leaf howm :ensure t)
 (leaf org
