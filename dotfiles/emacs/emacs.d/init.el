@@ -70,16 +70,26 @@
   )
 (leaf twittering-mode :ensure t)
   
-(set-terminal-coding-system 'utf-8)
-(set-keyboard-coding-system 'utf-8)
-(prefer-coding-system 'utf-8)
+;; --- Global settings
+(leaf appearences
+  :config
+  (set-terminal-coding-system 'utf-8)
+  (set-keyboard-coding-system 'utf-8)
+  (prefer-coding-system 'utf-8)
+)
 
-(global-set-key (kbd "C-c C-w h") 'windmove-left)
-(global-set-key (kbd "C-c C-w j") 'windmove-down)
-(global-set-key (kbd "C-c C-w k") 'windmove-up)
-(global-set-key (kbd "C-c C-w l") 'windmove-right)
-(global-set-key (kbd "C-c C-o i") '(load-file (concat user-emacs-directory "init.el")))
-		
+(leaf keybinds
+  :config
+  (leaf window-movements
+    :doc "vim-like window movement keybinds"
+    :bind
+    (("C-c C-w h" . windmove-left)
+     ("C-c C-w j" . windmove-down)
+     ("C-c C-w k" . windmove-up)
+     ("C-c C-w l" . windmove-right)
+    )
+  )
+
 
 (provide 'init)
 (custom-set-variables
