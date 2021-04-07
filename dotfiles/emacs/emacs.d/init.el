@@ -46,26 +46,27 @@
     :config
     (add-to-list 'auto-mode-alist '(".*\\.dict$" . skk-jisyo-edit-mode))
   )
+  (leaf howm :ensure t)
+  (leaf org
+    :config
+    (setq org-agenda-files (directory-files-recursively "~/Documents/beorg/howm" "\\.org$"))
+    (setq org-enforce-todo-dependencies t)
+    (setq org-todo-keywords
+          ((sequence "TODO" "SOMEDAY" "WAITING" "|" "DONE")))
+    (setq org-link-abbrev-alist
+          (("github" . "https://github.com/%s")
+            ("youtube" . "https://youtube.com/watch?v=%s")
+             ("wikipedia" . "https://en.wikipedia.org/wiki/%s")
+                ;; commit, ghFile, twitter, misskeyとかも欲しい
+                 ))
+    (setq org-clocktable-defaults
+          (list :maxlevel 4 :scope agenda :block today :link t :fileskip0 t))
+  (org-babel-do-load-languages
+     'org-babel-load-languages
+      '((Awk . t)))
+    )
 
   )
-(leaf howm :ensure t)
-(leaf org
-  :config
-  (setq org-agenda-files (directory-files-recursively "~/Documents/beorg/howm" "\\.org$"))
-  (setq org-enforce-todo-dependencies t)
-  (setq org-todo-keywords
-	'((sequence "TODO" "SOMEDAY" "WAITING" "|" "DONE")))
-  (setq org-link-abbrev-alist
-	'(("github" . "https://github.com/%s")
-	  ("youtube" . "https://youtube.com/watch?v=%s")
-	  ("wikipedia" . "https://en.wikipedia.org/wiki/%s")
-		  ;; commit, ghFile, twitter, misskeyとかも欲しい
-	  ))
-  (setq org-clocktable-defaults
-	(list :maxlevel 4 :scope agenda :block today :link t :fileskip0 t))
-  (org-babel-do-load-languages
-   'org-babel-load-languages
-   '((Awk . t)))
   )
 (leaf twittering-mode :ensure t)
   
