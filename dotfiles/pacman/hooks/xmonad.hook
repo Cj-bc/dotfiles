@@ -1,0 +1,15 @@
+[Trigger]
+Operation = Upgrade
+Type = Package
+Target = xmonad*
+
+[Trigger]
+Operation = Upgrade
+Type = Package
+Target = haskell-*
+
+
+[Action]
+Description = Rebuild xmonad to prevent login loop
+Exec = xmonad --recompile
+When = PostTransaction
