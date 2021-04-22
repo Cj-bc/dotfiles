@@ -6,6 +6,8 @@ import XMonad.Layout.PerWorkspace
 import XMonad.Layout (Full)
 import Data.Text (Text)
 -- import XMonad.Util.EZConfig.Reexport (readKeymap)
+import XMonad.Layout.Gaps (gaps, Direction2D(..), GapMessage(ToggleGaps))
+import XMonad.Layout.Spacing
 
 main = xmonad =<< xmobar cfg
 
@@ -36,6 +38,8 @@ keybinds =
     ,("M-S-/", spawn "dunstify \"This will be command for showing all keybinds, but currently I can't provide it\"")
     ,("M-C-3", spawn "import -window root ~/Picture/screenshots/$(date +%Y%m%d%H%M%S).png")
     ,("M-C-4", spawn "import ~/Picture/screenshots/$(date +%Y%m%d%H%M%S).png")
+    ,("M-C-g", sequence (fmap sendMessage [(ModifyWindowBorderEnabled not), (ModifyScreenBorderEnabled not)]) >>
+               sendMessage ToggleGaps >> pure ())
     ,("<XF86AudioLowerVolume>", spawn "pactl set-sink-volume 0 -5%; pactl set-sink-mute 0 false")
     ,("<XF86AudioRaiseVolume>", spawn "pactl set-sink-volume 0 +5%; pactl set-sink-mute 0 false")
     ,("<XF86AudioMute>", spawn "pactl set-sink-mute 0 toggle")
@@ -79,6 +83,8 @@ my_startuphook = do
     --         running <- liftIO $ isProgramRunning program
     --         when (not running) $ spawnOn (show $ fromEnum workspace) program
 
-my_layoutHook = onWorkspace (show Web) Full defaultLayout
+my_layoutHook = addSpacing $ onWorkspace (show Web) fullWithGap defaultLayout
     where
-        defaultLayout = Full ||| Tall def def def ||| Mirror (Tall def def def)
+        defaultLayout = fullWithGap ||| Tall def def def ||| Mirror (Tall def def def)
+        fullWithGap = gaps [(U, 20),(D, 20),(R, 20),(L, 20)] Full 
+        addSpacing = spacingRaw True (Border 0 10 10 10) True (Border 10 10 10 10) True
