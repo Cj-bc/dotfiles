@@ -1,11 +1,14 @@
 import XMonad
+import qualified XMonad.StackSet as W
 import XMonad.Util.EZConfig
 import XMonad.Hooks.DynamicLog
 import XMonad.Actions.SpawnOn (spawnOn, manageSpawn)
 import XMonad.Layout.PerWorkspace
 import XMonad.Layout (Full)
 import Data.Text (Text)
+import XMonad.Util.NamedScratchpad (NamedScratchpad(NS), customFloating, namedScratchpadManageHook, namedScratchpadAction)
 -- import XMonad.Util.EZConfig.Reexport (readKeymap)
+-- Looks and feel
 import XMonad.Layout.Gaps (gaps, Direction2D(..), GapMessage(ToggleGaps))
 import XMonad.Layout.Spacing
 
@@ -40,6 +43,7 @@ keybinds =
     ,("M-C-4", spawn "import ~/Picture/screenshots/$(date +%Y%m%d%H%M%S).png")
     ,("M-C-g", sequence (fmap sendMessage [(ModifyWindowBorderEnabled not), (ModifyScreenBorderEnabled not)]) >>
                sendMessage ToggleGaps >> pure ())
+    ,("M-f", namedScratchpadAction my_scratchpads "floating terminal")
     ,("<XF86AudioLowerVolume>", spawn "pactl set-sink-volume 0 -5%; pactl set-sink-mute 0 false")
     ,("<XF86AudioRaiseVolume>", spawn "pactl set-sink-volume 0 +5%; pactl set-sink-mute 0 false")
     ,("<XF86AudioMute>", spawn "pactl set-sink-mute 0 toggle")
@@ -55,6 +59,7 @@ my_manageHook = composeAll $ [
     , title     =? "Discord -- Brave"  --> doShift (show Communication)
     , className =? "Dunst"             --> doFloat
     , className =? "Conky"             --> doShift (show Info)
+    , namedScratchpadManageHook my_scratchpads
     ]
 
 -- grep :: [Text] -> Sh Text
@@ -88,3 +93,8 @@ my_layoutHook = addSpacing $ onWorkspace (show Web) fullWithGap defaultLayout
         defaultLayout = fullWithGap ||| Tall def def def ||| Mirror (Tall def def def)
         fullWithGap = gaps [(U, 20),(D, 20),(R, 20),(L, 20)] Full 
         addSpacing = spacingRaw True (Border 0 10 10 10) True (Border 10 10 10 10) True
+
+my_scratchpads = [
+    NS "floating terminal" "termite -t 'floating-terminal'" (title =? "floating-terminal")
+    (customFloating $ W.RationalRect (1/6) (1/6) (2/3) (2/3))
+    ]

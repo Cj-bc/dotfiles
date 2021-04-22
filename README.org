@@ -30,8 +30,8 @@ This is dotfiles repository for my use.
 + [ ] Make xmobar looks good(and give more functionality
 + [x] [xmonad] Add gap/spacing
 + [ ] [feh] Add background image
-+ [ ] [xmonad] Create 'NamedScratchPad' for floating window, etc
-
++ [x] [xmonad] Create [[https://hackage.haskell.org/package/xmonad-contrib-0.16/docs/XMonad-Util-NamedScratchpad.html][NamedScratchPad]] for floating window, etc
++ [x] [xmonad] Remove spacing along with gap when we push 'C-S-g'
 
 * Installation
 
