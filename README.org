@@ -1,0 +1,55 @@
+Some part is written in Japanese (for my ease)
+
+* dotfiles for Cj-bc
+
+This is dotfiles repository for my use.
+
+* Used softwares
+
+| kind                 | software                     |
+|----------------------+------------------------------|
+| OS                   | macOS, ArchLinux             |
+| Window manager       | xmonad                       |
+| Editor               | emacs(vanilla), vim(vanilla) |
+| Web browser          | Brave, qutebrowser           |
+| Shell                | bash                         |
+| Terminal emulator    | Termite                      |
+| AUR helper (arch)    | yay                          |
+| Notification         | dunst                        |
+| Input method         | fcitx5-skk                   |
+| Application launcher | rofi                         |
+| Filer                | ranger                       |
+
+* Todo [0/2]
+
++ [ ] [bin] Create power manager
++ [ ] [xmonad/compositor] Add custom frame for X Window (by either compositor or application itself)
++ [ ] [xmonad] Add keybinding for backlight adjustment
++ [ ] [eww] use [[https://github.com/elkowar/eww][elkowar/eww]] to make some widgets
++ [ ] [Xresource] Create my own custom theme for my favorite VTubers
++ [ ] Make xmobar looks good(and give more functionality
++ [x] [xmonad] Add gap/spacing
++ [ ] [feh] Add background image
++ [ ] [xmonad] Create 'NamedScratchPad' for floating window, etc
+
+
+* Installation
+
+**  macOS
+
+*This is old insallation*
+
+#+begin_src bash
+./init.sh
+# dotfiles will be symlinked to each place. config file is 'config.txt'
+# homebrew configuration ---
+brew bundle install --file=dotfiles/brew/Brewfile  # for minimum, replace Brewfile with Brewfile-core
+# Vundle & vim plugins installation ---
+mkdir ~/.vim/bundle
+git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+vim -C PluginInstall
+# tmux plugin installation ---
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+tmux
+# on tmux, press <PREFIX>+I (capital "I")
+#+end_src
