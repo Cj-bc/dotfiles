@@ -1,3 +1,6 @@
 [submodule "dotfiles/mlterm/colorschemes"]
 	path = dotfiles/mlterm/colorschemes
 	url = https://github.com/Cj-bc/Mlterm-Color-Schemes
+[submodule "dotfiles/submodules/dotfiles-2.0"]
+	path = dotfiles/submodules/dotfiles-2.0
+	url = https://github.com/Axarva/dotfiles-2.0
