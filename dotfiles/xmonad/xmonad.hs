@@ -48,6 +48,8 @@ keybinds =
     ,("<XF86AudioRaiseVolume>", spawn "pactl set-sink-volume 0 +5%; pactl set-sink-mute 0 false")
     ,("<XF86AudioMute>", spawn "pactl set-sink-mute 0 toggle")
     ,("M-<XF86AudioMute>", spawn "pactl set-source-mute 0 toggle")
+    ,("<XF86MonBrightnessUp>", spawn "brightnessctl set +1%")
+    ,("<XF86MonBrightnessDown>", spawn "brightnessctl set 1%-")
     ]
 
 my_manageHook :: ManageHook
