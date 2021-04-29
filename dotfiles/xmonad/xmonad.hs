@@ -3,6 +3,7 @@ import qualified XMonad.StackSet as W
 import XMonad.Util.EZConfig
 import XMonad.Hooks.DynamicLog
 import XMonad.Actions.SpawnOn (spawnOn, manageSpawn)
+import XMonad.Util.SpawnOnce (spawnOnce)
 import XMonad.Layout.PerWorkspace
 import XMonad.Layout (Full)
 import Data.Text (Text)
@@ -67,31 +68,15 @@ my_manageHook = composeAll $ [
     , namedScratchpadManageHook my_scratchpads
     ]
 
--- grep :: [Text] -> Sh Text
--- grep = run "grep"
--- 
--- ps :: [Text] -> Sh Text
--- ps = run "ps"
--- 
--- -- | True if given program is already running
--- isProgramRunning :: Text -> IO Bool
--- isProgramRunning programName = catch (shelly $ ps ["x"] -|- run "awk" ["{print $5}"] -|- grep ["^" ++ programName] -|- return True)
---                                      (const $ return False :: SomeException -> IO Bool)
--- 
 my_startuphook = do
     -- This doesn't work...
     -- Consider using 'XMonad.Actions.TagWindows' instead.
     spawnOn (show . fromEnum $ Info) "conky"
-    spawnOn (show . fromEnum $ Editor) "termite"
-    spawnOn (show . fromEnum $ Web) "brave"
-    spawnOn (show . fromEnum $ Communication) "slack"
-    spawnOn (show . fromEnum $ Communication) "discord"
+    spawnOnce "termite"
+    spawnOnce "brave"
+    spawnOnce "slack"
+    spawnOnce "discord"
     return () >> checkKeymap cfg keybinds
-    -- where
-    --     spawnIfNotRunning :: WorkspaceNames -> Text -> X ()
-    --     spawnIfNotRunning workspace program = do
-    --         running <- liftIO $ isProgramRunning program
-    --         when (not running) $ spawnOn (show $ fromEnum workspace) program
 
 my_layoutHook = addSpacing $ onWorkspace (show Web) fullWithGap defaultLayout
     where
