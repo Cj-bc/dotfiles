@@ -6,6 +6,8 @@ import XMonad.Actions.SpawnOn (spawnOn, manageSpawn)
 import XMonad.Layout.PerWorkspace
 import XMonad.Layout (Full)
 import Data.Text (Text)
+import Data.Bits ((.|.))
+import qualified Data.Map as M
 import XMonad.Util.NamedScratchpad (NamedScratchpad(NS), customFloating, namedScratchpadManageHook, namedScratchpadAction)
 -- import XMonad.Util.EZConfig.Reexport (readKeymap)
 -- Looks and feel
@@ -20,6 +22,7 @@ cfg = def
     , manageHook = my_manageHook
     , startupHook = my_startuphook
     , layoutHook = my_layoutHook
+    , mouseBindings = my_mouseBinds
     }
     `removeKeysP` ["M-p"]
     `additionalKeysP` keybinds
@@ -100,3 +103,20 @@ my_scratchpads = [
     NS "floating terminal" "termite -t 'floating-terminal'" (title =? "floating-terminal")
     (customFloating $ W.RationalRect (1/6) (1/6) (2/3) (2/3))
     ]
+
+-- | Mouse bindings: Extending default
+my_mouseBinds :: XConfig Layout -> M.Map (KeyMask, Button) (Window -> X ())
+my_mouseBinds (XConfig {XMonad.modMask = modMask}) = M.fromList
+    -- mod-button1 %! Set the window to floating mode and move by dragging
+    [ ((modMask, button1), \w -> focus w >> mouseMoveWindow w
+                                          >> windows W.shiftMaster)
+    -- mod-button2 %! Raise the window to the top of the stack
+    , ((modMask, button2), windows . (W.shiftMaster .) . W.focusWindow)
+    -- mod-button3 %! Set the window to floating mode and resize by dragging
+    , ((modMask .|. shiftMask, button1), resizing)
+    , ((modMask, button3), resizing)
+    -- you may also bind events to the mouse scroll wheel (button4 and button5)
+    ]
+    where
+        resizing = \w -> focus w >> mouseResizeWindow w
+                                 >> windows W.shiftMaster
