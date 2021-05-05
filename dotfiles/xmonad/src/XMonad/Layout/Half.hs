@@ -35,7 +35,7 @@ instance LayoutClass Half a where
     pureLayout (Half lr) r s | lr == L = [(focus s, halfL r)]
                              | lr == R = [(focus s, halfR r)]
         where
-            halfL r = Rectangle (rect_x r) (rect_y r) halfW (rect_width r)
+            halfL r = Rectangle (rect_x r) (rect_y r) halfW (rect_height r)
             halfR r = Rectangle (rect_x r + fromIntegral halfW)
                                 (rect_y r)
                                 halfW (rect_width r)
