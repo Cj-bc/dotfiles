@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+# As xmonad automatically change pwd to cfgdir, I don't have to care
+# where this is executed
+stack build
+find . -name 'xmonad-cj-bc-exe' -newer $1 -exec mv {} $1 \;

@@ -1,0 +1,8 @@
+This is my xmonad configuration.
+
+
+* Why do you create this instead of writing all of them in one 'xmonad.hs'?
+
+There're some reasons.
+
++ I wanted to 

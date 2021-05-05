@@ -1,0 +1,42 @@
+name:                xmonad-cj-bc
+version:             0.1.0.0
+github:              "Cj-bc/dotfiles"
+license:             MIT
+author:              "Cj.bc_sd a.k.a Cj-bc"
+maintainer:          "cj.bc-sd@outlook.jp"
+copyright:           "MIT"
+
+extra-source-files:
+- README.org
+
+# Metadata used when publishing your package
+# synopsis:            Short description of your package
+# category:            Web
+
+# To avoid duplicated efforts in documentation and dealing with the
+# complications of embedding Haddock markup inside cabal files, it is
+# common to point users to the README.md file.
+description:         My xmonad config
+
+dependencies:
+- base >= 4.7 && < 5
+- xmonad
+- xmonad-contrib
+- xmobar
+- text
+- shell-conduit
+- containers
+
+library:
+  source-dirs: src
+
+executables:
+  xmonad-cj-bc-exe:
+    main:                xmonad.hs
+    source-dirs:         .
+    ghc-options:
+    - -threaded
+    - -rtsopts
+    - -with-rtsopts=-N
+    dependencies:
+    - xmonad-cj-bc
