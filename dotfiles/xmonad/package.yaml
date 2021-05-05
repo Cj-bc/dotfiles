@@ -26,6 +26,8 @@ dependencies:
 - text
 - shell-conduit
 - containers
+- X11
+- data-default
 
 library:
   source-dirs: src
