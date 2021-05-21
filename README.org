@@ -20,18 +20,62 @@ This is dotfiles repository for my use.
 | Application launcher | rofi                         |
 | Filer                | ranger                       |
 
-* Todo [0/2]
+* Todo [4/33]
 
-+ [ ] [bin] Create power manager
-+ [ ] [xmonad/compositor] Add custom frame for X Window (by either compositor or application itself)
-+ [ ] [xmonad] Add keybinding for backlight adjustment
-+ [ ] [eww] use [[https://github.com/elkowar/eww][elkowar/eww]] to make some widgets
-+ [ ] [Xresource] Create my own custom theme for my favorite VTubers
-+ [ ] Make xmobar looks good(and give more functionality
-+ [x] [xmonad] Add gap/spacing
-+ [ ] [feh] Add background image
-+ [x] [xmonad] Create [[https://hackage.haskell.org/package/xmonad-contrib-0.16/docs/XMonad-Util-NamedScratchpad.html][NamedScratchPad]] for floating window, etc
-+ [x] [xmonad] Remove spacing along with gap when we push 'C-S-g'
+** TODO [#A] Create power manager                                 :bin:
+** TODO [xmonad/compositor] Add custom frame for X Window (by either compositor or application itself)
+** DONE Add keybinding for backlight adjustment             :xmonad:
+   - State "DONE"       from              [2021-05-17 月 16:15]
+** TODO use [[https://github.com/elkowar/eww][elkowar/eww]] to make some widgets                      :eww:
+** TODO [Xresource] Create my own custom theme for my favorite VTubers
+** TODO Make xmobar looks good(and give more functionality)
+** DONE Add gap/spacing                                              :xmonad:
+   - State "DONE"       from "TODO"       [2021-05-17 月 17:24]
+** TODO Add background image                                            :feh:
+** TODO [xmonad] Create [[https://hackage.haskell.org/package/xmonad-contrib-0.16/docs/XMonad-Util-NamedScratchpad.html][NamedScratchPad]] for floating window, etc
+** DONE [xmonad] Remove spacing along with gap when we push 'C-S-g'
+   - State "DONE"       from "TODO"       [2021-05-17 月 21:52]
+** TODO [xmonad] 'Concentrate' mode which will supsend all distractions e.g. notifications
+** DONE [#A] [Emacs] Use emacsclient
+   - State "DONE"       from "TODO"       [2021-05-17 月 22:01]
+   =systemd-service= で存在したのでそれでよかった
+** TODO [xmonad] 'WhiteList' Layout that can limit what to show (for broadcasting/recording)
+** TODO [xmonad] 'WithVideo' Layout that will play video even if I switched the workspace
+** TODO [emacs] custom external link for github, ghq (=[<user>/<repository>[:ref] -- <path>]=)
+** TODO [xmonad] Grid-style Layout selection
+** TODO [#A] [systemd] Make battery-d that post notification when the battery is too low
+** TODO [xmonad] ぱっとメモとるためにvim若しくはemacsをぱっと開くアクションが欲しいあ
+** TODO [bin] aurのPKGBUILDをターミナルから読めるやつほしい
+** TODO [xmobar] テーマ使えるようにする
+** TODO Org babel使うようにしてみたい
+** TODO [#A] [vim] 自分でビルドする
+** TODO [termite] 自分でビルドする
+** TODO org roam使えるようにしたい                                    :Emacs:
+   vimwikiの方が良かったみたいなところもあるので、どちらも取り入れられそうなorg-roam試したい
+** TODO クイックキャプチャ用のorg-capture                            :Emacs:
+** TODO ~C-w~ でウィンドウ消さないようにする                    :qutebrowser:
+   vimの要領で ~C-w q~ でウィンドウ消そうとしてしまうのだけど、 quteだと ~C-w~ だけで消してしまう。
+   ブラウザ的にはこちらの方が普通な挙動ではあるけど、毎回間違えるので設定替えてしまいましょ。
+** TODO MRU表示したい                                                           :Emacs:
+** TODO スクショ一覧から一気に画像削除するやつほしい                    :bin:
+   最初、fzfかな~と思ったけど有用なfzf検索はできないしあまりその必要はなさそう。
+** TODO org-todoに全てのgitレポジトリのTODOも掲載する                 :Emacs:
+   ghqで管理してるディレクトリならすぐわかるので、そこのREADMEも範囲にいれる。
+
+   これをやると、全体の管理が楽になる
+** TODO rofiで、org-clockinするタスクを撰択できるようにする            :rofi:
+   キーバインドから呼び出して、ささっとClock in したい。
+   あとClock in-outの状況をどこかに表示したいね
+
+** TODO Clockinの状態を表示する                                      :xmobar:
+   今だとEmacs見にいかなきゃで分かりづらいんです!!!
+   hookとかないかな。
+   
+** TODO 範囲選択→Roamファイル作成がしたい                             :Emacs:
+   毎回、新しいリンク作る時とか「これリンクにしたいんだった!!」って時に ~org-roam-insert~ するの面倒なので、
+   vimwiki的にリンクを作ってほしい。
+
+** TODO Org-roam時、単語範囲選択→エンターでリンクを貼るvimwikiの動作をつけたい                       :Emacs:
 
 * Installation
 
