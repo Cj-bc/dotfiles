@@ -360,28 +360,15 @@ alias pullAll='for d in $(ghq list | grep Cj-bc); do (cd $(ghq root)/$d; git pul
 alias pushAll='for d in $(ghq list); do (cd $(ghq root)/$d; git push origin --all >/dev/null 2>&1 && echo "$d: PULLED" || echo "$d: FAILED");done'
 
 # ------------ apps {{{2
-alias siri='open /Applications/Siri.app'
 alias drp='cd ~/Dropbox && ls'
-alias stopwatch='utimer --stopwatch'
 alias dia='vim ~/.diary/$(date "+%Y/%m/%d").md' # not used as I have QfixHwm right now...
-alias td='todo.sh'
-alias dotdrop='$HOME/dotfiles/dotdrop.sh'
 alias jnethack='cocot -t UTF-8 -p cp932 -- ~/nethackdir/jnethack'
 if [ -d '/Applications/Koto-Qt.app' ]; then
   alias koto-cli='/Applications/Koto-Qt.app/Contents/MacOS/koto-cli'
   alias kotod='/Applications/Koto-Qt.app/Contents/MacOS/kotod'
 fi
-if [ -e '/usr/local/Cellar/sclack/alpha/bin/app.py' ]; then
-  alias sclack='(cd /usr/local/Cellar/sclack/alpha/bin;./app.py)'
-fi
 isCmdAvailable misskey-cli && alias ms='misskey-cli --quiet notes/create --text '
 alias jupyter='jupyter notebook --ip=* --no-browser'
-# ------------ networks {{{2
-alias airport='/System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport'
-alias wport='networksetup -setairportpower' # usage: wport <device> <on/off>
-alias wifi='networksetup -setairportnetwork' # usage: wifi <device> <SSID> <password>
-
-
 
 shopt -s xpg_echo
 
