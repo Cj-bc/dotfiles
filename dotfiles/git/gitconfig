@@ -1,5 +1,6 @@
 [credential]
 	helper = osxkeychain
+	helper = pass
 [user]
 	name = Cj-bc
 	email = cj.bc-sd@outlook.jp
