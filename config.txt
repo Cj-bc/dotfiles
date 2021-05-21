@@ -17,7 +17,9 @@ tmux/tmux.conf, $HOME/.tmux.conf
 vim, $HOME/.vim
 w3m, $HOME/.w3m
 stack, $HOME/.stack
+stack, $HOME/.config/stack
 weechat, $HOME/.weechat
 ssh, $HOME/.ssh
-bin/lauchXMonadWithFcitx, $HOME/.local/bin/lauchXMonadWithFcitx
-bin/arch-backup, $HOME/.local/bin/arch-backup
+bin, $HOME/.local/bin
+dunst, $HOME/.config/dunst
+gh, $HOME/.config/gh
