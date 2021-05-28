@@ -14,6 +14,12 @@ color_yellow="$(tput setaf 3)"
 color_default="$(tput sgr0)"
 
 while IFS=',' read -r target dst;do
+  [[ ! -d "$(eval echo ${dst%/*})" ]] && {
+    eval "mkdir -p ${dst%/*}" && \
+    echo "[${color_yellow}Log${color_default}] directory ${color_yellow}${dst%/*}${color_default} was created" || \
+    continue
+  }
+
   echo -n "linking: ${target} -> ${dst}..."
   [[ ! -a "${DOTFILE_PATH}/${target}" ]] &&
     echo "${color_yellow}skip${color_default}(target not found)" && continue
