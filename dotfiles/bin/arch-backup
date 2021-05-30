@@ -16,14 +16,16 @@ case "$1" in
 esac
 
 # Path that won't be in backup
-excludeDirs=("/dev/*" "/proc/*" "/sys/*" "/tmp/*" "/run/*" "/mnt/*" "/media/*" "/lost+found"  # defaults from wiki
-             "${XDG_CACHE_HOME:-$HOME/.cache}/*" "${XDG_RUNTIME_DIR}/*" # XDG dirs
-             "$HOME/.cache/*" # common dirs
-             "$HOME/.config/Slack/Cache/*" "$HOME/.config/Slack/Code\ Cache/*" "$HOME/.config/Slack/GPUCache/*"
-             "$HOME/.config/discord/Cache/*"
+excludeDirs=("/dev/*" "/proc/*" "/sys/*" "/tmp/*" "/run/*" "/mnt" "/media" "/lost+found"  # defaults from wiki
+             "/var/log/*" "/var/cache/*" "/var/tmp/*"
+             "${XDG_CACHE_HOME:-$HOME/.cache}" "${XDG_RUNTIME_DIR}" # XDG dirs
+             "$HOME/.cache" # common dirs
+             "$HOME/.config/Slack/Cache" "$HOME/.config/Slack/Code\ Cache" "$HOME/.config/Slack/GPUCache"
+             "$HOME/.config/discord/Cache"
              "$HOME/.xmonad/xmonad-x86_64-linux" "$HOME/.xmonad/xmonad.hi" "$HOME/.xmonad/xmonad.o"
-             "$HOME/.vim/bundle/*"
-             "$HOME/.cargo/*"
+             "$HOME/.vim/bundle"
+             "$HOME/.cargo"
+             "$HOME/.dropbox*"
             )
 
 echo "skipping to exclude tmp directories for now..."
