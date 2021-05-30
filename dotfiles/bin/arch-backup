@@ -5,7 +5,7 @@
 # ========== Configure part
 
 # Path to the directory you want to make backup (This directory is used as 'root' of the backup)
-backupDir=/mnt/backup/backups/VWP/$(date +%Y-%m-%d)
+backupDir=${BACKUPDIR:=/mnt/backup/$(date +%Y-%m-%d)}
 
 # Path that won't be in backup
 excludeDirs=("/dev/*" "/proc/*" "/sys/*" "/tmp/*" "/run/*" "/mnt/*" "/media/*" "/lost+found"  # defaults from wiki
