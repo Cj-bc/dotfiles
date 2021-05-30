@@ -20,6 +20,7 @@ stack, $HOME/.stack
 stack, $HOME/.config/stack
 weechat, $HOME/.weechat
 ssh, $HOME/.ssh
+xmonad, $HOME/.xmonad
 bin, $HOME/.local/bin
 dunst, $HOME/.config/dunst
 gh, $HOME/.config/gh
