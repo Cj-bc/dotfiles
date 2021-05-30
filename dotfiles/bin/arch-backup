@@ -7,6 +7,14 @@
 # Path to the directory you want to make backup (This directory is used as 'root' of the backup)
 backupDir=${BACKUPDIR:=/mnt/backup/$(date +%Y-%m-%d)}
 
+case "$1" in
+  "--dry-run" )
+    declare DRYRUN=1
+    ;;
+  *)
+    ;;
+esac
+
 # Path that won't be in backup
 excludeDirs=("/dev/*" "/proc/*" "/sys/*" "/tmp/*" "/run/*" "/mnt/*" "/media/*" "/lost+found"  # defaults from wiki
              "${XDG_CACHE_HOME:-$HOME/.cache}/*" "${XDG_RUNTIME_DIR}/*" # XDG dirs
@@ -47,8 +55,6 @@ done
 
 
 # ========== Main
-[[ -d $backupDir ]] || mkdir $backupDir
-[[ -d $logDir ]] || mkdir -p $logDir
 
 filters=()
 for i in "${includeDirs[@]}"; do
@@ -59,6 +65,13 @@ for e in "${excludeDirs[@]}"; do
   filters=("${filters[@]}" "--exclude=\"$e\"")
 done
 
-echo "exclude options: ${filters[@]}"
-rsync -rltAX --info=progress2 ${filters[@]} / $backupDir |& tee $logFile
+if [ -v DRYRUN ]; then
+  echo "dry-run: rsync -rltAX --info=progress2 ${filters[@]} / $backupDir |& tee $logFile"
+else
+  [[ -d $backupDir ]] || mkdir $backupDir
+  [[ -d $logDir ]] || mkdir -p $logDir
+  rsync -rltAX --info=progress2 ${filters[@]} / $backupDir |& tee $logFile
+  true
+fi
+
 dunstify --appname "arch-backup" "backup is finished!"
