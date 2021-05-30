@@ -322,12 +322,25 @@ if [ -d ~/.watchtodo ];then
   export PS1="${PS1}\$(echo \"$(tty) : $(pwd) \" >~/.watchtodo/pwd 2>/dev/null)"
 fi
 # ================================= Alias ==================================== {{{1
-if [ "$(uname)" = 'Darwin' ]; then
-    alias ls='ls -G'
-else
-    eval `dircolors ~/.colorrc`
+case "$(uname)" in
+  'Linux')
+    alias open="xdg-open"
+    eval `dircolors ~/.config/dircolors/dircolors`
     alias ls='ls --color=auto'
-fi
+    ;;
+  'Darwin')
+    alias ls='ls -G'
+
+    alias airport='/System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport'
+    alias wport='networksetup -setairportpower' # usage: wport <device> <on/off>
+    alias wifi='networksetup -setairportnetwork' # usage: wifi <device> <SSID> <password>
+    alias siri='open /Applications/Siri.app'
+    alias stopwatch='utimer --stopwatch'
+
+    alias generate_cask_token="$(brew --repository)/Library/Taps/homebrew/homebrew-cask/developer/bin/generate_cask_token"
+    ;;
+esac
+
 alias la='ls -a'
 alias ll='ls -l'
 alias tree='tree -C'
@@ -339,9 +352,6 @@ alias vim7='/usr/bin/vim'
 alias qiita="vim $(ghq root)/$(ghq list | grep Cj-bc/qiita-post)/"
 alias withPad="padding_; "
 alias zk="popd"
-
-# ------------ Homebrew {{{2
-alias generate_cask_token="$(brew --repository)/Library/Taps/homebrew/homebrew-cask/developer/bin/generate_cask_token"
 
 # ------------ crons {{{2
 alias mkcron='crontab -e'
