@@ -33,7 +33,7 @@
     )
 
 ;; Installing packages
-(leaf *packages
+(leaf package-configurations
   :config
   (leaf leaf-tree :ensure t
     :config
