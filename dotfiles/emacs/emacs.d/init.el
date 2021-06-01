@@ -1,3 +1,4 @@
+; -*- eval: (leaf-tree-mode 1) -*-
 ;; Leaf configurations
 (eval-and-compile
     (when (or load-file-name byte-compile-current-file)
@@ -36,10 +37,7 @@
 (leaf package-configurations
   :config
   (leaf leaf-tree :ensure t
-    :config
-    (add-to-list 'auto-mode-alist '("init.el" . leaf-tree-mode))
-    (add-hook 'leaf-tree-mode-hook 'lisp-mode)
-  )
+    )
   (leaf ddskk :ensure t
     :bind
     ("C-x C-j" . skk-mode)
