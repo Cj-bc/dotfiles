@@ -53,7 +53,10 @@
     (setq org-agenda-files (directory-files-recursively "~/Documents/beorg/howm" "\\.org$"))
     (setq org-enforce-todo-dependencies t)
     (setq org-todo-keywords
-          ((sequence "TODO" "SOMEDAY" "WAITING" "|" "DONE")))
+  	  '((sequence "TODO" "SOMEDAY" "WAITING(w@)" "|" "DONE(d!)" "OutOfDate")
+	    (sequence "ReadLater(a!)" "Reading(i!)" "|" "Read(d!)")
+	    (sequence "ToBuy" "Bought(!)")))
+
     (setq org-link-abbrev-alist
           (("github" . "https://github.com/%s")
             ("youtube" . "https://youtube.com/watch?v=%s")
