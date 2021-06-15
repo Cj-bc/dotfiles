@@ -58,11 +58,12 @@
 	    (sequence "ToBuy" "Bought(!)")))
 
     (setq org-link-abbrev-alist
-          (("github" . "https://github.com/%s")
-            ("youtube" . "https://youtube.com/watch?v=%s")
-             ("wikipedia" . "https://en.wikipedia.org/wiki/%s")
-                ;; commit, ghFile, twitter, misskeyとかも欲しい
-                 ))
+  	  '(("github" . "https://github.com/%s")
+  	    ("youtube" . "https://youtube.com/watch?v=%s")
+  	    ("wikipedia" . "https://en.wikipedia.org/wiki/%s")
+  	    ("archw" . "https://wiki.archlinux.jp/index.php/%s")
+  	    ;; commit, ghFile, twitter, misskeyとかも欲しい
+  	    ))
     (setq org-clocktable-defaults
           (list :maxlevel 4 :scope agenda :block today :link t :fileskip0 t))
   (org-babel-do-load-languages
