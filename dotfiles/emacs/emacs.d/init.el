@@ -46,6 +46,9 @@
   )
   (leaf howm :ensure t)
   (leaf org
+    :hook
+    (org-agenda-mode-hook . (lambda () (display-line-numbers-mode -1))
+    )
     :config
     (setq org-agenda-files (directory-files-recursively "~/Documents/beorg/howm" "\\.org$"))
     (setq org-enforce-todo-dependencies t)
