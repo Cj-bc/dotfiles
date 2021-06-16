@@ -110,6 +110,28 @@
       )
   )
   (leaf twittering-mode :ensure t)
+  (leaf evil :ensure t
+    :config
+    (evil-mode)
+    (leaf evil-org :ensure t)
+    (leaf evil-surround :ensure t
+      :after 'evil-core
+      :config
+      (evil-surround-mode)
+      (evil-define-key 'visual evil-surround-mode-map "sd" 'evil-surround-delete)
+      (evil-define-key 'visual evil-surround-mode-map "sa" 'evil-surround-region)
+    )
+    (leaf evil-numbers :ensure t
+      :after 'evil-core
+      :config
+      (evil-define-key 'normal 'global
+	(kbd "C-c C-a") 'evil-numbers/inc-at-pt
+	(kbd "C-c C-x") 'evil-numbers/dec-at-pt
+	(kbd "C-c g C-a") 'evil-numbers/inc-at-pt-incremental
+	(kbd "C-c g C-x") 'evil-numbers/dec-at-pt-incremental
+	)
+      )
+    )
 )
   
 ;; --- Global settings
