@@ -49,6 +49,8 @@
     :hook
     (org-agenda-mode-hook . (lambda () (display-line-numbers-mode -1))
     )
+    :custom
+    (org-global-properties . '(("TASK_KIND_ALL" . "やること 勉強 休憩 生活")))
     :config
     (setq org-agenda-files (directory-files-recursively "~/Dropbox" "^[^#].\+\\.org$"))
     (setq org-enforce-todo-dependencies t)
