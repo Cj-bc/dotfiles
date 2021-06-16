@@ -110,6 +110,10 @@
       )
   )
   (leaf twittering-mode :ensure t)
+  (leaf rainbow-delimiters :ensure t
+    :hook
+    (prog-mode-hook . rainbow-delimiters-mode))
+
   (leaf evil :ensure t
     :config
     (evil-mode)
