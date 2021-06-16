@@ -109,8 +109,8 @@
 				   "Pomodoro break is over!")))
       )
   )
-  )
-(leaf twittering-mode :ensure t)
+  (leaf twittering-mode :ensure t)
+)
   
 ;; --- Global settings
 (leaf appearences
