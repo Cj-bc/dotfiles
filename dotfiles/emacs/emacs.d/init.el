@@ -163,6 +163,7 @@
   :config
   (column-number-mode)
   (global-display-line-numbers-mode t)
+  (setq display-line-numbers-type 'relative)
   (menu-bar-mode 0)
   (tool-bar-mode 0)
   (scroll-bar-mode 0)
