@@ -51,6 +51,8 @@
     )
     :custom
     (org-global-properties . '(("TASK_KIND_ALL" . "やること 勉強 休憩 生活")))
+    (org-clock-clocktable-default-properties . '(:maxlevel 4 :scope agenda :block today :link t :fileskip0 t))
+    (org-agenda-clockreport-parameter-plist . org-clock-clocktable-default-properties)
     :config
     (setq org-agenda-files (directory-files-recursively "~/Dropbox" "^[^#].\+\\.org$"))
     (setq org-enforce-todo-dependencies t)
@@ -66,8 +68,7 @@
   	    ("archw" . "https://wiki.archlinux.jp/index.php/%s")
   	    ;; commit, ghFile, twitter, misskeyとかも欲しい
   	    ))
-    (setq org-clocktable-defaults
-          (list :maxlevel 4 :scope agenda :block today :link t :fileskip0 t))
+	
     (org-babel-do-load-languages
      'org-babel-load-languages
      '((awk . t)
