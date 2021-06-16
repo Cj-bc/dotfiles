@@ -87,6 +87,24 @@
       (setq org-roam-directory (file-truename "~/Dropbox/roam"))
       (org-roam-mode)
       )
+
+    (leaf org-pomodoro
+      :doc "Pomodoro implementation for org-mode."
+      :req "alert-0.5.10" "cl-lib-0.5"
+      :added "2021-06-02"
+      :url "https://github.com/lolownia/org-pomodoro"
+      :ensure t
+      :after alert
+      :hook
+      (org-pomodoro-finished-hook
+       . (lambda () (start-process "org-pomodoro-finished-notification" nil
+				   "dunstify" "--appname" "Emacs.org-pomodoro"
+				   "Pomodoro finished! Start break time...")))
+      (org-pomodoro-break-finished-hook
+       . (lambda () (start-process "org-pomodoro-break-finished-notification" nil
+				   "dunstify" "--appname" "Emacs.org-pomodoro"
+				   "Pomodoro break is over!")))
+      )
   )
   )
 (leaf twittering-mode :ensure t)
