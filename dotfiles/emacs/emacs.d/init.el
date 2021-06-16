@@ -132,6 +132,11 @@
 	)
       )
     )
+
+  (leaf programming
+    :config
+    (leaf haskell-mode :ensure t)
+    )
 )
   
 ;; --- Global settings
