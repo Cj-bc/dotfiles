@@ -43,8 +43,6 @@
     ("C-x C-j" . skk-mode)
     :config
     (add-to-list 'auto-mode-alist '(".*\\.dict$" . skk-jisyo-edit-mode))
-  )
-  (leaf howm :ensure t)
   (leaf org
     :hook
     (org-agenda-mode-hook . (lambda () (display-line-numbers-mode -1))
