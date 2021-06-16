@@ -172,6 +172,9 @@
   (tool-bar-mode 0)
   (scroll-bar-mode 0)
   (auto-revert-mode)
+
+  (show-paren-mode)
+  (skk-mode)
 )
 
 
