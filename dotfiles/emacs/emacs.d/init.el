@@ -73,6 +73,20 @@
        (haskell . t)
        (plantuml . t)))
 
+    (leaf org-roam
+      :doc "Roam Research replica with Org-mode"
+      :req "emacs-26.1" "dash-2.13" "f-0.17.2" "s-1.12.0" "org-9.3" "emacsql-3.0.0" "emacsql-sqlite3-1.0.2"
+      :tag "convenience" "roam" "org-mode" "emacs>=26.1"
+      :added "2021-05-18"
+      :url "https://github.com/org-roam/org-roam"
+      :emacs>= 26.1
+      :ensure t
+      :custom
+      (org-roam-link-auto-replace . nil)
+      :config
+      (setq org-roam-directory (file-truename "~/Dropbox/roam"))
+      (org-roam-mode)
+      )
   )
   )
 (leaf twittering-mode :ensure t)
