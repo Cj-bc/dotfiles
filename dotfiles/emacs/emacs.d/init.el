@@ -73,7 +73,6 @@
      '((awk . t)
        (shell . t)
        (haskell . t)
-       (plantuml . t)))
 
     (leaf org-roam
       :doc "Roam Research replica with Org-mode"
