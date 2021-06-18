@@ -160,6 +160,7 @@
   (set-terminal-coding-system 'utf-8)
   (set-keyboard-coding-system 'utf-8)
   (prefer-coding-system 'utf-8)
+  (add-to-list 'default-frame-alist '(font . "Cica-20"))
 )
 
 (leaf keybinds
