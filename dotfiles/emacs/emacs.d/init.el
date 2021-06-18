@@ -138,6 +138,18 @@
   (leaf programming
     :config
     (leaf haskell-mode :ensure t)
+  (leaf newsticker
+    :doc "A Newsticker for Emacs."
+    :tag "builtin"
+    :added "2021-05-20"
+    :hook (newsticker-mode-hook . (lambda () (toggle-truncate-lines -1)))
+    :custom
+    (newsticker-url-list . '(("Mogura VR" "https://www.moguravr.com/feed" nil nil nil)
+			     ("Yahoo top picks" "https://news.yahoo.co.jp/rss/topics/top-picks.xml"
+			      nil nil nil)
+			     ("Yahoo japan" "https://news.yahoo.co.jp/rss/topics/domestic.xml"
+			      nil nil nil)
+			     ))
     )
 )
   
