@@ -51,22 +51,23 @@
     (org-global-properties . '(("TASK_KIND_ALL" . "やること 勉強 休憩 生活")))
     (org-clock-clocktable-default-properties . '(:maxlevel 4 :scope agenda :block today :link t :fileskip0 t))
     (org-agenda-clockreport-parameter-plist . org-clock-clocktable-default-properties)
-    :config
-    (setq org-agenda-files (directory-files-recursively "~/Dropbox" "^[^#].\+\\.org$"))
-    (setq org-enforce-todo-dependencies t)
-    (setq org-todo-keywords
+    (org-enforce-todo-dependencies . t)
+    (org-todo-keywords .
   	  '((sequence "TODO" "SOMEDAY" "WAITING(w@)" "|" "DONE(d!)" "OutOfDate")
 	    (sequence "ReadLater(a!)" "Reading(i!)" "|" "Read(d!)")
 	    (sequence "ToBuy" "Bought(!)")))
-
-    (setq org-link-abbrev-alist
+    (org-link-abbrev-alist .
   	  '(("github" . "https://github.com/%s")
   	    ("youtube" . "https://youtube.com/watch?v=%s")
   	    ("wikipedia" . "https://en.wikipedia.org/wiki/%s")
   	    ("archw" . "https://wiki.archlinux.jp/index.php/%s")
   	    ;; commit, ghFile, twitter, misskeyとかも欲しい
   	    ))
-	
+    (org-latex-compiler . "xelatex")
+
+    :config
+    (setq org-agenda-files (directory-files-recursively "~/Dropbox" "^[^#].\+\\.org$"))
+
     (org-babel-do-load-languages
      'org-babel-load-languages
      '((awk . t)
