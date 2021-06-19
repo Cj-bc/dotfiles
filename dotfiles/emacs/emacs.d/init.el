@@ -72,7 +72,7 @@
      'org-babel-load-languages
      '((awk . t)
        (shell . t)
-       (haskell . t)
+       (haskell . t)))
 
     (leaf org-roam
       :doc "Roam Research replica with Org-mode"
@@ -138,6 +138,8 @@
   (leaf programming
     :config
     (leaf haskell-mode :ensure t)
+    )
+
   (leaf newsticker
     :doc "A Newsticker for Emacs."
     :tag "builtin"
@@ -173,6 +175,7 @@
      ("C-c C-w l" . windmove-right)
     )
   )
+)
 
 (leaf configure-global-modes
   :config
