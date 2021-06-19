@@ -116,9 +116,18 @@
     :require t
     :config
     (evil-mode)
-    (leaf evil-org :ensure t)
     (evil--key 'insert (kbd "jk") 'evil-normal-state)
     (evil--key 'insert (kbd "jj") 'evil-normal-state)
+
+    (leaf evil-org :ensure t
+      :hook
+      (org-mode-hook . evil-org-mode)
+      (org-agenda-mode-hook . evil-org-mode)
+
+      :config
+      (require 'evil-org-agenda)
+      (evil-org-agenda-set-keys)
+      )
     (leaf evil-surround :ensure t
       :after 'evil-core
       :config
