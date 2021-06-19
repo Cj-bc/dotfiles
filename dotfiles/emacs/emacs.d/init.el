@@ -38,6 +38,9 @@
   :config
   (leaf leaf-tree :ensure t
     )
+  (leaf leaf-convert :ensure t
+    )
+
   (leaf ddskk :ensure t
     :bind
     ("C-x C-j" . skk-mode)
