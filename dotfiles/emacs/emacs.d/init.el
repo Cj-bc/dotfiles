@@ -113,9 +113,12 @@
     (prog-mode-hook . rainbow-delimiters-mode))
 
   (leaf evil :ensure t
+    :require t
     :config
     (evil-mode)
     (leaf evil-org :ensure t)
+    (evil--key 'insert (kbd "jk") 'evil-normal-state)
+    (evil--key 'insert (kbd "jj") 'evil-normal-state)
     (leaf evil-surround :ensure t
       :after 'evil-core
       :config
