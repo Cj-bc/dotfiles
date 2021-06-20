@@ -1,0 +1,417 @@
+#+PROPERTY: header-args :tangle "init.el"
+* Emacs Config
+  
+  このファイルはEmacsの設定ファイルです。
+  ~~/.emacs.d/init.el~ に書き出されます。
+
+  基本的には[[https://emacs-jp.github.io/tips/emacs-in-2020][Emacs-jp の 2020年代のEmacs入門]] をベースにしています。
+
+  
+** パッケージ管理
+   Emacsのパッケージ管理には [[https://github.com/conao3/leaf.el][leaf.el]] を使っているため、
+   その初期化をします。
+
+   #+begin_src elisp
+      ;; Leaf configurations
+      (eval-and-compile
+	(when (or load-file-name byte-compile-current-file)
+	  (setq user-emacs-directory
+	   (expand-file-name
+	       (file-name-directory (or load-file-name byte-compile-current-file)
+	 )))))
+
+      (setq tab-width 4)
+      (eval-and-compile
+	  (customize-set-variable
+	      'package-archives '(("gnu"   . "https://elpa.gnu.org/packages/")
+				 ("melpa" . "https://melpa.org/packages/")
+				 ("org"   . "https://orgmode.org/elpa/")
+				 ))
+	  (package-initialize)
+	  (unless (package-installed-p 'leaf)
+	      (package-refresh-contents)
+	      (package-install 'leaf)
+	      )
+
+	  (leaf leaf-keywords
+		:ensure t
+		:init
+		;; Optional packages if you want to use :hydra, :el-get, :blackout,,,
+
+		:init
+		(leaf-keywords-init)
+		)
+	  )
+
+   #+end_src
+*** ヘルパー用パッケージ
+    パッケージ管理のヘルパー用パッケージを入れます。
+    
+**** ツリー表示をする
+     生成後の ~init.el~ について、imenuを用いたアウトライン表示を提供してくれます。
+    #+begin_src elisp
+      (leaf leaf-tree :ensure t)
+    #+end_src
+
+**** package.elから自動でleafを生成する
+    #+begin_src elisp
+      (leaf leaf-convert :ensure t)
+    #+end_src
+
+** 独自ライブラリの読み込み
+
+   自分で作成したライブラリを読み込みます。
+   
+   #+begin_src elisp
+     (leaf load-my-lib
+       :config
+       (setq load-path (append load-path '("~/.emacs.d/lib"))))
+   #+end_src
+
+** 入力メゾット
+*** DDSKK
+
+    #+begin_src elisp
+      (leaf ddskk :ensure t
+	  :bind
+	  ("C-x C-j" . skk-mode)
+	  :config
+	  (add-to-list 'auto-mode-alist '(".*\\.dict$" . skk-jisyo-edit-mode))
+	  )
+    #+end_src
+** Org mode!!!
+   Org modeが使いたくてEmacsに来たので...
+   
+   #+begin_src elisp :noweb tangle
+     (leaf org
+	      :bind
+	      (("C-c SPC o a" . org-agenda-list)
+	       ("C-c SPC o t" . org-todo-list)
+	       )
+	      :hook
+	      <<leaf-org-hook>>
+	      :custom
+	      (org-global-properties . '(("TASK_KIND_ALL" . "やること 勉強 休憩 生活")))
+	      <<leaf-org-custom>>
+	      :config
+	      <<leaf-org-config>>
+	    )
+   #+end_src
+*** テーブル書式
+    :PROPERTIES:
+    :header-args: :tangle no
+    :END:
+    
+    #+HEADER: :noweb-ref leaf-org-custom
+    #+begin_src elisp
+    (org-clock-clocktable-default-properties . '(:maxlevel 4 :scope agenda :block today :link t :fileskip0 t))
+    (org-agenda-clockreport-parameter-plist . org-clock-clocktable-default-properties)
+    #+end_src
+
+*** Agenda設定
+    :PROPERTIES:
+    :header-args: :tangle no
+    :END:
+    
+**** Agendaでは行数を表示しないように
+    #+HEADER: :noweb-ref leaf-org-hook
+    #+begin_src elisp
+      (org-agenda-mode-hook . (lambda () (display-line-numbers-mode -1)))
+    #+end_src
+
+**** Agenda file
+     #+HEADER: :noweb-ref leaf-org-config
+     #+begin_src elisp
+       (setq org-agenda-files (directory-files-recursively "~/Dropbox" "^[^#].\+\\.org$"))
+     #+end_src
+
+*** Todo設定
+    #+HEADER: :noweb-ref leaf-org-custom
+    #+HEADER: :tangle no
+    #+begin_src elisp
+      (org-enforce-todo-dependencies . t)
+    #+end_src
+
+**** Todoの種類
+     Todoは複数種類作ってあり、リストから自動的に生成されます。
+
+     リストの中で ~_DELIMITER_~ のみは特別な記号として扱われ、
+     ~|~ (TODOとDONEを分けるやつ)に変換されます。(直接書けないため)
+***** タスク管理用TODO
+      #+NAME: Org-todoKeywords-list-todo
+      + TODO
+      + SOMEDAY
+      + WAITING
+      + _DELIMITER_
+      + DONE
+      + OutOfDate
+
+      リストの内容はStringのListとして渡される
+      
+***** リーディングリスト
+      #+NAME: Org-todoKeywords-list-reading
+      + ReadLater(a!)
+      + Reading(i!)
+      + _DELIMITER_
+      + Read(d!)
+
+***** 買い物リスト
+      #+NAME: Org-todoKeywords-list-shopping
+      + ToBuy
+      + _DELIMITER_
+      + Bought(!)
+
+***** 設定
+
+      #+HEADER: :var todo=Org-todoKeywords-list-todo
+      #+HEADER: :var reading=Org-todoKeywords-list-reading
+      #+HEADER: :var shoppingList=Org-todoKeywords-list-shopping
+      #+NAME: Org-todoKeywords-construct
+      #+begin_src elisp :tangle no
+	(defun replaceDelimiter (target-list)
+	  (seq-map (lambda (a) (if (string= (car a) "_DELIMITER_")
+				   '"|" (car a)))
+		   target-list))
+
+	      (seq-map (lambda (x) (append '(sequence)
+					   (replaceDelimiter x)))
+		       (list todo reading shoppingList))
+      #+end_src
+
+      #+HEADER: :noweb-ref leaf-org-custom
+      #+begin_src elisp :noweb yes :tangle no
+	(org-todo-keywords . '<<Org-todoKeywords-construct()>>)
+      #+end_src
+
+*** 外部Link
+    :PROPERTIES:
+    :header-args: :tangle no
+    :END:
+
+    #+HEADER:  :noweb-ref leaf-org-custom
+    #+begin_src elisp
+      (org-link-abbrev-alist .
+	'(("github" . "https://github.com/%s")
+	  ("youtube" . "https://youtube.com/watch?v=%s")
+	  ("wikipedia" . "https://en.wikipedia.org/wiki/%s")
+	  ("archw" . "https://wiki.archlinux.jp/index.php/%s")
+		  ;; commit, ghFile, twitter, misskeyとかも欲しい
+	  ))
+
+    #+end_src
+
+*** 出力設定
+    :PROPERTIES:
+    :header-args: :tangle no
+    :END:
+**** LaTeX
+     :PROPERTIES:
+     :header-args: :tangle no
+     :END:
+     デフォルトのpdflatexだと日本語を使えないので、
+     XeLaTeXにします
+
+     #+HEADER: :noweb-ref leaf-org-custom
+     #+begin_src elisp
+       (org-latex-compiler . "xelatex")
+     #+end_src
+*** Org babel
+    :PROPERTIES:
+    :header-args: :tangle no
+    :END:
+    #+HEADER: :noweb-ref leaf-org-config
+    #+begin_src elisp
+      (org-babel-do-load-languages
+       'org-babel-load-languages
+       '((awk . t)
+	 (shell . t)
+	 (haskell . t)))
+    #+end_src
+*** Org roamでメモ管理
+    :PROPERTIES:
+    :header-args: :tangle no
+    :END:
+    [[https://www.orgroam.com/][org roam]]は、
+
+    #+HEADER: :noweb-ref leaf-org-config
+    #+begin_src elisp
+      (leaf org-roam
+	:emacs>= 26.1
+	:ensure t
+	:custom
+	(org-roam-link-auto-replace . nil)
+	:config
+	(setq org-roam-directory (file-truename "~/Dropbox/roam"))
+	(org-roam-mode)
+	)
+    #+end_src
+*** org pomodoro
+    :PROPERTIES:
+    :header-args: :tangle no
+    :END:
+
+    #+HEADER: :noweb-ref leaf-org-config
+    #+begin_src elisp
+      (leaf org-pomodoro
+	    :req "alert-0.5.10" "cl-lib-0.5"
+	    :ensure t
+	    :after alert
+	    :hook
+	    (org-pomodoro-finished-hook
+	     . (lambda () (start-process "org-pomodoro-finished-notification" nil
+					 "dunstify" "--appname" "Emacs.org-pomodoro"
+					 "Pomodoro finished! Start break time...")))
+	    (org-pomodoro-break-finished-hook
+	     . (lambda () (start-process "org-pomodoro-break-finished-notification" nil
+					 "dunstify" "--appname" "Emacs.org-pomodoro"
+					 "Pomodoro break is over!")))
+	    )
+    #+end_src
+** SNS
+*** Twittering-mode
+    ツイッターやろうぜ!!お前ボールな!!
+    #+begin_src elisp
+      (leaf twittering-mode :ensure t)
+    #+end_src
+*** newsticker
+    RSSフィード閲覧用
+
+    #+NAME: 購読中のフィード
+    + [[https://www.moguravr.com/feed][Mogura VR]]
+    + [[https://news.yahoo.co.jp/rss/topics/top-picks.xml][Yahoo Top picks]]
+    + [[https://news.yahoo.co.jp/rss/topics/domestic.xml][Yahoo Japan]]
+    
+    #+begin_src elisp :tangle no
+      (defun parse-feed-link (feed-link)
+      "Parse Feed link formatted in Org's link"
+       (let ((retrive-link-and-name-regex "\\[\\[\\([^]]+\\)\\]\\[\\([^]]+\\)\\]\\]"))
+	 ((string-match retrieve-link-and-name-regex feed-link)
+	  ((match-string 2 feed-link) . (match-string 1 feed-link))
+	  )
+	 )
+       )
+
+
+      (parse-feed-link "[[hoge][aaa]]")
+    #+end_src
+
+
+    
+    #+begin_src elisp
+      (leaf newsticker
+	  :doc "A Newsticker for Emacs."
+	  :tag "builtin"
+	  :added "2021-05-20"
+	  :hook (newsticker-mode-hook . (lambda () (toggle-truncate-lines -1)))
+	  :custom
+	  (newsticker-url-list . '(("Mogura VR" "https://www.moguravr.com/feed" nil nil nil)
+				   ("Yahoo top picks" "https://news.yahoo.co.jp/rss/topics/top-picks.xml"
+				    nil nil nil)
+				   ("Yahoo japan" "https://news.yahoo.co.jp/rss/topics/domestic.xml"
+				    nil nil nil)
+				   ))
+	  )
+    #+end_src
+
+** Evil
+   これがあるから引っ越せた。
+   #+begin_src elisp
+     (leaf evil :ensure t
+	 :require t
+	 :config
+	 (evil-mode)
+	 (evil-define-key 'insert (kbd "jk") 'evil-normal-state)
+	 (evil-define-key 'insert (kbd "jj") 'evil-normal-state)
+
+	 (leaf evil-org :ensure t
+	   :hook
+	   (org-mode-hook . evil-org-mode)
+	   (org-agenda-mode-hook . evil-org-mode)
+
+	   :config
+	   (require 'evil-org-agenda)
+	   (evil-org-agenda-set-keys)
+	   )
+	 (leaf evil-surround :ensure t
+	   :after 'evil-core
+	   :config
+	   (evil-surround-mode)
+	   (evil-define-key 'visual evil-surround-mode-map "sd" 'evil-surround-delete)
+	   (evil-define-key 'visual evil-surround-mode-map "sa" 'evil-surround-region)
+	 )
+	 (leaf evil-numbers :ensure t
+	   :after 'evil-core
+	   :config
+	   (evil-define-key 'normal 'global
+	     (kbd "C-c C-a") 'evil-numbers/inc-at-pt
+	     (kbd "C-c C-x") 'evil-numbers/dec-at-pt
+	     (kbd "C-c g C-a") 'evil-numbers/inc-at-pt-incremental
+	     (kbd "C-c g C-x") 'evil-numbers/dec-at-pt-incremental
+	     )
+	   )
+	 )
+   #+end_src
+** 見栄えを良くする
+*** rainbow-delimiters
+    Lisp系の言語は括弧の対応がとても見辛いので、
+    対応する括弧に色を付けてもらう
+    
+    #+begin_src elisp
+	(leaf rainbow-delimiters :ensure t
+	  :hook
+	  (prog-mode-hook . rainbow-delimiters-mode))
+    #+end_src
+** プログラミング言語毎の設定
+*** Haskell
+    #+begin_src elisp
+      (leaf haskell-mode :ensure t)
+    #+end_src
+
+** Appearences
+   #+begin_src elisp
+     (leaf appearences
+       :config
+       (set-terminal-coding-system 'utf-8)
+       (set-keyboard-coding-system 'utf-8)
+       (prefer-coding-system 'utf-8)
+       (add-to-list 'default-frame-alist '(font . "Cica-20"))
+     )
+   #+end_src
+
+** keybinds
+   #+begin_src elisp
+     (leaf window-movements
+	 :doc "vim-like window movement keybinds"
+	 :bind
+	 (("C-c C-w h" . windmove-left)
+	  ("C-c C-w j" . windmove-down)
+	  ("C-c C-w k" . windmove-up)
+	  ("C-c C-w l" . windmove-right)
+	 )
+       )
+   #+end_src
+
+** configure global modes
+   #+begin_src elisp
+     (leaf configure-global-modes
+       :config
+       (column-number-mode)
+       (global-display-line-numbers-mode t)
+       (setq display-line-numbers-type 'relative)
+       (menu-bar-mode 0)
+       (tool-bar-mode 0)
+       (scroll-bar-mode 0)
+       (auto-revert-mode)
+
+       (show-paren-mode)
+       (skk-mode)
+     )
+   #+end_src
+
+** custom, etc
+   #+begin_src elisp
+     (setq custom-file "~/.emacs.d/custom.el")
+     (load custom-file)
+
+     (provide 'init)
+   #+end_src
