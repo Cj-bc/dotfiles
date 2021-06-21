@@ -101,10 +101,36 @@
     :PROPERTIES:
     :header-args: :tangle no
     :END:
+
+    下のテーブルに追加すれば自動的に追加される。
+    ~org-clock-clocktable-default-properties~ と ~org-agenda-clockreport-parameter-plist~ は同じにしてある。
     
+    #+NAME: leaf-org-table-format
+    | :maxlevel  | 4      | タイムを個別で表示する深さ                |
+    | :scope     | agenda | 統計の範囲をagendaファイル全体に          |
+    | :block     | today  | 今日のCLOCKのみを統計対象にする           |
+    | :link      | t      | 各CLOCKへのリンクを付与する               |
+    | :fileskip0 | t      | CLOCKがなかったファイルを表示しないように |
+
+    #+NAME: leaf-org-table-format--get-properties-list
+    #+begin_src elisp :var inp=leaf-org-table-format :tangle no
+      (defun read-org-var (raw)
+	"Read variable from org mode. 
+	 As it returns number if it is number, otherwise string"
+	(cond ((stringp raw) (read raw))
+	       (t raw))
+	)
+
+      (seq-map 'read-org-var
+	       (flatten-list
+		     (seq-map (lambda (row)
+				 (reverse (cdr (reverse row))))
+			      inp)))
+    #+end_src
+
     #+HEADER: :noweb-ref leaf-org-custom
-    #+begin_src elisp
-    (org-clock-clocktable-default-properties . '(:maxlevel 4 :scope agenda :block today :link t :fileskip0 t))
+    #+begin_src elisp :results output :noweb yes :tangle no
+    (org-clock-clocktable-default-properties . '<<leaf-org-table-format--get-properties-list()>>)
     (org-agenda-clockreport-parameter-plist . org-clock-clocktable-default-properties)
     #+end_src
 
