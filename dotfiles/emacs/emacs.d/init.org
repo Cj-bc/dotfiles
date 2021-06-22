@@ -225,6 +225,17 @@
 	  ))
 
     #+end_src
+    
+**** Ghq対応
+
+     ghq:Cj-bc/dotfiles みたいなリンクを貼れるようにする。
+     
+     #+begin_src elisp
+       (leaf org-ghq :ensure t)
+     #+end_src
+     
+***** TODO Projectile連携する
+     現在はDiredが開くけど、多分Projectileと連携させた方が良くなりそう
 
 *** 出力設定
     :PROPERTIES:
