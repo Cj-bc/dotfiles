@@ -21,7 +21,7 @@
   (setq ghq-project-path (org-ghq--run-shell-command "bash" "-c" (concat "ghq list | grep " name "| tr -d '\n'")))
   (unless (eq "" ghq-project-path)
     (let* ((ghq-root-path (org-ghq--run-shell-command "ghq" "root"))
-	  (ghq-full-path (concat ghq-root-path ghq-project-path)))
+	  (ghq-full-path (concat ghq-root-path "/" ghq-project-path)))
       (dired (expand-file-name ghq-full-path))))
       )
   
