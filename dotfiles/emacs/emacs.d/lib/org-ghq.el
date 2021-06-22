@@ -12,10 +12,9 @@
   (eval (append '(call-process) (list cmd) '(nil bn nil) args))
   (setq str (with-current-buffer bn (buffer-string)))
   (kill-buffer bn)
-  str
+  (remove ?\n str)
   )
 
-; WIP
 (defun org-ghq-open (name _)
   "Visit the ghq directory"
   (setq ghq-project-path (org-ghq--run-shell-command "bash" "-c" (concat "ghq list | grep " name "| tr -d '\n'")))
