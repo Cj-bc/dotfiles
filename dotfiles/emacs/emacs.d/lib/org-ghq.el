@@ -2,7 +2,7 @@
 
 (org-link-set-parameters "ghq"
 			 :follow #'org-ghq-open
-			 :export #'org-ghq-export
+			 ; :export #'org-ghq-export
 			 )
 
 ; WIP
@@ -25,7 +25,7 @@
       )
   
 
-; WIP
-(defun org-ghq-export (link description format _)
-  "Export a ghq project path from org files.
-   It will link to the 'remote' url if available"
+; ; WIP
+; (defun org-ghq-export (link description format _)
+;   "Export a ghq project path from org files.
+;    It will link to the 'remote' url if available"
