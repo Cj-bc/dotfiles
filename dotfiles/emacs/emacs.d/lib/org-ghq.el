@@ -29,3 +29,5 @@
 ; (defun org-ghq-export (link description format _)
 ;   "Export a ghq project path from org files.
 ;    It will link to the 'remote' url if available"
+
+(provide 'org-ghq)
