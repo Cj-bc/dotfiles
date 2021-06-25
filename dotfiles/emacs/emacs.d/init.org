@@ -280,8 +280,13 @@
 	:config
 	(setq org-roam-directory (file-truename "~/Dropbox/roam"))
 	(org-roam-mode)
+	(evil-define-key 'normal 'global (kbd "SPC r d") 'org-roam-dailies-find-today)
+	(evil-define-key 'normal 'global (kbd "SPC r s") 'org-roam-find-file)
+	(evil-define-key 'visual 'org-roam-mode-map (kbd "RET") 'org-roam-insert-immediate)
 	)
     #+end_src
+
+
 *** org pomodoro
     :PROPERTIES:
     :header-args: :tangle no
