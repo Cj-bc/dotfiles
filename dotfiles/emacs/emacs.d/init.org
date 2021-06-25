@@ -448,6 +448,27 @@
      )
    #+end_src
 
+   
+*** DocView
+
+    基本的には、Evilとの相性や誤キー押下を防ぐための設定
+    #+begin_src elisp
+      (leaf doc-view
+	:doc "Document viewer for Emacs"
+	:tag "builtin"
+	:added "2021-06-25"
+	:bind (:doc-view-mode-map
+	       ("k" . doc-view-previous-page)
+	       ("j" . doc-view-next-page)
+	       ("w" . nil)
+	       )
+	:hook (doc-view-minor-mode-hook
+	       . (lambda () (display-line-numbers-mode "Disable")))
+	)
+    #+end_src
+
+
+
 ** custom, etc
    #+begin_src elisp
      (setq custom-file "~/.emacs.d/custom.el")
