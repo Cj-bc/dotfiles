@@ -362,9 +362,6 @@
 	 :require t
 	 :config
 	 (evil-mode)
-	 (evil-define-key 'insert (kbd "jk") 'evil-normal-state)
-	 (evil-define-key 'insert (kbd "jj") 'evil-normal-state)
-
 	 (leaf evil-org :ensure t
 	   :hook
 	   (org-mode-hook . evil-org-mode)
