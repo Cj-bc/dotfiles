@@ -380,6 +380,7 @@
 	   (evil-surround-mode)
 	   (evil-define-key 'visual 'global "sd" 'evil-surround-delete)
 	   (evil-define-key 'visual 'global "sa" 'evil-surround-region)
+	   (evil-define-key 'visual 'global "sr" 'evil-surround-change)
 	 )
 	 (leaf evil-numbers :ensure t
 	   :after 'evil-core
