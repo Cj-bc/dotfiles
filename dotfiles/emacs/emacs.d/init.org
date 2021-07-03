@@ -417,6 +417,21 @@
        (add-to-list 'default-frame-alist '(font . "Cica-20"))
      )
    #+end_src
+   
+*** テーマ
+    #+begin_src elisp
+      (leaf doom-themes
+	; :doc "an opinionated pack of modern color-themes"
+	; :req "emacs-25.1" "cl-lib-0.5"
+	; :tag "faces" "custom themes" "emacs>=25.1"
+	; :added "2021-06-21"
+	; :url "https://github.com/hlissner/emacs-doom-themes"
+	; :emacs>= 25.1
+	:ensure t
+	:config
+	(load-theme 'doom-dracula)
+	)
+    #+end_src
 
 ** keybinds
    #+begin_src elisp
