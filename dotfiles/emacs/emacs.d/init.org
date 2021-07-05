@@ -430,7 +430,7 @@
 	; :emacs>= 25.1
 	:ensure t
 	:config
-	(load-theme 'doom-dracula)
+	(load-theme 'doom-dracula t)
 	)
     #+end_src
 
