@@ -24,3 +24,4 @@
 	)
     (string-join (list blog-post-dir-path post-file-name) "/")))
   
+(provide 'blog)
