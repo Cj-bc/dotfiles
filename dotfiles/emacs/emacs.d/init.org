@@ -230,8 +230,9 @@
 
      ghq:Cj-bc/dotfiles みたいなリンクを貼れるようにする。
      
+     #+HEADER:  :noweb-ref leaf-org-config
      #+begin_src elisp
-       (leaf org-ghq :ensure t)
+       (leaf org-ghq :require t)
      #+end_src
      
 ***** TODO Projectile連携する
