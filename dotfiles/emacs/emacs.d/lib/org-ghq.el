@@ -8,11 +8,10 @@
 ; WIP
 (defun org-ghq--run-shell-command (cmd &rest args)
   "Run shell command and return its stdout"
-  (setq bn (get-buffer-create "--run-shell-command"))
-  (eval (append '(call-process) (list cmd) '(nil bn nil) args))
-  (setq str (with-current-buffer bn (buffer-string)))
-  (kill-buffer bn)
-  (remove ?\n str)
+  (with-temp-buffer 
+    (eval (append '(call-process) (list cmd) '(nil nil nil) args))
+    (remove ?\n (buffer-string))
+    )
   )
 
 (defun org-ghq-open (name _)
