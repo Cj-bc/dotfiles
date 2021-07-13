@@ -60,7 +60,8 @@ keybinds =
 my_manageHook :: ManageHook
 my_manageHook = composeAll $ [
       manageSpawn
-      -- className =? "Brave-browser" --> doShift (show Web)
+    , className =? "Brave-browser" --> doShift (show Web)
+    , className =? "qutebrowser"   --> doShift (show Web)
     , className =? "Slack"             --> doShift (show Communication)
     , className =? "discord"           --> doShift (show Communication)
     , title     =? "Discord -- Brave"  --> doShift (show Communication)
@@ -74,7 +75,7 @@ my_startuphook = do
     -- Consider using 'XMonad.Actions.TagWindows' instead.
     spawnOn (show . fromEnum $ Info) "conky"
     spawnOnce "termite"
-    spawnOnce "brave"
+    spawnOnce "qutebrowser -B ~/.local/share/qutem/profiles/Cj-bc"
     spawnOnce "slack"
     spawnOnce "discord"
     return () >> checkKeymap cfg keybinds
