@@ -24,6 +24,7 @@ cfg = def
     , startupHook = my_startuphook
     , layoutHook = my_layoutHook
     , mouseBindings = my_mouseBinds
+    , modMask = mod4Mask
     }
     `removeKeysP` ["M-p"]
     `additionalKeysP` keybinds
