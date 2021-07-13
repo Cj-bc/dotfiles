@@ -57,11 +57,11 @@ keybinds =
     ,("M-C-g", sequence (fmap sendMessage [(ModifyWindowBorderEnabled not), (ModifyScreenBorderEnabled not)]) >>
                sendMessage ToggleGaps >> pure ())
     ,("M-f", namedScratchpadAction my_scratchpads "floating terminal")
-    ,("<XF86AudioLowerVolume>", spawn "pactl set-sink-volume 0 -5%; pactl set-sink-mute 0 false")
-    ,("<XF86AudioRaiseVolume>", spawn "pactl set-sink-volume 0 +5%; pactl set-sink-mute 0 false")
-    ,("<XF86AudioMute>", spawn "pactl set-sink-mute 0 toggle")
-    ,("M-<XF86AudioMute>", spawn "pactl set-source-mute 0 toggle")
-    ,("<XF86MonBrightnessUp>", spawn "brightnessctl set +1%")
+    ,("<XF86AudioLowerVolume>",  spawn "pactl set-sink-volume 0 -5%; pactl set-sink-mute 0 false")
+    ,("<XF86AudioRaiseVolume>",  spawn "pactl set-sink-volume 0 +5%; pactl set-sink-mute 0 false")
+    ,("<XF86AudioMute>",         spawn "pactl set-sink-mute 0 toggle")
+    ,("M-<XF86AudioMute>",       spawn "pactl set-source-mute 0 toggle")
+    ,("<XF86MonBrightnessUp>",   spawn "brightnessctl set +1%")
     ,("<XF86MonBrightnessDown>", spawn "brightnessctl set 1%-")
     ]
 
@@ -81,12 +81,12 @@ my_manageHook = composeAll $ [
 my_startuphook = do
     -- This doesn't work...
     -- Consider using 'XMonad.Actions.TagWindows' instead.
+    return () >> checkKeymap cfg keybinds
     spawnOn (show . fromEnum $ Info) "conky"
     spawnOnce "termite"
     spawnOnce "qutebrowser -B ~/.local/share/qutem/profiles/Cj-bc"
     spawnOnce "slack"
     spawnOnce "discord"
-    return () >> checkKeymap cfg keybinds
 
 my_layoutHook = addSpacing $ onWorkspace (show Web) fullWithGap defaultLayout
     where
