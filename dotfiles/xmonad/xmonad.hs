@@ -14,6 +14,8 @@ import XMonad.Util.NamedScratchpad (NamedScratchpad(NS), customFloating, namedSc
 -- Looks and feel
 import XMonad.Layout.Gaps (gaps, Direction2D(..), GapMessage(ToggleGaps))
 import XMonad.Layout.Spacing
+import XMonad.Prompt.Pass
+import XMonad.Prompt
 
 main = xmonad =<< xmobar cfg
 
@@ -39,12 +41,16 @@ my_workspaces = map show $ enumFrom Info
 -- isMuted :: IO Bool
 -- isMuted = "pactl list sinks | head -n 9 | tail -n 1 | tail --bytes 4"
 
+my_xpconfig :: XPConfig
+my_xpconfig = def { font = "xft:Cica:" }
+  
 keybinds :: [(String, X ())]
 keybinds =
     [("M-w p", spawn "LANG=C rofi -show run")
     ,("M-w v", spawn "LANG=C clipmenu")
     ,("M-w q", spawn "LANG=C rofi -show power-manager")
     ,("M-<XF86PowerOff>", spawn "LANG=C rofi -show power-manager")
+    ,("M-w S-1",  passPrompt my_xpconfig)
     ,("M-S-/", spawn "dunstify \"This will be command for showing all keybinds, but currently I can't provide it\"")
     ,("M-C-3", spawn "import -window root ~/Picture/screenshots/$(date +%Y%m%d%H%M%S).png")
     ,("M-C-4", spawn "import ~/Picture/screenshots/$(date +%Y%m%d%H%M%S).png")
