@@ -41,7 +41,7 @@ my_workspaces = map show $ enumFrom Info
 keybinds :: [(String, X ())]
 keybinds =
     [("M-w p", spawn "LANG=C rofi -show run")
-    ,("M-w v", spawn "LANG=C clipmenu && xsel -o")
+    ,("M-w v", spawn "LANG=C clipmenu")
     ,("M-w q", spawn "LANG=C rofi -show power-manager")
     ,("M-S-/", spawn "dunstify \"This will be command for showing all keybinds, but currently I can't provide it\"")
     ,("M-C-3", spawn "import -window root ~/Picture/screenshots/$(date +%Y%m%d%H%M%S).png")
