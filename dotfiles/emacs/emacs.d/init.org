@@ -411,6 +411,26 @@
        )
    #+end_src
 
+
+** Ivy
+   #+begin_src elisp
+     (leaf counsel
+       :ensure t
+       :config
+       (ivy-mode 1)
+       :bind
+       (("M-x" . counsel-M-x)
+	("C-x C-f" . counsel-find-file)
+	("C-h f" . counsel-describe-function)
+	("C-h v" . counsel-describe-variable)
+	)
+       :config
+       (setq ivy-re-builders-alist
+	     '((t . ivy--regex-fuzzy)))
+       (when (featurep 'projectile)
+	 (setq projectile-completion-system 'ivy))
+       )
+   #+end_src
 ** 見栄えを良くする
 *** rainbow-delimiters
     Lisp系の言語は括弧の対応がとても見辛いので、
