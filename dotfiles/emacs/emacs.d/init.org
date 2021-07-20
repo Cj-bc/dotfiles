@@ -392,6 +392,25 @@
 	   )
 	 )
    #+end_src
+** Projectile
+   #+begin_src elisp
+     (leaf projectile
+       :ensure t
+       :custom
+       (projectile-project-search-path . (list ghq-root))
+       (projectile-enable-caching . t)
+       (projectile-project-root-files-bottom-up
+	. '("stack.yaml"
+	    ".git"        ; Git VCS root dir
+	    ".projectile" ; projectile project marker
+	    ))
+
+       :config
+       (projectile-mode +1)
+       (define-key projectile-mode-map (kbd "M-p") 'projectile-command-map)
+       )
+   #+end_src
+
 ** 見栄えを良くする
 *** rainbow-delimiters
     Lisp系の言語は括弧の対応がとても見辛いので、
