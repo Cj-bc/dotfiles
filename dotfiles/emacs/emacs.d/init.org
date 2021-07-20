@@ -431,6 +431,26 @@
 	 (setq projectile-completion-system 'ivy))
        )
    #+end_src
+** Lsp mode
+   #+begin_src elisp
+     (leaf lsp-mode
+       :commands lsp
+       :ensure t
+       :hook
+       (sh-mode-hook . lsp)
+       (haskell-mode-hook . lsp)
+       :config
+       (evil-define-key 'insert 'global (kbd "C-x C-o") 'completion-at-point)
+       )
+   #+end_src
+   #+begin_src elisp
+     (leaf lsp-bash
+       :config
+       (defun lsp-bash--bash-ls-server-command ()
+	 '("~/.local/share/vim-lsp-settings/servers/bash-language-server/bash-language-server" "start"))
+
+       )
+   #+end_src
 ** 見栄えを良くする
 *** rainbow-delimiters
     Lisp系の言語は括弧の対応がとても見辛いので、
