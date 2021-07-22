@@ -288,14 +288,46 @@
 	:custom
 	(org-roam-link-auto-replace . nil)
 	:config
+	<<leaf-org-roam-config>>
 	(setq org-roam-directory (file-truename "~/Dropbox/roam"))
 	(org-roam-mode)
 	(evil-define-key 'normal 'global (kbd "SPC r d") 'org-roam-dailies-find-today)
 	(evil-define-key 'normal 'global (kbd "SPC r s") 'org-roam-find-file)
 	(evil-define-key 'visual 'org-roam-mode-map (kbd "RET") 'org-roam-insert-immediate)
+	(evil-define-key 'visual 'org-roam-mode-map (kbd "<S-return>") 'cjbc-org-roam-insert-immediate-private)
+	(evil-define-key 'normal 'global (kbd "SPC r l") 'org-roam)
 	)
     #+end_src
 
+**** Privete roamを作成するためのラッパー
+
+     Roamには、プライベートなノードをgpg保護された状態で保存する機能がある。
+     ただ、そのためには ~org-roam-encrypt-files~ を手動で変えなきゃいけなくて面倒だたので、
+     関数にした。
+
+     #+noweb-ref: leaf-org-roam-config
+     #+begin_src elisp
+       (defun cjbc-org-roam-private (&optional initial-prompt completions filter-fn no-confirm) 
+	 "Small wrapper of 'org-roam-find-file' that will create new post with private(encrypted)"
+	 (interactive)
+	 (setq-local org-roam-encrypt-files--old-value org-roam-encrypt-files)
+	 (setq org-roam-encrypt-files t)
+	 (org-roam-capture)
+	 (setq org-roam-encrypt-files org-roam-encrypt-files--old-value)
+	 )
+     #+end_src
+
+     #+noweb-ref: leaf-org-roam-config
+     #+begin_src elisp
+       (defun cjbc-org-roam-insert-immediate-private (&optional initial-prompt completions filter-fn no-confirm)
+	   "Small wrapper of 'org-roam-insert-immediate' to insert new encrypted post"
+	 (interactive)
+	 (setq-local org-roam-encrypt-files--old-value org-roam-encrypt-files)
+	 (setq org-roam-encrypt-files t)
+	 (org-roam-insert-immediate)
+	 (setq org-roam-encrypt-files org-roam-encrypt-files--old-value)
+	 )
+     #+end_src
 
 *** org pomodoro
     :PROPERTIES:
