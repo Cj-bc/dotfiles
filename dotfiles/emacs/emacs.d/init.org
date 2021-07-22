@@ -466,6 +466,13 @@
     #+begin_src elisp
       (leaf haskell-mode :ensure t)
     #+end_src
+*** TypeScript
+    #+begin_src elisp
+      (leaf typescript-mode
+	:ensure t
+	)
+    #+end_src
+
 
 ** Appearences
    #+begin_src elisp
