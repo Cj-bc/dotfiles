@@ -68,6 +68,15 @@
        (setq load-path (append load-path '("~/.emacs.d/lib"))))
    #+end_src
 
+   
+*** blog
+    #+begin_src elisp
+      (leaf blog
+	:require t
+	:custom
+	(blog-post-dir-path . "~/Documents/ghq/github.com/Cj-bc/blog/posts")
+	)
+    #+end_src
 ** 入力メゾット
 *** DDSKK
 
