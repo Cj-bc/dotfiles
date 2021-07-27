@@ -160,6 +160,21 @@
        (setq org-agenda-files (directory-files-recursively "~/Dropbox" "^[^#].\+\\.org$"))
      #+end_src
 
+**** Custom agenda
+
+     
+     #+HEADER: :noweb-ref leaf-org-custom
+     #+begin_src elisp
+       (org-agenda-custom-commands .
+				   '(("x"
+				     "全てのスケジュールを表示します"
+				     agenda
+				     ""
+				     ((org-agenda-span 'year)
+				     (org-agenda-entry-types '(:scheduled)))
+				     )
+				     ))
+     #+end_src
 *** Todo設定
     #+HEADER: :noweb-ref leaf-org-custom
     #+HEADER: :tangle no
