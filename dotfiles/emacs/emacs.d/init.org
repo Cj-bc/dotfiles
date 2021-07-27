@@ -173,8 +173,28 @@
 				     ((org-agenda-span 'year)
 				     (org-agenda-entry-types '(:scheduled)))
 				     )
+				     ("p"
+				      "プロジェクト固有のTODO"
+				      todo
+				      "TODO"
+				      ((org-agenda-files projectile-known-projects)
+				       (org-agenda-prefix-format '((todo . "%i %(format (cj-bc-org-agenda-get-project-name file)):\t")))
+				       )
+				      )
 				     ))
      #+end_src
+
+     ヘルパー用の関数。プロジェクト名を取得して、
+     #+HEADER: :noweb-ref leaf-org-config
+     #+begin_src elisp
+       (defun cj-bc-org-agenda-get-project-name (fullPath)
+	 "This is helper function just for my custom org-agenda-view.
+       Get project name from full path."
+
+	 (string-match "/\\([^/]+/\\)+\\([^/]+/[^/]+\\)/README\.org" fullPath)
+	 (match-string 2 fullPath))
+     #+end_src
+
 *** Todo設定
     #+HEADER: :noweb-ref leaf-org-custom
     #+HEADER: :tangle no
