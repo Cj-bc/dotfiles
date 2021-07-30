@@ -1,0 +1,35 @@
+#!/bin/bash
+#
+# qutem -- profile manager for qutebrowser
+#
+# This script is intended to be called by rofi
+
+profile_basedir=~/.local/share/qutem/profiles
+
+# profiles :: [String]
+profiles=($(find $profile_basedir -maxdepth 1 -type d ! -name profiles -exec basename {} \;))
+
+function contains() {
+  local -n list=$1
+  local target=$2
+
+  for i in ${list[@]}; do
+    [[ "$i" == "$target" ]] && return 0
+  done
+  return 1
+
+}
+
+case "$1" in
+  "" ) echo ${profiles[@]} | tr ' ' '\n'
+    ;;
+  * )
+    if $(contains profiles "$1"); then
+      # DON'T USE '&' to make it co-process!!
+      # '&' will make it run in 'sub-shell', but not co-process
+      coproc (qutebrowser -B "${profile_basedir}/$1")
+     else
+        notify-send -u normal "rofi-qutem" "Profile \"$1\" not found."
+    fi
+      ;;
+  esac
