@@ -20,9 +20,9 @@ This is dotfiles repository for my use.
 | Application launcher | rofi                         |
 | Filer                | ranger                       |
 
-* Todo [4/33]
+* Todo [12/45]
 
-** TODO [#A] Create power manager                                 :bin:
+** DONE [#A] Create power manager                                       :bin:
 ** TODO [xmonad/compositor] Add custom frame for X Window (by either compositor or application itself)
 ** DONE Add keybinding for backlight adjustment             :xmonad:
    - State "DONE"       from              [2021-05-17 月 16:15]
@@ -47,10 +47,10 @@ This is dotfiles repository for my use.
 ** TODO [xmonad] ぱっとメモとるためにvim若しくはemacsをぱっと開くアクションが欲しいあ
 ** TODO [bin] aurのPKGBUILDをターミナルから読めるやつほしい
 ** TODO [xmobar] テーマ使えるようにする
-** TODO Org babel使うようにしてみたい
+** DONE Org babel使うようにしてみたい
 ** TODO [#A] [vim] 自分でビルドする
 ** TODO [termite] 自分でビルドする
-** TODO org roam使えるようにしたい                                    :Emacs:
+** DONE org roam使えるようにしたい                                    :Emacs:
    vimwikiの方が良かったみたいなところもあるので、どちらも取り入れられそうなorg-roam試したい
 ** TODO クイックキャプチャ用のorg-capture                            :Emacs:
 ** TODO ~C-w~ でウィンドウ消さないようにする                    :qutebrowser:
@@ -59,7 +59,7 @@ This is dotfiles repository for my use.
 ** TODO MRU表示したい                                                           :Emacs:
 ** TODO スクショ一覧から一気に画像削除するやつほしい                    :bin:
    最初、fzfかな~と思ったけど有用なfzf検索はできないしあまりその必要はなさそう。
-** TODO org-todoに全てのgitレポジトリのTODOも掲載する                 :Emacs:
+** DONE org-todoに全てのgitレポジトリのTODOも掲載する                 :Emacs:
    ghqで管理してるディレクトリならすぐわかるので、そこのREADMEも範囲にいれる。
 
    これをやると、全体の管理が楽になる
@@ -71,12 +71,28 @@ This is dotfiles repository for my use.
    今だとEmacs見にいかなきゃで分かりづらいんです!!!
    hookとかないかな。
    
-** TODO 範囲選択→Roamファイル作成がしたい                             :Emacs:
+** DONE 範囲選択→Roamファイル作成がしたい                             :Emacs:
    毎回、新しいリンク作る時とか「これリンクにしたいんだった!!」って時に ~org-roam-insert~ するの面倒なので、
    vimwiki的にリンクを作ってほしい。
 
-** TODO Org-roam時、単語範囲選択→エンターでリンクを貼るvimwikiの動作をつけたい                       :Emacs:
+** DONE Org-roam時、単語範囲選択→エンターでリンクを貼るvimwikiの動作をつけたい :Emacs:
 
+** TODO Org-reportのClockTableをKawaii-nizeする                     :Emacs:
+   Unicode使ったり絵文字使ったり。
+   参考: https://qiita.com/Ladicle/items/feb5f9dce9adf89652cf
+** TODO Org-roamから一つ単語を拾って表示する						     :bash:
+** TODO ウィンドウを隠すためのWorkspace作る                          :xmonad:
+** TODO Zoom用レイアウトとWorkspace                                  :xmonad:
+** TODO Qutebrowserのpass連携                                   :qutebrowser:
+** DONE Org-roam-modeを起動時に設定する                               :Emacs:
+** TODO XMonadのProfileを分ける(配信用など)                          :xmonad:
+** TODO メモをすぐ取れるようにする                                   :xmonad:
+** TODO evilの設定 [0/2]                           :emacs:archlinux:
++ [ ] jk, jjでのエスケープ
++ [ ] ~C-u~ の有効化(適切かどうかも含めて
+** DONE org modeのTodoアイテムを増やす               :emacs:orgmode:環境構築:
+** TODO org-captureで各Projectile管理されたプロジェクトのREADMEにtodo追記したい :Emacs:
+   今は一々開かないといけなくて面倒
 * Installation
 
 **  macOS
