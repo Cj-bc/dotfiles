@@ -90,8 +90,11 @@ my_startuphook = do
 
 my_layoutHook = addSpacing $ onWorkspace (show Web) fullWithGap defaultLayout
     where
-        defaultLayout = fullWithGap ||| Tall def def def ||| Mirror (Tall def def def)
-        fullWithGap = gaps [(U, 20),(D, 20),(R, 20),(L, 20)] Full 
+        defaultLayout = fullWithGap
+                        ||| Tall def def def
+                        ||| Mirror (Tall def def def)
+        addGapOnewindow = gaps [(U, 20),(D, 20),(R, 20),(L, 20)]
+        fullWithGap = addGapOnewindow Full
         addSpacing = spacingRaw True (Border 0 10 10 10) True (Border 10 10 10 10) True
 
 my_scratchpads = [
