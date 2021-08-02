@@ -28,6 +28,7 @@ dependencies:
 - containers
 - X11
 - data-default
+- lens
 
 library:
   source-dirs: src
