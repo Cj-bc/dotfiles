@@ -14,6 +14,7 @@ import XMonad.Util.NamedScratchpad (NamedScratchpad(NS), customFloating, namedSc
 -- Looks and feel
 import XMonad.Layout.Gaps (gaps, Direction2D(..), GapMessage(ToggleGaps))
 import XMonad.Layout.Spacing
+import XMonad.Layout.Half (Half(..), HalfMessage(..))
 import XMonad.Layout.Mirrorable
 import XMonad.Prompt.Pass
 import XMonad.Prompt
@@ -51,6 +52,7 @@ keybinds =
     ,("M-w v", spawn "LANG=C clipmenu")
     ,("M-w q", spawn "LANG=C rofi -show power-manager")
     ,("M-<XF86PowerOff>", spawn "LANG=C rofi -show power-manager")
+    ,("M-w f", sendMessage ChangeLR)
     ,("M-w S-1",  passPrompt my_xpconfig)
     ,("M-S-/", spawn "dunstify \"This will be command for showing all keybinds, but currently I can't provide it\"")
     ,("M-C-3", spawn "import -window root ~/Picture/screenshots/$(date +%Y%m%d%H%M%S).png")
@@ -93,6 +95,7 @@ my_layoutHook = addSpacing $ onWorkspace (show Web) fullWithGap defaultLayout
     where
         defaultLayout = fullWithGap
                         ||| (mirrorable $ Tall def def def)
+                        ||| (mirrorable . addGapOnewindow $ Half def)
         addGapOnewindow = gaps [(U, 20),(D, 20),(R, 20),(L, 20)]
         fullWithGap = addGapOnewindow Full
         addSpacing = spacingRaw True (Border 0 10 10 10) True (Border 10 10 10 10) True
