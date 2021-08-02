@@ -21,13 +21,16 @@ import XMonad.Layout.LayoutModifier
 import Control.Lens ((&), (%~), each, _2, _1)
 
 
--- | Wrapper 
-newtype Mirrorable a = Mirrorable Bool deriving (Show, Read)
+-- | 'LayoutModifier' that should be
+newtype Mirrorable a = Mirrorable Bool -- ^ is it mirrored?
+                     deriving (Show, Read)
 
+-- | Message that is required for this Layout
 data MirroableMsg = ToggleMirror
 
 instance Message MirroableMsg
 
+-- | Smart constructor for 'Mirrorable'
 mirrorable :: l a -> ModifiedLayout Mirrorable l a
 mirrorable = ModifiedLayout (Mirrorable False)
 
