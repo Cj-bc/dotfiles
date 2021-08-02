@@ -15,6 +15,7 @@ import XMonad.Util.NamedScratchpad (NamedScratchpad(NS), customFloating, namedSc
 import XMonad.Layout.Gaps (gaps, Direction2D(..), GapMessage(ToggleGaps))
 import XMonad.Layout.Spacing
 import XMonad.Layout.Half (Half(..), HalfMessage(..))
+import XMonad.Layout.TwoPane
 import XMonad.Layout.Mirrorable
 import XMonad.Prompt.Pass
 import XMonad.Prompt
@@ -96,6 +97,7 @@ my_layoutHook = addSpacing $ onWorkspace (show Web) fullWithGap defaultLayout
         defaultLayout = fullWithGap
                         ||| (mirrorable $ Tall def def def)
                         ||| (mirrorable . addGapOnewindow $ Half def)
+                        ||| (mirrorable $ TwoPane (1/100) (1/2))
         addGapOnewindow = gaps [(U, 20),(D, 20),(R, 20),(L, 20)]
         fullWithGap = addGapOnewindow Full
         addSpacing = spacingRaw True (Border 0 10 10 10) True (Border 10 10 10 10) True
