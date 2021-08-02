@@ -32,9 +32,7 @@ mirrorable :: l a -> ModifiedLayout Mirrorable l a
 mirrorable = ModifiedLayout (Mirrorable False)
 
 instance LayoutModifier Mirrorable a where
-  modifyLayout (Mirrorable isMirrored) ws rect = do
-    res <- runLayout ws (modifier rect)
-    return $ res&_1.each._2%~modifier
+  modifyLayout (Mirrorable isMirrored) ws rect = (_1.each._2%~modifier) <$> runLayout ws (modifier rect)
     where
       modifier = if isMirrored then mirrorRect else id
 
