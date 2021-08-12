@@ -245,12 +245,25 @@
       + ToBuy
       + _DELIMITER_
       + Bought(!)
-
+	
+***** ノート・知識ベースの状態管理
+      更新が必要なのか、それとも最新なのか
+      必要なタグって何だろうか？
+      Wikiにあるようなシステムを想定している。
+      
+      #+NAME: Org-todoKeywords-list-noteStatus
+      + Outofdate
+      + Accuracy
+      + WIP
+      + _DELIMITER_
+      + Clean
+	
 ***** 設定
-
+      
       #+HEADER: :var todo=Org-todoKeywords-list-todo
       #+HEADER: :var reading=Org-todoKeywords-list-reading
       #+HEADER: :var shoppingList=Org-todoKeywords-list-shopping
+      #+HEADER: :var noteStatus=Org-todoKeywords-list-noteStatus
       #+NAME: Org-todoKeywords-construct
       #+begin_src elisp :tangle no
 	(defun replaceDelimiter (target-list)
@@ -260,7 +273,7 @@
 
 	      (seq-map (lambda (x) (append '(sequence)
 					   (replaceDelimiter x)))
-		       (list todo reading shoppingList))
+		       (list todo reading shoppingList noteStatus))
       #+end_src
 
       #+HEADER: :noweb-ref leaf-org-custom
