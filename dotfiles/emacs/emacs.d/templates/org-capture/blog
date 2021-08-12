@@ -1,0 +1,10 @@
+* %^{title}
+  :PROPERTIES:
+  :DATE: %U
+  :TAGS: %^G
+  :BLOG_POST_KIND: Memo
+  :BLOG_POST_PROGRESS: Empty
+  :BLOG_POST_STATUS: Normal
+  :END:
+  %^{BLOG_POST_KIND}p
+  %?
