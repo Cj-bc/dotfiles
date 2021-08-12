@@ -1,4 +1,4 @@
-#+PROPERTY: header-args :tangle "init.el"
+#+PROPERTY: header-args :tangle "init.el" :results silent
 * Emacs Config
   
   このファイルはEmacsの設定ファイルです。
