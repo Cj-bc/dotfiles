@@ -306,13 +306,180 @@
      :PROPERTIES:
      :header-args: :tangle no
      :END:
-     デフォルトのpdflatexだと日本語を使えないので、
-     XeLaTeXにします
 
-     #+HEADER: :noweb-ref leaf-org-custom
+     [[https://qiita.com/kawabata@github/items/1b56ec8284942ff2646b][org-mode で日本語LaTeXを出力する方法 @kawabata@github]]を参考に。
+
+     #+HEADER: :noweb-ref leaf-org-config
      #+begin_src elisp
-       (org-latex-compiler . "xelatex")
+       (setq TeX-engine 'luatex)
      #+end_src
+
+	 
+     #+HEADER: :noweb-ref leaf-org-config
+     #+begin_src elisp
+       ;; TODO: 依存を減らす
+       ;; caseが使いたいだけなので自作したい。
+       (require 'cl)
+
+
+       (defun remove-org-newlines-at-cjk-text (&optional _mode)
+	 "先頭が '*', '#', '|' でなく、改行の前後が日本の文字の場合はその改行を除去する。"
+	 (interactive)
+	 (goto-char (point-min))
+	 (while (re-search-forward "^\\([^|#*\n].+\\)\\(.\\)\n *\\(.\\)" nil t)
+	   (if (and (> (string-to-char (match-string 2)) #x2000)
+		    (> (string-to-char (match-string 3)) #x2000))
+	       (replace-match "\\1\\2\\3"))
+	   (goto-char (point-at-bol))))
+
+       (with-eval-after-load "ox"
+	 (add-hook 'org-export-before-processing-hook 'remove-org-newlines-at-cjk-text))
+
+       (defun my-latexmk-command (latex options &optional target output)
+	 "Generate LatexMk command for LATEX, (LatexMk-)OPTIONS, TARGET and OUTPUT directory."
+	 (let* ((latex-options
+		 '("-src-specials" "-file-line-error" "-interaction=nonstopmode"
+		   "-shell-escape"))
+					       ; "-shell-escape" "-synctex=1"))
+		(luatex-option
+		 (mapconcat (lambda (opt) (concat "-" opt)) latex-options " "))
+		(latex-option
+		 (mapconcat 'identity latex-options " ")))
+	   (concat "latexmk -gg " options " "
+		   (case latex
+		     ('euptex "-pdfdvi -latex='uplatex ")
+		     ('xetex  "-pdf -pdflatex='xelatex ")
+		     ('luatex "-pdf -pdflatex='lualatex "))
+		   (case latex
+		     ('luatex luatex-option)
+		     (t latex-option))
+		   "' "
+		   (if output (concat "-output-directory=" output " "))
+		   target)))
+
+
+       (defvar my-org-latex-math-symbols-packages-alist
+	 '(("" "amssymb"   t)
+	   ("" "amsmath"   t)
+	   ("" "amsxtra"   t)
+					       ; ("" "bussproofs" t)
+	   ("" "isomath"   t)
+	   ("" "latexsym"  t)
+	   ("" "marvosym"  t)
+	   ("" "stmaryrd"  t)
+	   ("" "textcomp"  t)
+	   ("" "wasysym"   t)))
+
+       (with-eval-after-load "ox-latex"
+  
+	 (add-hook 'org-export-before-processing-hook 'my-ox-latex-tex-engine-setup)
+  
+	 (defun my-ox-latex-tex-engine-setup (backend)
+	   (message "backend=%s" backend)
+	   (when (equal backend 'latex)
+	     (my-ox-latex-engine-set TeX-engine)))
+  
+	 (defun my-ox-latex-engine-set (latex)
+	   "Set up LATEX environments."
+    
+	   (setq org-latex-default-packages-alist
+		 `(
+		   ,@(case latex
+		       ('luatex '(("" "luacode" t)
+				  ("" "luatexja-otf" t)))
+		       ;; noCJKchecksiingle で、\meaning の非BMPでの分割を抑止
+		       ('xetex  '(("AutoFallBack=true,noCJKchecksingle" "zxjatype" t)
+				  ))
+		       ('euptex '(("uplatex,multi" "otf" t)
+				  ("" "okumacro" t)))
+		       (t nil))
+					       ; ("" "fixltx2e" nil)
+		   ("" "fancyvrb" t)
+		   ("" "longtable" nil)
+		   ("" "float" nil)
+		   ;; LaTeX標準文字記号マクロ
+		   ,@my-org-latex-math-symbols-packages-alist
+		   ;;("" "tabulary" t)
+		   ;;("" "bigtabular" t)
+		   ("" "multicol" t)
+		   ;; その他のデフォルトで使用するLaTeX設定（以下は例）
+		   ,(concat
+		     "\\tolerance=1000\n"
+		     "\\providecommand{\\alert}[1]{\\textbf{#1}}\n"
+		     "\\fvset{xleftmargin=2em}\n")
+		   ))
+    
+	   (setq org-latex-packages-alist
+		 `(
+		   ,(case latex
+		      ('xetex  '("" "graphicx"  t))
+		      ('euptex '("dvipdfmx" "graphicx"  t))
+		      (t       '("pdftex" "graphicx"  t)))
+		   ;; hyperref: PDFでハイパーリンクを生成
+		   ;; colorlinks=true を入れると、graphicx が dvipdfmx で失敗するので注意。
+		   ,(case latex
+		      ('luatex '("pdftex,pdfencoding=auto" "hyperref" t))
+		      ('euptex '("dvipdfm" "hyperref"  t))
+		      ('xetex  '("xetex" "hyperref"  t))
+		      (t       '("pdftex" "hyperref"  t)))
+		   ;; biblatex を入れると重くなるので、使用するorg-fileのみ、
+		   ;; `+LATEX_HEADER: \usepackage[backend=biber]{biblatex}'
+		   ;; で入れるほうが良い。。
+		   ;; ("backend=biber", "biblatex" t)
+		   ("" "listings")
+		   ("" "color")))
+    
+	   (setq org-latex-classes
+		 `(("article"
+		    ,(case latex
+		       ('luatex "\\documentclass{ltjsarticle}\n")
+		       ('xetex  "\\documentclass[a4paper]{bxjsarticle}\n")
+		       ('euptex "\\documentclass[a4j,uplatex]{jsarticle}\n")
+		       (t       "\\documentclass[11pt]{article}"))
+		    ("\\section{%s}" . "\\section*{%s}")
+		    ("\\subsection{%s}" . "\\subsection*{%s}")
+		    ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+		    ("\\paragraph{%s}" . "\\paragraph*{%s}")
+		    ("\\subparagraph{%s}" . "\\subparagraph*{%s}"))
+		   ("report"
+		    ,(case latex
+		       ('luatex "\\documentclass{ltjsarticle}\n")
+		       ('xetex  "\\documentclass[a4paper]{bxjsreport}\n")
+		       ('euptex "\\documentclass[11pt,report,uplatex]{jsbook}\n")
+		       (t       "\\documentclass[11pt]{article}"))
+		    ("\\section{%s}" . "\\section*{%s}")
+		    ("\\subsection{%s}" . "\\subsection*{%s}")
+		    ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+		    ("\\paragraph{%s}" . "\\paragraph*{%s}")
+		    ("\\subparagraph{%s}" . "\\subparagraph*{%s}"))
+		   ("book"
+		    ,(case latex
+		       ('luatex "\\documentclass{ltjsarticle}\n")
+		       ('xetex  "\\documentclass[9pt,a4paper]{bxjsreport}\n")
+		       ('euptex "\\documentclass[9pt,a5j,uplatex]{jsbook}\n")
+		       (t       "\\documentclass[11pt]{book}"))
+		    ("\\part{%s}" . "\\part*{%s}")
+		    ("\\chapter{%s}" . "\\chapter*{%s}")
+		    ("\\section{%s}" . "\\section*{%s}")
+		    ("\\subsection{%s}" . "\\subsection*{%s}")
+		    ("\\subsubsection{%s}" . "\\subsubsection*{%s}"))
+		   ("beamer"
+		    ,(concat
+		      (case latex
+			('xetex
+			 "\\documentclass[compress,xdvipdfmx]{beamer}\n")
+			(t "\\documentclass[compress,dvipdfmx]{beamer}\n"))
+		      "\\usetheme{AnnArbor}\n"
+		      "\\setbeamertemplate{navigation symbols}{}\n"
+		      "[NO-PACKAGES]\n"
+		      "\\usepackage{graphicx}\n")
+		    org-beamer-sectioning)))
+    
+	   (setq org-latex-pdf-process (list (my-latexmk-command TeX-engine "-pv" "%f" "%o"))))
+  
+	 )
+     #+end_src
+
 *** captureテンプレート
     :LOGBOOK:
     CLOCK: [2021-07-05 Mon 12:34]--[2021-07-05 Mon 12:34] =>  0:00
