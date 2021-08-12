@@ -593,6 +593,16 @@
 					 "Pomodoro break is over!")))
 	    )
     #+end_src
+
+*** TODO Org timeline -- Agendaでタイムライン表示する
+    #+begin_src elisp :tangle no
+      (leaf org-timeline
+	:ensure t
+	:hook
+	(org-agenda-finalize-hook . (lambda () (org-timeline-insert-timeline)))
+	)
+    #+end_src
+
 ** SNS
 *** Twittering-mode
     ツイッターやろうぜ!!お前ボールな!!
