@@ -45,19 +45,19 @@
 	   )
 
     #+end_src
-*** ヘルパー用パッケージ
-    パッケージ管理のヘルパー用パッケージを入れます。
+**** ヘルパー用パッケージ
+     パッケージ管理のヘルパー用パッケージを入れます。
     
-**** ツリー表示をする
-     生成後の ~init.el~ について、imenuを用いたアウトライン表示を提供してくれます。
-    #+begin_src elisp
-      (leaf leaf-tree :ensure t)
-    #+end_src
+***** ツリー表示をする
+      生成後の ~init.el~ について、imenuを用いたアウトライン表示を提供してくれます。
+     #+begin_src elisp
+       (leaf leaf-tree :ensure t)
+     #+end_src
 
-**** package.elから自動でleafを生成する
-    #+begin_src elisp
-      (leaf leaf-convert :ensure t)
-    #+end_src
+***** package.elから自動でleafを生成する
+     #+begin_src elisp
+       (leaf leaf-convert :ensure t)
+     #+end_src
 
 ** 独自ライブラリの読み込み
 
