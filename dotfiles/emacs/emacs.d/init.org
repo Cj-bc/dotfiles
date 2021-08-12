@@ -603,6 +603,16 @@
 	)
     #+end_src
 
+*** TODO 通知設定: org-notifications
+    #+begin_src elisp :tangle no
+      (leaf org-notifications
+	:ensure t
+	:after org
+	:config
+	(org-notifications-start)
+	)
+    #+end_src
+
 ** SNS
 *** Twittering-mode
     ツイッターやろうぜ!!お前ボールな!!
