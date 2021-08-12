@@ -526,6 +526,7 @@
 	(kill-emacs-hook . org-roam-teardown)
 	:custom
 	(org-roam-link-auto-replace . nil)
+	(org-roam-graph-viewer . "qutebrowser")
 	:config
 	<<leaf-org-roam-config>>
 	(setq org-roam-directory (file-truename "~/Dropbox/roam"))
