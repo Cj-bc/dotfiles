@@ -374,12 +374,16 @@
     :header-args: :tangle no
     :END:
 
+    今手元にオーディオプレイヤー入れてなかったので
+    一旦 ~org-pomodoro-play-sounds~ はオフに。
+    
     #+HEADER: :noweb-ref leaf-org-config
     #+begin_src elisp
       (leaf org-pomodoro
 	    :req "alert-0.5.10" "cl-lib-0.5"
 	    :ensure t
 	    :after alert
+	    :custom (org-pomodoro-play-sounds . nil)
 	    :hook
 	    (org-pomodoro-finished-hook
 	     . (lambda () (start-process "org-pomodoro-finished-notification" nil
