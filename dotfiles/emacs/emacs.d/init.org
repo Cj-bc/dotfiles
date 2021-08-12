@@ -325,17 +325,19 @@
       (leaf org-roam
 	:emacs>= 26.1
 	:ensure t
+	:hook
+	(after-init-hook . org-roam-setup)
+	(kill-emacs-hook . org-roam-teardown)
 	:custom
 	(org-roam-link-auto-replace . nil)
 	:config
 	<<leaf-org-roam-config>>
 	(setq org-roam-directory (file-truename "~/Dropbox/roam"))
-	(org-roam-mode)
-	(evil-define-key 'normal 'global (kbd "SPC r d") 'org-roam-dailies-find-today)
-	(evil-define-key 'normal 'global (kbd "SPC r s") 'org-roam-find-file)
-	(evil-define-key 'visual 'org-roam-mode-map (kbd "RET") 'org-roam-insert-immediate)
+	(evil-define-key 'normal 'global (kbd "SPC r d") 'org-roam-dailies-goto-today)
+	(evil-define-key 'normal 'global (kbd "SPC r s") 'org-roam-node-find)
+	(evil-define-key 'visual 'org-roam-mode-map (kbd "RET") 'org-roam-node-insert)
 	(evil-define-key 'visual 'org-roam-mode-map (kbd "<S-return>") 'cjbc-org-roam-insert-immediate-private)
-	(evil-define-key 'normal 'global (kbd "SPC r l") 'org-roam)
+	(evil-define-key 'normal 'global (kbd "SPC r l") 'org-roam-buffer-toggle)
 	)
     #+end_src
 
