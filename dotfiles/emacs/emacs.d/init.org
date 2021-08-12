@@ -546,6 +546,12 @@
 	:ensure t
 	)
     #+end_src
+*** Toml
+    #+begin_src elisp
+      (leaf toml-mode
+	:ensure t
+	)
+    #+end_src
 
 
 ** Appearences
