@@ -471,17 +471,14 @@
 	 )
    #+end_src
 ** Projectile
-   #+begin_src elisp
+   #+begin_src elisp :noweb yes 
      (leaf projectile
        :ensure t
        :custom
        (projectile-project-search-path . (list ghq-root))
        (projectile-enable-caching . t)
        (projectile-project-root-files-bottom-up
-	. '("stack.yaml"
-	    ".git"        ; Git VCS root dir
-	    ".projectile" ; projectile project marker
-	    ))
+        . '<<leaf-projectile-project-root-files-bottom-up--list()>>)
 
        :config
        (projectile-mode +1)
@@ -490,6 +487,20 @@
    #+end_src
 
 
+   #+NAME: leaf-projectile-project-root-files-bottom-up--list
+   #+HEADER: :var l=leaf-projectile-project-root-files-bottom-up--names
+   #+begin_src elisp :results value :tangle no
+     (seq-map 'car l)
+   #+end_src
+
+*** プロジェクトルートと見做すファイルの一覧
+
+    #+NAME: leaf-projectile-project-root-files-bottom-up--names
+    + angular.json
+    + stack.yaml
+    + .git
+    + .projectile
+      
 ** Ivy
    #+begin_src elisp
      (leaf counsel
