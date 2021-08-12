@@ -207,7 +207,7 @@
 	 "This is helper function just for my custom org-agenda-view.
        Get project name from full path."
 
-	 (string-match "/\\([^/]+/\\)+\\([^/]+/[^/]+\\)/README\.org" fullPath)
+	 (string-match "/\\([^/]+/\\)+\\([^/]+/[^/]+\\)/" fullPath)
 	 (match-string 2 fullPath))
      #+end_src
 
