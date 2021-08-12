@@ -92,7 +92,7 @@
 ** Org mode!!!
    Org modeが使いたくてEmacsに来たので...
    
-   #+begin_src elisp :noweb tangle
+   #+begin_src elisp :noweb yes
      (leaf org
 	      :bind
 	      (("C-c SPC o a" . org-agenda-list)
