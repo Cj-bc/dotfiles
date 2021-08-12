@@ -4,8 +4,7 @@
   このファイルはEmacsの設定ファイルです。
   ~~/.emacs.d/init.el~ に書き出されます。
 
-  基本的には[[https://emacs-jp.github.io/tips/emacs-in-2020][Emacs-jp の 2020年代のEmacs入門]] をベースにしています。
-
+  基本的には[[https://emacs-jp.github.io/tips/emacs-in-2020][Emacs-jp の 2020年代のEmacs入門]] と [[https://www.youtube.com/channel/UCAiiOTio8Yu69c3XnR7nQBQ][SystemCrafters]]をベースにしています。
   
 ** 設定ファイル設定  
 *** パッケージ管理
