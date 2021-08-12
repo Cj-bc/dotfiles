@@ -186,7 +186,18 @@
 				       (org-agenda-prefix-format '((todo . "%i %(format (cj-bc-org-agenda-get-project-name file)):\t")))
 				       )
 				      )
+				     ("b"
+				      "ブログ記事の進捗管理"
+				      tags
+				      "+LEVEL=1-BLOG_POST_PROGRESS=\"Published\""
+				      ((org-agenda-files
+					(directory-files (concat (ghq-root) "/github.com/Cj-bc/blog/posts") t "\.org$")
+					)
+				       (org-agenda-prefix-format '((search . "%i ")))
+				       (org-overriding-columns-format "%BLOG_POST_PROGRESS %TAGS %ITEM")
+				      )
 				     ))
+				   )
      #+end_src
 
      ヘルパー用の関数。プロジェクト名を取得して、
