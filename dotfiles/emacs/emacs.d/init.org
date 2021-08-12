@@ -7,43 +7,44 @@
   基本的には[[https://emacs-jp.github.io/tips/emacs-in-2020][Emacs-jp の 2020年代のEmacs入門]] をベースにしています。
 
   
-** パッケージ管理
-   Emacsのパッケージ管理には [[https://github.com/conao3/leaf.el][leaf.el]] を使っているため、
-   その初期化をします。
+** 設定ファイル設定  
+*** パッケージ管理
+    Emacsのパッケージ管理には [[https://github.com/conao3/leaf.el][leaf.el]] を使っているため、
+    その初期化をします。
 
-   #+begin_src elisp
-      ;; Leaf configurations
-      (eval-and-compile
-	(when (or load-file-name byte-compile-current-file)
-	  (setq user-emacs-directory
-	   (expand-file-name
-	       (file-name-directory (or load-file-name byte-compile-current-file)
-	 )))))
+    #+begin_src elisp
+       ;; Leaf configurations
+       (eval-and-compile
+	 (when (or load-file-name byte-compile-current-file)
+	   (setq user-emacs-directory
+	    (expand-file-name
+		(file-name-directory (or load-file-name byte-compile-current-file)
+	  )))))
 
-      (setq tab-width 4)
-      (eval-and-compile
-	  (customize-set-variable
-	      'package-archives '(("gnu"   . "https://elpa.gnu.org/packages/")
-				 ("melpa" . "https://melpa.org/packages/")
-				 ("org"   . "https://orgmode.org/elpa/")
-				 ))
-	  (package-initialize)
-	  (unless (package-installed-p 'leaf)
-	      (package-refresh-contents)
-	      (package-install 'leaf)
-	      )
+       (setq tab-width 4)
+       (eval-and-compile
+	   (customize-set-variable
+	       'package-archives '(("gnu"   . "https://elpa.gnu.org/packages/")
+				  ("melpa" . "https://melpa.org/packages/")
+				  ("org"   . "https://orgmode.org/elpa/")
+				  ))
+	   (package-initialize)
+	   (unless (package-installed-p 'leaf)
+	       (package-refresh-contents)
+	       (package-install 'leaf)
+	       )
 
-	  (leaf leaf-keywords
-		:ensure t
-		:init
-		;; Optional packages if you want to use :hydra, :el-get, :blackout,,,
+	   (leaf leaf-keywords
+		 :ensure t
+		 :init
+		 ;; Optional packages if you want to use :hydra, :el-get, :blackout,,,
 
-		:init
-		(leaf-keywords-init)
-		)
-	  )
+		 :init
+		 (leaf-keywords-init)
+		 )
+	   )
 
-   #+end_src
+    #+end_src
 *** ヘルパー用パッケージ
     パッケージ管理のヘルパー用パッケージを入れます。
     
