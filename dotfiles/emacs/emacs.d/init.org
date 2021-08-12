@@ -302,6 +302,24 @@
      #+begin_src elisp
        (org-latex-compiler . "xelatex")
      #+end_src
+*** captureテンプレート
+    :LOGBOOK:
+    CLOCK: [2021-07-05 Mon 12:34]--[2021-07-05 Mon 12:34] =>  0:00
+    :END:
+    #+HEADER: :tangle no :noweb-ref leaf-org-custom
+    #+begin_src elisp
+      (org-capture-templates .
+			     '(("d" "default" plain
+				(file "capture.org")
+				"")
+			       ("b" "blog post" plain
+				(function blog-visit-new-post)
+				(file "~/.emacs.d/templates/org-capture/blog")
+				:clock-in t
+				:clock-resume t
+				)
+			       ))
+    #+end_src
 *** Org babel
     :PROPERTIES:
     :header-args: :tangle no
