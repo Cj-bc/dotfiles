@@ -24,11 +24,11 @@ main = xmonad =<< xmobar cfg
 
 cfg = def
     { terminal = "termite"
-    , workspaces = my_workspaces
-    , manageHook = my_manageHook
-    , startupHook = my_startuphook
-    , layoutHook = my_layoutHook
-    , mouseBindings = my_mouseBinds
+    , workspaces = myWorkspaces
+    , manageHook = myManageHook
+    , startupHook = myStartuphook
+    , layoutHook = myLayoutHook
+    , mouseBindings = myMouseBinds
     , modMask = mod4Mask
     }
     `removeKeysP` ["M-p"]
@@ -36,7 +36,7 @@ cfg = def
 
 
 data WorkspaceNames = Info | Editor | Web | Communication | Media deriving (Show, Eq, Ord, Enum)
-my_workspaces = map show $ enumFrom Info
+myWorkspaces = map show $ enumFrom Info
 
 -- I want to create this function to show notification
 -- Want to split this into other module, but I don't know how to read it along with xmonad
@@ -44,9 +44,9 @@ my_workspaces = map show $ enumFrom Info
 -- isMuted :: IO Bool
 -- isMuted = "pactl list sinks | head -n 9 | tail -n 1 | tail --bytes 4"
 
-my_xpconfig :: XPConfig
-my_xpconfig = def { font = "xft:Cica:" }
-  
+myXpconfig :: XPConfig
+myXpconfig = def { font = "xft:Cica:" }
+
 keybinds :: [(String, X ())]
 keybinds =
     [("M-w p", spawn "LANG=C rofi -show run")
@@ -54,13 +54,13 @@ keybinds =
     ,("M-w q", spawn "LANG=C rofi -show power-manager")
     ,("M-<XF86PowerOff>", spawn "LANG=C rofi -show power-manager")
     ,("M-w f", sendMessage ChangeLR)
-    ,("M-w S-1",  passPrompt my_xpconfig)
+    ,("M-w S-1",  passPrompt myXpconfig)
     ,("M-S-/", spawn "dunstify \"This will be command for showing all keybinds, but currently I can't provide it\"")
     ,("M-C-3", spawn "import -window root ~/Picture/screenshots/$(date +%Y%m%d%H%M%S).png")
     ,("M-C-4", spawn "import ~/Picture/screenshots/$(date +%Y%m%d%H%M%S).png")
     ,("M-C-g", sequence (fmap sendMessage [(ModifyWindowBorderEnabled not), (ModifyScreenBorderEnabled not)]) >>
                sendMessage ToggleGaps >> pure ())
-    ,("M-f", namedScratchpadAction my_scratchpads "floating terminal")
+    ,("M-f", namedScratchpadAction myScratchpads "floating terminal")
     ,("<XF86AudioLowerVolume>",  spawn "pactl set-sink-volume 0 -5%; pactl set-sink-mute 0 false")
     ,("<XF86AudioRaiseVolume>",  spawn "pactl set-sink-volume 0 +5%; pactl set-sink-mute 0 false")
     ,("<XF86AudioMute>",         spawn "pactl set-sink-mute 0 toggle")
@@ -69,8 +69,8 @@ keybinds =
     ,("<XF86MonBrightnessDown>", spawn "brightnessctl set 1%-")
     ]
 
-my_manageHook :: ManageHook
-my_manageHook = composeAll $ [
+myManageHook :: ManageHook
+myManageHook = composeAll $ [
       manageSpawn
     , className =? "Brave-browser" --> doShift (show Web)
     , className =? "qutebrowser"   --> doShift (show Web)
@@ -79,10 +79,10 @@ my_manageHook = composeAll $ [
     , title     =? "Discord -- Brave"  --> doShift (show Communication)
     , className =? "Dunst"             --> doFloat
     , className =? "Conky"             --> doShift (show Info)
-    , namedScratchpadManageHook my_scratchpads
+    , namedScratchpadManageHook myScratchpads
     ]
 
-my_startuphook = do
+myStartuphook = do
     -- This doesn't work...
     -- Consider using 'XMonad.Actions.TagWindows' instead.
     return () >> checkKeymap cfg keybinds
@@ -92,7 +92,7 @@ my_startuphook = do
     spawnOnce "slack"
     spawnOnce "discord"
 
-my_layoutHook = addSpacing $ onWorkspace (show Web) fullWithGap defaultLayout
+myLayoutHook = addSpacing $ onWorkspace (show Web) fullWithGap defaultLayout
     where
         defaultLayout = fullWithGap
                         ||| (mirrorable $ Tall def def def)
@@ -102,14 +102,14 @@ my_layoutHook = addSpacing $ onWorkspace (show Web) fullWithGap defaultLayout
         fullWithGap = addGapOnewindow Full
         addSpacing = spacingRaw True (Border 0 10 10 10) True (Border 10 10 10 10) True
 
-my_scratchpads = [
+myScratchpads = [
     NS "floating terminal" "termite -t 'floating-terminal'" (title =? "floating-terminal")
     (customFloating $ W.RationalRect (1/6) (1/6) (2/3) (2/3))
     ]
 
 -- | Mouse bindings: Extending default
-my_mouseBinds :: XConfig Layout -> M.Map (KeyMask, Button) (Window -> X ())
-my_mouseBinds (XConfig {XMonad.modMask = modMask}) = M.fromList
+myMouseBinds :: XConfig Layout -> M.Map (KeyMask, Button) (Window -> X ())
+myMouseBinds (XConfig {XMonad.modMask = modMask}) = M.fromList
     -- mod-button1 %! Set the window to floating mode and move by dragging
     [ ((modMask, button1), \w -> focus w >> mouseMoveWindow w
                                           >> windows W.shiftMaster)
