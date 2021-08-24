@@ -17,6 +17,9 @@ import XMonad.Layout.Spacing
 import XMonad.Layout.Half (Half(..), HalfMessage(..))
 import XMonad.Layout.TwoPane
 import XMonad.Layout.Mirrorable
+import XMonad.Layout.BoringWindows
+import XMonad.Actions.Minimize
+import XMonad.Layout.Minimize
 import XMonad.Prompt.Pass
 import XMonad.Prompt
 
@@ -54,6 +57,8 @@ keybinds =
     ,("M-w q", spawn "LANG=C rofi -show power-manager")
     ,("M-<XF86PowerOff>", spawn "LANG=C rofi -show power-manager")
     ,("M-w f", sendMessage ChangeLR)
+    ,("M-w h", withFocused minimizeWindow)
+    ,("M-w M-h", withLastMinimized maximizeWindow)
     ,("M-w S-1",  passPrompt myXpconfig)
     ,("M-S-/", spawn "dunstify \"This will be command for showing all keybinds, but currently I can't provide it\"")
     ,("M-C-3", spawn "import -window root ~/Picture/screenshots/$(date +%Y%m%d%H%M%S).png")
@@ -92,7 +97,8 @@ myStartuphook = do
     spawnOnce "slack"
     spawnOnce "discord"
 
-myLayoutHook = addSpacing $ onWorkspace (show Web) fullWithGap defaultLayout
+
+myLayoutHook = minimize . boringWindows $ addSpacing $ onWorkspace (show Web) fullWithGap defaultLayout
     where
         defaultLayout = fullWithGap
                         ||| (mirrorable $ Tall def def def)
