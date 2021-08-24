@@ -90,7 +90,7 @@ myManageHook = composeAll $ [
 myStartuphook = do
     -- This doesn't work...
     -- Consider using 'XMonad.Actions.TagWindows' instead.
-    return () >> checkKeymap cfg keybinds
+    checkKeymap cfg keybinds
     spawnOn (show . fromEnum $ Info) "conky"
     spawnOnce "termite"
     spawnOnce "qutebrowser -B ~/.local/share/qutem/profiles/Cj-bc"
