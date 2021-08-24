@@ -18,6 +18,7 @@ import XMonad.Layout.Half (Half(..), HalfMessage(..))
 import XMonad.Layout.TwoPane
 import XMonad.Layout.Mirrorable
 import XMonad.Layout.BoringWindows
+import XMonad.Layout.Info
 import XMonad.Actions.Minimize
 import XMonad.Layout.Minimize
 import XMonad.Prompt.Pass
@@ -98,7 +99,10 @@ myStartuphook = do
     spawnOnce "discord"
 
 
-myLayoutHook = minimize . boringWindows $ addSpacing $ onWorkspace (show Web) fullWithGap defaultLayout
+myLayoutHook = minimize . boringWindows . addSpacing
+               . onWorkspace (show Web) fullWithGap
+               $ onWorkspace (show Info) (addGapOnewindow InfoWorkspace)
+               defaultLayout
     where
         defaultLayout = fullWithGap
                         ||| (mirrorable $ Tall def def def)
