@@ -29,6 +29,8 @@ data Whitelist a = Whitelist {
   query :: [Query Bool] -- ^ list of 'Query'
   } deriving (Show, Read)
 
+whitelist :: [Query Bool] -> l a -> ModifiedLayout Whitelist l a
+whitelist qs = ModifiedLayout (Whitelist qs)
 
 instance LayoutModifier Whitelist Window where
   modifyLayout (Whitelist qs) w r = do
