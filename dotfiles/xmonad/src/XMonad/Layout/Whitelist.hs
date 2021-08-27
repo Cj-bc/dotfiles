@@ -55,9 +55,8 @@ instance LayoutModifier Whitelist Window where
         -- Filter all 'Window's by 'Query'
         windows' <- matchQueries qs (focus stack':up stack' ++ down stack') :: X (MatchResult Window)
 
-        let updateWindowset s = foldl (flip delete) (windowset s) $ didn't windows'
         -- Remove filtered 'Window's from 'WindowSet' to hide them
-        modify (\s -> s { windowset = updateWindowset s })
+        windows (\w -> foldl (flip delete) w $ didn't windows')
 
         -- Be sure to store 'didn\'t' items in Layout so that they can be retrieved later
         underlyingResult <- runLayout (w { stack = S.filter (`elem` matched windows') stack'}) r
