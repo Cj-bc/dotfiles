@@ -20,9 +20,10 @@ import Graphics.X11.Xlib
 import Control.Monad ( foldM )
 import XMonad (modify, gets)
 import XMonad.Core
-    ( runQuery, LayoutClass(runLayout), Query, X, XState(windowset), Message )
+    ( runQuery, LayoutClass(runLayout), Query, X, XState(windowset), Message
+    , fromMessage)
 import XMonad.Layout.LayoutModifier
-    ( LayoutModifier(modifyLayoutWithUpdate), ModifiedLayout(..) )
+    ( LayoutModifier(modifyLayoutWithUpdate, pureMess), ModifiedLayout(..) )
 import XMonad.StackSet
     ( Stack(focus, up, down), Workspace(stack), delete
     , Screen(workspace), StackSet(current), filter)
@@ -35,6 +36,13 @@ data Whitelist a = Whitelist { query :: [Query Bool] -- ^ list of 'Query'
                              , hidden :: [Window]    -- ^ 'Window's that are filtered and hidden by 'Whitelist'
                              , active   :: Bool -- ^ 'True' if whitelist functionality is active
                              } deriving (Show, Read)
+
+-- | Messages to activate/deactivate whitelist functionality
+data WhitelistMsg = ToggleWhitelist
+                  | ActivateWhitelist
+                  | DeactivateWhitelist
+
+instance Message WhitelistMsg
 
 -- | Builds 'Whitelist' Layout modifier.
 whitelist :: [Query Bool] -> l a -> ModifiedLayout Whitelist l a
@@ -57,6 +65,13 @@ instance LayoutModifier Whitelist Window where
         -- Be sure to store 'didn\'t' items in Layout so that they can be retrieved later
         underlyingResult <- runLayout (w { stack = S.filter (`elem` matched windows') stack'}) r
         return (underlyingResult, Just (Whitelist qs (hidden <> didn't windows') True))
+
+  pureMess w@(Whitelist qs hidden isActive) msg =
+    case fromMessage msg of
+      Nothing                  -> Nothing
+      Just ToggleWhitelist     -> Just $ w {active = not isActive }
+      Just ActivateWhitelist   -> Just $ w {active = True }
+      Just DeactivateWhitelist -> Just $ w {active = False }
 
 head' :: [a] -> Maybe a
 head' [] = Nothing
