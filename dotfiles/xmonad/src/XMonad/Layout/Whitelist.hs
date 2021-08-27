@@ -13,8 +13,8 @@ A 'LayoutModifier' that will hide some 'Window's based on 'Query'.
 -}
 module XMonad.Layout.Whitelist where
 
-import Graphics.X11.Xlib
 import Control.Monad ( foldM )
+import Graphics.X11.Xlib ( Window )
 import XMonad (modify, gets)
 import XMonad.Core
     ( runQuery, LayoutClass(runLayout), Query, X, XState(windowset), Message
@@ -25,6 +25,7 @@ import XMonad.StackSet
     ( Stack(focus, up, down), Workspace(stack), delete
     , Screen(workspace), StackSet(current), filter, insertUp)
 import qualified XMonad.StackSet as S
+import XMonad.Operations (windows)
 
 instance Show a => Show (Query a)
 instance Read a => Read (Query a)
