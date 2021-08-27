@@ -25,12 +25,13 @@ import XMonad.StackSet
 instance Show a => Show (Query a)
 instance Read a => Read (Query a)
 
-data Whitelist a = Whitelist {
-  query :: [Query Bool] -- ^ list of 'Query'
-  } deriving (Show, Read)
+data Whitelist a = Whitelist { query :: [Query Bool] -- ^ list of 'Query'
+                             , hidden :: [Window]    -- ^ 'Window's that are filtered and hidden by 'Whitelist'
+                             , active   :: Bool -- ^ 'True' if whitelist functionality is active
+                             } deriving (Show, Read)
 
 whitelist :: [Query Bool] -> l a -> ModifiedLayout Whitelist l a
-whitelist qs = ModifiedLayout (Whitelist qs)
+whitelist qs = ModifiedLayout (Whitelist qs [] True)
 
 instance LayoutModifier Whitelist Window where
   modifyLayout (Whitelist qs) w r = do
