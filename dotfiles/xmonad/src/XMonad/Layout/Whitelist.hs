@@ -64,6 +64,28 @@ head' (x:_) = Just x
 matchQueries :: [Window] -> [Query Bool] -> X [Window]
 matchQueries ws qs = catMaybes <$> mapM (`matchQuery` ws) qs
 
+-- | Represents result of running 'Query' on Windows.
+data MatchResult a = MatchResult { matched :: [a] -- ^ Items that matched
+                                 , didn't  :: [a] -- ^ Items that didn't matched
+                                 }
+
+-- | Smart constructor 
+matchResult a True = MatchResult [a] [] 
+matchResult a False = MatchResult [] [a] 
+
+-- | Return 'True' if there are at least one 'a' that was 'matched'
+haveMatched :: MatchResult a -> Bool
+haveMatched (MatchResult [] _) = False
+haveMatched mathced            = True
+  
+instance Functor MatchResult where
+  fmap f (MatchResult m d) = MatchResult (fmap f m) (fmap f d)
+
+instance Semigroup (MatchResult a) where
+  (MatchResult m d) <> (MatchResult m' d') = MatchResult (m <>  m') (d <> d')
+
+instance Monoid (MatchResult a) where
+  mempty = MatchResult mempty mempty
 
 -- | Run 'Query' to find out one 'Window'
 --
