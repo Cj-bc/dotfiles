@@ -13,11 +13,11 @@ A 'LayoutModifier' that will hide some 'Window's based on 'Query'.
 -}
 module XMonad.Layout.Whitelist where
 
-import Control.Monad (join)
 import Data.Bool (bool)
 import Data.Maybe (isJust, catMaybes, listToMaybe, isNothing, fromMaybe)
 import Data.List (find)
 import Graphics.X11.Xlib
+import Control.Monad ( foldM )
 import XMonad.Core
 import XMonad.Layout.LayoutModifier
 import XMonad.StackSet
@@ -59,10 +59,6 @@ head' :: [a] -> Maybe a
 head' [] = Nothing
 head' (x:_) = Just x
 
--- | Run all 'Query'ies and return all windows which matches any of
--- them.
-matchQueries :: [Window] -> [Query Bool] -> X [Window]
-matchQueries ws qs = catMaybes <$> mapM (`matchQuery` ws) qs
 
 -- | Represents result of running 'Query' on Windows.
 data MatchResult a = MatchResult { matched :: [a] -- ^ Items that matched
@@ -87,17 +83,14 @@ instance Semigroup (MatchResult a) where
 instance Monoid (MatchResult a) where
   mempty = MatchResult mempty mempty
 
--- | Run 'Query' to find out one 'Window'
+-- | Split given list of 'Window's into two groups by applying 'Query'
 --
--- It will return 'Nothing' when no 'Window' satisfies that 'Query'
---
--- > matchQuery ((== "test-title") <$> title) []
-matchQuery :: Query Bool -> [Window] -> X (Maybe Window)
-matchQuery q ws = join . find isJust <$> mapM (matchQueryOneWindow q) ws
-
-matchQueryOneWindow :: Query Bool -> Window -> X (Maybe Window)
-matchQueryOneWindow q w = f w <$> runQuery q w
-  where
-    f = bool Nothing . Just
+-- > matchQuery (title =? "test-title") [] == (return $ MatchResult [] [])
+matchQuery :: Query Bool -> [Window] -> X (MatchResult Window)
+matchQuery q = foldM (\r w -> mappend r . matchResult w <$> runQuery q w) mempty
 
 -- roam:2021-08-25
+
+-- | Run all 'Query'es given, and returns one 'MatchReslt'
+matchQueries :: [Query Bool] -> [Window] -> X (MatchResult Window)
+matchQueries qs ws = foldM (\results q -> mappend results <$> matchQuery q ws) mempty qs
