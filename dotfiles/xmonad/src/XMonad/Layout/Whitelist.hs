@@ -23,7 +23,7 @@ import XMonad.Layout.LayoutModifier
     ( LayoutModifier(modifyLayoutWithUpdate, pureMess), ModifiedLayout(..) )
 import XMonad.StackSet
     ( Stack(focus, up, down), Workspace(stack), delete
-    , Screen(workspace), StackSet(current), filter)
+    , Screen(workspace), StackSet(current), filter, insertUp)
 import qualified XMonad.StackSet as S
 
 instance Show a => Show (Query a)
@@ -47,7 +47,12 @@ whitelist qs = ModifiedLayout (Whitelist qs [] True)
 
 instance LayoutModifier Whitelist Window where
   modifyLayoutWithUpdate (Whitelist qs hidden False) w r = do
-    (,Nothing) <$> runLayout (w<>hidden) r
+    -- Bring back all 'hidden' 'Window's so that 'Whitelist' doesn't affect
+
+    windows $ \w -> foldl (flip insertUp) w hidden
+
+    s' <- gets (stack.workspace.current.windowset)
+    (,Nothing) <$> runLayout (w {stack = s'}) r
   modifyLayoutWithUpdate (Whitelist qs hidden True) w r =
     case stack w of
       Nothing -> (,Nothing) <$> runLayout w r
