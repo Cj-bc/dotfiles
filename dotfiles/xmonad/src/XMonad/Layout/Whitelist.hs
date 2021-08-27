@@ -1,4 +1,4 @@
-{-# LANGUAGE TypeSynonymInstances, MultiParamTypeClasses #-}
+{-# LANGUAGE TypeSynonymInstances, MultiParamTypeClasses, TupleSections #-}
 {-|
 Module      : XMonad.Layout.Whitelist
 Description : 'LayoutModifier' that will filter 'Window's
@@ -18,9 +18,15 @@ import Data.Maybe (isJust, catMaybes, listToMaybe, isNothing, fromMaybe)
 import Data.List (find)
 import Graphics.X11.Xlib
 import Control.Monad ( foldM )
+import XMonad (modify, gets)
 import XMonad.Core
+    ( runQuery, LayoutClass(runLayout), Query, X, XState(windowset), Message )
 import XMonad.Layout.LayoutModifier
+    ( LayoutModifier(modifyLayoutWithUpdate), ModifiedLayout(..) )
 import XMonad.StackSet
+    ( Stack(focus, up, down), Workspace(stack), delete
+    , Screen(workspace), StackSet(current), filter)
+import qualified XMonad.StackSet as S
 
 instance Show a => Show (Query a)
 instance Read a => Read (Query a)
@@ -30,36 +36,31 @@ data Whitelist a = Whitelist { query :: [Query Bool] -- ^ list of 'Query'
                              , active   :: Bool -- ^ 'True' if whitelist functionality is active
                              } deriving (Show, Read)
 
+-- | Builds 'Whitelist' Layout modifier.
 whitelist :: [Query Bool] -> l a -> ModifiedLayout Whitelist l a
 whitelist qs = ModifiedLayout (Whitelist qs [] True)
 
 instance LayoutModifier Whitelist Window where
-  modifyLayout (Whitelist qs) w r = do
+  modifyLayoutWithUpdate (Whitelist qs hidden False) w r = do
+    (,Nothing) <$> runLayout (w<>hidden) r
+  modifyLayoutWithUpdate (Whitelist qs hidden True) w r =
     case stack w of
-      Nothing -> runLayout w r
-      Just stack -> do
+      Nothing -> (,Nothing) <$> runLayout w r
+      Just stack' -> do
         -- Filter all 'Window's by 'Query'
-        focused' <- join . listToMaybe <$> mapM (`matchQueryOneWindow` focus stack) qs :: X (Maybe Window)
-        up' <- matchQueries (up stack) qs
-        down' <- matchQueries (down stack) qs
+        windows' <- matchQueries qs (focus stack':up stack' ++ down stack') :: X (MatchResult Window)
 
-        -- Reconstruct 'Stack' from filtered 'Window's
-        --
-        -- Notice that 'focused' 'Window' could be filtered
-        let stack' = case focused' of
-                       Just w' -> Just $ Stack w' up' down'
-                       Nothing -> case up' of
-                                    (w':ws) -> Just $ Stack w' ws down'
-                                    [] -> case down' of
-                                      (w':ws) -> Just $ Stack w' up' ws
-                                      [] -> Nothing
-  
-        runLayout (w {stack = stack'}) r
+        let updateWindowset s = foldl (flip delete) (windowset s) $ didn't windows'
+        -- Remove filtered 'Window's from 'WindowSet' to hide them
+        modify (\s -> s { windowset = updateWindowset s })
+
+        -- Be sure to store 'didn\'t' items in Layout so that they can be retrieved later
+        underlyingResult <- runLayout (w { stack = S.filter (`elem` matched windows') stack'}) r
+        return (underlyingResult, Just (Whitelist qs (hidden <> didn't windows') True))
 
 head' :: [a] -> Maybe a
 head' [] = Nothing
 head' (x:_) = Just x
-
 
 -- | Represents result of running 'Query' on Windows.
 data MatchResult a = MatchResult { matched :: [a] -- ^ Items that matched
