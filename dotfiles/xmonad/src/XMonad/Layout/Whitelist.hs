@@ -13,9 +13,6 @@ A 'LayoutModifier' that will hide some 'Window's based on 'Query'.
 -}
 module XMonad.Layout.Whitelist where
 
-import Data.Bool (bool)
-import Data.Maybe (isJust, catMaybes, listToMaybe, isNothing, fromMaybe)
-import Data.List (find)
 import Graphics.X11.Xlib
 import Control.Monad ( foldM )
 import XMonad (modify, gets)
@@ -73,9 +70,6 @@ instance LayoutModifier Whitelist Window where
       Just ActivateWhitelist   -> Just $ w {active = True }
       Just DeactivateWhitelist -> Just $ w {active = False }
 
-head' :: [a] -> Maybe a
-head' [] = Nothing
-head' (x:_) = Just x
 
 -- | Represents result of running 'Query' on Windows.
 data MatchResult a = MatchResult { matched :: [a] -- ^ Items that matched
