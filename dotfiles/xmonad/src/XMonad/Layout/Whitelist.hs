@@ -58,8 +58,9 @@ instance LayoutModifier Whitelist Window where
         -- Remove filtered 'Window's from 'WindowSet' to hide them
         windows (\w -> foldl (flip delete) w $ didn't windows')
 
+        s' <- gets $ stack.workspace.current.windowset
         -- Be sure to store 'didn\'t' items in Layout so that they can be retrieved later
-        underlyingResult <- runLayout (w { stack = S.filter (`elem` matched windows') stack'}) r
+        underlyingResult <- runLayout (w { stack = s'}) r
         return (underlyingResult, Just (Whitelist qs (hidden <> didn't windows') True))
 
   pureMess w@(Whitelist qs hidden isActive) msg =
