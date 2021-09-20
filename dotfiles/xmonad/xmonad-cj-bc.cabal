@@ -1,0 +1,73 @@
+cabal-version: 1.12
+
+-- This file has been generated from package.yaml by hpack version 0.34.4.
+--
+-- see: https://github.com/sol/hpack
+
+name:           xmonad-cj-bc
+version:        0.1.0.0
+description:    My xmonad config
+homepage:       https://github.com/Cj-bc/dotfiles#readme
+bug-reports:    https://github.com/Cj-bc/dotfiles/issues
+author:         Cj.bc_sd a.k.a Cj-bc
+maintainer:     cj.bc-sd@outlook.jp
+copyright:      MIT
+license:        MIT
+license-file:   LICENSE
+build-type:     Simple
+extra-source-files:
+    README.org
+
+source-repository head
+  type: git
+  location: https://github.com/Cj-bc/dotfiles
+
+library
+  exposed-modules:
+      XMonad.Actions.GridSelect.Cjbc
+      XMonad.Hooks.Whitelist
+      XMonad.Layout.Half
+      XMonad.Layout.Info
+      XMonad.Layout.Mirrorable
+      XMonad.Layout.Whitelist
+      XMonad.Util.EZConfig.Reexport
+      XMonad.Util.Run.Experiment
+  other-modules:
+      Paths_xmonad_cj_bc
+  hs-source-dirs:
+      src
+  build-depends:
+      X11
+    , base >=4.7 && <5
+    , containers
+    , data-default
+    , lens
+    , text
+    , shell-conduit
+    , xmobar
+    , xmonad
+    , xmonad-contrib
+    , utf8-string
+    , unix
+  default-language: Haskell2010
+
+executable xmonad-cj-bc-exe
+  main-is: xmonad.hs
+  other-modules:
+      Paths_xmonad_cj_bc
+  hs-source-dirs:
+      ./
+  ghc-options: -threaded -rtsopts -with-rtsopts=-N
+  build-depends:
+      X11
+    , base >=4.7 && <5
+    , containers
+    , data-default
+    , lens
+    , text
+    , shell-conduit
+    , xmobar
+    , xmonad
+    , xmonad-cj-bc
+    , xmonad-contrib
+  default-language: Haskell2010
