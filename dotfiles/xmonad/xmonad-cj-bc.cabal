@@ -43,8 +43,6 @@ library
     , data-default
     , lens
     , text
-    , shell-conduit
-    , xmobar
     , xmonad
     , xmonad-contrib
     , utf8-string
@@ -65,8 +63,6 @@ executable xmonad-cj-bc-exe
     , data-default
     , lens
     , text
-    , shell-conduit
-    , xmobar
     , xmonad
     , xmonad-cj-bc
     , xmonad-contrib
