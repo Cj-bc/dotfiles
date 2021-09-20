@@ -85,7 +85,6 @@ myManageHook = composeAll $ [
     , className =? "discord"           --> doShift (show Communication)
     , title     =? "Discord -- Brave"  --> doShift (show Communication)
     , className =? "Dunst"             --> doFloat
-    , className =? "Conky"             --> doShift (show Info)
     , namedScratchpadManageHook myScratchpads
     ]
 
@@ -93,7 +92,6 @@ myStartuphook = do
     -- This doesn't work...
     -- Consider using 'XMonad.Actions.TagWindows' instead.
     checkKeymap cfg keybinds
-    spawnOn (show . fromEnum $ Info) "conky"
     spawnOnce "termite"
     spawnOnce "qutebrowser -B ~/.local/share/qutem/profiles/Cj-bc"
     spawnOnce "slack"
