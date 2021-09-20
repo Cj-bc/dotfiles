@@ -1,0 +1,34 @@
+Config {
+    commands = [ Run StdinReader
+               , Run Volume "Default" "Master" ["--template", "<status>"] 10
+               , Run Battery        [ "--template" , "<leftvbar>"
+                                              , "--Low"      , "10"        -- units: %
+                                              , "--High"     , "80"        -- units: %
+                                              , "--low"      , "darkred"
+                                              , "--normal"   , "darkorange"
+                                              , "--high"     , "darkgreen"
+                                              , "--" -- battery specific options
+                                                        -- discharging status
+                                                        , "-o" , "<left>% (<timeleft>)"
+                                                        -- AC "on" status
+                                                        , "-O" , "<fn=1></fn>"
+                                                        -- charged status
+                                                        , "-i" , "<fn=1>ﮣ</fn>"
+							, "-A", "20"
+							, "-a", "dunstify -u critical -appname=Battery \"Battery is dying\""
+							, "--lows", "<fn=1></fn>"
+							, "--mediums", "<fn=1></fn>"
+							, "--highs", "<fn=1></fn>"
+                                              ] 50
+	       , Run Com "bash" ["-c", "emacsclient -e '(cj-bc/string/no-props org-clock-current-task)' | tr -d '\"'"] "current-clock-in" 60
+	       , Run Wireless "" ["--template", "<ssid>"] 10
+               , Run XMonadLog
+	       , Run Brightness ["--template", "<vbar>"] 60
+               ]
+  , template = "<box type=Bottom>%XMonadLog%</box> } %current-clock-in% { <box type=Bottom><fn=1></fn> %wi% %bright% %battery% %Default:Master%</box>"
+  , alpha = 0
+  , font = "xft:Cica:size=16,Symbols Nerd Font:size=16"
+  , fgColor = "#ffaee0"
+  , position = TopSize C 90 35
+  , additionalFonts = ["xft:Symbols Nerd Font:size=26"]
+  }
