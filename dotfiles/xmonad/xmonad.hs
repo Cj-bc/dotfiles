@@ -1,7 +1,6 @@
 import XMonad
 import qualified XMonad.StackSet as W
 import XMonad.Util.EZConfig
-import XMonad.Hooks.DynamicLog
 import XMonad.Actions.SpawnOn (spawnOn, manageSpawn)
 import XMonad.Util.SpawnOnce (spawnOnce)
 import XMonad.Layout.PerWorkspace
@@ -25,9 +24,13 @@ import XMonad.Prompt.Pass
 import XMonad.Prompt
 import XMonad.Prompt.XMonad
 
+import XMonad.Hooks.StatusBar
+import XMonad.Hooks.StatusBar.PP
 import XMonad.Util.Run.Experiment (xmobar')
 
-main = xmonad =<< xmobar' cfg
+-- Need to specify LANG in order to show UTF-8 properly
+mySB = statusBarProp "LANG=ja_JP.UTF-8 xmobar" (pure $ xmobarPP)
+main = xmonad $ withEasySB mySB defToggleStrutsKey cfg
 
 cfg = def
     { terminal = "termite"
