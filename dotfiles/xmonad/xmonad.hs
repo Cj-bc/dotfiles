@@ -25,7 +25,9 @@ import XMonad.Prompt.Pass
 import XMonad.Prompt
 import XMonad.Prompt.XMonad
 
-main = xmonad =<< xmobar cfg
+import XMonad.Util.Run.Experiment (xmobar')
+
+main = xmonad =<< xmobar' cfg
 
 cfg = def
     { terminal = "termite"
