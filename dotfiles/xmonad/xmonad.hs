@@ -23,6 +23,7 @@ import XMonad.Actions.Minimize
 import XMonad.Layout.Minimize
 import XMonad.Prompt.Pass
 import XMonad.Prompt
+import XMonad.Prompt.XMonad
 
 main = xmonad =<< xmobar cfg
 
@@ -68,6 +69,7 @@ keybinds =
     ,("M-C-g", (mapM sendMessage [ModifyWindowBorderEnabled not, ModifyScreenBorderEnabled not]) >>
                sendMessage ToggleGaps >> pure ())
     ,("M-f", namedScratchpadAction myScratchpads "floating terminal")
+    ,("M-S-;", xmonadPromptC myCustomCommandList myXpconfig)
     ,("<XF86AudioLowerVolume>",  spawn "pactl set-sink-volume 0 -5%; pactl set-sink-mute 0 false")
     ,("<XF86AudioRaiseVolume>",  spawn "pactl set-sink-volume 0 +5%; pactl set-sink-mute 0 false")
     ,("<XF86AudioMute>",         spawn "pactl set-sink-mute 0 toggle")
@@ -132,3 +134,10 @@ myMouseBinds (XConfig {XMonad.modMask = modMask}) = M.fromList
     where
         resizing = \w -> focus w >> mouseResizeWindow w
                                  >> windows W.shiftMaster
+
+-- | List of commands for 'xmonadPrompt'
+myCustomCommandList :: [(String, X ())]
+myCustomCommandList = [("toggle info", sendMessage InfoWorkspaceToggleShowAll)
+                      ,("rebuild", spawn "if type xmonad; then xmonad --recompile && xmonad --restart; fi")
+                      ,("whitelist toggle", sendMessage ToggleWhitelist)
+                      ]
