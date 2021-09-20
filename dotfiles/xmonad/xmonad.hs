@@ -49,7 +49,8 @@ myWorkspaces = map show $ enumFrom Info
 -- isMuted = "pactl list sinks | head -n 9 | tail -n 1 | tail --bytes 4"
 
 myXpconfig :: XPConfig
-myXpconfig = def { font = "xft:Cica:" }
+myXpconfig = def { font = "xft:Cica:"
+                 , height = 32 }
 
 keybinds :: [(String, X ())]
 keybinds =
