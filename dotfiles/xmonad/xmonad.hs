@@ -65,7 +65,7 @@ keybinds =
     ,("M-S-/", spawn "dunstify \"This will be command for showing all keybinds, but currently I can't provide it\"")
     ,("M-C-3", spawn "import -window root ~/Picture/screenshots/$(date +%Y%m%d%H%M%S).png")
     ,("M-C-4", spawn "import ~/Picture/screenshots/$(date +%Y%m%d%H%M%S).png")
-    ,("M-C-g", sequence (fmap sendMessage [(ModifyWindowBorderEnabled not), (ModifyScreenBorderEnabled not)]) >>
+    ,("M-C-g", (mapM sendMessage [ModifyWindowBorderEnabled not, ModifyScreenBorderEnabled not]) >>
                sendMessage ToggleGaps >> pure ())
     ,("M-f", namedScratchpadAction myScratchpads "floating terminal")
     ,("<XF86AudioLowerVolume>",  spawn "pactl set-sink-volume 0 -5%; pactl set-sink-mute 0 false")
