@@ -5,6 +5,7 @@ import XMonad.Actions.SpawnOn (spawnOn, manageSpawn)
 import XMonad.Util.SpawnOnce (spawnOnce)
 import XMonad.Layout.PerWorkspace
 import XMonad.Layout (Full)
+import Data.Bool (bool)
 import Data.Text (Text)
 import Data.Bits ((.|.))
 import qualified Data.Map as M
@@ -29,7 +30,10 @@ import XMonad.Hooks.StatusBar.PP
 import XMonad.Util.Run.Experiment (xmobar')
 
 -- Need to specify LANG in order to show UTF-8 properly
-mySB = statusBarProp "LANG=ja_JP.UTF-8 xmobar" (pure $ xmobarPP)
+mySB = statusBarProp "LANG=ja_JP.UTF-8 xmobar" (pure $ xmobarPP {ppCurrent = bool "綠" "" . (==) "NSP"
+                                                                , ppHidden = bool "祿" "" . (==) "NSP"
+                                                                , ppHiddenNoWindows = bool "祿" "" . (==) "NSP"
+                                                                })
 main = xmonad $ withEasySB mySB defToggleStrutsKey cfg
 
 cfg = def
