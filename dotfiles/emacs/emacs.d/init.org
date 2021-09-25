@@ -760,10 +760,13 @@
        :hook
        (sh-mode-hook . lsp)
        (haskell-mode-hook . lsp)
+       (kotlin-mode-hook . lsp)
        :config
        (evil-define-key 'insert 'global (kbd "C-x C-o") 'completion-at-point)
        )
    #+end_src
+
+
    #+begin_src elisp
      (leaf lsp-bash
        :config
@@ -799,8 +802,18 @@
 	:ensure t
 	)
     #+end_src
+*** Kotlin
+    #+begin_src elisp
+      (leaf kotlin-mode
+	:ensure t
+	)
+    #+end_src
 
-
+    #+begin_src elisp
+      (leaf ob-kotlin
+	:ensure t
+	)
+    #+end_src
 ** Appearences
    #+begin_src elisp
      (leaf appearences
