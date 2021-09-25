@@ -162,7 +162,7 @@
 **** Agenda file
      #+HEADER: :noweb-ref leaf-org-config
      #+begin_src elisp
-       (setq org-agenda-files (directory-files-recursively "~/Dropbox" "^[^#].\+\\.org$"))
+       (setq org-agenda-files (directory-files "~/Dropbox" t "\.org$"))
      #+end_src
 
 **** Custom agenda
