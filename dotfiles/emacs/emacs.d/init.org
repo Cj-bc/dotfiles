@@ -64,8 +64,9 @@
    
    #+begin_src elisp
      (leaf load-my-lib
-       :config
-       (setq load-path (append load-path '("~/.emacs.d/lib"))))
+       :load-path "~/.emacs.d/lib/"
+       :require cj-bc/string
+       )
    #+end_src
 
    
