@@ -819,6 +819,14 @@
 	:ensure t
 	)
     #+end_src
+*** CSharp
+    #+begin_src elisp
+      (leaf csharp-mode
+	:added "2021-09-25"
+	:url "https://github.com/emacs-csharp/csharp-mode"
+	:emacs>= 26.1
+	:ensure t)
+    #+end_src
 ** Appearences
    #+begin_src elisp
      (leaf appearences
