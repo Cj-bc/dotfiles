@@ -787,6 +787,19 @@
        )
    #+end_src
 
+** メモ取り・ナレッジベース構築
+   
+*** Orgファイル以外でのリンクを構築する
+    Orgファイル以外でも、リンク機能が使えると便利
+    (e.g. ソースコードのコメントにroamへのリンクを貼るなど)
+    なので、Hyperboleを使ってみる
+    
+**** GNU Hyperbole
+     #+begin_src elisp
+       (leaf hyperbole
+	 :ensure t
+	 )
+     #+end_src
 ** 見栄えを良くする
 *** rainbow-delimiters
     Lisp系の言語は括弧の対応がとても見辛いので、
