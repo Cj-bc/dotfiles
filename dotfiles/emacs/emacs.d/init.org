@@ -311,6 +311,7 @@
 ***** TODO Projectile連携する
      現在はDiredが開くけど、多分Projectileと連携させた方が良くなりそう
 
+***** TODO 補完を有効にする
 *** 出力設定
     :PROPERTIES:
     :header-args: :tangle no
@@ -702,6 +703,10 @@
 	   )
 	 )
    #+end_src
+
+*** TODO 分解する
+*** TODO DocViewでも使えるようにする
+    多分書くor拾ってくる
 ** Projectile
    #+begin_src elisp :noweb yes 
      (leaf projectile
