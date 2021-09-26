@@ -780,6 +780,13 @@
 
        )
    #+end_src
+** Magit
+   #+begin_src elisp
+     (leaf magit
+       :ensure t
+       )
+   #+end_src
+
 ** 見栄えを良くする
 *** rainbow-delimiters
     Lisp系の言語は括弧の対応がとても見辛いので、
