@@ -800,6 +800,18 @@
 	 :ensure t
 	 )
      #+end_src
+     
+*** Wiki
+
+    #+begin_src elisp
+      (leaf org-wiki
+	:ensure nil
+	:custom
+	(org-wiki-location-list . '("~/Documents/wiki"))
+	(org-wiki-location . (car org-wiki-location-list))
+
+	)
+    #+end_src
 ** 見栄えを良くする
 *** rainbow-delimiters
     Lisp系の言語は括弧の対応がとても見辛いので、
