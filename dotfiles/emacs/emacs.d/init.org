@@ -267,7 +267,7 @@
       #+HEADER: :var reading=Org-todoKeywords-list-reading
       #+HEADER: :var shoppingList=Org-todoKeywords-list-shopping
       #+HEADER: :var noteStatus=Org-todoKeywords-list-noteStatus
-      #+NAME: Org-todoKeywords-construct
+      #+NAME: leaf-org-todo-keywords-construct
       #+begin_src elisp :tangle no
 	(defun replaceDelimiter (target-list)
 	  (seq-map (lambda (a) (if (string= (car a) "_DELIMITER_")
