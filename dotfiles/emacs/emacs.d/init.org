@@ -108,6 +108,7 @@
 					 ))
 	      <<leaf-org-custom>>
 	      (org-link-abbrev-alist . '<<leaf-org-external-link--get-list()>>)
+	      (org-todo-keywords . '<<leaf-org-todo-keywords-construct()>>)
 	      :config
 	      <<leaf-org-config>>
 	    )
@@ -139,7 +140,7 @@
       (seq-map 'read-org-var
 	       (flatten-list
 		     (seq-map (lambda (row)
-				 (reverse (cdr (reverse row))))
+				 `(,(elt row 0) ,(elt row 1)))
 			      inp)))
     #+end_src
 
