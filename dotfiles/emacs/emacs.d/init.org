@@ -271,7 +271,7 @@
       #+begin_src elisp :tangle no
 	(defun replaceDelimiter (target-list)
 	  (seq-map (lambda (a) (if (string= (car a) "_DELIMITER_")
-				   '"|" (car a)))
+				   "|" (car a)))
 		   target-list))
 
 	      (seq-map (lambda (x) (append '(sequence)
