@@ -63,10 +63,12 @@
    自分で作成したライブラリを読み込みます。
    
    #+begin_src elisp
-     (leaf load-my-lib
-       :load-path "~/.emacs.d/lib/"
-       :require cj-bc/string
-       )
+	 (leaf load-my-lib
+	   :load-path "~/.emacs.d/lib/"
+	   :require
+	   cj-bc/string
+	   ghq
+	   )
    #+end_src
 
    
