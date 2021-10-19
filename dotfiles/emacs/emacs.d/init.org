@@ -176,12 +176,12 @@
      #+begin_src elisp
        (org-agenda-custom-commands .
 				   '(("x"
-				     "全てのスケジュールを表示します"
-				     agenda
-				     ""
-				     ((org-agenda-span 'year)
-				     (org-agenda-entry-types '(:scheduled)))
-				     )
+				      "全てのスケジュールを表示します"
+				      agenda
+				      ""
+				      ((org-agenda-span 'year)
+				       (org-agenda-entry-types '(:scheduled)))
+				      )
 				     ("p"
 				      "プロジェクト固有のTODO"
 				      todo
