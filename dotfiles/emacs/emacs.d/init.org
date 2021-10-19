@@ -12,36 +12,34 @@
     その初期化をします。
 
     #+begin_src elisp
-       ;; Leaf configurations
-       (eval-and-compile
-	 (when (or load-file-name byte-compile-current-file)
-	   (setq user-emacs-directory
-	    (expand-file-name
-		(file-name-directory (or load-file-name byte-compile-current-file)
-	  )))))
+      ;; Leaf configurations
+      (eval-and-compile
+	(when (or load-file-name byte-compile-current-file)
+	  (setq user-emacs-directory
+	   (expand-file-name
+	       (file-name-directory (or load-file-name byte-compile-current-file)
+	 )))))
 
-       (setq tab-width 4)
-       (eval-and-compile
-	   (customize-set-variable
-	       'package-archives '(("gnu"   . "https://elpa.gnu.org/packages/")
-				  ("melpa" . "https://melpa.org/packages/")
-				  ("org"   . "https://orgmode.org/elpa/")
-				  ))
-	   (package-initialize)
-	   (unless (package-installed-p 'leaf)
-	       (package-refresh-contents)
-	       (package-install 'leaf)
-	       )
+      (setq tab-width 4)
+      (eval-and-compile
+	  (customize-set-variable
+	      'package-archives '(("gnu"   . "https://elpa.gnu.org/packages/")
+				 ("melpa" . "https://melpa.org/packages/")
+				 ("org"   . "https://orgmode.org/elpa/")
+				 ))
+	  (package-initialize)
+	  (unless (package-installed-p 'leaf)
+	      (package-refresh-contents)
+	      (package-install 'leaf)
+	      )
 
-	   (leaf leaf-keywords
-		 :ensure t
-		 :init
-		 ;; Optional packages if you want to use :hydra, :el-get, :blackout,,,
-
-		 :init
-		 (leaf-keywords-init)
-		 )
-	   )
+	  (leaf leaf-keywords
+		:ensure t
+		:init
+		;; Optional packages if you want to use :hydra, :el-get, :blackout,,,
+		(leaf-keywords-init)
+		)
+	  )
 
     #+end_src
 **** ヘルパー用パッケージ
@@ -80,6 +78,7 @@
 	(blog-post-dir-path . "~/Documents/ghq/github.com/Cj-bc/blog/posts")
 	)
     #+end_src
+    
 ** 入力メゾット
 *** DDSKK
 
@@ -94,7 +93,7 @@
 ** Org mode!!!
    Org modeが使いたくてEmacsに来たので...
    
-   #+begin_src elisp :noweb yes
+   #+begin_src elisp :noweb yes 
      (leaf org
 	      :bind
 	      (("C-c SPC o a" . org-agenda-list)
@@ -264,21 +263,21 @@
       + Clean
 	
 ***** 設定
-      
+
       #+HEADER: :var todo=Org-todoKeywords-list-todo
       #+HEADER: :var reading=Org-todoKeywords-list-reading
       #+HEADER: :var shoppingList=Org-todoKeywords-list-shopping
       #+HEADER: :var noteStatus=Org-todoKeywords-list-noteStatus
       #+NAME: leaf-org-todo-keywords-construct
       #+begin_src elisp :tangle no
+
 	(defun replaceDelimiter (target-list)
 	  (seq-map (lambda (a) (if (string= (car a) "_DELIMITER_")
 				   "|" (car a)))
 		   target-list))
 
-	      (seq-map (lambda (x) (append '(sequence)
-					   (replaceDelimiter x)))
-		       (list todo reading shoppingList noteStatus))
+	(seq-map (lambda (x) `(sequence ,@(replaceDelimiter x)))
+	     (list todo reading shoppingList noteStatus))
       #+end_src
 
       #+HEADER: :noweb-ref leaf-org-custom
@@ -389,17 +388,17 @@
 	   ("" "wasysym"   t)))
 
        (with-eval-after-load "ox-latex"
-  
+
 	 (add-hook 'org-export-before-processing-hook 'my-ox-latex-tex-engine-setup)
-  
+
 	 (defun my-ox-latex-tex-engine-setup (backend)
 	   (message "backend=%s" backend)
 	   (when (equal backend 'latex)
 	     (my-ox-latex-engine-set TeX-engine)))
-  
+
 	 (defun my-ox-latex-engine-set (latex)
 	   "Set up LATEX environments."
-    
+
 	   (setq org-latex-default-packages-alist
 		 `(
 		   ,@(case latex
@@ -426,7 +425,7 @@
 		     "\\providecommand{\\alert}[1]{\\textbf{#1}}\n"
 		     "\\fvset{xleftmargin=2em}\n")
 		   ))
-    
+
 	   (setq org-latex-packages-alist
 		 `(
 		   ,(case latex
@@ -446,7 +445,7 @@
 		   ;; ("backend=biber", "biblatex" t)
 		   ("" "listings")
 		   ("" "color")))
-    
+
 	   (setq org-latex-classes
 		 `(("article"
 		    ,(case latex
@@ -492,9 +491,9 @@
 		      "[NO-PACKAGES]\n"
 		      "\\usepackage{graphicx}\n")
 		    org-beamer-sectioning)))
-    
+
 	   (setq org-latex-pdf-process (list (my-latexmk-command TeX-engine "-pv" "%f" "%o"))))
-  
+
 	 )
      #+end_src
 
@@ -526,7 +525,8 @@
        'org-babel-load-languages
        '((awk . t)
 	 (shell . t)
-	 (haskell . t)))
+	 (haskell . t)
+	 ))
     #+end_src
 *** Org roamでメモ管理
     :PROPERTIES:
@@ -761,9 +761,11 @@
 	 (setq projectile-completion-system 'ivy))
        )
    #+end_src
+
 ** Lsp mode
    #+begin_src elisp
      (leaf lsp-mode
+
        :commands lsp
        :ensure t
        :hook
@@ -826,6 +828,7 @@
 	  :hook
 	  (prog-mode-hook . rainbow-delimiters-mode))
     #+end_src
+
 ** プログラミング言語毎の設定
 *** Haskell
     #+begin_src elisp
