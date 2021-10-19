@@ -20,7 +20,7 @@ This is dotfiles repository for my use.
 | Application launcher | rofi                         |
 | Filer                | ranger                       |
 
-* Todo [12/45]
+* Todo [13/50]
 
 ** DONE [#A] Create power manager                                       :bin:
 ** TODO [xmonad/compositor] Add custom frame for X Window (by either compositor or application itself)
@@ -81,18 +81,49 @@ This is dotfiles repository for my use.
    Unicode使ったり絵文字使ったり。
    参考: https://qiita.com/Ladicle/items/feb5f9dce9adf89652cf
 ** TODO Org-roamから一つ単語を拾って表示する						     :bash:
-** TODO ウィンドウを隠すためのWorkspace作る                          :xmonad:
+** DONE ウィンドウを隠すためのWorkspace作る                          :xmonad:
+   :LOGBOOK:
+   CLOCK: [2021-08-24 Tue 12:18]--[2021-08-24 Tue 12:19] =>  0:01
+   :END:
+
+   + https://hackage.haskell.org/package/xmonad-contrib-0.16/docs/XMonad-Layout-Hidden.html
+   + https://hackage.haskell.org/package/xmonad-contrib-0.16/docs/XMonad-Actions-Minimize.html
+   + 自作
+     
+
+   の3通りあったけど、とりあえずは ~XMonad.Actions.Minimize~ を使ってみる。
+   なぜなら、こっちならFIFOだけでなく色々拡張できそうだから。
+   
 ** TODO Zoom用レイアウトとWorkspace                                  :xmonad:
 ** TODO Qutebrowserのpass連携                                   :qutebrowser:
 ** DONE Org-roam-modeを起動時に設定する                               :Emacs:
 ** TODO XMonadのProfileを分ける(配信用など)                          :xmonad:
 ** TODO メモをすぐ取れるようにする                                   :xmonad:
+   prompt + org protocolで良さそう
 ** TODO evilの設定 [0/2]                           :emacs:archlinux:
 + [ ] jk, jjでのエスケープ
 + [ ] ~C-u~ の有効化(適切かどうかも含めて
 ** DONE org modeのTodoアイテムを増やす               :emacs:orgmode:環境構築:
+** TODO help:org-roam-setup でGPG保護されたファイルを開かないようにしたい :Emacs:
+   emacs daemonが立ち上がる時に読もうとされるのだけど、
+   明示的にどこから呼び出されたか分からないGPGプロンプトに入力するのって怖い
 ** TODO org-captureで各Projectile管理されたプロジェクトのREADMEにtodo追記したい :Emacs:
    今は一々開かないといけなくて面倒
+** TODO ~describe-key~ ぽい機能を付ける                                         :qutebrowser:
+   現状 ~:help~ 呼ばないといけないが割と面倒
+** TODO vim-textobj-parametersの Evil実装が欲しい                     :Emacs:
+** TODO 'Info' ワークスペースの拡充                                  :xmonad:
+   :LOGBOOK:
+   CLOCK: [2021-08-24 Tue 12:19]--[2021-08-24 Tue 14:57] =>  2:38
+   :END:
+   
+   + Agenda
+   + timeline
+** TODO キーストロークの表示                                         :xmonad:
+   
+   EventHandlerで出来そう
+** TODO github workflowの状態を表示できるやつ
+   
 * Installation
 
 **  macOS
