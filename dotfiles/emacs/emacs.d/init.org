@@ -534,7 +534,7 @@
     :END:
     [[https://www.orgroam.com/][org roam]]は、
 
-    #+HEADER: :noweb-ref leaf-org-config
+    #+HEADER: :noweb-ref leaf-org-config :noweb yes
     #+begin_src elisp
       (leaf org-roam
 	:emacs>= 26.1
@@ -547,6 +547,7 @@
 	:custom
 	(org-roam-link-auto-replace . nil)
 	(org-roam-graph-viewer . "qutebrowser")
+	<<leaf-org-roam-custom>>
 	:config
 	<<leaf-org-roam-config>>
 	(setq org-roam-directory (file-truename "~/Dropbox/roam"))
@@ -558,6 +559,42 @@
 	)
     #+end_src
 
+
+**** TODO COMMENT テンプレート
+
+     ~DIR~ を設定したいことが多々あるので、 ~#+title~ ではなくエントリにしてほしい。
+
+     #+HEADER: :tangle no :noweb-ref leaf-org-roam-custom
+     #+begin_src elisp
+       (org-roam-capture-templates .
+				  (("n" "new" plain
+				   #'org-roam-capture--get-point "%?"
+				   :file-name "%<%Y%m%d%H%M%S>-${slug}"
+				   :head "* ${title}" :unnarrowed t)
+				   )
+				  )
+     #+end_src
+
+     #+HEADER: :tangle no :noweb-ref leaf-org-roam-custom
+     #+begin_src elisp
+       (org-roam-dailies-capture-templates .
+					   (("n" "new" entry #'org-roam-capture--get-point
+					     "* %?" :file-name "daily/%<%Y-%m-%d>"
+					     :head "#+title: %<%Y-%m-%d>")
+					    ("d" "やったこと" entry #'org-roam-capture--get-point
+
+					     :file-name "daily/%<%Y-%m-%d>"
+					    )
+					   )
+     #+end_src
+     
+**** TODO タグの一覧を作る
+     今だと似ているタグが複数出来てしまったりしてると思うので。
+
+     + 🔖 :: 視聴した資料や、動画などへのメモ
+     + 💡 :: アイデア等
+     + 🎬 :: 動画の内容
+       
 **** Privete roamを作成するためのラッパー
 
      Roamには、プライベートなノードをgpg保護された状態で保存する機能がある。
