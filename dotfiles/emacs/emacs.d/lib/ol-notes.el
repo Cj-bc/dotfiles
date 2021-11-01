@@ -16,9 +16,38 @@
       )
   "regex to parse notes path"
   )
+
 (defcustom ol-notes-root-dir "~/Documents/Note"
   "root path of notes")
 
+(defun ol-notes-link-to-path (link)
+  "Convert notes: link to actual path.
+Accept link without `notes:'
+
+(eq (ol-notes-link-to-path (ol-notes-path-to-link l))
+    l)
+"
+    (string-match ol-notes-path-syntax link)
+    (let ((organization (match-string 1 link))
+	  (class (match-string 2 link))
+	  (year (or (match-string 3 link) (nth 2 (calendar-current-date))))
+	  )
+      (format "%s/%s/%s/%s.org" ol-notes-root-dir organization class year)
+    ))
+
+(defun ol-notes-path-to-link (path)
+  "Convert path to notes: link if possible. Return `nil' if it is
+invalid path
+
+Accept link without `notes:'
+"
+  (string-match (rx  (group (+? (not "/"))) "/" (group (+? (not "/"))) "/" (group (repeat 4 digit)) "\.org" eos) path)
+  (let ((organization (match-string 1 path))
+	(class (match-string 2 path))
+	(year (match-string 3 path))
+	)
+    (when (and organization class year)
+      (concat (format "%s/%s:%s" organization class year)))))
 
 
 (defun ol-notes-open (link arg)
@@ -36,16 +65,10 @@
 
 (defun ol-notes-complete (&optional arg)
   "Completion for ol-notes"
-  (let* ((parse-filename (rx  (group (+? (not "/")) "/" (+? (not "/"))) "/" (group (repeat 4 digit)) "\.org" eos))
-	 (target-files (file-expand-wildcards (concat ol-notes-root-dir "/**/**/*.org")))
+  (let* ((target-files (file-expand-wildcards (concat ol-notes-root-dir "/**/**/*.org")))
 
 	 (completion-answer (completing-read "<org>/<class>:<year>: "
-					     (seq-map (lambda (p)
-							(progn
-							  (string-match parse-filename p)
-							  (concat (match-string 1 p) ":"
-								  (match-string 2 p)))
-							) target-files)))
+					     (seq-map (lambda (p) (ol-notes-path-to-link p)) target-files)))
 	 )
     (concat (format "notes:%s" completion-answer)
 	     )))
