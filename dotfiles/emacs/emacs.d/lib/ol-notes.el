@@ -99,8 +99,8 @@ Accept link without `notes:'
 
 
 (defun ol-notes-complete (&optional arg)
-  "Completion for ol-notes"
-
+  "Completion for ol-notes
+On title completing, select \"--- NO TITLE ---\" if you don't want to specify title"
   (let* ((completion-answer (completing-read "<org>/<class>:<year>: "
 					     (seq-map (lambda (p) (ol-notes-path-to-link p)) (ol-notes--all-files))))
 	 ;; those codes below is copied from help:pcomplete/org-mode/searchhead
@@ -113,8 +113,10 @@ Accept link without `notes:'
 					 ;; `org-link-heading-search-string' result.
 					 (push (substring-no-properties (org-link-heading-search-string) 1) tbl))
 				       (pcomplete-uniquify-list tbl)))))
-	 (selected-title (completing-read "Title(optional): " titles))
-	 (title (when selected-title
+	 ;; if it is "--- NO TITLE ---", no title will be inserted
+	 (selected-title (completing-read "Title(optional): " (append '("--- NO TITLE ---") titles)))
+	 (title (when (and selected-title
+			   (not (string= "--- NO TITLE ---" selected-title)))
 		  `("#" ,selected-title)))
 	 )
     (eval `(concat (format "notes:%s" ,completion-answer) ,@title)
