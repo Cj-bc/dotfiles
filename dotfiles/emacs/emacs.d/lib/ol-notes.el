@@ -90,6 +90,14 @@ Accept link without `notes:'
   "Returns list of all notes this package can recognize"
   (file-expand-wildcards (concat ol-notes-root-dir "/**/**/*.org")))
 
+(defun ol-notes-find-file ()
+    "`find-file' for notes"
+    (interactive)
+    (let ((selected (ivy-read "Notes: " (seq-map 'ol-notes-path-to-link (ol-notes--all-files))))
+	  )
+      (find-file (ol-notes-link-to-path selected))))
+
+
 (defun ol-notes-complete (&optional arg)
   "Completion for ol-notes"
 
