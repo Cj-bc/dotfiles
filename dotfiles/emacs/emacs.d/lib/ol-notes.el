@@ -86,13 +86,15 @@ Accept link without `notes:'
      (format "%s/%s/%s/%s.org%s" ol-notes-root-dir organization class-name year title) arg)
     ))
 
+(defun ol-notes--all-files ()
+  "Returns list of all notes this package can recognize"
+  (file-expand-wildcards (concat ol-notes-root-dir "/**/**/*.org")))
 
 (defun ol-notes-complete (&optional arg)
   "Completion for ol-notes"
-  (let* ((target-files (file-expand-wildcards (concat ol-notes-root-dir "/**/**/*.org")))
 
-	 (completion-answer (completing-read "<org>/<class>:<year>: "
-					     (seq-map (lambda (p) (ol-notes-path-to-link p)) target-files)))
+  (let* ((completion-answer (completing-read "<org>/<class>:<year>: "
+					     (seq-map (lambda (p) (ol-notes-path-to-link p)) (ol-notes--all-files))))
 	 ;; those codes below is copied from help:pcomplete/org-mode/searchhead
 	 (titles (with-temp-buffer (find-file (ol-notes-link-to-path completion-answer))
 				   (save-excursion
