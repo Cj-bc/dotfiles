@@ -113,10 +113,11 @@ Accept link without `notes:'
 					 ;; `org-link-heading-search-string' result.
 					 (push (substring-no-properties (org-link-heading-search-string) 1) tbl))
 				       (pcomplete-uniquify-list tbl)))))
-	 (title (completing-read "Title(optional): " titles))
+	 (selected-title (completing-read "Title(optional): " titles))
+	 (title (when selected-title
+		  `("#" ,selected-title)))
 	 )
-    (eval `(concat (format "notes:%s" completion-answer)
-		   ,@(when title '("#" title)))
+    (eval `(concat (format "notes:%s" ,completion-answer) ,@title)
 	     )))
 
 (provide 'ol-notes)
