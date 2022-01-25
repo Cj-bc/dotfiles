@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/bash
 
 
 cacheDirs=( # "$(which stack >/dev/null 2>&1 && stack path --programs)" 
