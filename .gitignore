@@ -11,9 +11,12 @@ dotfiles/stack
 **/*.add.spl
 
 **/emacs.d/elpa/
+**/emacs.d/el-get/
+**/emacs.d/.cache/
 **/w3m/cookie
 **/w3m/history
 
+**/xmonad/*.imports
 
 ### https://raw.github.com/github/gitignore/7293c14345c205c679722364a01b88d331e862ff/Global/Linux.gitignore
 
