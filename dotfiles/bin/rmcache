@@ -1,8 +1,18 @@
 #!/usr/bin/env bash
 
 
+cacheDirs=( # "$(which stack >/dev/null 2>&1 && stack path --programs)" 
+           # # yay等は残しておきたかったので、一時的にコメントアウト。
+           # # exclude作りたいけどファイル名をrecursiveにパターンマッチできないのでどうしたものか...
+           # "~/.cache"
+           "~/.cache/BraveSoftware"
+           "~/.cache/ms-playwright"
+           "~/.cache/yarn"
+           "~/.config/BraveSoftware/Brave-Browser/ShaderCache/GPUCache/*"
+           "~/.config/Slack/Cache/*"
+           "~/.config/Slack/Code\ Cache/*"
+           "~/.config/Slack/GPUCache/*")
 
-cacheDirs=("$(which stack >/dev/null 2>&1 && stack path --programs)" )
 
 for d in ${cacheDirs[@]}; do
   echo -n "Clearing cache at: ${d}..."
