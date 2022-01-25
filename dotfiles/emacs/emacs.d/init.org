@@ -81,6 +81,12 @@
 	)
     #+end_src
     
+    #+begin_src elisp
+      (leaf ol-blog
+	:require t
+	:ensure nil
+	)
+    #+end_src
 ** 入力メゾット
 *** DDSKK
 
