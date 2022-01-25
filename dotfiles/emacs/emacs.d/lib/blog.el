@@ -10,23 +10,32 @@
   (let ((d (calendar-current-date)))
   `(,(nth 2 d) ,(nth 0 d) ,(nth 1 d))))
 
-(defun blog-get-new-post-name ()
+(defun blog-get-new-post-name (&optional slug)
   "Return new post name. This function will use mini buffer"
   (let* ((date (string-join (seq-map '(lambda (n) (format "%02d" n))
 				     (blog--current-date))
 			    "-"))
-	 (slug (replace-regexp-in-string "\s" "-"
-					 (read-string "slug?: "))))
+	 )
     (concat blog-post-dir-path "/"
-	    (string-join (list date slug) "-")
+	    (string-join (flatten-list (list date slug)) "-")
 	    "." "org")
     ))
   
 (defun blog-visit-new-post ()
   "Create new post name and visit it. This is made for org-capture"
   (interactive)
-  (find-file (blog-get-new-post-name))
+  (find-file (blog-get-new-post-name
+	      (replace-regexp-in-string "\s" "-"
+					(read-string "slug?: "))))
   (goto-char (point-min)))
- 
+
+(defun blog-visit-new-diary ()
+  "Create new diary post and visit it.
+diary post filename is 'yyyy-mm-dd.org' whereas
+`blog-visit-new-post' has slug after date"
+  (interactive)
+  (find-file (blog-get-new-post-name))
+  (goto-char (point-min))
+  )
 
 (provide 'blog)
