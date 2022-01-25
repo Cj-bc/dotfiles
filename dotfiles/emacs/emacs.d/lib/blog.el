@@ -7,9 +7,8 @@
 
 (defun blog--current-date ()
   "Get current date in (year month day) format"
-  (let ((year (car (reverse (calendar-current-date))))
-	(month-date (reverse (cdr (reverse (calendar-current-date))))))
-    (seq-concatenate 'list (list year) month-date)))
+  (let ((d (calendar-current-date)))
+  `(,(nth 2 d) ,(nth 0 d) ,(nth 1 d))))
 
 (defun blog-get-new-post-name ()
   "Return new post name. This function will use mini buffer"
