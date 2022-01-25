@@ -13,8 +13,24 @@ cacheDirs=( # "$(which stack >/dev/null 2>&1 && stack path --programs)"
            "~/.config/Slack/Code\ Cache/*"
            "~/.config/Slack/GPUCache/*")
 
+exclude=( "\~/\.cache/yay/.*"
+          "\~/\.cache/rofi.*"
+          "\~/\.cache/samba/.*"
+        )
+
+function isInExclude() {
+  local target="$1"
+
+  for re in ${exclude[@]}; do
+    [[ $d =~ $re ]] && return 0
+
+  done
+  return -1
+}
 
 for d in ${cacheDirs[@]}; do
+  isInExclude $d &&  { echo "skip file: ${d}"; continue; }
+
   echo -n "Clearing cache at: ${d}..."
   rm -r "$d"
   [ $? -eq 0 ] && echo " OK"
