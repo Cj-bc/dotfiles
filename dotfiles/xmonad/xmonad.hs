@@ -148,5 +148,8 @@ myMouseBinds (XConfig {XMonad.modMask = modMask}) = M.fromList
 myCustomCommandList :: [(String, X ())]
 myCustomCommandList = [("toggle info", sendMessage InfoWorkspaceToggleShowAll)
                       ,("rebuild", spawn "if type xmonad; then xmonad --recompile && xmonad --restart; fi")
-                      ,("whitelist toggle", sendMessage ToggleWhitelist)
+                      ,("toggle whitelist", sendMessage ToggleWhitelist)
+                      ,("toggle mirror", sendMessage ToggleMirror)
+                      ,("toggle border visibility", withFocused toggleBorder)
+                      ,("clipmenu", spawn "LANG=C clipmenu")
                       ]
