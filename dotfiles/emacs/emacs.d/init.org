@@ -520,7 +520,7 @@
     :END:
     #+HEADER: :tangle no :noweb-ref leaf-org-custom
     #+begin_src elisp
-      (org-capture-templates .
+      `(org-capture-templates .
 			     '(("d" "default" plain
 				(file "capture.org")
 				"")
@@ -532,8 +532,7 @@
 				)
 			       ("d" "diary")
 			       ("dm" "Memo" entry
-				(function (lambda ()
-					    (org-diary-visit-today "memo")))
+				(function ,(apply-partially 'org-diary-visit-today "Memo"))
 				)
 			       ))
     #+end_src
