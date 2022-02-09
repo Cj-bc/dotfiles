@@ -867,6 +867,17 @@
 	  (leaf plantuml-mode
 		:ensure t)
 	#+end_src
+*** Repl
+    #+begin_src elisp
+      (leaf quickrun
+	:doc "Run commands quickly"
+	:req "emacs-24.3"
+	:tag "emacs>=24.3"
+	:added "2022-01-12"
+	:url "https://github.com/syohex/emacs-quickrun"
+	:emacs>= 24.3
+	:ensure t)
+    #+end_src
 ** メモ取り・ナレッジベース構築
    
 *** Orgファイル以外でのリンクを構築する
