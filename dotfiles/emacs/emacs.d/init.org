@@ -85,6 +85,15 @@
       (leaf ol-blog
 	:require t
 	:ensure nil
+*** org-diary
+
+    #+begin_src elisp
+      (leaf org-diary
+	:require t
+	:ensure nil
+	:custom
+	(org-diary-directory . "~/Dropbox/roam/daily")
+	(org-diary-template . "~/.emacs.d/templates/org-capture/diary")
 	)
     #+end_src
 ** 入力メゾット
@@ -520,6 +529,11 @@
 				(file "~/.emacs.d/templates/org-capture/blog")
 				:clock-in t
 				:clock-resume t
+				)
+			       ("d" "diary")
+			       ("dm" "Memo" entry
+				(function (lambda ()
+					    (org-diary-visit-today "memo")))
 				)
 			       ))
     #+end_src
