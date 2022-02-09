@@ -96,7 +96,11 @@ myManageHook = composeAll [
     , className =? "discord"           --> doShift (show Communication)
     , title     =? "Discord -- Brave"  --> doShift (show Communication)
     , className =? "Dunst"             --> doFloat
+    , className =? "pinentry-qt" --> doFloat
+    , className =? "Emacs" <&&> title =? "org-agenda-fixed" --> doShift (show Info)
     , namedScratchpadManageHook myScratchpads
+    , className =? "jetbrains-studio" --> doFloat
+    , className =? "zoom"  <&&> title =? "Chat" --> doFloat
     ]
 
 myStartuphook = do
