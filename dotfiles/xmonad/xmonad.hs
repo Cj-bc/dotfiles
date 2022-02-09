@@ -6,8 +6,10 @@ import XMonad.Util.SpawnOnce (spawnOnce)
 import XMonad.Layout.PerWorkspace
 import XMonad.Layout (Full)
 import Data.Bool (bool)
+import Data.Ratio ((%))
 import Data.Text (Text)
 import Data.Bits ((.|.))
+import Data.Monoid (Endo(..))
 import qualified Data.Map as M
 import XMonad.Util.NamedScratchpad (NamedScratchpad(NS), customFloating, namedScratchpadManageHook, namedScratchpadAction)
 -- import XMonad.Util.EZConfig.Reexport (readKeymap)
@@ -98,10 +100,17 @@ myManageHook = composeAll [
     , className =? "Dunst"             --> doFloat
     , className =? "pinentry-qt" --> doFloat
     , className =? "Emacs" <&&> title =? "org-agenda-fixed" --> doShift (show Info)
+    , className =? "Emacs" <&&> title =? "qutebrowser.edit-url"
+      --> (ask >>= placeAt (W.RationalRect (6%10) (4%10) (4%10) (1%10))) <+> doFloat
     , namedScratchpadManageHook myScratchpads
     , className =? "jetbrains-studio" --> doFloat
     , className =? "zoom"  <&&> title =? "Chat" --> doFloat
     ]
+
+placeAt :: W.RationalRect -> Window -> ManageHook
+placeAt r w = 
+  return . Endo $ \currentWindowSet ->
+        currentWindowSet { W.floating = M.update (const $ Just r) w (W.floating currentWindowSet) }
 
 myStartuphook = do
     -- This doesn't work...
