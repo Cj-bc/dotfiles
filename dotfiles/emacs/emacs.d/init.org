@@ -85,6 +85,18 @@
       (leaf ol-blog
 	:require t
 	:ensure nil
+    
+*** Notes
+
+	#+begin_src elisp
+	  (leaf ol-notes
+		:require t
+		:ensure nil
+		:custom
+		(ol-notes-root-dir . "~/Documents/notes")
+		)
+	#+end_src
+	
 *** org-diary
 
     #+begin_src elisp
