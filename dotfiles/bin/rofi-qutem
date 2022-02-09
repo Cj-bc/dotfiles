@@ -28,6 +28,7 @@ case "$1" in
       # DON'T USE '&' to make it co-process!!
       # '&' will make it run in 'sub-shell', but not co-process
       coproc (qutebrowser -B "${profile_basedir}/$1")
+      export LANG=ja_JP.UTF-8
      else
         notify-send -u normal "rofi-qutem" "Profile \"$1\" not found."
     fi
