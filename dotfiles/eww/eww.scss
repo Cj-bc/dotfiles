@@ -1,0 +1,31 @@
+* {
+    background-color: transparent;
+    font-size: 20pt;
+}
+
+.root {
+    margin-left: 20px;
+}
+
+.meter_container {
+    margin: 20px;
+    padding: 10px;
+    background-color: rgb(60,50,50);
+
+    border-radius: 15px;
+    border-style: solid;
+    border-width: 3px;
+    border-color: #ffaee0;
+}
+
+.battery, .battery .Discharging {
+    color: green;
+}
+
+.battery .Charging {
+    color: yellow;
+}
+
+.volume {
+    color: #dd233a;
+}

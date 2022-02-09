@@ -1,0 +1,56 @@
+(defwindow status
+  :monitor 0
+  :geometry (geometry :x "0px"
+		      :y "20px"
+		      ;:width "0"
+		      :width "20%"
+		      :height "24%"
+		      :anchor "center right")
+  :stacking "fg"
+   (revealer :transition "slideleft" :reveal revl
+	     :halign "end"
+	     :class "root"
+	    (box :orientation "vertical"
+		 (volume-circle)
+		 (battery-circle))))
+
+(defvar revl false)
+
+(defwidget volume-circle []
+  (box :class "meter_container"
+       :width 300
+       :height 300
+       (circular-progress :class "volume"
+			  :value volume
+			  :start-at 75
+			  :thickness 20
+			  {defaultSpeaker_mute == "yes" ? "婢" : ""})))
+
+(defwidget battery-circle []
+  (box :class "meter_container"
+       (circular-progress :class "battery"
+			  :value {EWW_BATTERY.BAT1.capacity}
+			  :start-at 75
+			  :thickness 20
+			  (label :text {battery-charging == "Charging" ? "" : "" }
+				 :class {battery-charging}))))
+
+(defpoll battery-charging
+  :interval "2s"
+  :initial "false"
+  `LANG=C acpi -b | cut -d ' ' -f3 | tr -d ','`
+  )
+(defpoll defaultSpeaker
+  :interval "10s"
+  :initial "alsa_output.pci-0000_00_1f.3.analog-stereo"
+  `pactl get-default-sink`)
+
+(defpoll defaultSpeaker_mute
+  :interval "2s"
+  :initial "no"
+  "LANG=C pactl get-sink-mute alsa_output.pci-0000_00_1f.3.analog-stereo | cut -d ' ' -f2")
+
+(defpoll volume
+  :interval "2s"
+  :initial 10
+  `LANG=C pactl get-sink-volume alsa_output.pci-0000_00_1f.3.analog-stereo | tr -s ' ' | cut -d ' ' -f5 | tr -d '%'`)
