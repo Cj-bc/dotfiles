@@ -124,7 +124,11 @@ myStartuphook = do
     spawnOnce "qutebrowser -B ~/.local/share/qutem/profiles/Cj-bc"
     spawnOnce "slack"
     spawnOnce "discord"
+    spawnOnce "picom"
+    spawn "~/.fehbg"
 
+    spawnOnce "~/.local/bin/eww daemon"
+    spawnOnce "~/.local/bin/eww open status"
 
 myLayoutHook = minimize . boringWindows . addSpacing
                . onWorkspace (show Web) fullWithGap
