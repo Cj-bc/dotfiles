@@ -88,7 +88,7 @@ keybinds =
     ]
 
 myManageHook :: ManageHook
-myManageHook = composeAll $ [
+myManageHook = composeAll [
       manageSpawn
     , className =? "Brave-browser" --> doShift (show Web)
     , className =? "qutebrowser"   --> doShift (show Web)
