@@ -6,7 +6,8 @@
 
 profile_basedir=~/.local/share/qutem/profiles
 
-# profiles :: [String]
+qutebrowserExe="$(ghq root)/github.com/qutebrowser/qutebrowser/qutebrowser.py"
+
 profiles=($(find $profile_basedir -maxdepth 1 -type d ! -name profiles -exec basename {} \;))
 
 function contains() {
@@ -27,8 +28,8 @@ case "$1" in
     if $(contains profiles "$1"); then
       # DON'T USE '&' to make it co-process!!
       # '&' will make it run in 'sub-shell', but not co-process
-      coproc (qutebrowser -B "${profile_basedir}/$1")
       export LANG=ja_JP.UTF-8
+      coproc ($qutebrowserExe -B "${profile_basedir}/$1")
      else
         notify-send -u normal "rofi-qutem" "Profile \"$1\" not found."
     fi
