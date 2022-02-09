@@ -26,6 +26,7 @@ import XMonad.Layout.Minimize
 import XMonad.Prompt.Pass
 import XMonad.Prompt
 import XMonad.Prompt.XMonad
+import XMonad.Prompt.FuzzyMatch
 
 import XMonad.Hooks.StatusBar
 import XMonad.Hooks.StatusBar.PP
@@ -62,7 +63,10 @@ myWorkspaces = map show $ enumFrom Info
 
 myXpconfig :: XPConfig
 myXpconfig = def { font = "xft:Cica:"
-                 , height = 32 }
+                 , height = 32
+                 , searchPredicate = fuzzyMatch
+                 , sorter = fuzzySort
+                 }
 
 keybinds :: [(String, X ())]
 keybinds =
