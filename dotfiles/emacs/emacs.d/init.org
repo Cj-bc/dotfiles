@@ -861,7 +861,12 @@
        :ensure t
        )
    #+end_src
-
+** 開発環境
+*** ドキュメント作成
+	#+begin_src elisp :tangle no
+	  (leaf plantuml-mode
+		:ensure t)
+	#+end_src
 ** メモ取り・ナレッジベース構築
    
 *** Orgファイル以外でのリンクを構築する
@@ -933,6 +938,32 @@
 	:added "2021-09-25"
 	:url "https://github.com/emacs-csharp/csharp-mode"
 	:emacs>= 26.1
+	:ensure t)
+    #+end_src
+*** Dockerfile
+
+    #+begin_src elisp
+      (leaf dockerfile-mode
+	:ensure t
+	)
+    #+end_src
+*** Rust
+    #+begin_src elisp
+      (leaf rust-mode
+	:doc "A major-mode for editing Rust source code"
+	:req "emacs-25.1"
+	:tag "languages" "emacs>=25.1"
+	:added "2022-01-20"
+	:url "https://github.com/rust-lang/rust-mode"
+	:emacs>= 25.1
+	:ensure t)
+      (leaf cargo-mode
+	:doc "Cargo Major Mode. Cargo is the Rust package manager"
+	:req "emacs-25.1"
+	:tag "tools" "emacs>=25.1"
+	:added "2022-01-20"
+	:url "https://github.com/ayrat555/cargo-mode"
+	:emacs>= 25.1
 	:ensure t)
     #+end_src
 ** Appearences
