@@ -11,16 +11,13 @@
 
 (defun org-diary-visit-date (date &optional dest)
   "Open specific date"
-  (let ((position (case dest
-		    ('memo (org-find-exact-headline-in-buffer "Memo" nil t))
-		    (nil (point-min))
-		    ))
-	(filename (org-diary-date-to-path date)))
+  (let ((filename (org-diary-date-to-path date)))
     (find-file filename)
     (unless (file-exists-p filename)
       (insert (org-capture-fill-template (org-file-contents org-diary-template))))
-    (goto-char (or position (point-min)))
-    ))
+    (ignore (goto-char (cond
+			((stringp dest) (org-find-exact-headline-in-buffer dest nil t))
+			(t (point-min)))))))
 
 (defun org-diary-visit-today (&optional dest)
   "Open today's diary"
