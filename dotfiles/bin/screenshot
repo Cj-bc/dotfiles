@@ -1,0 +1,39 @@
+#!/bin/bash
+
+echo "Start" >&2
+require() {
+    command -v $1 || {
+	echo "${1} is required, but not installed" >&2
+	exit 69 # EX_UNAVAILABLE, see /usr/include/sysexits.h
+    }
+}
+require xclip
+require import
+echo "required tested" >&2
+
+declare -a import_options=()
+
+while getopts cr opt; do
+    case $opt in
+	c)
+	    _USE_CLIPBOARD=1
+	;;
+	r)
+	    import_options+=("-window" "root")
+	    ;;
+    esac
+done
+echo "Finished parsing options" >&2
+
+declare output_file
+test -v _USE_CLIPBOARD \
+    && output_file=$(mktemp -t XXXXXXX.png) \
+    || output_file=$1
+
+echo "execute import: import ${import_options[@]} $output_file" >&2
+command import ${import_options[@]} $output_file
+
+if [[ -v _USE_CLIPBOARD ]]; then
+    xclip -t image/png -sel clipboard $output_file
+    rm $output_file
+fi
