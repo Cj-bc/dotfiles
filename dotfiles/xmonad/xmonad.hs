@@ -79,8 +79,8 @@ keybinds =
     ,("M-w M-h", withLastMinimized maximizeWindow)
     ,("M-w S-1",  passPrompt myXpconfig)
     ,("M-S-/", spawn "dunstify \"This will be command for showing all keybinds, but currently I can't provide it\"")
-    ,("M-C-3", spawn "import -window root ~/Picture/screenshots/$(date +%Y%m%d%H%M%S).png")
-    ,("M-C-4", spawn "import ~/Picture/screenshots/$(date +%Y%m%d%H%M%S).png")
+    ,("M-C-3", spawn "~/.local/bin/screenshot -r ~/Picture/screenshots/$(date +%Y%m%d%H%M%S).png")
+    ,("M-C-4", spawn "~/.local/bin/screenshot ~/Picture/screenshots/$(date +%Y%m%d%H%M%S).png")
     ,("M-C-g", (mapM sendMessage [ModifyWindowBorderEnabled not, ModifyScreenBorderEnabled not]) >>
                sendMessage ToggleGaps >> pure ())
     ,("M-f", namedScratchpadAction myScratchpads "floating terminal")
