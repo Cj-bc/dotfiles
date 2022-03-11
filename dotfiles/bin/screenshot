@@ -30,6 +30,11 @@ test -v _USE_CLIPBOARD \
     && output_file=$(mktemp -t XXXXXXX.png) \
     || output_file=$1
 
+[[ -z "$output_file" ]] && {
+    echo "Filename shuold be given unless '-c' option is passed" >&2
+    exit 64 # EX_USAGE
+}
+
 echo "execute import: import ${import_options[@]} $output_file" >&2
 command import ${import_options[@]} $output_file
 
