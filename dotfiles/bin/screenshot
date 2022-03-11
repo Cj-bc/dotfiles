@@ -13,7 +13,7 @@ echo "required tested" >&2
 
 declare -a import_options=()
 
-while getopts cr opt; do
+while getopts crh opt; do
     case $opt in
 	c)
 	    _USE_CLIPBOARD=1
@@ -21,6 +21,16 @@ while getopts cr opt; do
 	r)
 	    import_options+=("-window" "root")
 	    ;;
+	h)
+	    cat <<EOF
+Usage:
+screenshot [-crh]
+
+Options:
+	-c	Save image to X CLIPBOARD as png format
+	-r	Take screenshot of root window rather than manual selection
+	-h	Show this help
+EOF
     esac
 done
 echo "Finished parsing options" >&2
