@@ -1,0 +1,21 @@
+# Maintainer: Cj.bc-sd a.k.a Cj-bc
+
+
+pkgname=('ttf-jk-gothic-medium')
+pkgver=0.0.1
+pkgrel=1
+license=('custom')
+pkgdesc='平仮名・片仮名が女子高生風（？）な可愛いフォント'
+arch=('any')
+url='http://font.cutegirl.jp/jk-font-medium.html'
+source=('http://font.cutegirl.jp/wp-content/uploads/2015/08/jk-go-m-1.zip')
+sha256sums=('18f8ad940d9beb599fe69193ce840118a7cb5835ca96968196eccb35fef9c40b')
+
+package() {
+    install -d "${pkgdir}/usr/share/fonts/TTF/"
+    install -m644 jk-go-m-1/JKG-M_3.ttf "${pkgdir}/usr/share/fonts/TTF/"
+
+    install -d "${pkgdir}"/usr/share/licenses/${pkgname}
+    install -m644 jk-go-m-1/mplus-TESTFLIGHT-059/LICENSE_* \
+	    "${pkgdir}"/usr/share/licenses/${pkgname}
+}
