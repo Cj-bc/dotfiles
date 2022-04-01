@@ -123,5 +123,6 @@ xorg-server
 lightdm
 lightdm-gtk-greeter
 xterm
+xmonad
 linux-surface
 gparted
