@@ -1,5 +1,10 @@
 * archiso modified
 
-This my modified version of
-[[https://www.archlinux.jp/packages/extra/any/archiso/][archiso]].
-Thus, They are licensed under GPL3
+  色々自分で作業する用に整えたarchisoです。
+  
+** 機能
+   + X org server
+   + Display Manager: LightDM
+   + Window Manager: XMonad
+   + gparted
+   + linux-surface
