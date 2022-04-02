@@ -598,12 +598,19 @@
      #+HEADER: :tangle no :noweb-ref leaf-org-roam-custom
      #+begin_src elisp
        (org-roam-capture-templates .
-				  (("n" "new" plain
-				   #'org-roam-capture--get-point "%?"
-				   :file-name "%<%Y%m%d%H%M%S>-${slug}"
-				   :head "* ${title}" :unnarrowed t)
-				   )
-				  )
+				   '(("o" "object" plain
+				      "%?"
+				      :target (file+head+olp "%<%Y%m%d%H%M%S>-${slug}.org" "#+FILETAGS: :object:" ("${title}"))
+				       :unnarrowed t)
+				   ("p" "person" plain
+				      "%?"
+				      :target (file+head+olp "%<%Y%m%d%H%M%S>-${slug}.org" "#+FILETAGS: :person:" ("${title}"))
+				       :unnarrowed t)
+				   ("r" "reference" plain
+				      "%?"
+				      :target (file+head+olp "%<%Y%m%d%H%M%S>-${slug}.org" "#+FILETAGS: :reference:" ("${title}"))
+				       :unnarrowed t)
+				      ))
      #+end_src
 
      #+HEADER: :tangle no :noweb-ref leaf-org-roam-custom
