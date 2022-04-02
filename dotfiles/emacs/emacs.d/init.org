@@ -572,9 +572,6 @@
       (leaf org-roam
 	:emacs>= 26.1
 	:ensure t
-	:hook
-	(after-init-hook . org-roam-setup)
-	(kill-emacs-hook . org-roam-teardown)
 	:pre-setq
 	(org-roam-v2-ack . t)
 	:custom
@@ -589,6 +586,7 @@
 	(evil-define-key 'visual 'org-roam-mode-map (kbd "RET") 'org-roam-node-insert)
 	(evil-define-key 'visual 'org-roam-mode-map (kbd "<S-return>") 'cjbc-org-roam-insert-immediate-private)
 	(evil-define-key 'normal 'global (kbd "SPC r l") 'org-roam-buffer-toggle)
+	(org-roam-db-autosync-mode)
 	)
     #+end_src
 
