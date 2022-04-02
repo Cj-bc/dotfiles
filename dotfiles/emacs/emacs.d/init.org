@@ -543,6 +543,10 @@
 				:clock-in t
 				:clock-resume t
 				)
+			       ("bd" "dialy post" plain
+				(function blog-visit-new-diary)
+				(file "~/.emacs.d/templates/org-capture/blog-diary")
+				)
 			       ("d" "diary")
 			       ("dm" "Memo" entry
 				(function ,(apply-partially 'org-diary-visit-today "Memo"))
