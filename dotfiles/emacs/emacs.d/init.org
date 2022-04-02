@@ -667,6 +667,14 @@
 	 (setq org-roam-encrypt-files org-roam-encrypt-files--old-value)
 	 )
      #+end_src
+**** org-roam-ui
+
+     #+begin_src elisp
+       (leaf org-roam-ui
+	 :ensure t
+	 :after org-roam
+	 )
+     #+end_src
 
 *** org pomodoro
     :PROPERTIES:
@@ -900,8 +908,13 @@
 	:emacs>= 24.3
 	:ensure t)
     #+end_src
+*** 環境の一致
+
+    #+begin_src elisp
+      (leaf editorconfig
+	:ensure t)
+    #+end_src
 ** メモ取り・ナレッジベース構築
-   
 *** Orgファイル以外でのリンクを構築する
     Orgファイル以外でも、リンク機能が使えると便利
     (e.g. ソースコードのコメントにroamへのリンクを貼るなど)
