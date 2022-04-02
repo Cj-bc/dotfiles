@@ -536,7 +536,8 @@
 			     '(("d" "default" plain
 				(file "capture.org")
 				"")
-			       ("b" "blog post" plain
+			       ("b" "blog posts")
+			       ("bp" "normal post" plain
 				(function blog-visit-new-post)
 				(file "~/.emacs.d/templates/org-capture/blog")
 				:clock-in t
