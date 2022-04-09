@@ -40,7 +40,7 @@ mySB = statusBarProp "LANG=ja_JP.UTF-8 xmobar" (pure $ xmobarPP {ppCurrent = boo
 main = xmonad $ withEasySB mySB defToggleStrutsKey cfg
 
 cfg = def
-    { terminal = "termite"
+    { terminal = "LANG=ja_JP.UTF-8 ~/.local/bin/st"
     , workspaces = myWorkspaces
     , manageHook = myManageHook
     , startupHook = myStartuphook
@@ -119,8 +119,8 @@ myStartuphook = do
     -- This doesn't work...
     -- Consider using 'XMonad.Actions.TagWindows' instead.
     checkKeymap cfg keybinds
-    spawnOnce "termite"
     spawnOnce "qutebrowser -B ~/.local/share/qutem/profiles/Cj-bc"
+    spawnOnce "LANG=ja_JP.UTF-8 ~/.local/bin/st"
     spawnOnce "slack"
     spawnOnce "discord"
     spawnOnce "picom"
@@ -143,7 +143,7 @@ myLayoutHook = minimize . boringWindows . addSpacing
         addSpacing = spacingRaw True (Border 0 10 10 10) True (Border 10 10 10 10) True
 
 myScratchpads = [
-    NS "floating terminal" "termite -t 'floating-terminal'" (title =? "floating-terminal")
+    NS "floating terminal" "LANG=ja_JP.UTF-8 ~/.local/bin/st -t 'floating-terminal'" (title =? "floating-terminal")
     (customFloating $ W.RationalRect (1/6) (1/6) (2/3) (2/3))
     ]
 
