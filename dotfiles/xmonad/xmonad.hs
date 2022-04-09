@@ -85,10 +85,9 @@ keybinds =
                sendMessage ToggleGaps >> pure ())
     ,("M-f", namedScratchpadAction myScratchpads "floating terminal")
     ,("M-S-;", xmonadPromptC myCustomCommandList myXpconfig)
-    ,("<XF86AudioLowerVolume>",  spawn "pactl set-sink-volume 0 -5%; pactl set-sink-mute 0 false")
-    ,("<XF86AudioRaiseVolume>",  spawn "pactl set-sink-volume 0 +5%; pactl set-sink-mute 0 false")
-    ,("<XF86AudioMute>",         spawn "pactl set-sink-mute 0 toggle")
-    ,("M-<XF86AudioMute>",       spawn "pactl set-source-mute 0 toggle")
+    ,("<XF86AudioLowerVolume>",  spawn "pactl set-sink-volume @DEFAULT_SINK@ -5%; pactl set-sink-mute @DEFAULT_SINK@ false")
+    ,("<XF86AudioRaiseVolume>",  spawn "pactl set-sink-volume @DEFAULT_SINK@ +5%; pactl set-sink-mute @DEFAULT_SINK@ false")
+    ,("<XF86AudioMute>",         spawn "pactl set-sink-mute @DEFAULT_SINK@ toggle")
     ,("<XF86MonBrightnessUp>",   spawn "brightnessctl set +1%")
     ,("<XF86MonBrightnessDown>", spawn "brightnessctl set 1%-")
     ]
