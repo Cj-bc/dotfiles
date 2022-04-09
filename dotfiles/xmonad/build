@@ -1,6 +1,12 @@
 #!/usr/bin/env bash
 
+# stack build && find . -name 'xmonad-cj-bc-exe' -type f -newer $1 -exec mv {} $1 \; \
+
 # As xmonad automatically change pwd to cfgdir, I don't have to care
 # where this is executed
-stack build
-find . -name 'xmonad-cj-bc-exe' -type f -newer $1 -exec mv {} $1 \;
+
+dunstify --appname=xmonad -t 500 -u normal "Start rebuilding..."
+stack build && { find .stack-work/install -name 'xmonad-cj-bc-exe' -type f -newer $1 -exec mv {} $1 \;
+                 dunstify --appname=xmonad -t 500 -u normal "successfully rebuilt";
+               } \
+            || dunstify --appname=xmonad -u critical "Failed to recompile"
