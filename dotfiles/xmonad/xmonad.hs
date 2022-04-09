@@ -119,8 +119,8 @@ myStartuphook = do
     -- This doesn't work...
     -- Consider using 'XMonad.Actions.TagWindows' instead.
     checkKeymap cfg keybinds
-    spawnOnce "qutebrowser -B ~/.local/share/qutem/profiles/Cj-bc"
     spawnOnce "LANG=ja_JP.UTF-8 ~/.local/bin/st"
+    spawnOnce "~/.local/bin/rofi-qutem Cj-bc"
     spawnOnce "slack"
     spawnOnce "discord"
     spawnOnce "picom"
