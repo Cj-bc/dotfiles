@@ -873,7 +873,16 @@
 	 (setq projectile-completion-system 'ivy))
        )
    #+end_src
+   
+*** Posframeを使う
+    場合によってはposframeの方がありがたいので、posframeを入れる
 
+    #+begin_src elisp
+      (leaf ivy-posframe
+	:ensure t
+	:after posframe ivy
+	)
+    #+end_src
 ** Lsp mode
    #+begin_src elisp
      (leaf lsp-mode
