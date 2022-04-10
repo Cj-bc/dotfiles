@@ -586,12 +586,20 @@
 	:config
 	<<leaf-org-roam-config>>
 	(setq org-roam-directory (file-truename "~/Dropbox/roam"))
+	(org-roam-db-autosync-mode)
+	)
+    #+end_src
+
+
+    #+begin_src elisp
+      (leaf org-roam-evil-key
+	:after org-roam evil
+	:config
 	(evil-define-key 'normal 'global (kbd "SPC r d") 'org-roam-dailies-goto-today)
 	(evil-define-key 'normal 'global (kbd "SPC r s") 'org-roam-node-find)
 	(evil-define-key 'visual 'org-roam-mode-map (kbd "RET") 'org-roam-node-insert)
 	(evil-define-key 'visual 'org-roam-mode-map (kbd "<S-return>") 'cjbc-org-roam-insert-immediate-private)
 	(evil-define-key 'normal 'global (kbd "SPC r l") 'org-roam-buffer-toggle)
-	(org-roam-db-autosync-mode)
 	)
     #+end_src
 
