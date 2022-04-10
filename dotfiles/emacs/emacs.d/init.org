@@ -780,30 +780,32 @@
    これがあるから引っ越せた。
    #+begin_src elisp
      (leaf evil :ensure t
-	 :require t
-	 :config
-	 (evil-mode)
-	 (leaf evil-org :ensure t
-	   :hook
-	   (org-mode-hook . evil-org-mode)
-	   (org-agenda-mode-hook . evil-org-mode)
+	:require t
+	:config
+	(evil-mode)
 
-	   :config
-	   (require 'evil-org-agenda)
-	   (evil-org-agenda-set-keys)
-	   )
-	 (leaf evil-surround :ensure t
-	   :after 'evil-core
-	   :config
-	   (evil-surround-mode)
-	   (evil-define-key 'visual 'global "sd" 'evil-surround-delete)
-	   (evil-define-key 'visual 'global "sa" 'evil-surround-region)
-	   (evil-define-key 'visual 'global "sr" 'evil-surround-change)
-	 )
-	 (leaf evil-numbers :ensure t
-	   :after 'evil-core
-	   )
-	 )
+	(leaf evil-org :ensure t
+	  :hook
+	  (org-mode-hook . evil-org-mode)
+	  (org-agenda-mode-hook . evil-org-mode)
+
+	  :config
+	  (require 'evil-org-agenda)
+	  (evil-org-agenda-set-keys)
+	  (evil-define-key 'normal 'global (kbd "C-w C-v") 'evil-window-vnew)
+	  )
+	(leaf evil-surround :ensure t
+	  :after 'evil-core
+	  :config
+	  (evil-surround-mode)
+	  (evil-define-key 'visual 'global "sd" 'evil-surround-delete)
+	  (evil-define-key 'visual 'global "sa" 'evil-surround-region)
+	  (evil-define-key 'visual 'global "sr" 'evil-surround-change)
+	)
+	(leaf evil-numbers :ensure t
+	  :after 'evil-core
+	  )
+	)
    #+end_src
 
 *** TODO 分解する
