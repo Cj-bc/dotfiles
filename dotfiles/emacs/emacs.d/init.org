@@ -115,8 +115,11 @@
       (leaf ddskk :ensure t
 	  :bind
 	  ("C-x C-j" . skk-mode)
+	  :custom
+	  (default-input-method . "japanese-skk")
 	  :config
 	  (add-to-list 'auto-mode-alist '(".*\\.dict$" . skk-jisyo-edit-mode))
+	  (skk-mode)
 	  )
     #+end_src
 ** Org mode!!!
@@ -1084,7 +1087,6 @@
        (auto-revert-mode)
 
        (show-paren-mode)
-       (skk-mode)
      )
    #+end_src
 
