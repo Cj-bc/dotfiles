@@ -783,6 +783,7 @@
 	:require t
 	:config
 	(evil-mode)
+	(evil-define-key 'insert 'global (kbd "C-x C-o") 'completion-at-point)
 
 	(leaf evil-org :ensure t
 	  :hook
