@@ -893,8 +893,6 @@
        (sh-mode-hook . lsp)
        (haskell-mode-hook . lsp)
        (kotlin-mode-hook . lsp)
-       :config
-       (evil-define-key 'insert 'global (kbd "C-x C-o") 'completion-at-point)
        )
    #+end_src
 
