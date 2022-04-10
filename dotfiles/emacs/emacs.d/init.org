@@ -124,10 +124,11 @@
    
    #+begin_src elisp :noweb yes 
      (leaf org
-	      :bind
-	      (("C-c SPC o a" . org-agenda-list)
-	       ("C-c SPC o t" . org-todo-list)
-	       )
+       :bind-keymap
+       ("C-c o" . '(keymap (?a . org-agenda-list)
+			   (?t . org-todo-list)
+			   (?c . org-capture)
+			   ))
        :hook
        <<leaf-org-hook>>
        :custom
