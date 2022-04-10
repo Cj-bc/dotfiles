@@ -128,20 +128,20 @@
 	      (("C-c SPC o a" . org-agenda-list)
 	       ("C-c SPC o t" . org-todo-list)
 	       )
-	      :hook
-	      <<leaf-org-hook>>
-	      :custom
-	      (org-global-properties . '(("TASK_KIND_ALL" . "やること 勉強 休憩 生活")
-					 ("BLOG_POST_KIND_ALL" . "Memo Diary Knowledge Advertisment Translation HowTo")
-					 ("BLOG_POST_PROGRESS_ALL" . "Empty WIP Published")
-					 ("BLOG_POST_STATUS_ALL" . "Normal Archive Accuracy Outdated")
-					 ))
-	      <<leaf-org-custom>>
-	      (org-link-abbrev-alist . '<<leaf-org-external-link--get-list()>>)
-	      (org-todo-keywords . '<<leaf-org-todo-keywords-construct()>>)
-	      :config
-	      <<leaf-org-config>>
-	    )
+       :hook
+       <<leaf-org-hook>>
+       :custom
+       (org-global-properties . '(("TASK_KIND_ALL" . "やること 勉強 休憩 生活")
+				  ("BLOG_POST_KIND_ALL" . "Memo Diary Knowledge Advertisment Translation HowTo")
+				  ("BLOG_POST_PROGRESS_ALL" . "Empty WIP Published")
+				  ("BLOG_POST_STATUS_ALL" . "Normal Archive Accuracy Outdated")
+				  ))
+       (org-link-abbrev-alist . '<<leaf-org-external-link--get-list()>>)
+       (org-todo-keywords . '<<leaf-org-todo-keywords-construct()>>)
+       <<leaf-org-custom>>
+       :config
+       <<leaf-org-config>>
+       )
    #+end_src
 *** テーブル書式
     :PROPERTIES:
