@@ -580,8 +580,8 @@
 	:pre-setq
 	(org-roam-v2-ack . t)
 	:custom
-	(org-roam-link-auto-replace . nil)
 	(org-roam-graph-viewer . "qutebrowser")
+	(org-roam-completion-everywhere . t)
 	<<leaf-org-roam-custom>>
 	:config
 	<<leaf-org-roam-config>>
