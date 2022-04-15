@@ -579,19 +579,20 @@
     #+HEADER: :noweb-ref leaf-org-config :noweb yes
     #+begin_src elisp
       (leaf org-roam
-	:emacs>= 26.1
-	:ensure t
-	:pre-setq
-	(org-roam-v2-ack . t)
-	:custom
-	(org-roam-graph-viewer . "qutebrowser")
-	(org-roam-completion-everywhere . t)
-	<<leaf-org-roam-custom>>
-	:config
-	<<leaf-org-roam-config>>
-	(setq org-roam-directory (file-truename "~/Dropbox/roam"))
-	(org-roam-db-autosync-mode)
-	)
+        :emacs>= 26.1
+        :ensure t
+        :pre-setq
+        (org-roam-v2-ack . t)
+        :custom
+        `(org-roam-directory . ,(file-truename "~/Dropbox/roam"))
+        (org-roam-link-auto-replace . t)
+        (org-roam-graph-viewer . "qutebrowser")
+        (org-roam-completion-everywhere . t)
+        <<leaf-org-roam-custom>>
+        :config
+        <<leaf-org-roam-config>>
+        (org-roam-db-autosync-mode)
+        )
     #+end_src
 
 
