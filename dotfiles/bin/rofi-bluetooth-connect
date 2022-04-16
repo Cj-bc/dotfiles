@@ -1,0 +1,24 @@
+#!/bin/bash
+
+if [[ "$ROFI_INFO" =~ ([0-9A-F]{2}:){5}[0-9A-F]{2} ]]; then
+    echo -en "connect\0info\x1f${ROFI_INFO}\n"
+    echo -en "disconnect\0info\x1f${ROFI_INFO}\n"
+    echo -en "info\0info\x1f${ROFI_INFO}\n"
+fi
+
+case "$1" in
+    "" ) while read id name; do
+	     echo -en "$name\0info\x1f$id\n"
+	 done < <(bluetoothctl devices | cut -d ' ' -f 2-)
+	 ;;
+    "connect" ) 
+	bluetoothctl power on
+	bluetoothctl connect "$ROFI_INFO" >/dev/null
+	;;
+    "disconnect" )
+	bluetoothctl disconnect "$ROFI_INFO" >/dev/null
+	;;
+    "info" )
+	 dunstify "$(bluetoothctl info "$ROFI_INFO")"
+	;;
+esac
