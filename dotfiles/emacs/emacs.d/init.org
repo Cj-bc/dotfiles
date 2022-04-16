@@ -861,6 +861,7 @@
 	("C-x C-f" . counsel-find-file)
 	("C-h f" . counsel-describe-function)
 	("C-h v" . counsel-describe-variable)
+	("C-s" . swiper)
 	)
        :config
        (setq ivy-re-builders-alist
