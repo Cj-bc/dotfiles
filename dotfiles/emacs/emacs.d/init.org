@@ -628,7 +628,11 @@
 				      "%?"
 				      :target (file+head+olp "%<%Y%m%d%H%M%S>-${slug}.org" "#+FILETAGS: :reference:" ("${title}"))
 				       :unnarrowed t)
-				      ))
+				   ("i" "idea" plain
+				    "%?"
+				    :target (file+olp "%<%Y%m%d%H%M%S>-${slug}.org" ("${title}"))
+				    :unnarrowed t)
+				   ))
      #+end_src
 
      #+HEADER: :tangle no :noweb-ref leaf-org-roam-custom
