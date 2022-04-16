@@ -41,4 +41,6 @@
 [gpg]
 	program = gpg
 
+[ghq]
+	root = ~/Documents/ghq
 # vim: ft=gitconfig
