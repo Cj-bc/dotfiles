@@ -1,3 +1,4 @@
+{-# LANGUAGE Rank2Types, KindSignatures, FlexibleContexts #-}
 import XMonad
 import qualified XMonad.StackSet as W
 import XMonad.Util.EZConfig
