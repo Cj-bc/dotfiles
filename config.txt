@@ -23,4 +23,5 @@ ssh, $HOME/.ssh
 xmonad, $HOME/.xmonad
 bin, $HOME/.local/bin
 dunst, $HOME/.config/dunst
+rofi, $HOME/.config/rofi
 gh, $HOME/.config/gh

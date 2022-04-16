@@ -1,0 +1,85 @@
+// Mia-chan-alike! -- みあちゃんっぽく!
+//
+// VTuberの"夜桜みあ"ちゃんイメージのrofiテーマ
+//
+// 夜桜みあちゃんのチャンネル: https://www.youtube.com/channel/UCH3tRsAvHSsTi1LDC7l_PDA
+// 
+// Author: Cj.bc-sd a.k.a Cj-bc
+
+@import "config"
+
+* {
+// rofiは目立たせたいので、背景に使われがちな服の色は避けます
+    hairgold: #f9ddae; // Color3, 髪の色
+    hair-light: #e9cd9e; // 髪の色をベースに少し薄くしてみた
+
+    mainColor: #ffaee0; // みあちゃんのメインカラーのピンク
+    subColor: #3d3332; // 服の茶色。
+
+    normal-fg: #9bb9db;
+    pink-light: #ee0dd0;
+    bg: @mainColor;
+    bg-light: @mainColor-light;
+
+    background-color: @mainColor;
+    font: "Cica 18";
+}
+
+window {
+    background-color: @mainColor;
+    location: south west;
+}
+
+mainbox {
+  border-color: @subColor;
+  margin: 5;
+  padding: 5;
+  border: 5;
+}
+
+inputbar {
+  mergin: 1em;
+  border: 0px 0px 2px;
+  border-color: #3d3332;
+
+  children: [prompt, textbox-prompt-colon, entry, case-indicator];
+}
+
+case-indicator {
+  spacing: 10;
+  text-color: @subColor;
+  background-color: @mainColor;
+}
+
+textbox-prompt-colon {
+    expand: false;
+    str: ":";
+    margin: 0 0.3em 0 0;
+    text-color: @normal-fg;
+}
+
+listview {
+  scrollbar: false;
+}
+
+element normal.normal {
+  background-color: @mainColor;
+}
+
+element alternate.normal {
+  background-color: @mainColor;
+}
+
+element selected.normal {
+  background-color: @subColor;
+}
+
+element-text {
+    highlight: bold;
+}
+
+scrollbar {
+  width: 4px;
+  handle-width: 8px;
+  handle-color: @bg-light;
+}
