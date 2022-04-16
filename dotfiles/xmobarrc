@@ -28,7 +28,7 @@ Config {
   , template = "<box type=Bottom>%XMonadLog%</box> } %current-clock-in% { <box type=Bottom><fn=1></fn> %wi% %bright% %battery% %Default:Master%</box>"
   , alpha = 0
   , font = "xft:Cica:size=16,Symbols Nerd Font:size=16"
-  , fgColor = "#ffaee0"
+  , fgColor = "#3d3332"
   , position = TopSize C 90 35
   , additionalFonts = ["xft:Symbols Nerd Font:size=26"]
   }
