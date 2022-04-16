@@ -21,6 +21,7 @@ stack, $HOME/.config/stack
 weechat, $HOME/.weechat
 ssh, $HOME/.ssh
 xmonad, $HOME/.xmonad
+xmobarrc, $HOME/.xmobarrc
 bin, $HOME/.local/bin
 dunst, $HOME/.config/dunst
 rofi, $HOME/.config/rofi
