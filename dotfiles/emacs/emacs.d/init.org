@@ -635,18 +635,6 @@
 				   ))
      #+end_src
 
-     #+HEADER: :tangle no :noweb-ref leaf-org-roam-custom
-     #+begin_src elisp
-       (org-roam-dailies-capture-templates .
-					   (("n" "new" entry #'org-roam-capture--get-point
-					     "* %?" :file-name "daily/%<%Y-%m-%d>"
-					     :head "#+title: %<%Y-%m-%d>")
-					    ("d" "やったこと" entry #'org-roam-capture--get-point
-
-					     :file-name "daily/%<%Y-%m-%d>"
-					    )
-					   )
-     #+end_src
      
 **** TODO タグの一覧を作る
      今だと似ているタグが複数出来てしまったりしてると思うので。
