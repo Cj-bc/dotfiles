@@ -51,7 +51,7 @@ main = xmonad $ withEasySB mySB defToggleStrutsKey cfg
 
 cfg = def
     { terminal = "LANG=ja_JP.UTF-8 ~/.local/bin/st"
-    , workspaces = topicNames myTopicItems
+    , workspaces = topicNames MyTopics.topics
     , manageHook = myManageHook
     , startupHook = myStartuphook
     , layoutHook = myLayoutHook
@@ -149,7 +149,7 @@ myStartuphook = do
     XS.put (def :: EwwVisibility)
 
 myLayoutHook = minimize . boringWindows . addSpacing
-               . onWorkspace (show Web) fullWithGap
+               . onWorkspace (MyTopics.topicName MyTopics.Web) fullWithGap
                $ defaultLayout
     where
         defaultLayout = fullWithGap
