@@ -1,5 +1,6 @@
 {-# LANGUAGE Rank2Types, KindSignatures, FlexibleContexts #-}
 import XMonad
+import XMonad.Operations (withFocused)
 import qualified XMonad.StackSet as W
 import XMonad.Util.EZConfig
 import XMonad.Actions.SpawnOn (spawnOn, manageSpawn)
@@ -23,6 +24,7 @@ import XMonad.Layout.Mirrorable
 import XMonad.Layout.BoringWindows
 import XMonad.Layout.Info
 import XMonad.Actions.Minimize
+import XMonad.Actions.NoBorders
 import XMonad.Layout.Minimize
 import XMonad.Prompt.Pass
 import XMonad.Prompt
