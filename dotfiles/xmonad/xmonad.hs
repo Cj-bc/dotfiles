@@ -11,6 +11,7 @@ import Data.Bool (bool)
 import Data.Ratio ((%))
 import Data.Text (Text)
 import Data.Bits ((.|.))
+import Data.List (isPrefixOf)
 import Data.Monoid (Endo(..))
 import qualified Data.Map as M
 import XMonad.Util.NamedScratchpad (NamedScratchpad(NS), customFloating, namedScratchpadManageHook, namedScratchpadAction)
@@ -116,6 +117,7 @@ myManageHook = composeAll [
     , namedScratchpadManageHook myScratchpads
     , className =? "jetbrains-studio" --> doFloat
     , className =? "zoom "  <&&> title =? "Chat" --> doFloat
+    , fmap (isPrefixOf "ol-mpv mpv -- ") title --> doFloat
     ]
 
 placeAt :: W.RationalRect -> Window -> ManageHook
