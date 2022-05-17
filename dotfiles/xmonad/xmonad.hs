@@ -115,7 +115,7 @@ myManageHook = composeAll [
       --> (ask >>= placeAt (W.RationalRect (6%10) (4%10) (4%10) (1%10))) <+> doFloat
     , namedScratchpadManageHook myScratchpads
     , className =? "jetbrains-studio" --> doFloat
-    , className =? "zoom"  <&&> title =? "Chat" --> doFloat
+    , className =? "zoom "  <&&> title =? "Chat" --> doFloat
     ]
 
 placeAt :: W.RationalRect -> Window -> ManageHook
