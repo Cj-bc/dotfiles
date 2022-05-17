@@ -34,6 +34,8 @@ import XMonad.Prompt.FuzzyMatch
 import XMonad.Hooks.StatusBar
 import XMonad.Hooks.StatusBar.PP
 import XMonad.Util.Run.Experiment (xmobar')
+import qualified XMonad.Util.ExtensibleState as XS
+import XMonad.Util.Eww (ewwToggle, EwwVisibility)
 
 -- Need to specify LANG in order to show UTF-8 properly
 mySB = statusBarProp "LANG=ja_JP.UTF-8 xmobar" (pure $ xmobarPP {ppCurrent = bool "綠" "" . (==) "NSP"
@@ -82,6 +84,7 @@ keybinds =
     ,("M-w M-h", withLastMinimized maximizeWindow)
     ,("M-w S-1",  passPrompt myXpconfig)
     ,("M-S-e", spawn "emacsclient -c")
+    ,("M-S-s", ewwToggle)
     ,("M-S-/", spawn "dunstify \"This will be command for showing all keybinds, but currently I can't provide it\"")
     ,("M-C-3", spawn "~/.local/bin/screenshot -r ~/Picture/screenshots/$(date +%Y%m%d%H%M%S).png")
     ,("M-C-4", spawn "~/.local/bin/screenshot ~/Picture/screenshots/$(date +%Y%m%d%H%M%S).png")
@@ -133,7 +136,7 @@ myStartuphook = do
 
     spawnOnce "~/.local/bin/eww daemon"
     spawnOnce "~/.local/bin/eww open status"
-
+    XS.put (def :: EwwVisibility)
 myLayoutHook = minimize . boringWindows . addSpacing
                . onWorkspace (show Web) fullWithGap
                $ onWorkspace (show Info) (addGapOnewindow InfoWorkspace)
