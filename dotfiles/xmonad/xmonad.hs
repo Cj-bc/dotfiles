@@ -141,8 +141,7 @@ myStartuphook = do
     XS.put (def :: EwwVisibility)
 myLayoutHook = minimize . boringWindows . addSpacing
                . onWorkspace (show Web) fullWithGap
-               $ onWorkspace (show Info) (addGapOnewindow InfoWorkspace)
-               defaultLayout
+               $ defaultLayout
     where
         defaultLayout = fullWithGap
                         ||| (mirrorable $ Tall def def def)
