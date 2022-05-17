@@ -61,7 +61,6 @@ cfg = def
 data WorkspaceNames = Info | Editor | Web | Communication | Media deriving (Show, Eq, Ord, Enum)
 myWorkspaces = map show $ enumFrom Info
 
--- I want to create this function to show notification
 -- Want to split this into other module, but I don't know how to read it along with xmonad
 --
 -- isMuted :: IO Bool
@@ -139,6 +138,7 @@ myStartuphook = do
     spawnOnce "~/.local/bin/eww daemon"
     spawnOnce "~/.local/bin/eww open status"
     XS.put (def :: EwwVisibility)
+
 myLayoutHook = minimize . boringWindows . addSpacing
                . onWorkspace (show Web) fullWithGap
                $ defaultLayout
