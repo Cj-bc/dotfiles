@@ -88,4 +88,4 @@ data Krita = Krita
 instance MyTopic Krita where
   topicName = const "krita"
   topicDir _ = "~/"
-  topicACtion = const $ spawnOnce "krita"
+  topicAction = const $ spawnOnce "krita"
