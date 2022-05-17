@@ -71,7 +71,7 @@ myXpconfig = def { font = "xft:Cica:"
 
 keybinds :: [(String, X ())]
 keybinds =
-    [("M-w p", spawn "LANG=C rofi -show run")
+    [("M-w p", spawn "LANG=C rofi -show run -config ~/.config/rofi/mia-chan-alike!.rasi")
     ,("M-w v", spawn "LANG=C clipmenu")
     ,("M-w q", spawn "LANG=C rofi -show power-manager")
     ,("M-<XF86PowerOff>", spawn "LANG=C rofi -show power-manager")
