@@ -32,6 +32,7 @@ library
       XMonad.Layout.Whitelist
       XMonad.Util.EZConfig.Reexport
       XMonad.Util.Run.Experiment
+      XMonad.Util.Eww
   other-modules:
       Paths_xmonad_cj_bc
   hs-source-dirs:
