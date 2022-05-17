@@ -4,6 +4,8 @@ import XMonad.Operations (withFocused)
 import qualified XMonad.StackSet as W
 import XMonad.Util.EZConfig
 import XMonad.Actions.SpawnOn (spawnOn, manageSpawn)
+import XMonad.Actions.TopicSpace (TopicItem (TI), inHome, switchTopic, TopicConfig(..)
+                                 , tiDirs, tiActions, topicNames)
 import XMonad.Util.SpawnOnce (spawnOnce)
 import XMonad.Layout.PerWorkspace
 import XMonad.Layout (Full)
@@ -30,6 +32,7 @@ import XMonad.Layout.Minimize
 import XMonad.Prompt.Pass
 import XMonad.Prompt
 import XMonad.Prompt.XMonad
+import XMonad.Prompt.Workspace (workspacePrompt)
 import XMonad.Prompt.FuzzyMatch
 
 import XMonad.Hooks.StatusBar
@@ -47,7 +50,7 @@ main = xmonad $ withEasySB mySB defToggleStrutsKey cfg
 
 cfg = def
     { terminal = "LANG=ja_JP.UTF-8 ~/.local/bin/st"
-    , workspaces = myWorkspaces
+    , workspaces = topicNames myTopicItems
     , manageHook = myManageHook
     , startupHook = myStartuphook
     , layoutHook = myLayoutHook
@@ -72,6 +75,30 @@ myXpconfig = def { font = "xft:Cica:"
                  , searchPredicate = fuzzyMatch
                  , sorter = fuzzySort
                  }
+
+-- Projects {{{
+myTopicItems :: [TopicItem]
+myTopicItems = [ inHome "web" (spawnOnce "~/.local/bin/rofi-qutem Cj-bc")
+               , TI "note" "~/Dropbox/roam" (spawn "emacsclient -c")
+               , inHome "Communication"  (spawnOnce "slack" >> spawnOnce "discord")
+               , TI "blender" "~/Documents/blender" (spawnOnce "blender")
+               , TI "krita" "~/Documents/Krita" (spawnOnce "krita")
+               , projectTopic "dotfiles" "~/Documents/ghq/github.com/Cj-bc/dotfiels"
+               , projectTopic "blog" "~/Documents/ghq/github.com/Cj-bc/blog"
+               ]
+
+-- | Small helper function to build Topics for project
+projectTopic :: String -> String -> TopicItem
+projectTopic projectName path = TI projectName path
+                                (spawnOnce "LANG=ja_JP.UTF-8 ~/.local/bin/st"
+                                 >> spawnOnce "emacsclient -c")
+
+myTopicConfig :: TopicConfig 
+myTopicConfig = def { topicDirs = tiDirs myTopicItems
+                    , topicActions = tiActions myTopicItems
+                    , defaultTopic  = "note"
+                    }
+-- }}}
 
 keybinds :: [(String, X ())]
 keybinds =
@@ -98,16 +125,17 @@ keybinds =
     ,("<XF86AudioMute>",         spawn "pactl set-sink-mute @DEFAULT_SINK@ toggle")
     ,("<XF86MonBrightnessUp>",   spawn "brightnessctl set +1%")
     ,("<XF86MonBrightnessDown>", spawn "brightnessctl set 1%-")
+    ,("M-S-w", workspacePrompt def $ switchTopic myTopicConfig)
     ]
 
 myManageHook :: ManageHook
 myManageHook = composeAll [
       manageSpawn
-    , className =? "Brave-browser" --> doShift (show Web)
-    , className =? "qutebrowser"   --> doShift (show Web)
-    , className =? "Slack"             --> doShift (show Communication)
-    , className =? "discord"           --> doShift (show Communication)
-    , title     =? "Discord -- Brave"  --> doShift (show Communication)
+    , className =? "Brave-browser" --> doShift "web"
+    , className =? "qutebrowser"   --> doShift "web"
+    , className =? "Slack"             --> doShift "communication"
+    , className =? "discord"           --> doShift "communication"
+    , title     =? "Discord -- Brave"  --> doShift "communication"
     , className =? "Dunst"             --> doFloat
     , className =? "pinentry-qt" --> doFloat
     , className =? "Emacs" <&&> title =? "org-agenda-fixed" --> doShift (show Info)
@@ -130,8 +158,6 @@ myStartuphook = do
     checkKeymap cfg keybinds
     spawnOnce "LANG=ja_JP.UTF-8 ~/.local/bin/st"
     spawnOnce "~/.local/bin/rofi-qutem Cj-bc"
-    spawnOnce "slack"
-    spawnOnce "discord"
     spawnOnce "picom"
     spawn "~/.fehbg"
 
