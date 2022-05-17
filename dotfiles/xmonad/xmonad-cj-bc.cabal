@@ -25,6 +25,7 @@ source-repository head
 library
   exposed-modules:
       XMonad.Actions.GridSelect.Cjbc
+      XMonad.Actions.TopicSpace.MyTopics
       XMonad.Hooks.Whitelist
       XMonad.Layout.Half
       XMonad.Layout.Info

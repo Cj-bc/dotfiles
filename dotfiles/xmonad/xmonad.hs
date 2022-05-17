@@ -6,6 +6,7 @@ import XMonad.Util.EZConfig
 import XMonad.Actions.SpawnOn (spawnOn, manageSpawn)
 import XMonad.Actions.TopicSpace (TopicItem (TI), inHome, switchTopic, TopicConfig(..)
                                  , tiDirs, tiActions, topicNames)
+import XMonad.Actions.TopicSpace.MyTopics as MyTopics
 import XMonad.Util.SpawnOnce (spawnOnce)
 import XMonad.Layout.PerWorkspace
 import XMonad.Layout (Full)
@@ -61,8 +62,6 @@ cfg = def
     `additionalKeysP` keybinds
 
 
-data WorkspaceNames = Info | Editor | Web | Communication | Media deriving (Show, Eq, Ord, Enum)
-myWorkspaces = map show $ enumFrom Info
 
 -- Want to split this into other module, but I don't know how to read it along with xmonad
 --
@@ -77,26 +76,10 @@ myXpconfig = def { font = "xft:Cica:"
                  }
 
 -- Projects {{{
-myTopicItems :: [TopicItem]
-myTopicItems = [ inHome "web" (spawnOnce "~/.local/bin/rofi-qutem Cj-bc")
-               , TI "note" "~/Dropbox/roam" (spawn "emacsclient -c")
-               , inHome "Communication"  (spawnOnce "slack" >> spawnOnce "discord")
-               , TI "blender" "~/Documents/blender" (spawnOnce "blender")
-               , TI "krita" "~/Documents/Krita" (spawnOnce "krita")
-               , projectTopic "dotfiles" "~/Documents/ghq/github.com/Cj-bc/dotfiels"
-               , projectTopic "blog" "~/Documents/ghq/github.com/Cj-bc/blog"
-               ]
-
--- | Small helper function to build Topics for project
-projectTopic :: String -> String -> TopicItem
-projectTopic projectName path = TI projectName path
-                                (spawnOnce "LANG=ja_JP.UTF-8 ~/.local/bin/st"
-                                 >> spawnOnce "emacsclient -c")
-
 myTopicConfig :: TopicConfig 
-myTopicConfig = def { topicDirs = tiDirs myTopicItems
-                    , topicActions = tiActions myTopicItems
-                    , defaultTopic  = "note"
+myTopicConfig = def { topicDirs = tiDirs MyTopics.topics
+                    , topicActions = tiActions MyTopics.topics
+                    , defaultTopic  = (topicName MyTopics.Note)
                     }
 -- }}}
 
@@ -131,11 +114,11 @@ keybinds =
 myManageHook :: ManageHook
 myManageHook = composeAll [
       manageSpawn
-    , className =? "Brave-browser" --> doShift "web"
-    , className =? "qutebrowser"   --> doShift "web"
-    , className =? "Slack"             --> doShift "communication"
-    , className =? "discord"           --> doShift "communication"
-    , title     =? "Discord -- Brave"  --> doShift "communication"
+    , className =? "Brave-browser" --> doShift (topicName MyTopics.Web)
+    , className =? "qutebrowser"   --> doShift (topicName MyTopics.Web)
+    , className =? "Slack"             --> doShift (topicName MyTopics.Communication)
+    , className =? "discord"           --> doShift (topicName MyTopics.Communication)
+    , title     =? "Discord -- Brave"  --> doShift (topicName MyTopics.Communication)
     , className =? "Dunst"             --> doFloat
     , className =? "pinentry-qt" --> doFloat
     , className =? "Emacs" <&&> title =? "org-agenda-fixed" --> doShift (show Info)
