@@ -58,9 +58,8 @@ cfg = def
     , mouseBindings = myMouseBinds
     , modMask = mod4Mask
     }
-    `removeKeysP` ["M-p"]
+    `removeKeysP` ["M-p", "M-S-q"]
     `additionalKeysP` keybinds
-
 
 
 -- Want to split this into other module, but I don't know how to read it along with xmonad
