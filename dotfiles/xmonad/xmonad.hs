@@ -58,7 +58,7 @@ cfg = def
     , mouseBindings = myMouseBinds
     , modMask = mod4Mask
     }
-    `removeKeysP` ["M-p", "M-S-q"]
+    `removeKeysP` ["M-p", "M-S-q", "M-j", "M-k", "M-S-<Tab>"]
     `additionalKeysP` keybinds
 
 
@@ -108,6 +108,14 @@ keybinds =
     ,("<XF86MonBrightnessUp>",   spawn "brightnessctl set +1%")
     ,("<XF86MonBrightnessDown>", spawn "brightnessctl set 1%-")
     ,("M-S-w", workspacePrompt def $ switchTopic myTopicConfig)
+
+    -- For 'Xmonad.Layout.BoringWindows'
+    --
+    -- See: https://hackage.haskell.org/package/xmonad-contrib-0.17.0/docs/XMonad-Layout-BoringWindows.html
+    ,("M-j", focusUp)
+    ,("M-k", focusDown)
+    ,("M-S-<Tab>", focusUp)
+    ,("M-<Tab>", focusDown)
     ]
 
 myManageHook :: ManageHook
