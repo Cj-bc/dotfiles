@@ -108,7 +108,7 @@ keybinds =
     ,("<XF86AudioMute>",         spawn "pactl set-sink-mute @DEFAULT_SINK@ toggle")
     ,("<XF86MonBrightnessUp>",   spawn "brightnessctl set +1%")
     ,("<XF86MonBrightnessDown>", spawn "brightnessctl set 1%-")
-    ,("M-S-w", workspacePrompt def $ switchTopic myTopicConfig)
+    ,("M-S-w", workspacePrompt myXpconfig $ switchTopic myTopicConfig)
 
     -- For 'Xmonad.Layout.BoringWindows'
     --
