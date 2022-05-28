@@ -27,6 +27,7 @@ import XMonad.Layout.TwoPane
 import XMonad.Layout.Mirrorable
 import XMonad.Layout.BoringWindows
 import XMonad.Layout.Info
+import XMonad.Layout.NoBorders (smartBorders)
 import XMonad.Actions.Minimize
 import XMonad.Actions.NoBorders
 import XMonad.Layout.Minimize
@@ -155,7 +156,7 @@ myStartuphook = do
     spawnOnce "~/.local/bin/eww open status"
     XS.put (def :: EwwVisibility)
 
-myLayoutHook = minimize . boringWindows . addSpacing
+myLayoutHook = smartBorders . minimize . boringWindows . addSpacing
                . onWorkspace (MyTopics.topicName MyTopics.Web) fullWithGap
                $ defaultLayout
     where
