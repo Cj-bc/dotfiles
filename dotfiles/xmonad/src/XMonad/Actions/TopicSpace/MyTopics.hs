@@ -24,6 +24,8 @@ topics = [mkTopicItem Blender
          , mkTopicItem Communication
          , mkTopicItem (Project "dotfiles" (Ghq "github.com/Cj-bc/dotfiles"))
          , mkTopicItem (Project "blog" (Ghq "github.com/Cj-bc/blog"))
+         , mkTopicItem Zoom
+         , mkTopicItem DashBoard
          ]
 
 class MyTopic a where
@@ -89,3 +91,19 @@ instance MyTopic Krita where
   topicName = const "krita"
   topicDir _ = "~/"
   topicAction = const $ spawnOnce "krita"
+
+-- | Zoom
+data Zoom = Zoom
+
+instance MyTopic Zoom where
+  topicName = const "zoom"
+  topicDir = const "~/"
+  topicAction = const $ spawnOnce "zoom"
+
+-- | Dashboard that shows some information for task management
+data DashBoard = DashBoard
+
+instance MyTopic DashBoard where
+  topicName = const "Dashboard"
+  topicDir = const "~/"
+  topicAction = const $ spawn "emacsclient -c -e '(cfw:open-org-calendar)'"
