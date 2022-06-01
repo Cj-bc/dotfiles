@@ -39,14 +39,21 @@ import XMonad.Prompt.FuzzyMatch
 
 import XMonad.Hooks.StatusBar
 import XMonad.Hooks.StatusBar.PP
+import XMonad.Util.Minimize (minimizedStack)
 import XMonad.Util.Run.Experiment (xmobar')
 import qualified XMonad.Util.ExtensibleState as XS
 import XMonad.Util.Eww (ewwToggle, EwwVisibility)
+
+
+-- | Display something if any window is minimized
+minimizedWindowStatus :: X String
+minimizedWindowStatus = bool "\62900" "" . null <$> XS.gets minimizedStack
 
 -- Need to specify LANG in order to show UTF-8 properly
 mySB = statusBarProp "LANG=ja_JP.UTF-8 xmobar" (pure $ xmobarPP {ppCurrent = bool "綠" "" . (==) "NSP"
                                                                 , ppHidden = bool "祿" "" . (==) "NSP"
                                                                 , ppHiddenNoWindows = bool "祿" "" . (==) "NSP"
+                                                                , ppExtras = [Just <$> minimizedWindowStatus]
                                                                 })
 main = xmonad $ withEasySB mySB defToggleStrutsKey cfg
 
