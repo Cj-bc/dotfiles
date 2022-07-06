@@ -386,6 +386,39 @@
          (add-hook 'org-export-before-processing-hook 'remove-org-newlines-at-cjk-text))
 
 	 )
+       (setq org-latex-classes
+                `(("article"
+                   "\\documentclass{ltjsarticle}\n"
+                   ("\\section{%s}" . "\\section*{%s}")
+                   ("\\subsection{%s}" . "\\subsection*{%s}")
+                   ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+                   ("\\paragraph{%s}" . "\\paragraph*{%s}")
+                   ("\\subparagraph{%s}" . "\\subparagraph*{%s}"))
+                  ("report"
+                   "\\documentclass{ltjsarticle}\n"
+                   ("\\section{%s}" . "\\section*{%s}")
+                   ("\\subsection{%s}" . "\\subsection*{%s}")
+                   ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+                   ("\\paragraph{%s}" . "\\paragraph*{%s}")
+                   ("\\subparagraph{%s}" . "\\subparagraph*{%s}"))
+                  ("book"
+                   "\\documentclass{ltjsarticle}\n"
+                   ("\\part{%s}" . "\\part*{%s}")
+                   ("\\chapter{%s}" . "\\chapter*{%s}")
+                   ("\\section{%s}" . "\\section*{%s}")
+                   ("\\subsection{%s}" . "\\subsection*{%s}")
+                   ("\\subsubsection{%s}" . "\\subsubsection*{%s}"))
+                  ("beamer"
+                   ,(concat
+                     "\\documentclass[compress,dvipdfmx]{beamer}\n"
+                     "\\usetheme{AnnArbor}\n"
+                     "\\setbeamertemplate{navigation symbols}{}\n"
+                     "[NO-PACKAGES]\n"
+                     "\\usepackage{graphicx}\n")
+                   org-beamer-sectioning)))
+
+
+       (setq org-latex-packages-alist '(("whole" "bxcjkjatype") ("a4paper" "geometry")))
      #+end_src
 
 *** captureテンプレート
