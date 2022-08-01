@@ -3,32 +3,10 @@
 # For more information, please see the documentation at:
 #   https://docs.haskellstack.org/en/stable/lock_files
 
+packages: []
 snapshots:
-- original: lts-18.8
-  completed:
-    sha256: 93a107557e8691ed5ca17beaee41e68222b142c48868fc8c04a4181fb233477d
-    url: https://raw.githubusercontent.com/commercialhaskell/stackage-snapshots/master/lts/18/8.yaml
-    size: 587126
-packages:
-- original:
-    url: https://github.com/xmonad/xmonad-contrib/archive/0c6fdf4e75dd4d31bc8423010fbabbab7c23ee03.tar.gz
-  completed:
-    pantry-tree:
-      sha256: 8595e82da56db247e5c2d2719ec014da915f387e7e65c06257008c04c844d593
-      size: 23008
-    version: 0.16.999
-    name: xmonad-contrib
-    sha256: cc53d95220e40094090809754dc127d9db3e79d681fad235a63084efc706afe2
-    url: https://github.com/xmonad/xmonad-contrib/archive/0c6fdf4e75dd4d31bc8423010fbabbab7c23ee03.tar.gz
-    size: 632018
-- original:
-    url: https://github.com/xmonad/xmonad/archive/master@{today}.tar.gz
-  completed:
-    pantry-tree:
-      sha256: 770666a45b8d6a1fee9f591b021c19e72b8a552e31ff7055e0f05a3cf7f1a886
-      size: 3621
-    version: 0.16.99999
-    name: xmonad
-    sha256: cb5dde463b231c2781e212dda3491014ffa83794be267978853dd31fe8ffc388
-    url: https://github.com/xmonad/xmonad/archive/master@{today}.tar.gz
-    size: 102842
+- completed:
+    size: 619163
+    url: https://raw.githubusercontent.com/commercialhaskell/stackage-snapshots/master/lts/19/16.yaml
+    sha256: a27a5761890ade44d7dd21a5f5f93c87e60b9c063655fff835d69dd1071474f0
+  original: lts-19.16
