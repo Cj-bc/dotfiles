@@ -1,3 +1,25 @@
+;;; ob-sql.el --- org babel for SQL -*- lexical-binding: t; -*-
+;;; Commentary:
+
+
+;; Copyright (C) 2022 Cj.bc-sd a.k.a Cj-bc
+
+;; Author: Cj.bc-sd a.k.a Cj-bc 
+;; Created: 6 Jul 2022
+;; Keywords: processes
+;; URL: https://github.com/Cj-bc/dotfiles
+;; Package-Requires: (org sql)
+
+;; This file is not part of GNU Emacs.
+
+;; This file is free software...
+...
+;; along with this file.  If not, see <https://www.gnu.org/licenses/>.
+
+;;; Code:
+(require 'ob)
+(require 'sql)
+
 (defun org-babel-execute:sql (body params)
   "Execute a block of SQL code with Babel.
 
@@ -27,3 +49,6 @@ For parameters, see `org-babel-execute:sql'
 	  (executable (or (cdr (assq :executable params)) sql-mysql-program))
 	  )
     (org-babel-eval (format "%s --user %s %s" executable user database) body)))
+
+(provide 'ob-sql)
+;;; ob-sql.el ends here
