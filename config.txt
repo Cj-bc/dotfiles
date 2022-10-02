@@ -26,3 +26,4 @@ bin, $HOME/.local/bin
 dunst, $HOME/.config/dunst
 rofi, $HOME/.config/rofi
 gh, $HOME/.config/gh
+nyxt, $HOME/.config/nyxt
