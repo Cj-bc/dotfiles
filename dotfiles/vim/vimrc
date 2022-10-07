@@ -115,7 +115,7 @@ inoremap <C-o><C-o> <C-r>=strftime('(%T %p)') <LF>
 	" <C-o>d to print data in normal-mode
 nnoremap <C-o>d <ESC>i<C-r>=strftime('< %F >')<LF><LF>
 	" Reload .vimrc by pushing <C-o>i
-nnoremap <C-o>i <ESC>:source ~/.vimrc<LF><LF>
+nnoremap <C-o>i <ESC>:source ~/.vim/vimrc<LF><LF>
 
 	" Automatically insert the pair
 inoremap [ []<left>
