@@ -7,6 +7,9 @@
 	    "C-k b" 'switch-buffer)
 	))))
 
+(define-configuration prompt-buffer
+    ((default-modes (append '(vi-insert-mode) %slot-default%))))
+
 
 (define-configuration base-mode
     ((keymap-scheme
