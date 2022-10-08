@@ -12,7 +12,8 @@
     ((keymap-scheme
       (define-scheme (:name-prefix "my-base" :import %slot-default%)
 	  scheme:vi-normal
-	(list "C-d" 'nyxt/web-mode:scroll-page-down
-	      )
-	))
+	(list "C-d" 'nyxt/web-mode:scroll-page-down)
+	(list "C-u" 'nyxt/web-mode:scroll-page-up)
+	)
+      )))
      ))
