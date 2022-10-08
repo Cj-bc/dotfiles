@@ -19,4 +19,3 @@
 	(list "C-u" 'nyxt/web-mode:scroll-page-up)
 	)
       )))
-     ))
