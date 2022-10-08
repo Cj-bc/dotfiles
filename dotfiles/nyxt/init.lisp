@@ -19,3 +19,6 @@
 	(list "C-u" 'nyxt/web-mode:scroll-page-up)
 	)
       )))
+
+(define-configuration browser
+    ((external-editor-program '("emacsclient" "-c" "--frame-parameters" "((name . \"nyxt.edit-url\"))"))))
