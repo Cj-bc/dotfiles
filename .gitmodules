@@ -4,3 +4,6 @@
 [submodule "dotfiles/submodules/dotfiles-2.0"]
 	path = dotfiles/submodules/dotfiles-2.0
 	url = https://github.com/Axarva/dotfiles-2.0
+[submodule "dotfiles/_submodules/vile"]
+	path = dotfiles/_submodules/vile
+	url = https://github.com/dharmx/vile

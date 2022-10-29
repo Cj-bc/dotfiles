@@ -88,7 +88,9 @@ Accept link without `notes:'
 
 (defun ol-notes--all-files ()
   "Returns list of all notes this package can recognize"
-  (file-expand-wildcards (concat ol-notes-root-dir "/**/**/*.org")))
+  (let ((cache-file-p (lambda (n) "return `t' for cache file: e.g. '.#FooBarFile.txt'"
+			(not (seq-contains-p (file-name-base n) ?#)))))
+    (file-expand-wildcards (concat ol-notes-root-dir "/**/**/*.org"))))
 
 (defun ol-notes-find-file ()
     "`find-file' for notes"
