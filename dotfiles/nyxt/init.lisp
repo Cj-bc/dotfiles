@@ -1,3 +1,7 @@
+(load (nyxt-init-file "./util.lisp"))
+
+(in-package #:nyxt-user)
+
 (define-configuration buffer
     ((default-modes (append '(vi-normal-mode dark-mode) %slot-default%))
      (override-map
