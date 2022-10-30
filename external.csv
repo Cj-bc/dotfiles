@@ -1,0 +1,6 @@
+# '^#' line is comment
+# First row indicate which tool to use in order to fetch the file(s)
+# Possible values are:
+#
+# git -- use `git clone'
+git,https://github.com/aartaka/nx-search-engines,$HOME/.local/share/nyxt/extensions/nx-search-enginesk
