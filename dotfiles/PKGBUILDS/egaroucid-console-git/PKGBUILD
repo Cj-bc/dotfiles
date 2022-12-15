@@ -1,0 +1,56 @@
+# Maintainer: Cj-bc a.k.a. Cj.bc-sd <cj.bc-sd at outlook dot com>
+pkgname=egaroucid-console-git
+pkgver=6.0.0.r463.g2cd85aa659
+pkgrel=1
+epoch=1
+pkgdesc="One of the strongest Othello AI Application in the world -- console version, git version"
+url="https://github.com/Nyanyan/Egaroucid"
+license=('GPL3')
+source=("${pkgname}::git+https://github.com/Nyanyan/Egaroucid.git")
+sha256sums=("SKIP")
+arch=('any')
+makedepends=("gcc>=8.1.0" "git")
+
+pkgver() {
+  cd "${pkgname}"
+  git describe --abbrev=10 --long --tags | sed 's/^v//;s/\([^-]*-g\)/r\1/;s/-/./g'
+}
+
+prepare() {
+    cd "${srcdir}/${pkgname}/src/console"
+    patch -p0 <<EOF
+--- option.hpp	2022-12-15 17:18:22.216897394 +0900
++++ /dev/fd/63	2022-12-15 17:50:26.587082712 +0900
+@@ -71,11 +71,11 @@
+             std::cerr << "[ERROR] hash argument out of range" << std::endl;
+         }
+     }
+-    res.book_file = "resources/book.egbk";
++    res.book_file = "/usr/share/egaroucid-console/book.egbk";
+     str = find_commandline_option(commandline_options, ID_BOOK_FILE);
+     if (str != OPTION_NOT_FOUND)
+         res.book_file = str;
+-    res.eval_file = "resources/eval.egev";
++    res.eval_file = "/usr/share/egaroucid-console/eval.egev";
+     str = find_commandline_option(commandline_options, ID_EVAL_FILE);
+     if (str != OPTION_NOT_FOUND)
+         res.eval_file = str;
+EOF
+}
+build() {
+    cd "$srcdir/${pkgname}/src"
+    g++ -O2 Egaroucid_console.cpp -o Egaroucid_for_console -mtune=native -march=native -mfpmath=both
+}
+
+package() {
+    cd "$srcdir/${pkgname}"
+    install -Dm 755 ./src/Egaroucid_for_console -t "${pkgdir}/usr/bin/"
+    install -Dm 644 ./LICENSE -t "${pkgdir}/usr/share/licenses/${pkgname}/"
+    install -Dm 644 ./src/resources/book.egbk -t "${pkgdir}/usr/share/egaroucid-console/"
+    install -Dm 644 ./src/resources/eval.egev -t "${pkgdir}/usr/share/egaroucid-console/"
+}
+
+check() {
+    cd "${srcdir}/${pkgname}/src"
+    ./Egaroucid_for_console -v
+}
