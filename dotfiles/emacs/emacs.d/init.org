@@ -534,6 +534,25 @@
      + 💡 :: アイデア等
      + 🎬 :: 動画の内容
        
+**** 表示用テンプレート
+help:org-roam-node-display-template を設定すると、 help:org-roam-node-find の際の表示を
+カスタマイズ出来る。
+
+タグをアイコンで表示したいので、org-roam-nodeのmethodを追加している。
+この方法については help:org-roam-node-display-template について詳しく書かれている。
+
+#+begin_src elisp
+  (leaf org-roam-display-template
+    :ensure nil
+    :config
+    (defvar org-roam-tag-icons #s(hash-table test equal data ("note" "📖" "reference" "🔗")))
+    (cl-defmethod org-roam-node-icon-tags ((node org-roam-node))
+      (seq-reduce
+       '(lambda (a b) (let ((icon (or (gethash b org-roam-tag-icons) b)))
+                        (if (string-equal a "") icon (concat a "/" icon))))
+       (org-roam-node-tags node) ""))
+    (setq org-roam-node-display-template "${icon-tags: 20} | ${title:*} ${tags}"))
+#+end_src
 **** Privete roamを作成するためのラッパー
 
      Roamには、プライベートなノードをgpg保護された状態で保存する機能がある。
