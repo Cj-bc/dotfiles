@@ -6,19 +6,19 @@ This is dotfiles repository for my use.
 
 * Used softwares
 
-| kind                 | software                     |
-|----------------------+------------------------------|
-| OS                   | macOS, ArchLinux             |
-| Window manager       | xmonad                       |
-| Editor               | emacs(vanilla), vim(vanilla) |
-| Web browser          | Brave, qutebrowser           |
-| Shell                | bash                         |
-| Terminal emulator    | Termite                      |
-| AUR helper (arch)    | yay                          |
-| Notification         | dunst                        |
-| Input method         | fcitx5-skk                   |
-| Application launcher | rofi                         |
-| Filer                | ranger                       |
+| kind                 | software                           |
+|----------------------+------------------------------------|
+| OS                   | macOS, ArchLinux                   |
+| Window manager       | xmonad                             |
+| Editor               | emacs(evil), vim(vanilla), kakoune |
+| Web browser          | Brave, qutebrowser                 |
+| Shell                | bash                               |
+| Terminal emulator    | st							        |
+| AUR helper (arch)    | yay                                |
+| Notification         | dunst                              |
+| Input method         | fcitx5-skk with AZIK               |
+| Application launcher | rofi                               |
+| Filer                | ranger                             |
 
 * Todo [13/50]
 
