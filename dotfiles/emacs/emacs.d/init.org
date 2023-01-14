@@ -185,59 +185,59 @@
     #+end_src
 
 *** Agenda設定
-    :PROPERTIES:
-    :header-args: :tangle no
-    :END:
-    
-**** Agendaでは行数を表示しないように
-    #+HEADER: :noweb-ref leaf-org-hook
-    #+begin_src elisp
-      (org-agenda-mode-hook . (lambda () (display-line-numbers-mode -1)))
+
+    #+begin_src elisp :tangle yes
+      (leaf org/--agenda
+        :ensure nil
+        :after org
+        :custom
+        `(org-agenda-files ,(directory-files "~/Dropbox" t "\.org$"))
+        (org-agenda-current-time-string . "→ ━━━━━━━━━━━━━━━━━━━━━━")
+        (org-agenda-mode-hook . (lambda () (display-line-numbers-mode -1))) ;; 行数を表示しないようにする
+        )
     #+end_src
-
-**** Agenda file
-     #+HEADER: :noweb-ref leaf-org-config
-     #+begin_src elisp
-       (setq org-agenda-files (directory-files "~/Dropbox" t "\.org$"))
-     #+end_src
-
+    
 **** Custom agenda
-
-     
-     #+HEADER: :noweb-ref leaf-org-custom
+     #+HEADER: :noweb yes
      #+begin_src elisp
-       (org-agenda-custom-commands .
-				   '(("x"
-				      "全てのスケジュールを表示します"
-				      agenda
-				      ""
-				      ((org-agenda-span 'year)
-				       (org-agenda-entry-types '(:scheduled)))
-				      )
-				     ("p"
-				      "プロジェクト固有のTODO"
-				      todo
-				      "TODO"
-				      ((org-agenda-files projectile-known-projects)
-				       (org-agenda-prefix-format '((todo . "%i %(format (cj-bc-org-agenda-get-project-name file)):\t")))
-				       )
-				      )
-				     ("b"
-				      "ブログ記事の進捗管理"
-				      tags
-				      "+LEVEL=1-BLOG_POST_PROGRESS=\"Published\""
-				      ((org-agenda-files
-					(directory-files (concat (ghq-root) "/github.com/Cj-bc/blog/posts") t "\.org$")
-					)
-				       (org-agenda-prefix-format '((search . "%i ")))
-				       (org-overriding-columns-format "%BLOG_POST_PROGRESS %TAGS %ITEM")
-				      )
-				     ))
-				   )
+       (leaf org-agenda-custom-commands
+         :ensure nil
+         :after org
+         :config
+         <<leaf--org-agenda-config>>
+         :custom
+         (org-agenda-custom-commands .
+                                     '(("x"
+                                        "全てのスケジュールを表示します"
+                                        agenda
+                                        ""
+                                        ((org-agenda-span 'year)
+                                         (org-agenda-entry-types '(:scheduled)))
+                                        )
+                                       ("p"
+                                        "プロジェクト固有のTODO"
+                                        todo
+                                        "TODO"
+                                        ((org-agenda-files projectile-known-projects)
+                                         (org-agenda-prefix-format '((todo . "%i %(format (cj-bc-org-agenda-get-project-name file)):\t")))
+                                         )
+                                        )
+                                       ("b"
+                                        "ブログ記事の進捗管理"
+                                        tags
+                                        "+LEVEL=1-BLOG_POST_PROGRESS=\"Published\""
+                                        ((org-agenda-files
+                                          (directory-files (concat (ghq-root) "/github.com/Cj-bc/blog/posts") t "\.org$")
+                                          )
+                                         (org-agenda-prefix-format '((tags . " | ")))
+                                         (org-overriding-columns-format "%BLOG_POST_PROGRESS %TAGS %ITEM")
+                                         )
+                                        )
+                                       )))
      #+end_src
 
      ヘルパー用の関数。プロジェクト名を取得して、
-     #+HEADER: :noweb-ref leaf-org-config
+     #+HEADER: :noweb-ref leaf--org-agenda-config
      #+begin_src elisp
        (defun cj-bc-org-agenda-get-project-name (fullPath)
 	 "This is helper function just for my custom org-agenda-view.
