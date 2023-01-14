@@ -865,6 +865,26 @@ help:org-roam-node-display-template を設定すると、 help:org-roam-node-fin
     )
 #+end_src
 
+*** 新規作成時のテンプレートを入れる: auto-insert-mode & yatemplate
+新規作成時のテンプレート挿入自体は help:auto-insert-mode 単体で可能だが、
+テンプレートの記述が大分面倒なので [[https://github.com/mineo/yatemplate][mineo/yatemplate]] を使う。
+
+#+begin_src elisp
+  (leaf yatemplate
+    :ensure t
+    :custom
+    `(yatemplate-dir . ,(locate-user-emacs-file "templates/yatemplate"))
+    :config
+    (yatemplate-fill-alist)
+    )
+
+  (leaf auto-insert-mode
+    :ensure nil
+    :config
+    (auto-insert-mode 1)
+    )
+#+end_src
+
 ** メモ取り・ナレッジベース構築
 *** Orgファイル以外でのリンクを構築する
     Orgファイル以外でも、リンク機能が使えると便利
