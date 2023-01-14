@@ -885,6 +885,18 @@ help:org-roam-node-display-template を設定すると、 help:org-roam-node-fin
     )
 #+end_src
 
+*** Eshell
+#+begin_src elisp
+  (leaf em-prompt
+    :doc "EShellで使われているプロンプトを提供しているパッケージ"
+    :ensure nil
+    :require nil
+    :custom
+    (eshell-prompt-function . (lambda () (concat (eshell/basename (eshell/pwd))
+                                                 (if (= (user-uid) 0) " # " " $ "))))
+    )
+#+end_src
+
 ** メモ取り・ナレッジベース構築
 *** Orgファイル以外でのリンクを構築する
     Orgファイル以外でも、リンク機能が使えると便利
