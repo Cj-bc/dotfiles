@@ -1,0 +1,19 @@
+# -*- mode: snippet -*-
+# name: module documents
+# key: module
+# --
+{- |
+Module      :  $1
+Description :  $2
+Copyright   :  (c) Cj.bc-sd a.k.a Cj-bc
+License     :  ${3:GPL-3}
+Maintainer  :  cj.bc-sd@outlook.jp
+Stability   :  experimental
+Portability :  portable
+
+$4
+-}
+
+module $1 where
+
+$0

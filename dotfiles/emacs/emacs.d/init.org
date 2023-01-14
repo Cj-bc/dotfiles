@@ -854,6 +854,17 @@ help:org-roam-node-display-template を設定すると、 help:org-roam-node-fin
       (leaf editorconfig
 	:ensure t)
     #+end_src
+
+*** スニペットを使えるようにする: Yasnippet
+#+begin_src elisp
+  (leaf yasnippet
+    :ensure t
+    :require t
+    :hook (prog-mode-hook . yas-minor-mode)
+    :custom `(yas-snippet-dirs . '(,(locate-user-emacs-file "yasnippet")))
+    )
+#+end_src
+
 ** メモ取り・ナレッジベース構築
 *** Orgファイル以外でのリンクを構築する
     Orgファイル以外でも、リンク機能が使えると便利
