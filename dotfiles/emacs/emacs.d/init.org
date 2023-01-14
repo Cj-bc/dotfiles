@@ -820,9 +820,22 @@ help:org-roam-node-display-template を設定すると、 help:org-roam-node-fin
    #+end_src
 ** 開発環境
 *** ドキュメント作成
-	#+begin_src elisp :tangle no
-	  (leaf plantuml-mode
-		:ensure t)
+	#+begin_src elisp
+          (leaf plantuml-mode
+            :ensure t
+            :custom
+            (plantuml-default-exec-mode . 'executable)
+            (plantuml-indent-level . 2)
+            )
+
+          (leaf ob-plantuml
+            :ensure nil
+            :require 'ob-plantuml
+            :after plantuml-mode org
+            :custom
+            (org-plantuml-exec-mode . 'plantuml)
+            (org-plantuml-jar-path . "/usr/share/java/plantuml/plantuml.jar")
+            )
 	#+end_src
 *** Repl
     #+begin_src elisp
