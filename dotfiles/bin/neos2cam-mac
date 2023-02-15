@@ -1,0 +1,64 @@
+#!/usr/local/bin/bash
+_TMUX_SESSION_NAME=neos-zoom-connector
+_TMUX_NEOS2CAM_WINDOW_NAME="neos2cam"
+
+_TMUX_OBS_PANE_ID=""
+_TMUX_RTSP_SERVER_PANE_ID=""
+_TMUX_GST_PANE_ID=""
+
+function isAlreadyRunning() {
+  { tmux list-sessions -F "#{session_name}" | grep -q $_TMUX_SESSION_NAME; } || return -1
+  # { tmux list-windows -t $_TMUX_SESSION_NAME | grep -q $_TMUX_NEOS2CAM_WINDOW_NAME; } || return -1
+
+}
+
+# will return ":%d"
+rtspAddress=$(nu <(echo "(open ~/.local/share/neos2cam/rtsp-simple-server.yml).rtspAddress"))
+
+function start() {
+  # Launch programs to stream neos's camera to virtual camera on this machine
+  echo "Create session..."
+  _TMUX_RTSP_SERVER_PANE_ID=$(tmux new-session -Pd -F "#{pane_id}" -n "neos2cam" -s $_TMUX_SESSION_NAME \
+                              rtsp-simple-server ~/.local/share/neos2cam/rtsp-simple-server.yml)
+
+  tmux list-sessions -F "#{session_name}" | grep -q $_TMUX_SESSION_NAME || { echo "Failed to launch rtsp-simple server"; exit 2; }
+
+  echo "Session is up"
+
+  _TMUX_OBS_PANE_ID=$(tmux split-window -P -t $_TMUX_SESSION_NAME:neos2cam -F "#{pane_id}" \
+                      /Applications/OBS.app/Contents/MacOS/obs --startvirtualcam --scene neos2cam)
+
+  # Launch GStreamer to provide screencast
+  _TMUX_GST_PANE_ID=$(tmux new-window -P -n "mac2neos" -t $_TMUX_SESSION_NAME -F "#{pane_id}" \
+                        ffmpeg -r 15 -f avfoundation -i 1: -capture_cursor 1 \
+                               -c:v h264_videotoolbox -vf format=yuyv422 \
+                               -f flv rtmp://localhost:39553/live/mac)
+                      # gst-launch-1.0 avfvideosrc capture-screen=true capture-screen-cursor=true capture-screen-mouse-clicks \
+                      #                ! vtenc_h264 \
+                      #                ! flvmux \
+                      #                ! rtmp2sink location=rtmp://localhost${rtspAdress}/live/mac)
+}
+
+# Quit by terminating all relevant programs
+function quit() {
+  tmux send-keys -t "$_TMUX_RTSP_SERVER_PANE_ID" C-c # rtsp-simple-server
+  tmux send-keys -t "$_TMUX_OBS_PANE_ID" C-c # OBS
+  tmux send-keys -t "$_TMUX_GST_PANE_ID" C-c # gst-launch for mac screen share
+}
+
+function help_() {
+    cat <<EOF
+usage: neos2cam [start|quit]
+EOF
+}
+
+case "$1" in
+  --help|-h) help_
+    ;;
+  start) start
+    ;;
+  quit) quit
+    ;;
+  "") help_
+    ;;
+esac
