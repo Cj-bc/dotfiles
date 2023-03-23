@@ -3,6 +3,14 @@
   (interactive)
   (eval `(count-words--message "Subtree" ,@(org-count-words/--subtree-region))))
 
+(defun org-count-words/subtree-if-no-region ()
+  "wrapper for `count-words-region'.
+Execute `org-count-words/subtree' if no region is selected,
+otherwise `count-words-region' as expected"
+  (interactive)
+  (cond ((region-active-p) (call-interactively 'count-words-region))
+	(t (org-count-words/subtree))))
+
 (defun org-count-words/--subtree-region ()
   "Return `(BEGINING-OF-SUBTREE END-OF-SUBTREE)'
 It does NOT include heading line."
