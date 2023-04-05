@@ -388,7 +388,7 @@
 	 )
        (setq org-latex-classes
                 `(("article"
-                   "\\documentclass{ltjsarticle}\n"
+                   "\\documentclass{ltjsarticle}\n\\usepackage{amsmath}\n"
                    ("\\section{%s}" . "\\section*{%s}")
                    ("\\subsection{%s}" . "\\subsection*{%s}")
                    ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
