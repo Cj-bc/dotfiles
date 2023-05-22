@@ -1,0 +1,29 @@
+# contributer: Cj-bc a.k.a. Cj.bc-sd <cj.bc-sd@outlook.jp>
+# --
+# Maintainer: Cj-bc a.k.a. Cj.bc-sd
+pkgname=glamoroustoolkit-bin
+pkgver=0.8.2798
+pkgrel=2
+pkgdesc="The Modable Development Environment"
+url="https://github.com/feenkcom/gtoolkit"
+license=(custom:MIT)
+source=("GlamorousToolkit.desktop")
+source_x86_64=("https://dl.feenk.com/gt/GlamorousToolkit-Linux-x86_64-v${pkgver}.zip")
+source_aarch64=("https://dl.feenk.com/gt/GlamorousToolkit-Linux-aarch64-v0.8.2797.zip")
+arch=('x86_64' 'aarch64')
+sha256sums=('a99039e996e85a7c772e578af79770121a092c1bc13e1c0535515a4d2a412cae')
+sha256sums_x86_64=('6d5884cf016dd93e3b67dd49d959b687511946c799ce7132d4efeab230d58340')
+sha256sums_aarch64=('36c46b01b9e14fc10462eadd15dcbce01084197959a951040e7db4ef92f45a7a')
+
+package() {
+    install -d "${pkgdir}/opt/${pkgname}"/bin
+    install -m 744 ./bin/* "${pkgdir}/opt/${pkgname}"/bin
+    cp -r GlamorousToolkit.changes GlamorousToolkit.image \
+       Pharo10.0-64bit-179ef65.sources  gt-extra  lib "${pkgdir}/opt/${pkgname}"
+
+    install -d "${pkgdir}/usr/bin"
+    ln -s "${pkgdir}/opt/${pkgname}"/bin/GlamorousToolkit{,-cli} "${pkgdir}"/usr/bin
+
+    install -d "${pkgdir}"/usr/share/applications
+    install -m 644 "${srcdir}"/GlamorousToolkit.desktop "${pkgdir}"/usr/share/applications/GlamorousToolkit.desktop
+}
