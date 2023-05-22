@@ -22,7 +22,7 @@ package() {
        Pharo10.0-64bit-179ef65.sources  gt-extra  lib "${pkgdir}/opt/${pkgname}"
 
     install -d "${pkgdir}/usr/bin"
-    ln -s "${pkgdir}/opt/${pkgname}"/bin/GlamorousToolkit{,-cli} "${pkgdir}"/usr/bin
+    ln -s "/opt/${pkgname}"/bin/GlamorousToolkit{,-cli} "${pkgdir}"/usr/bin
 
     install -d "${pkgdir}"/usr/share/applications
     install -m 644 "${srcdir}"/GlamorousToolkit.desktop "${pkgdir}"/usr/share/applications/GlamorousToolkit.desktop
