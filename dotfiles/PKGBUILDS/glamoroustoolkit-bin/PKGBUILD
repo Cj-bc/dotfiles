@@ -25,5 +25,5 @@ package() {
     ln -s "/opt/${pkgname}"/bin/GlamorousToolkit{,-cli} "${pkgdir}"/usr/bin
 
     install -d "${pkgdir}"/usr/share/applications
-    install -m 644 "${srcdir}"/GlamorousToolkit.desktop "${pkgdir}"/usr/share/applications/GlamorousToolkit.desktop
+    install -m 644 ./GlamorousToolkit.desktop "${pkgdir}"/usr/share/applications/GlamorousToolkit.desktop
 }
