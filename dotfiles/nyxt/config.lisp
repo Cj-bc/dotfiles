@@ -4,7 +4,7 @@
 (in-package #:nyxt-user)
 
 (define-configuration buffer
-    ((default-modes (append '(vi-normal-mode dark-mode) %slot-default%))
+    ((default-modes (append '(vi-normal-mode dark-mode) %SLOT-VALUE%))
      (override-map
       (let ((map (make-keymap "override-map")))
 	(define-key map
@@ -15,19 +15,10 @@
 	))))
 
 (define-configuration prompt-buffer
-  ((default-modes (append '(vi-insert-mode) %slot-default%))
+  ((default-modes (pushnew 'vi-insert-mode %SLOT-VALUE%))
    (keymap-scheme scheme:emacs)))
 
 
-(define-configuration base-mode
-    ((keymap-scheme
-      (define-scheme (:name-prefix "my-base" :import %slot-default%)
-	  scheme:vi-normal
-	(list "C-d" 'nyxt/web-mode:scroll-page-down
-	      "C-u" 'nyxt/web-mode:scroll-page-up
-	      "C-e" 'modify-url-with-external-editor
-	))
-      )))
 
 (define-configuration browser
     ((external-editor-program '("emacsclient" "-c" "--frame-parameters" "((name . \"nyxt.edit-url\"))"))))
