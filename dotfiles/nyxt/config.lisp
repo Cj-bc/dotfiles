@@ -1,7 +1,7 @@
-(load (nyxt-init-file "./util.lisp"))
-(load-after-system :nx-search-engines (nyxt-init-file "search-engines.lisp"))
-
 (in-package #:nyxt-user)
+(define-nyxt-user-system :nyxt-user/base-config
+  :component ("util.lisp" "search-engines.lisp"))
+
 
 (define-configuration buffer
     ((default-modes (append '(vi-normal-mode dark-mode) %SLOT-VALUE%))
