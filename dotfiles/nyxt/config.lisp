@@ -22,8 +22,3 @@
 
 (define-configuration browser
     ((external-editor-program '("emacsclient" "-c" "--frame-parameters" "((name . \"nyxt.edit-url\"))"))))
-
-(push #p"~/.emacs.d/elpa/sly-20230411.1523/slynk/" asdf:*central-registry*)
-(asdf:load-system :slynk)
-
-(load (nyxt-init-file "my-slynk.lisp"))
