@@ -489,14 +489,14 @@
 
     #+begin_src elisp
       (leaf org-roam-evil-key
-	:after org-roam evil
-	:config
-	(evil-define-key 'normal 'global (kbd "SPC r d") 'org-roam-dailies-goto-today)
-	(evil-define-key 'normal 'global (kbd "SPC r s") 'org-roam-node-find)
-	(evil-define-key 'visual 'org-roam-mode-map (kbd "RET") 'org-roam-node-insert)
-	(evil-define-key 'visual 'org-roam-mode-map (kbd "<S-return>") 'cjbc-org-roam-insert-immediate-private)
-	(evil-define-key 'normal 'global (kbd "SPC r l") 'org-roam-buffer-toggle)
-	)
+        :after org-roam evil
+        :config
+        (evil-define-key 'normal 'global (kbd "SPC r d") 'org-roam-dailies-goto-today)
+        (evil-define-key 'normal 'global (kbd "SPC r s") 'org-roam-node-find)
+        (evil-define-key 'visual 'org-roam-mode-map (kbd "RET") 'org-roam-node-insert)
+        (evil-define-key 'visual 'org-roam-mode-map (kbd "<S-return>") 'cjbc-org-roam-insert-immediate-private)
+        (evil-define-key 'normal 'org-roam-mode-map (kbd "SPC r l") 'org-roam-buffer-toggle)
+        )
     #+end_src
 
 
@@ -621,10 +621,10 @@ help:org-roam-node-display-template を設定すると、 help:org-roam-node-fin
 *** TODO Org timeline -- Agendaでタイムライン表示する
     #+begin_src elisp :tangle no
       (leaf org-timeline
-	:ensure t
-	:hook
-	(org-agenda-finalize-hook . (lambda () (org-timeline-insert-timeline)))
-	)
+        :ensure t
+        :hook
+        (org-agenda-finalize-hook . (lambda () (org-timeline-insert-timeline)))
+        )
     #+end_src
 
 *** TODO 通知設定: org-notifications
@@ -768,11 +768,11 @@ help:org-roam-node-display-template を設定すると、 help:org-roam-node-fin
        (ivy-mode 1)
        :bind
        (("M-x" . counsel-M-x)
-	("C-x C-f" . counsel-find-file)
-	("C-h f" . counsel-describe-function)
-	("C-h v" . counsel-describe-variable)
-	("C-s" . swiper)
-	)
+        ("C-x C-f" . counsel-find-file)
+        ("C-h f" . counsel-describe-function)
+        ("C-h v" . counsel-describe-variable)
+        ("C-s" . swiper)
+        )
        :config
        (setq ivy-re-builders-alist
 	     '((t . ivy--regex-fuzzy)))
@@ -793,7 +793,6 @@ help:org-roam-node-display-template を設定すると、 help:org-roam-node-fin
 ** Lsp mode
    #+begin_src elisp
      (leaf lsp-mode
-
        :commands lsp
        :ensure t
        :hook
@@ -904,11 +903,11 @@ help:org-roam-node-display-template を設定すると、 help:org-roam-node-fin
     なので、Hyperboleを使ってみる
     
 **** GNU Hyperbole
-     #+begin_src elisp
-       (leaf hyperbole
-	 :ensure t
-	 )
-     #+end_src
+#+begin_src elisp
+  (leaf hyperbole
+    :ensure t
+    )
+#+end_src
      
 *** Wiki
 
@@ -977,24 +976,24 @@ help:org-roam-node-display-template を設定すると、 help:org-roam-node-fin
 	)
     #+end_src
 *** Rust
-    #+begin_src elisp
-      (leaf rust-mode
-	:doc "A major-mode for editing Rust source code"
-	:req "emacs-25.1"
-	:tag "languages" "emacs>=25.1"
-	:added "2022-01-20"
-	:url "https://github.com/rust-lang/rust-mode"
-	:emacs>= 25.1
-	:ensure t)
-      (leaf cargo-mode
-	:doc "Cargo Major Mode. Cargo is the Rust package manager"
-	:req "emacs-25.1"
-	:tag "tools" "emacs>=25.1"
-	:added "2022-01-20"
-	:url "https://github.com/ayrat555/cargo-mode"
-	:emacs>= 25.1
-	:ensure t)
-    #+end_src
+#+begin_src elisp
+  (leaf rust-mode
+    :doc "A major-mode for editing Rust source code"
+    :req "emacs-25.1"
+    :tag "languages" "emacs>=25.1"
+    :added "2022-01-20"
+    :url "https://github.com/rust-lang/rust-mode"
+    :emacs>= 25.1
+    :ensure t)
+  (leaf cargo-mode
+    :doc "Cargo Major Mode. Cargo is the Rust package manager"
+    :req "emacs-25.1"
+    :tag "tools" "emacs>=25.1"
+    :added "2022-01-20"
+    :url "https://github.com/ayrat555/cargo-mode"
+    :emacs>= 25.1
+    :ensure t)
+#+end_src
 ** Appearences
    #+begin_src elisp
      (leaf appearences
@@ -1056,17 +1055,18 @@ help:org-roam-node-display-template を設定すると、 help:org-roam-node-fin
     基本的には、Evilとの相性や誤キー押下を防ぐための設定
     #+begin_src elisp
       (leaf doc-view
-	:doc "Document viewer for Emacs"
-	:tag "builtin"
-	:added "2021-06-25"
-	:bind (:doc-view-mode-map
-	       ("k" . doc-view-previous-page)
-	       ("j" . doc-view-next-page)
-	       ("w" . nil)
-	       )
-	:hook (doc-view-minor-mode-hook
-	       . (lambda () (display-line-numbers-mode "Disable")))
-	)
+        :doc "Document viewer for Emacs"
+        :tag "builtin"
+        :added "2021-06-25"
+        ;; :custom (doc-view-pdf->png-converter-function . 'doc-view-pdf->png-converter-mupdf)
+        :bind (:doc-view-mode-map
+               ("k" . doc-view-previous-page)
+               ("j" . doc-view-next-page)
+               ("w" . nil)
+               )
+        :hook (doc-view-minor-mode-hook
+               . (lambda () (display-line-numbers-mode "Disable")))
+        )
     #+end_src
 
 
