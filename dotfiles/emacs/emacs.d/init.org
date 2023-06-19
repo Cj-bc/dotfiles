@@ -790,6 +790,21 @@ help:org-roam-node-display-template を設定すると、 help:org-roam-node-fin
 	:after posframe ivy
 	)
     #+end_src
+
+*** [Integration] Projectile
+
+Projectileでファイルを選択する際に、Purgeのオプションがあると嬉しい。
+Ivy中に ~ivy-dispatching-done~ (デフォルトでは ~M-o~)を押すことで選べる。
+
+#+begin_src elisp
+  (leaf ivy-projectile-config
+    :ensure nil
+    :after ivy projectile
+    :config
+    (ivy-set-actions 'projectile-find-file
+                  '(("p" 'projectile-purge-file-from-cache "[Projectile] Purge file from cache"))))
+#+end_src
+
 ** Lsp mode
    #+begin_src elisp
      (leaf lsp-mode
