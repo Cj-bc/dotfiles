@@ -911,6 +911,22 @@ Ivy中に ~ivy-dispatching-done~ (デフォルトでは ~M-o~)を押すことで
     )
 #+end_src
 
+** ドキュメント作成
+*** LaTeX
+~latex-mode~ で編集する時のための設定。
+
+#+begin_src elisp
+  (leaf latex-config
+    :ensure nil
+    :custom
+    (latex-run-command . "platex")
+    (tex-dvi-print-command . "dvipdfmx")
+    (tex-bibtex-command . "pbibtex"))
+#+end_src
+
+日本語を扱うため、platexを利用する。その他の設定等はまた後日。
+~C-c C-f~ でtexからdviファイルを作成、その後 ~C-c C-p~ でpdfファイルが生成される。
+
 ** メモ取り・ナレッジベース構築
 *** Orgファイル以外でのリンクを構築する
     Orgファイル以外でも、リンク機能が使えると便利
