@@ -733,6 +733,20 @@ help:org-roam-node-display-template を設定すると、 help:org-roam-node-fin
 	    (define-key evil-outer-text-objects-map "," 'evil-textobj-parameter-outer-parameter)
 	    )
     #+end_src
+**** a defun
+
+#+begin_src elisp
+  (leaf evil-textobj-defun
+    :require nil
+    :config
+    (evil-define-text-object evil-a-defun (count &optional beg end type)
+      "Select a defun expression."
+      :extend-selection t
+      (evil-select-an-object 'evil-defun beg end type count))
+    (define-key evil-outer-text-objects-map "d" 'evil-a-defun)
+    )
+#+end_src
+
 ** Projectile
    #+begin_src elisp :noweb yes 
      (leaf projectile
