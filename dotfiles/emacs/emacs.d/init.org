@@ -63,90 +63,93 @@
    自分で作成したライブラリを読み込みます。
    
    #+begin_src elisp
-	 (leaf load-my-lib
-	   :load-path "~/.emacs.d/lib/"
-	   :require
-	   cj-bc/string
-	   ghq
-	   )
+     (leaf load-my-lib
+       :load-path "~/.emacs.d/lib/"
+       :require
+       cj-bc/string
+       ghq
+       )
    #+end_src
 
    
 *** blog
     #+begin_src elisp
       (leaf blog
-	:require t
-	:custom
-	(blog-post-dir-path . "~/Documents/ghq/github.com/Cj-bc/blog/posts")
-	)
+        :require t
+        :custom
+        (blog-post-dir-path . "~/Documents/ghq/github.com/Cj-bc/blog/posts")
+        )
     #+end_src
+
     
     #+begin_src elisp
       (leaf ol-blog
-	:require t
-	:ensure nil
+        :require t
+        :ensure nil
     
 *** Notes
 
-	#+begin_src elisp
-	  (leaf ol-notes
-		:require t
-		:ensure nil
-		:custom
-		(ol-notes-root-dir . "~/Documents/notes")
-		)
-	#+end_src
+#+NAME: ol-notes
+#+begin_src elisp
+  (leaf ol-notes
+        :require t
+        :ensure nil
+        :custom
+        (ol-notes-root-dir . "~/Documents/roam/notes")
+        )
+#+end_src
 	
 *** org-diary
 
-    #+begin_src elisp
-      (leaf org-diary
-	:require t
-	:ensure nil
-	:custom
-	(org-diary-directory . "~/Dropbox/roam/daily")
-	(org-diary-template . "~/.emacs.d/templates/org-capture/diary")
-	)
-    #+end_src
+#+begin_src elisp
+  (leaf org-diary
+    :require t
+    :ensure nil
+    :custom
+    (org-diary-directory . "~/Documents/roam/daily")
+    (org-diary-template . "~/.emacs.d/templates/org-capture/diary")
+    )
+#+end_src
 ** 入力メゾット
 *** DDSKK
 
     #+begin_src elisp
       (leaf ddskk :ensure t
-	  :bind
-	  ("C-x C-j" . skk-mode)
-	  :custom
-	  (default-input-method . "japanese-skk")
-	  :config
-	  (add-to-list 'auto-mode-alist '(".*\\.dict$" . skk-jisyo-edit-mode))
-	  (skk-mode)
-	  )
+          :bind
+          ("C-x C-j" . skk-mode)
+          :custom
+          (default-input-method . "japanese-skk")
+          :config
+          (add-to-list 'auto-mode-alist '(".*\\.dict$" . skk-jisyo-edit-mode))
+          (skk-mode)
+          )
     #+end_src
 ** Org mode!!!
-   Org modeが使いたくてEmacsに来たので...
-   
-   #+begin_src elisp :noweb yes 
-     (leaf org
-       :bind-keymap
-       ("C-c o" . '(keymap (?a . org-agenda-list)
-			   (?t . org-todo-list)
-			   (?c . org-capture)
-			   ))
-       :hook
-       <<leaf-org-hook>>
-       :custom
-       (org-global-properties . '(("TASK_KIND_ALL" . "やること 勉強 休憩 生活")
-				  ("BLOG_POST_KIND_ALL" . "Memo Diary Knowledge Advertisment Translation HowTo")
-				  ("BLOG_POST_PROGRESS_ALL" . "Empty WIP Published")
-				  ("BLOG_POST_STATUS_ALL" . "Normal Archive Accuracy Outdated")
-				  ))
-       (org-link-abbrev-alist . '<<leaf-org-external-link--get-list()>>)
-       (org-todo-keywords . '<<leaf-org-todo-keywords-construct()>>)
-       <<leaf-org-custom>>
-       :config
-       <<leaf-org-config>>
-       )
-   #+end_src
+Org modeが使いたくてEmacsに来たので...
+
+#+begin_src elisp :noweb yes
+  (leaf org
+    :bind-keymap
+    ("C-c o" . '(keymap (?a . org-agenda)
+                        (?t . org-todo-list)
+                        (?c . org-capture)
+                        ))
+    :hook
+    <<leaf-org-hook>>
+    :custom
+    (org-global-properties . '(("TASK_KIND_ALL" . "やること 勉強 休憩 生活")
+                               ("BLOG_POST_KIND_ALL" . "Memo Diary Knowledge Advertisment Translation HowTo")
+                               ("BLOG_POST_PROGRESS_ALL" . "Empty WIP Published")
+                               ("BLOG_POST_STATUS_ALL" . "Normal Archive Accuracy Outdated")
+                               ))
+    (org-link-abbrev-alist . '<<leaf-org-external-link--get-list()>>)
+    (org-todo-keywords . '<<leaf-org-todo-keywords-construct()>>)
+    <<leaf-org-custom>>
+
+    :config
+    <<leaf-org-config>>
+    )
+#+end_src
 *** テーブル書式
     :PROPERTIES:
     :header-args: :tangle no
@@ -428,25 +431,25 @@
     #+HEADER: :tangle no :noweb-ref leaf-org-custom
     #+begin_src elisp
       `(org-capture-templates .
-			     '(("d" "default" plain
-				(file "capture.org")
-				"")
-			       ("b" "blog posts")
-			       ("bp" "normal post" plain
-				(function blog-visit-new-post)
-				(file "~/.emacs.d/templates/org-capture/blog")
-				:clock-in t
-				:clock-resume t
-				)
-			       ("bd" "dialy post" plain
-				(function blog-visit-new-diary)
-				(file "~/.emacs.d/templates/org-capture/blog-diary")
-				)
-			       ("d" "diary")
-			       ("dm" "Memo" entry
-				(function ,(apply-partially 'org-diary-visit-today "Memo"))
-				)
-			       ))
+                             '(("d" "default" plain
+                                (file "capture.org")
+                                "")
+                               ("b" "blog posts")
+                               ("bp" "normal post" plain
+                                (function blog-visit-new-post)
+                                (file "~/.emacs.d/templates/org-capture/blog")
+                                :clock-in t
+                                :clock-resume t
+                                )
+                               ("bd" "dialy post" plain
+                                (function blog-visit-new-diary)
+                                (file "~/.emacs.d/templates/org-capture/blog-diary")
+                                )
+                               ("d" "diary")
+                               ("dm" "Memo" entry
+                                (function ,(apply-partially 'org-diary-visit-today "Memo"))
+                                )
+                               ))
     #+end_src
 *** Org babel
     :PROPERTIES:
@@ -507,23 +510,23 @@
      #+HEADER: :tangle no :noweb-ref leaf-org-roam-custom
      #+begin_src elisp
        (org-roam-capture-templates .
-				   '(("o" "object" plain
-				      "%?"
-				      :target (file+head+olp "%<%Y%m%d%H%M%S>-${slug}.org" "#+FILETAGS: :object:" ("${title}"))
-				       :unnarrowed t)
-				   ("p" "person" plain
-				      "%?"
-				      :target (file+head+olp "%<%Y%m%d%H%M%S>-${slug}.org" "#+FILETAGS: :person:" ("${title}"))
-				       :unnarrowed t)
-				   ("r" "reference" plain
-				      "%?"
-				      :target (file+head+olp "%<%Y%m%d%H%M%S>-${slug}.org" "#+FILETAGS: :reference:" ("${title}"))
-				       :unnarrowed t)
-				   ("i" "idea" plain
-				    "%?"
-				    :target (file+olp "%<%Y%m%d%H%M%S>-${slug}.org" ("${title}"))
-				    :unnarrowed t)
-				   ))
+                                   '(("o" "object" plain
+                                      "%?"
+                                      :target (file+head+olp "%<%Y%m%d%H%M%S>-${slug}.org" "#+FILETAGS: :object:" ("${title}"))
+                                       :unnarrowed t)
+                                   ("p" "person" plain
+                                      "%?"
+                                      :target (file+head+olp "%<%Y%m%d%H%M%S>-${slug}.org" "#+FILETAGS: :person:" ("${title}"))
+                                       :unnarrowed t)
+                                   ("r" "reference" plain
+                                      "%?"
+                                      :target (file+head+olp "%<%Y%m%d%H%M%S>-${slug}.org" "#+FILETAGS: :reference:" ("${title}"))
+                                       :unnarrowed t)
+                                   ("i" "idea" plain
+                                    "%?"
+                                    :target (file+olp "%<%Y%m%d%H%M%S>-${slug}.org" ("${title}"))
+                                    :unnarrowed t)
+                                   ))
      #+end_src
 
      
@@ -627,15 +630,16 @@ help:org-roam-node-display-template を設定すると、 help:org-roam-node-fin
         )
     #+end_src
 
-*** TODO 通知設定: org-notifications
-    #+begin_src elisp :tangle no
-      (leaf org-notifications
-	:ensure t
-	:after org
-	:config
-	(org-notifications-start)
-	)
-    #+end_src
+*** 通知を出す
+
+#+begin_src elisp
+  (leaf org-notifications
+    :ensure t
+    :after org
+    :config
+    (org-notifications-start)
+    )
+#+end_src
 
 ** SNS
 *** Twittering-mode
@@ -786,9 +790,9 @@ help:org-roam-node-display-template を設定すると、 help:org-roam-node-fin
 
     #+begin_src elisp
       (leaf ivy-posframe
-	:ensure t
-	:after posframe ivy
-	)
+        :ensure t
+        :after posframe ivy
+        )
     #+end_src
 
 *** [Integration] Projectile
