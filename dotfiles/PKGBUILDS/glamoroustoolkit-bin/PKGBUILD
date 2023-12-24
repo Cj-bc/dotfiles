@@ -17,7 +17,7 @@ sha256sums_aarch64=('36c46b01b9e14fc10462eadd15dcbce01084197959a951040e7db4ef92f
 
 package() {
     install -d "${pkgdir}/opt/${pkgname}"/bin
-    install -m 744 ./bin/* "${pkgdir}/opt/${pkgname}"/bin
+    install -m 755 ./bin/* "${pkgdir}/opt/${pkgname}"/bin
     cp -r GlamorousToolkit.changes GlamorousToolkit.image \
        Pharo10.0-64bit-179ef65.sources  gt-extra  lib "${pkgdir}/opt/${pkgname}"
 
