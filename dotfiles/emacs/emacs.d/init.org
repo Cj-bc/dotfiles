@@ -746,6 +746,23 @@ help:org-roam-node-display-template を設定すると、 help:org-roam-node-fin
     (define-key evil-outer-text-objects-map "d" 'evil-a-defun)
     )
 #+end_src
+**** Evil surround LaTeX
+
+#+begin_src elisp
+  (leaf evil-surround-latex
+    :ensure nil
+    :after 'evil-surround
+    :hook latex-mode-hook)
+#+end_src
+**** LaTeX textobject
+
+#+begin_src elisp
+  (leaf evil-textobj-latex
+    :require t
+    :ensure nil
+    :after 'evil
+    )
+#+end_src
 
 ** Projectile
    #+begin_src elisp :noweb yes 
