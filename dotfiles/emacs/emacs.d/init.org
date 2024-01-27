@@ -942,6 +942,15 @@ Ivy中に ~ivy-dispatching-done~ (デフォルトでは ~M-o~)を押すことで
    :ensure t)
 #+end_src
 
+*** ファイラー
+#+begin_src elisp
+  (leaf treemacs
+    :ensure t
+    :bind
+    ("C-c f" . 'treemacs)
+    )
+#+end_src
+
 ** ドキュメント作成
 *** LaTeX
 ~latex-mode~ で編集する時のための設定。
