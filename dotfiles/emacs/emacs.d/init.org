@@ -978,6 +978,19 @@ Ivy中に ~ivy-dispatching-done~ (デフォルトでは ~M-o~)を押すことで
 #+end_src
 
 ** ドキュメント作成
+*** SATySFi
+#+begin_src elisp
+  (leaf satysfi-mode
+    :el-get gfngfn/satysfi.el
+    :ensure nil
+    :require 'satysfi
+    :custom
+    (satysfi-pdf-viewer-command . "mupdf")
+    :config
+    (add-to-list 'auto-mode-alist '("\\.saty$" . satysfi-mode))
+    (add-to-list 'auto-mode-alist '("\\.satyh$" . satysfi-mode))
+    )
+#+end_src
 *** LaTeX
 ~latex-mode~ で編集する時のための設定。
 
