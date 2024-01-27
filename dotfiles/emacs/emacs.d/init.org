@@ -869,6 +869,13 @@ Ivy中に ~ivy-dispatching-done~ (デフォルトでは ~M-o~)を押すことで
             (org-plantuml-jar-path . "/usr/share/java/plantuml/plantuml.jar")
             )
 	#+end_src
+**** Mermaid
+#+begin_src elisp
+  (leaf mermaid-ts-mode
+    :ensure t
+    )
+#+end_src
+
 *** Repl
     #+begin_src elisp
       (leaf quickrun
