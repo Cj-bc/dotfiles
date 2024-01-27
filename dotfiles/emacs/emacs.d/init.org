@@ -967,6 +967,16 @@ Ivy中に ~ivy-dispatching-done~ (デフォルトでは ~M-o~)を押すことで
     :ensure t)
 #+end_src
 
+*** Treesitter
+
+#+begin_src elisp
+  (leaf treesit-auto
+    :ensure t
+    :require t
+    :config
+    (global-treesit-auto-mode))
+#+end_src
+
 ** ドキュメント作成
 *** LaTeX
 ~latex-mode~ で編集する時のための設定。
