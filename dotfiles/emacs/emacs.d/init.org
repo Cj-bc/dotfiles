@@ -936,6 +936,12 @@ Ivy中に ~ivy-dispatching-done~ (デフォルトでは ~M-o~)を押すことで
     )
 #+end_src
 
+*** cMake
+#+begin_src elisp
+  (leaf cmake-mode
+   :ensure t)
+#+end_src
+
 ** ドキュメント作成
 *** LaTeX
 ~latex-mode~ で編集する時のための設定。
