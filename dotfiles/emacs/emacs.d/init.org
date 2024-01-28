@@ -840,27 +840,9 @@ Ivy中に ~ivy-dispatching-done~ (デフォルトでは ~M-o~)を押すことで
                   '(("p" 'projectile-purge-file-from-cache "[Projectile] Purge file from cache"))))
 #+end_src
 
-** Lsp mode
-   #+begin_src elisp
-     (leaf lsp-mode
-       :commands lsp
-       :ensure t
-       :hook
-       (sh-mode-hook . lsp)
-       (haskell-mode-hook . lsp)
-       (kotlin-mode-hook . lsp)
-       )
-   #+end_src
 
 
-   #+begin_src elisp
-     (leaf lsp-bash
-       :config
-       (defun lsp-bash--bash-ls-server-command ()
-	 '("~/.local/share/vim-lsp-settings/servers/bash-language-server/bash-language-server" "start"))
 
-       )
-   #+end_src
 ** Magit
    #+begin_src elisp
      (leaf magit
