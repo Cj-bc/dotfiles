@@ -1231,6 +1231,16 @@ Ivy中に ~ivy-dispatching-done~ (デフォルトでは ~M-o~)を押すことで
     #+end_src
 
 
+*** Auto-Save mode
+
+#+begin_src elisp
+  (leaf auto-save-mode
+    :ensure nil
+    :custom
+    (delete-auto-save-files . t) ;; Delete auto-save file when a true save is done
+    )
+#+end_src
+
 
 ** custom, etc
    #+begin_src elisp
