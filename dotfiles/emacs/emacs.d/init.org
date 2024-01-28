@@ -630,6 +630,12 @@ help:org-roam-node-display-template を設定すると、 help:org-roam-node-fin
         )
     #+end_src
 
+*** 見た目
+
+#+begin_src elisp
+  (leaf org-modern
+    :ensure t)
+#+end_src
 *** 通知を出す
 
 #+begin_src elisp
