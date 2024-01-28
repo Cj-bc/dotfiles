@@ -1140,6 +1140,21 @@ Ivy中に ~ivy-dispatching-done~ (デフォルトでは ~M-o~)を押すことで
   (leaf lua-mode
     :ensure t)
 #+end_src
+*** Elisp
+
+#+begin_src elisp
+  (leaf elisp-config
+    :ensure nil
+    :config
+    (defun user-config/elisp-config/outline-level ()
+      "Custom function for `outline-level'"
+      (- (match-end 1) (match-beginning 1)))
+    (defun user-config/elisp-config/setup-outline ()
+      (setq-local outline-regexp (rx (seq ";;;" (group (* ?\;)) " " (+ (or (syntax word) (syntax whitespace))) ":")))
+      (setq-local outline-level 'user-config/elisp-config/outline-level)
+      (outline-minor-mode +1))
+    (add-hook 'emacs-lisp-mode-hook 'user-config/elisp-config/setup-outline))
+#+end_src
 ** Appearences
    #+begin_src elisp
      (leaf appearences
