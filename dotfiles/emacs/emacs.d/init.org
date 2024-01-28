@@ -899,6 +899,18 @@ Ivy中に ~ivy-dispatching-done~ (デフォルトでは ~M-o~)を押すことで
     :require t
     :ensure t)
 #+end_src
+** 動き
+*** Avy
+#+begin_src elisp
+  (leaf avy
+    :ensure t
+    ;; :bind
+    ;; (evil-normal-state-map ([remap evil-find-char] . evil-avy-goto-char-2))
+    :config
+    (evil-define-key '(normal motion) 'global "f" 'evil-avy-goto-char-in-line)
+    (evil-define-key '(normal) 'global (kbd "M-a") 'avy-goto-char-2)
+    )
+#+end_src
 
 ** Magit
    #+begin_src elisp
