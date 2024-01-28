@@ -36,12 +36,13 @@
       temp-file-name
       ))
 
-(defun org-attach-screenshot/insert (description)
+(defun org-attach-screenshot/insert (&optional description)
   "Take screenshot, attach it to current org file, and insert link to it in buffer."
   (interactive "MDscription(Enter for no desc): ")
   (when (eq major-mode 'org-mode)
     (let ((filename (org-attach-screenshot/attach-screenshot))
-  	  (template (if description "[[attachment:%s][%s]]" "[[attachment:%s]]")))
+  	  (template (if (string-empty-p description)  "[[attachment:%s]]" "[[attachment:%s][%s]]"))
+	  )
       (insert (format template filename description)))))
 
 
