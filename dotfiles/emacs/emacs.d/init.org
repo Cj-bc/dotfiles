@@ -526,6 +526,10 @@ Org modeが使いたくてEmacsに来たので...
                                     "%?"
                                     :target (file+olp "%<%Y%m%d%H%M%S>-${slug}.org" ("${title}"))
                                     :unnarrowed t)
+                                   ("m" "MOC" plain
+                                    "%?"
+                                    :target (file+head+olp "%<%Y%m%d%H%M%S>-${slug}.org" "#+FILETAGS: :MOC:" ("MOC ${title}"))
+                                    :unnarrowed t)
                                    ))
      #+end_src
 
