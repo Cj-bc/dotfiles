@@ -30,8 +30,7 @@
   )
 (defun org-attach-screenshot/attach-screenshot ()
     "Take screenshot and put them into attachment directory"
-    (let ((temp-file-name (let ((r (random)))
-    			    (format "org-attach-screenshot--%s.png" (* r r)))))
+    (let ((temp-file-name (format-time-string  "org-attach-screenshot--%Y-%m-%d--%H-%M-%S.png")))
       (call-process "~/.local/bin/screenshot" nil nil nil "-s" (concat "/tmp/" temp-file-name))
       (org-attach-attach (concat "/tmp/" temp-file-name) nil 'mv)
       temp-file-name
