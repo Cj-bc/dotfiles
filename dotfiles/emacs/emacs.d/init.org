@@ -916,6 +916,12 @@ Ivy中に ~ivy-dispatching-done~ (デフォルトでは ~M-o~)を押すことで
    #+begin_src elisp
      (leaf magit
        :ensure t
+       :bind
+       ("C-x g" . nil)
+       :bind-keymap
+       ("C-c g" . '(keymap (?l . magit-log)
+                           (?s . magit-status)
+                           ))
        )
    #+end_src
 ** 開発環境
