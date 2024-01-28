@@ -68,6 +68,7 @@
        :require
        cj-bc/string
        ghq
+       org-screenshot-attach
        )
    #+end_src
 
