@@ -312,13 +312,8 @@ Org modeが使いたくてEmacsに来たので...
 				   "|" (car a)))
 		   target-list))
 
-	(seq-map (lambda (x) `(sequence ,@(replaceDelimiter x)))
-	     (list todo reading shoppingList noteStatus))
-      #+end_src
-
-      #+HEADER: :noweb-ref leaf-org-custom
-      #+begin_src elisp :noweb yes :tangle no
-	(org-todo-keywords . '<<Org-todoKeywords-construct()>>)
+        (seq-map (lambda (x) `(sequence ,@(replaceDelimiter x)))
+             (list todo reading shoppingList noteStatus))
       #+end_src
 
 *** 外部Link
