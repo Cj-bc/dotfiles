@@ -855,8 +855,50 @@ Ivy中に ~ivy-dispatching-done~ (デフォルトでは ~M-o~)を押すことで
                   '(("p" projectile-purge-file-from-cache "[Projectile] Purge file from cache"))))
 #+end_src
 
+** migemo
+#+begin_src elisp
+  (leaf migemo
+    :ensure t
+    :require t
+    :custom
+    (migemo-command . "cmigemo")
+    (migemo-options . '("-q" "--emacs"))
+    (migemo-coding-system . 'utf-8-unix)
+    (migemo-dictionary . "/usr/share/migemo/utf-8/migemo-dict")
+    (migemo-user-dictionary . nil)
+    (migemo-regex-dictionary . nil)
+    :config
+    (when (and (processp migemo-process)
+               (eq (process-status migemo-process) 'run))
+      (migemo-kill))
+    (migemo-init)
+    )
+#+end_src
 
+#+begin_src elisp
+  (leaf ivy-migemo
+    :after ivy migemo
+    :ensure t
+    :require t
+    :config
+    (ivy-migemo-toggle-migemo)
+    (setq ivy-re-builders-alist
+          (mapcar '(lambda (pair)
+                     (list (car pair)
+                           (pcase (cdr pair)
+                             ('ivy--regex-fuzzy 'ivy-migemo-regex-fuzzy)
+                             ('ivy--regex-plus 'ivy-migemo-regex-plus)
+                             (x x)))
+                     ) ivy-re-builders-alist))
+    )
+#+end_src
 
+#+begin_src elisp :tangle no
+  (leaf avy-migemo
+    :after avy migemo
+    :require t
+    :ensure t)
+#+end_src
 
 ** Magit
    #+begin_src elisp
