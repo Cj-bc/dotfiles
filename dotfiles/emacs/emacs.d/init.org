@@ -1135,6 +1135,11 @@ Ivy中に ~ivy-dispatching-done~ (デフォルトでは ~M-o~)を押すことで
     :ensure t
     :require t)
 #+end_src
+*** lua
+#+begin_src elisp
+  (leaf lua-mode
+    :ensure t)
+#+end_src
 ** Appearences
    #+begin_src elisp
      (leaf appearences
