@@ -851,8 +851,8 @@ Ivy中に ~ivy-dispatching-done~ (デフォルトでは ~M-o~)を押すことで
     :ensure nil
     :after ivy projectile
     :config
-    (ivy-set-actions 'projectile-find-file
-                  '(("p" 'projectile-purge-file-from-cache "[Projectile] Purge file from cache"))))
+    (ivy-add-actions 'projectile-find-file
+                  '(("p" projectile-purge-file-from-cache "[Projectile] Purge file from cache"))))
 #+end_src
 
 
