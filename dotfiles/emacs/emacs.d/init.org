@@ -1121,6 +1121,20 @@ Ivy中に ~ivy-dispatching-done~ (デフォルトでは ~M-o~)を押すことで
     :emacs>= 25.1
     :ensure t)
 #+end_src
+*** Go
+#+begin_src elisp
+  (leaf go-mode
+    :ensure t
+    :hook
+    (go-mode-hook . (lambda () (setq-local tab-width 2)))
+    (go-mode-hook . (lambda () (add-hook 'before-save-hook #'gofmt-before-save nil t))))
+#+end_src
+
+#+begin_src elisp
+  (leaf go-projectile
+    :ensure t
+    :require t)
+#+end_src
 ** Appearences
    #+begin_src elisp
      (leaf appearences
