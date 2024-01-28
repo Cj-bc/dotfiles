@@ -14,34 +14,34 @@
     #+begin_src elisp
       ;; Leaf configurations
       (eval-and-compile
-	(when (or load-file-name byte-compile-current-file)
-	  (setq user-emacs-directory
-	   (expand-file-name
-	       (file-name-directory (or load-file-name byte-compile-current-file)
-	 )))))
+        (when (or load-file-name byte-compile-current-file)
+          (setq user-emacs-directory
+           (expand-file-name
+               (file-name-directory (or load-file-name byte-compile-current-file)
+         )))))
 
       (setq tab-width 4)
       (eval-and-compile
-	  (customize-set-variable
-	      'package-archives '(("gnu"   . "https://elpa.gnu.org/packages/")
-				 ("melpa" . "https://melpa.org/packages/")
-				 ("org"   . "https://orgmode.org/elpa/")
-				 ))
-	  (package-initialize)
-	  (unless (package-installed-p 'leaf)
-	      (package-refresh-contents)
-	      (package-install 'leaf)
-	      )
+        (customize-set-variable
+         'package-archives '(("gnu"   . "https://elpa.gnu.org/packages/")
+                             ("melpa" . "https://melpa.org/packages/")
+                             ("org"   . "https://orgmode.org/elpa/")
+                             ))
+        (package-initialize)
+        (unless (package-installed-p 'leaf)
+          (package-refresh-contents)
+          (package-install 'leaf)
+          )
 
-	  (leaf leaf-keywords
-		:ensure t
-		:init
-		;; Optional packages if you want to use :hydra, :el-get, :blackout,,,
-
-		(leaf el-get :ensure t) ; Githubにあるパッケージを使用するために必要
-		(leaf-keywords-init)
-		)
-	  )
+        (leaf leaf-keywords
+          :ensure t
+          :init
+          ;; Optional packages if you want to use :hydra, :el-get, :blackout,,,
+    
+          (leaf el-get :ensure t) ; Githubにあるパッケージを使用するために必要
+          (leaf-keywords-init)
+          )
+        )
 
     #+end_src
 **** ヘルパー用パッケージ
@@ -202,55 +202,55 @@ Org modeが使いたくてEmacsに来たので...
     #+end_src
     
 **** Custom agenda
-     #+HEADER: :noweb yes
-     #+begin_src elisp
-       (leaf org-agenda-custom-commands
-         :ensure nil
-         :after org
-         :config
-         <<leaf--org-agenda-config>>
-         :custom
-         (org-agenda-custom-commands .
-                                     '(("x"
-                                        "全てのスケジュールを表示します"
-                                        agenda
-                                        ""
-                                        ((org-agenda-span 'year)
-                                         (org-agenda-entry-types '(:scheduled)))
-                                        )
-                                       ("p"
-                                        "プロジェクト固有のTODO"
-                                        todo
-                                        "TODO"
-                                        ((org-agenda-files projectile-known-projects)
-                                         (org-agenda-prefix-format '((todo . "%i %(format (cj-bc-org-agenda-get-project-name file)):\t")))
-                                         )
-                                        )
-                                       ("b"
-                                        "ブログ記事の進捗管理"
-                                        tags
-                                        "+LEVEL=1-BLOG_POST_PROGRESS=\"Published\""
-                                        ((org-agenda-files
-                                          (directory-files (concat (ghq-root) "/github.com/Cj-bc/blog/posts") t "\.org$")
-                                          )
-                                         (org-agenda-prefix-format '((tags . " | ")))
-                                         (org-overriding-columns-format "%BLOG_POST_PROGRESS %TAGS %ITEM")
-                                         )
-                                        )
-                                       )))
-     #+end_src
+#+HEADER: :noweb yes
+#+begin_src elisp
+  (leaf org-agenda-custom-commands
+    :ensure nil
+    :after org
+    :config
+    <<leaf--org-agenda-config>>
+    :custom
+    (org-agenda-custom-commands .
+                                '(("x"
+                                   "全てのスケジュールを表示します"
+                                   agenda
+                                   ""
+                                   ((org-agenda-span 'year)
+                                    (org-agenda-entry-types '(:scheduled)))
+                                   )
+                                  ("p"
+                                   "プロジェクト固有のTODO"
+                                   todo
+                                   "TODO"
+                                   ((org-agenda-files projectile-known-projects)
+                                    (org-agenda-prefix-format '((todo . "%i %(format (cj-bc-org-agenda-get-project-name file)):\t")))
+                                    )
+                                   )
+                                  ("b"
+                                   "ブログ記事の進捗管理"
+                                   tags
+                                   "+LEVEL=1-BLOG_POST_PROGRESS=\"Published\""
+                                   ((org-agenda-files
+                                     (directory-files (concat (ghq-root) "/github.com/Cj-bc/blog/posts") t "\.org$")
+                                     )
+                                    (org-agenda-prefix-format '((tags . " | ")))
+                                    (org-overriding-columns-format "%BLOG_POST_PROGRESS %TAGS %ITEM")
+                                    )
+                                   )
+                                  )))
+#+end_src
 
-     ヘルパー用の関数。プロジェクト名を取得して、
-     #+HEADER: :noweb-ref leaf--org-agenda-config
-     #+begin_src elisp
-       (defun cj-bc-org-agenda-get-project-name (fullPath)
-	 "This is helper function just for my custom org-agenda-view.
-       Get project name from full path."
 
-	 (string-match "/\\([^/]+/\\)+\\([^/]+/[^/]+\\)/" fullPath)
-	 (match-string 2 fullPath))
-     #+end_src
+ヘルパー用の関数。プロジェクト名を取得して、
+#+HEADER: :noweb-ref leaf--org-agenda-config
+#+begin_src elisp
+  (defun cj-bc-org-agenda-get-project-name (fullPath)
+ "This is helper function just for my custom org-agenda-view.
+  Get project name from full path."
 
+ (string-match "/\\([^/]+/\\)+\\([^/]+/[^/]+\\)/" fullPath)
+ (match-string 2 fullPath))
+#+end_src
 *** Todo設定
     #+HEADER: :noweb-ref leaf-org-custom
     #+HEADER: :tangle no
@@ -372,14 +372,14 @@ Org modeが使いたくてEmacsに来たので...
 
 
        (defun remove-org-newlines-at-cjk-text (&optional _mode)
-	 "先頭が '*', '#', '|' でなく、改行の前後が日本の文字の場合はその改行を除去する。"
-	 (interactive)
-	 (goto-char (point-min))
-	 (while (re-search-forward "^\\([^|#*\n].+\\)\\(.\\)\n *\\(.\\)" nil t)
-	   (if (and (> (string-to-char (match-string 2)) #x2000)
-		    (> (string-to-char (match-string 3)) #x2000))
-	       (replace-match "\\1\\2\\3"))
-	   (goto-char (point-at-bol))))
+         "先頭が '*', '#', '|' でなく、改行の前後が日本の文字の場合はその改行を除去する。"
+         (interactive)
+         (goto-char (point-min))
+         (while (re-search-forward "^\\([^|#*\n].+\\)\\(.\\)\n *\\(.\\)" nil t)
+           (if (and (> (string-to-char (match-string 2)) #x2000)
+                    (> (string-to-char (match-string 3)) #x2000))
+               (replace-match "\\1\\2\\3"))
+           (goto-char (point-at-bol))))
 
        (with-eval-after-load "ox"
          (add-hook 'org-export-before-processing-hook 'remove-org-newlines-at-cjk-text))
