@@ -647,6 +647,15 @@ help:org-roam-node-display-template を設定すると、 help:org-roam-node-fin
     )
 #+end_src
 
+*** Org attach screenshot
+
+#+begin_src elisp
+  (leaf org-attach-screenshot
+    :after org
+    :ensure nil
+    :require t)
+#+end_src
+
 ** SNS
 *** Twittering-mode
     ツイッターやろうぜ!!お前ボールな!!
