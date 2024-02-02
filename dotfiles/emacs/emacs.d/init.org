@@ -418,7 +418,51 @@ Org modeが使いたくてEmacsに来たので...
 
 
        (setq org-latex-packages-alist '(("whole" "bxcjkjatype") ("a4paper" "geometry")))
+
+       (setq org-latex-pdf-process '("latexmk -pdf -pvc -shell-escape -pdflatex=lualatex -output-directory=%o %f"))
      #+end_src
+
+     #+RESULTS:
+     | whole   | bxcjkjatype |
+     | a4paper | geometry    |
+**** LaTeX(texwiki.texjp.org準拠)
+ちょっとよく分からなくなり、
+
+#+begin_src elisp
+  (leaf org-config/latex
+    :ensure nil
+    :config
+    (setq TeX-engine 'platex)
+    (add-to-list 'org-latex-classes
+                 '("vrsj" "\\documentclass[a4paper]{jarticle}
+         [NO-DEFAULT-PACKAGES]
+         [NO-PACKAGES]
+         \\usepackage{vrsjj}
+         \\usepackage{balance}
+         \\special{pdf: pagesize width 210truemm height 297truemm}
+         \\newcounter{vrsjyear}
+         \\newcounter{vrsjmonth}
+         \\newcounter{vrsjnum}
+         \\setcounter{vrsjyear}{2023}
+         \\setcounter{vrsjmonth}{9}
+         \\setcounter{vrsjnum}{\\value{vrsjyear}}
+         \\addtocounter{vrsjnum}{-1995}
+
+         \\renewcommand{\\baselinestretch}{1.32}
+         "
+                     ("\\section{%s}" . "\\section*{%s}")
+                     ("\\subsection{%s}" . "\\subsection*{%s}")
+                     ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+                     ))
+    (setq org-latex-compiler "platex")
+    (setq org-latex-pdf-process
+          '("platex %b" "dvipdfmx %b"))
+
+    )
+#+end_src
+
+#+RESULTS:
+: org-config/latex
 
 *** captureテンプレート
     :LOGBOOK:
