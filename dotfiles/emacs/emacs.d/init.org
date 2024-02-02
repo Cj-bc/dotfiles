@@ -1222,6 +1222,21 @@ Ivy中に ~ivy-dispatching-done~ (デフォルトでは ~M-o~)を押すことで
     :emacs>= 25.1
     :ensure t)
 #+end_src
+*** Common Lisp
+#+begin_src elisp
+  (leaf sly
+    :ensure t
+    :bind
+    (:sly-editing-mode-map
+     ("M-p" . nil)
+     ("M-n" . nil)
+     ("C-c M-p" . 'sly-previous-note)
+     ("C-c M-n" . 'sly-next-note)
+     )
+    :custom
+    (inferior-lisp-program . '("ros" "run"))
+    )
+#+end_src
 *** Go
 #+begin_src elisp
   (leaf go-mode
