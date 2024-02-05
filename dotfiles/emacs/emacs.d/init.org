@@ -854,51 +854,6 @@ help:org-roam-node-display-template を設定すると、 help:org-roam-node-fin
     + .git
     + .projectile
       
-** Ivy
-   #+begin_src elisp
-     (leaf counsel
-       :ensure t
-       :config
-       (ivy-mode 1)
-       :bind
-       (("M-x" . counsel-M-x)
-        ("C-x C-f" . counsel-find-file)
-        ("C-h f" . counsel-describe-function)
-        ("C-h v" . counsel-describe-variable)
-        ("C-s" . swiper)
-        )
-       :config
-       (setq ivy-re-builders-alist
-	     '((t . ivy--regex-fuzzy)))
-       (when (featurep 'projectile)
-	 (setq projectile-completion-system 'ivy))
-       )
-   #+end_src
-   
-*** Posframeを使う
-    場合によってはposframeの方がありがたいので、posframeを入れる
-
-    #+begin_src elisp
-      (leaf ivy-posframe
-        :ensure t
-        :after posframe ivy
-        )
-    #+end_src
-
-*** [Integration] Projectile
-
-Projectileでファイルを選択する際に、Purgeのオプションがあると嬉しい。
-Ivy中に ~ivy-dispatching-done~ (デフォルトでは ~M-o~)を押すことで選べる。
-
-#+begin_src elisp
-  (leaf ivy-projectile-config
-    :ensure nil
-    :after ivy projectile
-    :config
-    (ivy-add-actions 'projectile-find-file
-                  '(("p" projectile-purge-file-from-cache "[Projectile] Purge file from cache"))))
-#+end_src
-
 ** migemo
 #+begin_src elisp
   (leaf migemo
