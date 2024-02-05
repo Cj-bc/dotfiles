@@ -854,6 +854,44 @@ help:org-roam-node-display-template を設定すると、 help:org-roam-node-fin
     + .git
     + .projectile
       
+** 補完周り
+Ivyを使用していた所から徐々に分割していこうとしており、
+consultを使うまでもなさそうなものを一時的にここに保存します。
+
+#+begin_src elisp
+  (leaf cj-bc/completions
+    :require nil
+    :ensure nil
+    :config
+    (fido-vertical-mode)
+    )
+#+end_src
+
+*** ブックマーク
+#+begin_src elisp
+  (require 'bookmark)
+  (defun cj-bc/completions/bookmark ()
+      ""
+    (interactive)
+    (pcase (completing-read "jump to bookmark: " (bookmark-all-names))
+      ('nil nil)
+      (bookmark (bookmark-jump bookmark))))
+
+  (global-set-key (kbd "C-x r l") #'cj-bc/completions/bookmark)
+#+end_src
+
+*** in-buffer補完する: corfu
+
+#+begin_src elisp
+  (leaf corfu
+    :ensure t
+    :bind
+    (:corfu-map
+     ("C-p" . corfu-previous)
+     ("C-n" . corfu-next))
+    :config
+    (global-corfu-mode))
+#+end_src
 ** migemo
 #+begin_src elisp
   (leaf migemo
