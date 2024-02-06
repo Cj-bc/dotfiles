@@ -1163,12 +1163,6 @@ consultを使うまでもなさそうなものを一時的にここに保存し�
 	:ensure t
 	)
     #+end_src
-*** Toml
-    #+begin_src elisp
-      (leaf toml-mode
-	:ensure t
-	)
-    #+end_src
 *** Kotlin
     #+begin_src elisp
       (leaf kotlin-mode
