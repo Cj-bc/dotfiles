@@ -1352,3 +1352,12 @@ consultを使うまでもなさそうなものを一時的にここに保存し�
 
      (provide 'init)
    #+end_src
+
+*** URLハンドラ
+
+#+begin_src elisp
+  (leaf cj-bc/config/url-handlers
+    :custom
+    (browse-url-handlers . '(("\\`file://.*\\.pdf" . browse-url-emacs))))
+
+#+end_src
