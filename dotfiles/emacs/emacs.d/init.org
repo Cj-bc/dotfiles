@@ -700,6 +700,17 @@ help:org-roam-node-display-template を設定すると、 help:org-roam-node-fin
     :require t)
 #+end_src
 
+*** imenuでより深い階層まで表示する
+デフォルトでは、2階層までしか表示されない。
+私はもっと深い階層まで表示してほしいので、適当に大きめな数字を設定している。
+
+#+HEADER: :noweb-ref leaf-org-config :tangle no
+#+begin_src elisp
+  (setq org-imenu-depth 10)
+#+end_src
+
+help:org-imenu-depth
+
 ** SNS
 *** Twittering-mode
     ツイッターやろうぜ!!お前ボールな!!
