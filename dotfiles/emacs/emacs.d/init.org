@@ -1208,14 +1208,6 @@ consultを使うまでもなさそうなものを一時的にここに保存し�
 	:ensure t
 	)
     #+end_src
-*** CSharp
-    #+begin_src elisp
-      (leaf csharp-mode
-	:added "2021-09-25"
-	:url "https://github.com/emacs-csharp/csharp-mode"
-	:emacs>= 26.1
-	:ensure t)
-    #+end_src
 *** Dockerfile
 
     #+begin_src elisp
