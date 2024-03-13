@@ -903,6 +903,19 @@ consultを使うまでもなさそうなものを一時的にここに保存し�
     :config
     (global-corfu-mode))
 #+end_src
+
+**** ミニバッファーでも使用出来るようにする
+[[https://github.com/minad/corfu?tab=readme-ov-file#completing-in-the-minibuffer][公式のREADME]]にある例を借りる。
+
+#+begin_src elisp
+  (defun corfu-enable-in-minibuffer ()
+  "Enable Corfu in the minibuffer."
+  (when (local-variable-p 'completion-at-point-functions)
+    (setq-local corfu-echo-delay nil ;; Disable automatic echo and popup
+                corfu-popupinfo-delay nil)
+    (corfu-mode 1)))
+  (add-hook 'minibuffer-setup-hook #'corfu-enable-in-minibuffer)
+#+end_src
 *** marginalia
 
 #+begin_src elisp
