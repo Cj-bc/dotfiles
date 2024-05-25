@@ -16,8 +16,7 @@
 
 (define-configuration prompt-buffer
   ((default-modes (pushnew 'vi-insert-mode %SLOT-VALUE%))
-   (keymap-scheme scheme:emacs)))
-
+   (keyscheme nyxt/keyscheme:emacs)))
 
 
 (define-configuration browser
