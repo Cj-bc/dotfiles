@@ -1,10 +1,9 @@
-* %^{title}
-  :PROPERTIES:
-  :DATE: %U
-  :TAGS: %^G
-  :BLOG_POST_KIND: Memo
-  :BLOG_POST_PROGRESS: Empty
-  :BLOG_POST_STATUS: Normal
-  :END:
-  %^{BLOG_POST_KIND}p
-  %?
+#+TITLE: %^{title}
+#+DATE: %U
+#+TAGS: %(blog-create-tags-string)
+#+KIND: Memo
+#+PROGRESS: Empty
+#+STATUS: Normal
+#+AUTHOR: Cj-bc
+
+%?
