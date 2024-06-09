@@ -265,20 +265,12 @@ call vundle#begin()
   Plugin 'kana/vim-textobj-user' " base plugin for textobjects
   Plugin 'kana/vim-operator-user' " base plugin for vim operators
   Plugin 'rhysd/vim-operator-surround' " Vim operator mapping to enclose text objects with surrounds like paren, quote and so on.
-  Plugin 'junkblocker/patchreview-vim' " dependency of vim-codereview
-  Plugin 'codegram/vim-codereview'  " code reviewer for Github's Pull-Request
   Plugin 'editorconfig/editorconfig-vim' " EditorConfig plugin for Vim
   Plugin 'Shougo/unite.vim' " unite.vim -- a breaking User Interface
   Plugin 'tpope/vim-fugitive' " A Git wrapper so awesome, it should be illegal
   Plugin 'w0rp/ale' " Asynchronous Lint Engine
   Plugin 'othree/yajs.vim' " YAJS.vim: Yet Another JavaScript Syntax for Vim
   Plugin 'othree/es.next.syntax.vim' " ES.Next syntax for Vim
-  Plugin 'dbeniamine/cheat.sh-vim' " A vim plugin to access cheat.sh sheets
-  Plugin 'vim-scripts/VOoM'
-  if has("python3")
-    Plugin 'jceb/vim-orgmode'
-    Plugin 'SirVer/ultisnips' " UltiSnips - The ultimate snippet solution for Vim. Send pull requests to SirVer/ultisnips!
-  endif
   Plugin 'thinca/vim-quickrun' " Run commands quickly.
   Plugin 'Cj-bc/gfm.vim' " syntax file for Github flavor markdown
   Plugin 'wellle/targets.vim' " vim plugin that provides additional tect objects
@@ -293,46 +285,21 @@ call vundle#begin()
   Plugin 'altercation/vim-colors-solarized' " precision colorscheme for the vim text editor
   Plugin 'hspec/hspec.vim' " Vim plugin providing support for the Hspec BDD-style testing framework for Haskell.
   Plugin 'tyru/skkdict.vim' " Syntax file for SKK directory
-  Plugin 'OmniSharp/omnisharp-vim' " Vim omnicompletion (intellisense) and more for c#
   Plugin 'vim-pandoc/vim-pandoc-syntax'
   Plugin 'vim-pandoc/vim-pandoc'
   Plugin 'pbrisbin/vim-syntax-shakespeare' " A set of vim syntax files for highlighting the various Html templating languages in Haskell
   Plugin 'skanehira/code2img.vim' " generate image of source code
-  Plugin 'tyru/open-browser.vim' " dependency of TweetVim
-  Plugin 'basyura/twiBill.vim'  " dependency of TweetVim
-  Plugin 'mattn/webapi-vim'  " send http request from vim
-  Plugin 'basyura/TweetVim'
-  Plugin 'yomi322/unite-tweetvim' " More unite source for Tweetvim
   Plugin 'mattn/emoji-vim' " type Emoji in Vim!!
-  Plugin 'Shougo/vimproc.vim' " optionally dependency of github-complete.vim
-  Plugin 'rhysd/github-complete.vim' " complete github's username, repository name, etc
-  Plugin 'jaxbot/github-issues.vim' " deal with github issues
-  Plugin 'itchyny/calendar.vim' " view calender from vim
-  Plugin 'itchyny/screensaver.vim' " screen saver
   Plugin 'scrooloose/vim-slumlord' " Inline previews for Plantuml sequence diagrams
-  Plugin 'kannokanno/previm' " previewer for markdown in browser
   Plugin 'VincentCordobes/vim-translate' " Translater in Vim (require: translate-shell)
-  Plugin 'vimwiki/vimwiki' " Personal Wiki for Vim
   Plugin 'majutsushi/tagbar' " show tag list on the side
   Plugin 'mattn/qiita-vim' " vim qiita client
   Plugin 'mattn/emmet-vim' " HTML/CSS coding
-  Plugin 'tell-k/vim-browsereload-mac' " vim plugin to reflesh your browser. for MacOSX
-  Plugin 'vim-scripts/DrawIt' " Ascii drawing plugin: lines, ellipses, arrows, fills, and more!
-  Plugin 'gyim/vim-boxdraw' " An ASCII box drawing plugin for Vim
-  " Plugin 'rishihahs/vim-youtube' " Plays youtube in (neo)vim
-  Plugin 'Cj-bc/blib.vim' " blib integration
-  Plugin 'Cj-bc/Damian-Conway-s-Vim-Setup' " Damian's vim plugins
-  Plugin 'kana/vim-vspec' " Vim plugin: Testing framework for Vim script
-  Plugin 'dermusikman/sonicpi.vim' " Sonic Pi plugin for Vim
   Plugin 'prabirshrestha/async.vim' " dependency of vim-lsp
   Plugin 'prabirshrestha/vim-lsp' " async language server protocol plugin for vim and neovim
   Plugin 'mattn/vim-lsp-settings'
-  Plugin 'Cj-bc/drcs.vim'
-  Plugin 'mattn/vim-reading-vimrc' " vimrc reading client
   Plugin 'rhysd/vim-grammarous' " A powerful grammar checker for vim using LanguageTool.
   Plugin 'ElmCast/elm-vim' " Elm plugin for Vim
-  Plugin 'Cj-bc/cmus.vim' " Control cmus from vim
-  Plugin 'mhinz/vim-startify' " The fancy start screen for Vim
   Plugin 'freitass/todo.txt-vim' " vim plugin for todo.txt
   Plugin 'vim-scripts/bats.vim' " just a hilight for Bats
   Plugin 'aklt/plantuml-syntax' " syntax file for Plant UML

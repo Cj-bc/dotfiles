@@ -14,34 +14,34 @@
     #+begin_src elisp
       ;; Leaf configurations
       (eval-and-compile
-	(when (or load-file-name byte-compile-current-file)
-	  (setq user-emacs-directory
-	   (expand-file-name
-	       (file-name-directory (or load-file-name byte-compile-current-file)
-	 )))))
+        (when (or load-file-name byte-compile-current-file)
+          (setq user-emacs-directory
+           (expand-file-name
+               (file-name-directory (or load-file-name byte-compile-current-file)
+         )))))
 
       (setq tab-width 4)
       (eval-and-compile
-	  (customize-set-variable
-	      'package-archives '(("gnu"   . "https://elpa.gnu.org/packages/")
-				 ("melpa" . "https://melpa.org/packages/")
-				 ("org"   . "https://orgmode.org/elpa/")
-				 ))
-	  (package-initialize)
-	  (unless (package-installed-p 'leaf)
-	      (package-refresh-contents)
-	      (package-install 'leaf)
-	      )
+        (customize-set-variable
+         'package-archives '(("gnu"   . "https://elpa.gnu.org/packages/")
+                             ("melpa" . "https://melpa.org/packages/")
+                             ("org"   . "https://orgmode.org/elpa/")
+                             ))
+        (package-initialize)
+        (unless (package-installed-p 'leaf)
+          (package-refresh-contents)
+          (package-install 'leaf)
+          )
 
-	  (leaf leaf-keywords
-		:ensure t
-		:init
-		;; Optional packages if you want to use :hydra, :el-get, :blackout,,,
-
-		(leaf el-get :ensure t) ; Githubにあるパッケージを使用するために必要
-		(leaf-keywords-init)
-		)
-	  )
+        (leaf leaf-keywords
+          :ensure t
+          :init
+          ;; Optional packages if you want to use :hydra, :el-get, :blackout,,,
+    
+          (leaf el-get :ensure t) ; Githubにあるパッケージを使用するために必要
+          (leaf-keywords-init)
+          )
+        )
 
     #+end_src
 **** ヘルパー用パッケージ
@@ -68,6 +68,7 @@
        :require
        cj-bc/string
        ghq
+       org-screenshot-attach
        )
    #+end_src
 
@@ -201,55 +202,55 @@ Org modeが使いたくてEmacsに来たので...
     #+end_src
     
 **** Custom agenda
-     #+HEADER: :noweb yes
-     #+begin_src elisp
-       (leaf org-agenda-custom-commands
-         :ensure nil
-         :after org
-         :config
-         <<leaf--org-agenda-config>>
-         :custom
-         (org-agenda-custom-commands .
-                                     '(("x"
-                                        "全てのスケジュールを表示します"
-                                        agenda
-                                        ""
-                                        ((org-agenda-span 'year)
-                                         (org-agenda-entry-types '(:scheduled)))
-                                        )
-                                       ("p"
-                                        "プロジェクト固有のTODO"
-                                        todo
-                                        "TODO"
-                                        ((org-agenda-files projectile-known-projects)
-                                         (org-agenda-prefix-format '((todo . "%i %(format (cj-bc-org-agenda-get-project-name file)):\t")))
-                                         )
-                                        )
-                                       ("b"
-                                        "ブログ記事の進捗管理"
-                                        tags
-                                        "+LEVEL=1-BLOG_POST_PROGRESS=\"Published\""
-                                        ((org-agenda-files
-                                          (directory-files (concat (ghq-root) "/github.com/Cj-bc/blog/posts") t "\.org$")
-                                          )
-                                         (org-agenda-prefix-format '((tags . " | ")))
-                                         (org-overriding-columns-format "%BLOG_POST_PROGRESS %TAGS %ITEM")
-                                         )
-                                        )
-                                       )))
-     #+end_src
+#+HEADER: :noweb yes
+#+begin_src elisp
+  (leaf org-agenda-custom-commands
+    :ensure nil
+    :after org
+    :config
+    <<leaf--org-agenda-config>>
+    :custom
+    (org-agenda-custom-commands .
+                                '(("x"
+                                   "全てのスケジュールを表示します"
+                                   agenda
+                                   ""
+                                   ((org-agenda-span 'year)
+                                    (org-agenda-entry-types '(:scheduled)))
+                                   )
+                                  ("p"
+                                   "プロジェクト固有のTODO"
+                                   todo
+                                   "TODO"
+                                   ((org-agenda-files projectile-known-projects)
+                                    (org-agenda-prefix-format '((todo . "%i %(format (cj-bc-org-agenda-get-project-name file)):\t")))
+                                    )
+                                   )
+                                  ("b"
+                                   "ブログ記事の進捗管理"
+                                   tags
+                                   "+LEVEL=1-BLOG_POST_PROGRESS=\"Published\""
+                                   ((org-agenda-files
+                                     (directory-files (concat (ghq-root) "/github.com/Cj-bc/blog/posts") t "\.org$")
+                                     )
+                                    (org-agenda-prefix-format '((tags . " | ")))
+                                    (org-overriding-columns-format "%BLOG_POST_PROGRESS %TAGS %ITEM")
+                                    )
+                                   )
+                                  )))
+#+end_src
 
-     ヘルパー用の関数。プロジェクト名を取得して、
-     #+HEADER: :noweb-ref leaf--org-agenda-config
-     #+begin_src elisp
-       (defun cj-bc-org-agenda-get-project-name (fullPath)
-	 "This is helper function just for my custom org-agenda-view.
-       Get project name from full path."
 
-	 (string-match "/\\([^/]+/\\)+\\([^/]+/[^/]+\\)/" fullPath)
-	 (match-string 2 fullPath))
-     #+end_src
+ヘルパー用の関数。プロジェクト名を取得して、
+#+HEADER: :noweb-ref leaf--org-agenda-config
+#+begin_src elisp
+  (defun cj-bc-org-agenda-get-project-name (fullPath)
+ "This is helper function just for my custom org-agenda-view.
+  Get project name from full path."
 
+ (string-match "/\\([^/]+/\\)+\\([^/]+/[^/]+\\)/" fullPath)
+ (match-string 2 fullPath))
+#+end_src
 *** Todo設定
     #+HEADER: :noweb-ref leaf-org-custom
     #+HEADER: :tangle no
@@ -312,13 +313,8 @@ Org modeが使いたくてEmacsに来たので...
 				   "|" (car a)))
 		   target-list))
 
-	(seq-map (lambda (x) `(sequence ,@(replaceDelimiter x)))
-	     (list todo reading shoppingList noteStatus))
-      #+end_src
-
-      #+HEADER: :noweb-ref leaf-org-custom
-      #+begin_src elisp :noweb yes :tangle no
-	(org-todo-keywords . '<<Org-todoKeywords-construct()>>)
+        (seq-map (lambda (x) `(sequence ,@(replaceDelimiter x)))
+             (list todo reading shoppingList noteStatus))
       #+end_src
 
 *** 外部Link
@@ -376,14 +372,14 @@ Org modeが使いたくてEmacsに来たので...
 
 
        (defun remove-org-newlines-at-cjk-text (&optional _mode)
-	 "先頭が '*', '#', '|' でなく、改行の前後が日本の文字の場合はその改行を除去する。"
-	 (interactive)
-	 (goto-char (point-min))
-	 (while (re-search-forward "^\\([^|#*\n].+\\)\\(.\\)\n *\\(.\\)" nil t)
-	   (if (and (> (string-to-char (match-string 2)) #x2000)
-		    (> (string-to-char (match-string 3)) #x2000))
-	       (replace-match "\\1\\2\\3"))
-	   (goto-char (point-at-bol))))
+         "先頭が '*', '#', '|' でなく、改行の前後が日本の文字の場合はその改行を除去する。"
+         (interactive)
+         (goto-char (point-min))
+         (while (re-search-forward "^\\([^|#*\n].+\\)\\(.\\)\n *\\(.\\)" nil t)
+           (if (and (> (string-to-char (match-string 2)) #x2000)
+                    (> (string-to-char (match-string 3)) #x2000))
+               (replace-match "\\1\\2\\3"))
+           (goto-char (point-at-bol))))
 
        (with-eval-after-load "ox"
          (add-hook 'org-export-before-processing-hook 'remove-org-newlines-at-cjk-text))
@@ -422,7 +418,51 @@ Org modeが使いたくてEmacsに来たので...
 
 
        (setq org-latex-packages-alist '(("whole" "bxcjkjatype") ("a4paper" "geometry")))
+
+       (setq org-latex-pdf-process '("latexmk -pdf -pvc -shell-escape -pdflatex=lualatex -output-directory=%o %f"))
      #+end_src
+
+     #+RESULTS:
+     | whole   | bxcjkjatype |
+     | a4paper | geometry    |
+**** LaTeX(texwiki.texjp.org準拠)
+ちょっとよく分からなくなり、
+
+#+begin_src elisp
+  (leaf org-config/latex
+    :ensure nil
+    :config
+    (setq TeX-engine 'platex)
+    (add-to-list 'org-latex-classes
+                 '("vrsj" "\\documentclass[a4paper]{jarticle}
+         [NO-DEFAULT-PACKAGES]
+         [NO-PACKAGES]
+         \\usepackage{vrsjj}
+         \\usepackage{balance}
+         \\special{pdf: pagesize width 210truemm height 297truemm}
+         \\newcounter{vrsjyear}
+         \\newcounter{vrsjmonth}
+         \\newcounter{vrsjnum}
+         \\setcounter{vrsjyear}{2023}
+         \\setcounter{vrsjmonth}{9}
+         \\setcounter{vrsjnum}{\\value{vrsjyear}}
+         \\addtocounter{vrsjnum}{-1995}
+
+         \\renewcommand{\\baselinestretch}{1.32}
+         "
+                     ("\\section{%s}" . "\\section*{%s}")
+                     ("\\subsection{%s}" . "\\subsection*{%s}")
+                     ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+                     ))
+    (setq org-latex-compiler "platex")
+    (setq org-latex-pdf-process
+          '("platex %b" "dvipdfmx %b"))
+
+    )
+#+end_src
+
+#+RESULTS:
+: org-config/latex
 
 *** captureテンプレート
     :LOGBOOK:
@@ -525,6 +565,10 @@ Org modeが使いたくてEmacsに来たので...
                                    ("i" "idea" plain
                                     "%?"
                                     :target (file+olp "%<%Y%m%d%H%M%S>-${slug}.org" ("${title}"))
+                                    :unnarrowed t)
+                                   ("m" "MOC" plain
+                                    "%?"
+                                    :target (file+head+olp "%<%Y%m%d%H%M%S>-${slug}.org" "#+FILETAGS: :MOC:" ("MOC ${title}"))
                                     :unnarrowed t)
                                    ))
      #+end_src
@@ -630,6 +674,12 @@ help:org-roam-node-display-template を設定すると、 help:org-roam-node-fin
         )
     #+end_src
 
+*** 見た目
+
+#+begin_src elisp
+  (leaf org-modern
+    :ensure t)
+#+end_src
 *** 通知を出す
 
 #+begin_src elisp
@@ -640,6 +690,26 @@ help:org-roam-node-display-template を設定すると、 help:org-roam-node-fin
     (org-notifications-start)
     )
 #+end_src
+
+*** Org attach screenshot
+
+#+begin_src elisp
+  (leaf org-attach-screenshot
+    :after org
+    :ensure nil
+    :require t)
+#+end_src
+
+*** imenuでより深い階層まで表示する
+デフォルトでは、2階層までしか表示されない。
+私はもっと深い階層まで表示してほしいので、適当に大きめな数字を設定している。
+
+#+HEADER: :noweb-ref leaf-org-config :tangle no
+#+begin_src elisp
+  (setq org-imenu-depth 10)
+#+end_src
+
+help:org-imenu-depth
 
 ** SNS
 *** Twittering-mode
@@ -746,6 +816,23 @@ help:org-roam-node-display-template を設定すると、 help:org-roam-node-fin
     (define-key evil-outer-text-objects-map "d" 'evil-a-defun)
     )
 #+end_src
+**** Evil surround LaTeX
+
+#+begin_src elisp
+  (leaf evil-surround-latex
+    :ensure nil
+    :after 'evil-surround
+    :hook latex-mode-hook)
+#+end_src
+**** LaTeX textobject
+
+#+begin_src elisp
+  (leaf evil-textobj-latex
+    :require t
+    :ensure nil
+    :after 'evil
+    )
+#+end_src
 
 ** Projectile
    #+begin_src elisp :noweb yes 
@@ -778,76 +865,133 @@ help:org-roam-node-display-template を設定すると、 help:org-roam-node-fin
     + .git
     + .projectile
       
-** Ivy
-   #+begin_src elisp
-     (leaf counsel
-       :ensure t
-       :config
-       (ivy-mode 1)
-       :bind
-       (("M-x" . counsel-M-x)
-        ("C-x C-f" . counsel-find-file)
-        ("C-h f" . counsel-describe-function)
-        ("C-h v" . counsel-describe-variable)
-        ("C-s" . swiper)
-        )
-       :config
-       (setq ivy-re-builders-alist
-	     '((t . ivy--regex-fuzzy)))
-       (when (featurep 'projectile)
-	 (setq projectile-completion-system 'ivy))
-       )
-   #+end_src
-   
-*** Posframeを使う
-    場合によってはposframeの方がありがたいので、posframeを入れる
-
-    #+begin_src elisp
-      (leaf ivy-posframe
-        :ensure t
-        :after posframe ivy
-        )
-    #+end_src
-
-*** [Integration] Projectile
-
-Projectileでファイルを選択する際に、Purgeのオプションがあると嬉しい。
-Ivy中に ~ivy-dispatching-done~ (デフォルトでは ~M-o~)を押すことで選べる。
+** 補完周り
+Ivyを使用していた所から徐々に分割していこうとしており、
+consultを使うまでもなさそうなものを一時的にここに保存します。
 
 #+begin_src elisp
-  (leaf ivy-projectile-config
+  (leaf cj-bc/completions
+    :require nil
     :ensure nil
-    :after ivy projectile
     :config
-    (ivy-set-actions 'projectile-find-file
-                  '(("p" 'projectile-purge-file-from-cache "[Projectile] Purge file from cache"))))
+    (fido-vertical-mode)
+    )
 #+end_src
 
-** Lsp mode
-   #+begin_src elisp
-     (leaf lsp-mode
-       :commands lsp
-       :ensure t
-       :hook
-       (sh-mode-hook . lsp)
-       (haskell-mode-hook . lsp)
-       (kotlin-mode-hook . lsp)
-       )
-   #+end_src
+*** ブックマーク
+#+begin_src elisp
+  (require 'bookmark)
+  (defun cj-bc/completions/bookmark ()
+      ""
+    (interactive)
+    (pcase (completing-read "jump to bookmark: " (bookmark-all-names))
+      ('nil nil)
+      (bookmark (bookmark-jump bookmark))))
 
+  (global-set-key (kbd "C-x r l") #'cj-bc/completions/bookmark)
+#+end_src
 
-   #+begin_src elisp
-     (leaf lsp-bash
-       :config
-       (defun lsp-bash--bash-ls-server-command ()
-	 '("~/.local/share/vim-lsp-settings/servers/bash-language-server/bash-language-server" "start"))
+*** in-buffer補完する: corfu
 
-       )
-   #+end_src
+#+begin_src elisp
+  (leaf corfu
+    :ensure t
+    :bind
+    (:corfu-map
+     ("C-p" . corfu-previous)
+     ("C-n" . corfu-next))
+    :config
+    (global-corfu-mode))
+#+end_src
+
+**** ミニバッファーでも使用出来るようにする
+[[https://github.com/minad/corfu?tab=readme-ov-file#completing-in-the-minibuffer][公式のREADME]]にある例を借りる。
+
+#+begin_src elisp
+  (defun corfu-enable-in-minibuffer ()
+  "Enable Corfu in the minibuffer."
+  (when (local-variable-p 'completion-at-point-functions)
+    (setq-local corfu-echo-delay nil ;; Disable automatic echo and popup
+                corfu-popupinfo-delay nil)
+    (corfu-mode 1)))
+  (add-hook 'minibuffer-setup-hook #'corfu-enable-in-minibuffer)
+#+end_src
+*** marginalia
+
+#+begin_src elisp
+  (leaf marginalia
+    :ensure t
+    :config
+    (marginalia-mode))
+#+end_src
+
+** migemo
+#+begin_src elisp
+  (leaf migemo
+    :ensure t
+    :require t
+    :custom
+    (migemo-command . "cmigemo")
+    (migemo-options . '("-q" "--emacs"))
+    (migemo-coding-system . 'utf-8-unix)
+    (migemo-dictionary . "/usr/share/migemo/utf-8/migemo-dict")
+    (migemo-user-dictionary . nil)
+    (migemo-regex-dictionary . nil)
+    :config
+    (when (and (processp migemo-process)
+               (eq (process-status migemo-process) 'run))
+      (migemo-kill))
+    (migemo-init)
+    )
+#+end_src
+
+#+begin_src elisp
+  (leaf ivy-migemo
+    :after ivy migemo
+    :ensure t
+    :require t
+    :config
+    (ivy-migemo-toggle-migemo)
+    (setq ivy-re-builders-alist
+          (mapcar '(lambda (pair)
+                     (list (car pair)
+                           (pcase (cdr pair)
+                             ('ivy--regex-fuzzy 'ivy-migemo-regex-fuzzy)
+                             ('ivy--regex-plus 'ivy-migemo-regex-plus)
+                             (x x)))
+                     ) ivy-re-builders-alist))
+    )
+#+end_src
+
+#+begin_src elisp :tangle no
+  (leaf avy-migemo
+    :after avy migemo
+    :require t
+    :ensure t)
+#+end_src
+** 動き
+*** Avy
+#+begin_src elisp
+  (leaf avy
+    :ensure t
+    ;; :bind
+    ;; (evil-normal-state-map ([remap evil-find-char] . evil-avy-goto-char-2))
+    :config
+    (evil-define-key '(normal motion) 'global "f" 'evil-avy-goto-char-in-line)
+    (evil-define-key '(normal) 'global (kbd "M-a") 'avy-goto-char-2)
+    )
+#+end_src
+
 ** Magit
    #+begin_src elisp
      (leaf magit
        :ensure t
+       :bind
+       ("C-x g" . nil)
+       :bind-keymap
+       ("C-c g" . '(keymap (?l . magit-log)
+                           (?s . magit-status)
+                           ))
        )
    #+end_src
 ** 開発環境
@@ -869,6 +1013,13 @@ Ivy中に ~ivy-dispatching-done~ (デフォルトでは ~M-o~)を押すことで
             (org-plantuml-jar-path . "/usr/share/java/plantuml/plantuml.jar")
             )
 	#+end_src
+**** Mermaid
+#+begin_src elisp
+  (leaf mermaid-ts-mode
+    :ensure t
+    )
+#+end_src
+
 *** Repl
     #+begin_src elisp
       (leaf quickrun
@@ -929,7 +1080,61 @@ Ivy中に ~ivy-dispatching-done~ (デフォルトでは ~M-o~)を押すことで
     )
 #+end_src
 
+*** cMake
+#+begin_src elisp
+  (leaf cmake-mode
+   :ensure t)
+#+end_src
+
+*** ファイラー
+#+begin_src elisp
+  (leaf treemacs
+    :ensure t
+    :bind
+    ("C-c f" . 'treemacs)
+    )
+#+end_src
+
+*** Emmet
+#+begin_src elisp
+  (leaf emmet-mode
+    :ensure t
+    :require t
+    :hook
+    (html-mode-hook . 'emmet-mode))
+#+end_src
+
+*** Nix
+
+#+begin_src elisp
+  (leaf nix-mode
+    :ensure t)
+#+end_src
+
+*** Treesitter
+
+#+begin_src elisp
+  (leaf treesit-auto
+    :ensure t
+    :require t
+    :config
+    (global-treesit-auto-mode))
+#+end_src
+
 ** ドキュメント作成
+*** SATySFi
+#+begin_src elisp
+  (leaf satysfi-mode
+    :el-get gfngfn/satysfi.el
+    :ensure nil
+    :require 'satysfi
+    :custom
+    (satysfi-pdf-viewer-command . "mupdf")
+    :config
+    (add-to-list 'auto-mode-alist '("\\.saty$" . satysfi-mode))
+    (add-to-list 'auto-mode-alist '("\\.satyh$" . satysfi-mode))
+    )
+#+end_src
 *** LaTeX
 ~latex-mode~ で編集する時のための設定。
 
@@ -991,12 +1196,6 @@ Ivy中に ~ivy-dispatching-done~ (デフォルトでは ~M-o~)を押すことで
 	:ensure t
 	)
     #+end_src
-*** Toml
-    #+begin_src elisp
-      (leaf toml-mode
-	:ensure t
-	)
-    #+end_src
 *** Kotlin
     #+begin_src elisp
       (leaf kotlin-mode
@@ -1008,14 +1207,6 @@ Ivy中に ~ivy-dispatching-done~ (デフォルトでは ~M-o~)を押すことで
       (leaf ob-kotlin
 	:ensure t
 	)
-    #+end_src
-*** CSharp
-    #+begin_src elisp
-      (leaf csharp-mode
-	:added "2021-09-25"
-	:url "https://github.com/emacs-csharp/csharp-mode"
-	:emacs>= 26.1
-	:ensure t)
     #+end_src
 *** Dockerfile
 
@@ -1042,6 +1233,55 @@ Ivy中に ~ivy-dispatching-done~ (デフォルトでは ~M-o~)を押すことで
     :url "https://github.com/ayrat555/cargo-mode"
     :emacs>= 25.1
     :ensure t)
+#+end_src
+*** Common Lisp
+#+begin_src elisp
+  (leaf sly
+    :ensure t
+    :bind
+    (:sly-editing-mode-map
+     ("M-p" . nil)
+     ("M-n" . nil)
+     ("C-c M-p" . 'sly-previous-note)
+     ("C-c M-n" . 'sly-next-note)
+     )
+    :custom
+    (inferior-lisp-program . '("ros" "run"))
+    )
+#+end_src
+*** Go
+#+begin_src elisp
+  (leaf go-mode
+    :ensure t
+    :hook
+    (go-mode-hook . (lambda () (setq-local tab-width 2)))
+    (go-mode-hook . (lambda () (add-hook 'before-save-hook #'gofmt-before-save nil t))))
+#+end_src
+
+#+begin_src elisp
+  (leaf go-projectile
+    :ensure t
+    :require t)
+#+end_src
+*** lua
+#+begin_src elisp
+  (leaf lua-mode
+    :ensure t)
+#+end_src
+*** Elisp
+
+#+begin_src elisp
+  (leaf elisp-config
+    :ensure nil
+    :config
+    (defun user-config/elisp-config/outline-level ()
+      "Custom function for `outline-level'"
+      (- (match-end 1) (match-beginning 1)))
+    (defun user-config/elisp-config/setup-outline ()
+      (setq-local outline-regexp (rx (seq ";;;" (group (* ?\;)) " " (+ (or (syntax word) (syntax whitespace))) ":")))
+      (setq-local outline-level 'user-config/elisp-config/outline-level)
+      (outline-minor-mode +1))
+    (add-hook 'emacs-lisp-mode-hook 'user-config/elisp-config/setup-outline))
 #+end_src
 ** Appearences
    #+begin_src elisp
@@ -1119,6 +1359,16 @@ Ivy中に ~ivy-dispatching-done~ (デフォルトでは ~M-o~)を押すことで
     #+end_src
 
 
+*** Auto-Save mode
+
+#+begin_src elisp
+  (leaf auto-save-mode
+    :ensure nil
+    :custom
+    (delete-auto-save-files . t) ;; Delete auto-save file when a true save is done
+    )
+#+end_src
+
 
 ** custom, etc
    #+begin_src elisp
@@ -1127,3 +1377,12 @@ Ivy中に ~ivy-dispatching-done~ (デフォルトでは ~M-o~)を押すことで
 
      (provide 'init)
    #+end_src
+
+*** URLハンドラ
+
+#+begin_src elisp
+  (leaf cj-bc/config/url-handlers
+    :custom
+    (browse-url-handlers . '(("\\`file://.*\\.pdf" . browse-url-emacs))))
+
+#+end_src
