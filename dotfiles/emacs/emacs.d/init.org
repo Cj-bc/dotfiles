@@ -384,7 +384,6 @@ Org modeが使いたくてEmacsに来たので...
        (with-eval-after-load "ox"
          (add-hook 'org-export-before-processing-hook 'remove-org-newlines-at-cjk-text))
 
-	 )
        (setq org-latex-classes
                 `(("article"
                    "\\documentclass{ltjsarticle}\n\\usepackage{amsmath}\n"
