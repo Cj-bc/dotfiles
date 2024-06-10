@@ -969,6 +969,15 @@ consultを使うまでもなさそうなものを一時的にここに保存し�
     :ensure t)
 #+end_src
 ** 動き
+*** embark
+
+#+begin_src elisp
+  (leaf embark
+    :ensure t
+    :config
+    (bind-key "M-o" #'embark-act 'minibuffer-mode-map)
+    )
+#+end_src
 *** Avy
 #+begin_src elisp
   (leaf avy
