@@ -37,8 +37,9 @@
 
 (defun unity/--xref-backend () 'unity)
 
-;; WIP
-(cl-defmethod xref-backend-identifier-completion-table ((_backend (eql 'unity))))
+;; TODO
+(cl-defmethod xref-backend-identifier-completion-table ((_backend (eql 'unity)))
+  '())
 
 (cl-defmethod xref-backend-identifier-at-point ((_backend (eql 'unity)))
   (let ((bounds (bounds-of-thing-at-point 'unity/local-fileid-reference)))
