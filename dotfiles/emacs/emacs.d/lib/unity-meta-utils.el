@@ -46,10 +46,14 @@
 	 (buffer-substring-no-properties (car bounds) (cdr bounds)))))
 
 (cl-defmethod xref-backend-definitions ((_backend (eql 'unity)) identifier)
-  (save-match-data
-    (when (string-match "^{fileID: ([0-9]+)}$" identifier)
-      (goto-char (point-min))
-      (when (re-search-forward (format "^--- !u![0-9]+ &%s" (match-string 1)))
-	(xref-make (format "Location for fileID: %s" (match-string 1)) (point)))
+  (save-excursion
+    (save-match-data
+      (when (string-match "^{fileID: \\([0-9]+\\)}$" identifier)
+	(let ((actualId (match-string 1 identifier)))
+	  (goto-char (point-min))
+    	  (when (re-search-forward (format "^--- !u![0-9]+ &%s$" actualId))
+    	    (list (xref-make (format "Location for fileID: %s" (match-string 1 identifier)) (make-xref-buffer-location :buffer (current-buffer) :position (point))))))
+      ))))
+
 (provide 'unity-meta-utils)
 ;;; unity-meta-utils.el ends here
