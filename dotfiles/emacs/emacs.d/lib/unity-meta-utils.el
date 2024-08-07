@@ -38,20 +38,18 @@
 (defun unity/--xref-backend () 'unity)
 
 ;; WIP
-;; (cl-defmethod xref-backend-identifier-completion-table ((_backend (eql 'unity))))
+(cl-defmethod xref-backend-identifier-completion-table ((_backend (eql 'unity))))
 
-;; (cl-defmethod xref-backend-identifier-at-point ((_backend (eql 'unity)))
-;;   (let ((bounds (bounds-of-thing-at-point 'unity/local-fileid-reference)))
-;;     (and bounds
-;; 	 (buffer-substring-no-properties (car bounds) (cdr bounds)))))
+(cl-defmethod xref-backend-identifier-at-point ((_backend (eql 'unity)))
+  (let ((bounds (bounds-of-thing-at-point 'unity/local-fileid-reference)))
+    (and bounds
+	 (buffer-substring-no-properties (car bounds) (cdr bounds)))))
 
-;; (cl-defmethod xref-backend-definitions ((_backend (eql 'unity)) identifier)
-;;   (save-match-data
-;;     (when (string-match "^{fileID: ([0-9]+)}$" identifier)
-;;       (goto-char (point-min))
-;;       (when (re-search-forward (format "^--- !u![0-9]+ &%s" (match-string 1)))
-;; 	(xref-make (format "Location for fileID: %s" (match-string 1)) (point)))
-;;       )))
-
+(cl-defmethod xref-backend-definitions ((_backend (eql 'unity)) identifier)
+  (save-match-data
+    (when (string-match "^{fileID: ([0-9]+)}$" identifier)
+      (goto-char (point-min))
+      (when (re-search-forward (format "^--- !u![0-9]+ &%s" (match-string 1)))
+	(xref-make (format "Location for fileID: %s" (match-string 1)) (point)))
 (provide 'unity-meta-utils)
 ;;; unity-meta-utils.el ends here
