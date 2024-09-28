@@ -2,7 +2,7 @@
 # --
 # Maintainer: Cj-bc a.k.a. Cj.bc-sd
 pkgname=glamoroustoolkit-bin
-pkgver=1.0.371
+pkgver=1.0.1161
 pkgrel=0
 pkgdesc="The Modable Development Environment"
 url="https://github.com/feenkcom/gtoolkit"
@@ -12,7 +12,7 @@ source_x86_64=("https://github.com/feenkcom/gtoolkit/releases/download/v${pkgver
 
 arch=('x86_64')
 sha256sums=('a99039e996e85a7c772e578af79770121a092c1bc13e1c0535515a4d2a412cae')
-sha256sums_x86_64=('af020cc9d4ce458c8531fc6df009fec8100f8c1a9dcf3458fd61c8bc0c4f42b5')
+sha256sums_x86_64=('f5c68adf3f9c2e6574480f6833dc00e1f7cfaffc285d939a52a93452d27907e9')
 
 package() {
     install -d "${pkgdir}/opt/${pkgname}"/bin
