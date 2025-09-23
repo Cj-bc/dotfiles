@@ -15,7 +15,9 @@
 	))))
 
 (define-configuration prompt-buffer
-  ((default-modes (pushnew 'vi-insert-mode %SLOT-VALUE%))
+  ((default-modes (reduce #'(lambda (acc mode) (remove mode acc)) '(nyxt/mode/vi:vi-insert-mode
+								    nyxt/mode/vi:vi-normal-mode)
+			  :initial-value %SLOT-VALUE%))
    (keyscheme nyxt/keyscheme:emacs)))
 
 
