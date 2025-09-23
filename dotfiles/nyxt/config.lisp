@@ -4,15 +4,13 @@
 
 
 (define-configuration buffer
-    ((default-modes (append '(vi-normal-mode dark-mode) %SLOT-VALUE%))
+    ((default-modes (append '(nyxt/mode/vi:vi-normal-mode) %SLOT-VALUE%))
      (override-map
       (let ((map (make-keymap "override-map")))
 	(define-key map
 	    "C-x" 'nothing
 	    "C-x b" 'switch-buffer
-	    "d" 'delete-buffer
-	    )
-	))))
+	  )))))
 
 (define-configuration prompt-buffer
   ((default-modes (reduce #'(lambda (acc mode) (remove mode acc)) '(nyxt/mode/vi:vi-insert-mode
