@@ -27,3 +27,4 @@ dunst, $HOME/.config/dunst
 rofi, $HOME/.config/rofi
 gh, $HOME/.config/gh
 nyxt, $HOME/.config/nyxt
+niri, $HOME/.config/niri
