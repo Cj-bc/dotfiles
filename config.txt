@@ -28,3 +28,4 @@ rofi, $HOME/.config/rofi
 gh, $HOME/.config/gh
 nyxt, $HOME/.config/nyxt
 niri, $HOME/.config/niri
+hypr, $HOME/.config/hypr
