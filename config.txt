@@ -29,3 +29,5 @@ gh, $HOME/.config/gh
 nyxt, $HOME/.config/nyxt
 niri, $HOME/.config/niri
 hypr, $HOME/.config/hypr
+claude/CLAUDE.md, $HOME/.claude/CLAUDE.md
+claude/flix, $HOME/.claude/flix
