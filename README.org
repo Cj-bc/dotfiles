@@ -144,3 +144,19 @@ git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 tmux
 # on tmux, press <PREFIX>+I (capital "I")
 #+end_src
+
+** Windows
+
+#+begin_src powershell
+# Run from a PowerShell prompt at the repository root.
+# Creating symlinks on Windows requires either an elevated (Administrator)
+# PowerShell, or "Developer Mode" enabled under
+# Settings > Update & Security > For developers.
+.\init.ps1
+# To remove the created symlinks later:
+.\uninstall.ps1
+#+end_src
+
+=init.ps1= / =uninstall.ps1= are PowerShell ports of =init.sh= / =uninstall.sh=;
+they read the same =config.txt= / =external.csv= files, so both sets of
+scripts stay in sync.
